@@ -1,0 +1,9 @@
+model_area_m2,69782.0625
+osm_area_m2,26294.44209889976
+overlap_area_m2,25508.768277862204
+union_area_m2,70567.73632103803
+precision_like,0.3655490732716908
+recall_like,0.9701201562641091
+iou,0.361479191592793
+result_name,se2526_rgb_250_03
+model_file,/Users/hou/Desktop/dissertation/Parking/parking-lot-mapping-tool/output_files/leeds_original/se2526_rgb_250_03_original.geojson

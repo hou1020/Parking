@@ -1,0 +1,11 @@
+model_area_m2,61130.5
+osm_area_m2,30775.523246006425
+overlap_area_m2,28658.606640447302
+union_area_m2,63247.41660555903
+precision_like,0.4688102770376048
+recall_like,0.9312142773775967
+iou,0.4531190075189316
+result_name,se2627_rgb_250_03_min_1000m2
+model_file,/Users/hou/Desktop/dissertation/Parking/calculate/filtered_output_files/min_1000m2/leeds_original/se2627_rgb_250_03_min_1000m2.geojson
+min_area_m2,1000.0
+osm_area_filtered,True

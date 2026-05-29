@@ -126,7 +126,22 @@ def overpass_json_to_gdf(data):
         tags["osm_id"] = element.get("id")
         rows.append({**tags, "geometry": geom})
 
+    if not rows:
+        return empty_osm_gdf()
+
     return gpd.GeoDataFrame(rows, geometry="geometry", crs="EPSG:4326")
+
+
+def empty_osm_gdf():
+    """返回一个带 geometry 列的空 OSM parking 图层。"""
+    return gpd.GeoDataFrame(
+        {"amenity": pd.Series(dtype="object"),
+         "parking": pd.Series(dtype="object"),
+         "osm_type": pd.Series(dtype="object"),
+         "osm_id": pd.Series(dtype="Int64")},
+        geometry=gpd.GeoSeries([], crs="EPSG:4326"),
+        crs="EPSG:4326",
+    )
 
 
 def osm_element_to_polygon(element):

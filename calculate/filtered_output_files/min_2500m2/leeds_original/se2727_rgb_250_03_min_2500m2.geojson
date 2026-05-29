@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "se2727_rgb_250_03_min_2500m2",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::27700" } },
+"features": [
+
+]
+}
