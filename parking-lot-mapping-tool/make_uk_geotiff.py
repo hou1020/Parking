@@ -6,15 +6,14 @@ from PIL.TiffImagePlugin import ImageFileDirectory_v2
 
 
 ROOT = Path(__file__).resolve().parent
-IMAGE_PATH = ROOT / "files" / "uk" / "nt2774_rgb_250_05.jpg"
-WORLD_PATH = ROOT / "files" / "uk" / "nt2774_rgb_250_05.jgw"
-OUTPUT_PATH = ROOT / "files" / "nt2774_rgb_250_05.tif"
+INPUT_DIR = ROOT / "files" / "leeds"
+OUTPUT_DIR = ROOT / "files" / "leeds_tif"
 
 
 def read_world_file(path):
     a, d, b, e, c, f = [float(line.strip()) for line in path.read_text().splitlines()]
 
-    # Convert from pixel centre coordinates to upper-left corner coordinates.
+    # jgw 里的 c/f 是像素中心点坐标；GeoTIFF 需要左上角坐标。
     return {
         "pixel_width": abs(a),
         "pixel_height": abs(e),
@@ -30,26 +29,50 @@ def geotiff_tags(transform):
     tags[33922] = (0.0, 0.0, 0.0, transform["top_left_x"], transform["top_left_y"], 0.0)
     tags[34735] = (
         1, 1, 0, 4,
-        1024, 0, 1, 1,      # GTModelTypeGeoKey: projected
-        1025, 0, 1, 1,      # GTRasterTypeGeoKey: pixel is area
-        3072, 0, 1, 27700,  # ProjectedCSTypeGeoKey: British National Grid
-        3076, 0, 1, 9001,   # ProjLinearUnitsGeoKey: metre
+        1024, 0, 1, 1,      # 投影坐标
+        1025, 0, 1, 1,      # 像素代表面积
+        3072, 0, 1, 27700,  # EPSG:27700 British National Grid
+        3076, 0, 1, 9001,   # 单位：米
     )
 
     return tags
 
 
-transform = read_world_file(WORLD_PATH)
+def convert_to_geotiff(image_path, output_dir):
+    world_path = image_path.with_suffix(".jgw")
+    output_path = output_dir / f"{image_path.stem}.tif"
 
-with Image.open(IMAGE_PATH) as image:
-    image = image.convert("RGB")
-    array = np.asarray(image)
+    if not world_path.exists():
+        raise FileNotFoundError(f"Missing world file: {world_path}")
 
-Image.fromarray(array).save(
-    OUTPUT_PATH,
-    format="TIFF",
-    tiffinfo=geotiff_tags(transform),
-    compression="tiff_lzw",
-)
+    transform = read_world_file(world_path)
 
-print(f"Created GeoTIFF: {OUTPUT_PATH}")
+    with Image.open(image_path) as image:
+        image = image.convert("RGB")
+        array = np.asarray(image)
+
+    Image.fromarray(array).save(
+        output_path,
+        format="TIFF",
+        tiffinfo=geotiff_tags(transform),
+        compression="tiff_lzw",
+    )
+
+    print(f"Created GeoTIFF: {output_path}")
+
+
+def main():
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    image_paths = sorted(INPUT_DIR.glob("*.jpg"))
+    if not image_paths:
+        raise FileNotFoundError(f"No jpg files found in {INPUT_DIR}")
+
+    for image_path in image_paths:
+        convert_to_geotiff(image_path, OUTPUT_DIR)
+
+    print(f"Finished converting {len(image_paths)} files.")
+
+
+if __name__ == "__main__":
+    main()
