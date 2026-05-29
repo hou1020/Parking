@@ -13,22 +13,13 @@ from shapely.ops import polygonize, unary_union
 BASE_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = BASE_DIR.parent
 
-MODEL_FILE = (
-    PROJECT_DIR
-    / "parking-lot-mapping-tool"
-    / "files"
-    / "nt2774_rgb_250_05_original.geojson"
-)
+OUTPUT_FILES_DIR = PROJECT_DIR / "parking-lot-mapping-tool" / "output_files"
+RESULTS_DIR = BASE_DIR / "results"
 
 TARGET_CRS = "EPSG:27700"
 
-# 这个 GeoJSON 文件头写的是 EPSG:3857，但坐标值实际是英国国家网格。
-# 因此这里强制按 EPSG:27700 读取，保证面积单位是平方米。
-MODEL_CRS = "EPSG:27700"
-
-OSM_FILE = BASE_DIR / "osm_parking_downloaded.gpkg"
-OVERLAP_FILE = BASE_DIR / "model_osm_overlap.gpkg"
-METRICS_FILE = BASE_DIR / "osm_agreement_metrics.csv"
+# 如果模型输出文件缺少 CRS，就按 EPSG:27700 处理。
+MODEL_CRS_IF_MISSING = "EPSG:27700"
 
 OVERPASS_URLS = [
     "https://overpass-api.de/api/interpreter",
@@ -54,10 +45,12 @@ def clean_polygons(gdf):
     return gdf[gdf.geometry.geom_type.isin(["Polygon", "MultiPolygon"])].copy()
 
 
-def read_model():
-    """读取模型结果。"""
-    model = gpd.read_file(MODEL_FILE)
-    return model.set_crs(MODEL_CRS, allow_override=True)
+def read_model(path):
+    """读取一个模型输出 GeoJSON。"""
+    model = gpd.read_file(path)
+    if model.crs is None:
+        model = model.set_crs(MODEL_CRS_IF_MISSING)
+    return model
 
 
 def surface_parking_only(osm):
@@ -199,7 +192,7 @@ def clip_to_study_area(gdf, study_area):
     return clean_polygons(clipped)
 
 
-def calculate_metrics(model, osm, study_area):
+def calculate_metrics(model, osm, study_area, overlap_file):
     model_geom = union_geom(clip_to_study_area(model, study_area))
     osm_geom = union_geom(clip_to_study_area(osm, study_area))
 
@@ -224,37 +217,80 @@ def calculate_metrics(model, osm, study_area):
         {"layer": ["model_osm_overlap"]},
         geometry=[overlap_geom],
         crs=TARGET_CRS,
-    ).to_file(OVERLAP_FILE, layer="overlap", driver="GPKG")
+    ).to_file(overlap_file, layer="overlap", driver="GPKG")
 
     return metrics
 
 
 # ===================== 主程序 =====================
 
-def main():
-    print(f"Reading model polygons: {MODEL_FILE}")
-    model = clean_polygons(read_model())
+def find_model_files():
+    """查找 output_files 里的所有模型结果文件。"""
+    return sorted(
+        path for path in OUTPUT_FILES_DIR.rglob("*.geojson")
+        if not path.name.startswith(".")
+    )
+
+
+def process_model_file(model_file):
+    """计算单个模型结果与 OSM parking 的重叠指标。"""
+    result_name = model_file.stem.replace("_original", "")
+    result_dir = RESULTS_DIR / result_name
+    result_dir.mkdir(parents=True, exist_ok=True)
+
+    osm_file = result_dir / f"{result_name}_osm_parking.gpkg"
+    overlap_file = result_dir / f"{result_name}_overlap.gpkg"
+    metrics_file = result_dir / f"{result_name}_osm_agreement_metrics.csv"
+
+    print(f"\nReading model polygons: {model_file}")
+    model = clean_polygons(read_model(model_file))
 
     if model.empty:
-        raise ValueError("Model layer has no polygon geometries.")
+        print(f"Skipped empty model layer: {model_file}")
+        return None
 
     # 这里使用模型结果的外接矩形作为研究范围。
     # 如果论文需要更严谨，可以改成影像 tile 边界或研究区边界。
     study_area = box(*model.total_bounds)
 
-    print("Downloading OSM amenity=parking features...")
-    osm = download_osm_parking(study_area)
-    osm = clean_polygons(surface_parking_only(osm))
-    osm.to_file(OSM_FILE, layer="osm_parking", driver="GPKG")
+    if osm_file.exists():
+        print(f"Reading cached OSM parking: {osm_file}")
+        osm = gpd.read_file(osm_file, layer="osm_parking")
+    else:
+        print("Downloading OSM amenity=parking features...")
+        osm = download_osm_parking(study_area)
+        osm = clean_polygons(surface_parking_only(osm))
+        osm.to_file(osm_file, layer="osm_parking", driver="GPKG")
 
-    metrics = calculate_metrics(model, osm, study_area)
-    pd.Series(metrics).to_csv(METRICS_FILE, header=False)
+    metrics = calculate_metrics(model, osm, study_area, overlap_file)
+    metrics["result_name"] = result_name
+    metrics["model_file"] = str(model_file)
+    pd.Series(metrics).to_csv(metrics_file, header=False)
 
-    print("\nOSM-based agreement metrics")
     print(pd.Series(metrics))
-    print(f"\nSaved: {METRICS_FILE}")
-    print(f"Saved: {OSM_FILE}")
-    print(f"Saved: {OVERLAP_FILE}")
+    print(f"Saved: {metrics_file}")
+    print(f"Saved: {osm_file}")
+    print(f"Saved: {overlap_file}")
+    return metrics
+
+
+def main():
+    model_files = find_model_files()
+    if not model_files:
+        raise FileNotFoundError(f"No GeoJSON result files found in {OUTPUT_FILES_DIR}")
+
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    all_metrics = []
+    for model_file in model_files:
+        metrics = process_model_file(model_file)
+        if metrics is not None:
+            all_metrics.append(metrics)
+
+    if all_metrics:
+        summary_file = RESULTS_DIR / "osm_agreement_summary.csv"
+        pd.DataFrame(all_metrics).to_csv(summary_file, index=False)
+        print(f"\nSaved summary: {summary_file}")
 
 
 if __name__ == "__main__":
