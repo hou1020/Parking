@@ -1,0 +1,15 @@
+model_area_m2,564937.1875
+manual_area_m2,390791.3833471805
+overlap_area_m2,308428.6852365245
+model_only_area_m2,256508.5022634754
+manual_only_area_m2,82362.69811065978
+union_area_m2,647299.8856106598
+accuracy_like,0.5459521731989444
+precision_like,0.5459521731989444
+recall_like,0.7892412637013425
+iou,0.4764849988279455
+result_name,leeds_original_merged
+model_file,/Users/hou/Desktop/dissertation/Parking/calculate/output_files_merged/leeds_original_merged.geojson
+manual_file,/Users/hou/Desktop/dissertation/Parking/calculate/manual/leeds_manual_validation.gpkg
+manual_layer,leeds_manual_validation
+study_area,combined_bounds
