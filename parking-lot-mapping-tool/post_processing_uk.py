@@ -1,4 +1,5 @@
 import json
+import time
 from pathlib import Path
 
 import geopandas as gpd
@@ -14,6 +15,10 @@ OVERPASS_URLS = [
     "https://overpass.kumi.systems/api/interpreter",
     "https://overpass.openstreetmap.ru/api/interpreter",
 ]
+OVERPASS_TIMEOUT = 180
+OVERPASS_RETRIES = 2
+OVERPASS_RETRY_WAIT_SECONDS = 20
+OVERPASS_CHUNK_SIZE_M = 1250
 
 EXCLUDED_ROADS = {
     "bridleway",
@@ -54,6 +59,7 @@ def postprocess_prediction_uk(
     output_path,
     cache_dir=None,
     min_area_m2=0,
+    allow_missing_osm=True,
 ):
     """Subtract OSM buildings and buffered UK roads from model polygons."""
     prediction_path = Path(prediction_path)
@@ -69,7 +75,16 @@ def postprocess_prediction_uk(
         return output_path
 
     study_area = raster_bounds(tif_path)
-    buildings, roads = load_masks(study_area, tif_path.stem, cache_dir)
+    try:
+        buildings, roads = load_masks(study_area, tif_path.stem, cache_dir)
+    except RuntimeError as exc:
+        if not allow_missing_osm:
+            raise
+        print(f"OSM removal failed for {tif_path}; saving unfiltered prediction instead.")
+        print(exc)
+        write_geojson(model.to_crs(TARGET_CRS), output_path)
+        return output_path
+
     cleaned = subtract(subtract(model.to_crs(TARGET_CRS), buildings), roads)
     cleaned["geometry"] = cleaned.geometry.intersection(study_area)
     cleaned = clean_polygons(cleaned, TARGET_CRS)
@@ -88,12 +103,61 @@ def load_masks(study_area, stem, cache_dir):
     if building_cache.exists() and road_cache.exists():
         return read_polygons(building_cache, TARGET_CRS), read_polygons(road_cache, TARGET_CRS)
 
-    data = request_overpass(overpass_query(wgs84_bbox(study_area)))
+    data = request_overpass_for_area(study_area)
     buildings = clean_polygons(osm_buildings(data).to_crs(TARGET_CRS), TARGET_CRS)
     roads = road_buffers(osm_roads(data).to_crs(TARGET_CRS))
-    write_geojson(buildings, building_cache)
-    write_geojson(roads, road_cache)
+    if not data.get("partial"):
+        write_geojson(buildings, building_cache)
+        write_geojson(roads, road_cache)
     return buildings, roads
+
+
+def request_overpass_for_area(study_area):
+    """Query OSM in smaller chunks so large 5km tiles do not time out Overpass."""
+    elements = {}
+    errors = []
+    chunks = split_study_area(study_area, OVERPASS_CHUNK_SIZE_M)
+
+    for index, chunk in enumerate(chunks, start=1):
+        try:
+            data = request_overpass(overpass_query(wgs84_bbox(chunk)))
+        except RuntimeError as exc:
+            errors.append(f"chunk {index}/{len(chunks)}: {exc}")
+            continue
+
+        for element in data.get("elements", []):
+            key = (element.get("type"), element.get("id"))
+            if key[0] is None or key[1] is None:
+                key = ("missing-id", index, len(elements))
+            elements[key] = element
+
+    if errors:
+        print("Some Overpass chunks failed; continuing with available OSM data:")
+        print("\n".join(errors))
+
+    if not elements and errors:
+        raise RuntimeError("All Overpass chunk requests failed:\n" + "\n".join(errors))
+
+    return {"elements": list(elements.values()), "partial": bool(errors)}
+
+
+def split_study_area(study_area, chunk_size_m):
+    min_x, min_y, max_x, max_y = study_area.bounds
+    chunks = []
+
+    x = min_x
+    while x < max_x:
+        y = min_y
+        next_x = min(x + chunk_size_m, max_x)
+        while y < max_y:
+            next_y = min(y + chunk_size_m, max_y)
+            chunk = box(x, y, next_x, next_y).intersection(study_area)
+            if not chunk.is_empty:
+                chunks.append(chunk)
+            y = next_y
+        x = next_x
+
+    return chunks or [study_area]
 
 
 def overpass_query(bbox):
@@ -113,14 +177,29 @@ def overpass_query(bbox):
 def request_overpass(query):
     errors = []
     headers = {"User-Agent": "parking-uk-post-processing/1.0"}
-    for url in OVERPASS_URLS:
-        try:
-            response = requests.post(url, data={"data": query}, headers=headers, timeout=180)
-            if response.ok:
-                return response.json()
-            errors.append(f"{url}: HTTP {response.status_code}")
-        except requests.RequestException as exc:
-            errors.append(f"{url}: {exc}")
+    retry_statuses = {429, 500, 502, 503, 504}
+
+    for attempt in range(1, OVERPASS_RETRIES + 1):
+        for url in OVERPASS_URLS:
+            try:
+                response = requests.post(
+                    url,
+                    data={"data": query},
+                    headers=headers,
+                    timeout=OVERPASS_TIMEOUT,
+                )
+                if response.ok:
+                    return response.json()
+
+                errors.append(f"{url}: HTTP {response.status_code}")
+                if response.status_code not in retry_statuses:
+                    continue
+            except requests.RequestException as exc:
+                errors.append(f"{url}: {exc}")
+
+        if attempt < OVERPASS_RETRIES:
+            time.sleep(OVERPASS_RETRY_WAIT_SECONDS * attempt)
+
     raise RuntimeError("All Overpass API requests failed:\n" + "\n".join(errors))
 
 
