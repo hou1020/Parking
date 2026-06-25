@@ -1,17 +1,0 @@
-The citations in this document should be used to reference the maps and data
-when they have been included in any essays, dissertations or other academic
-works. You should cite the data even if it doesn't appear as an image or map
-in your work if it has been used to generate findings or a new dataset that is
-used.
-
-There is one entry for each product and selected area; you can edit the
-citation if you only use part of the data it covers. Any citations provided
-below are a guide only and should be given in addition to any requirement to
-acknowledge sources and copyright of any data used or any local guidance
-provided:
-
-High Resolution (25cm) Vertical Aerial Imagery [JPG geospatial data], Scale 1:500, Tiles: se2535,se2536,se2537,se2538,se2539,se2935,se2936,se2937,se2938,se2939,se2735,se2736,se2737,se2738,se2739,se2635,se2636,se2637,se2638,se2639,se2835,se2836,se2837,se2838,se2839, Updated: 7 September 2023, Getmapping, Using: EDINA Aerial Digimap Service, <https://digimap.edina.ac.uk>, Downloaded: 2026-06-25 15:57:39.668
-High Resolution (25cm) Vertical Aerial Imagery [JPG geospatial data], Scale 1:500, Tiles: se3035,se3036,se3037,se3038,se3039,se3135,se3136,se3137,se3138,se3139,se3235,se3236,se3237,se3238,se3239,se3335,se3336,se3337,se3338,se3339,se3435,se3436,se3437,se3438,se3439, Updated: 7 September 2023, Getmapping, Using: EDINA Aerial Digimap Service, <https://digimap.edina.ac.uk>, Downloaded: 2026-06-25 15:57:39.668
-High Resolution (25cm) Vertical Aerial Imagery [JPG geospatial data], Scale 1:500, Tiles: se3030,se3031,se3032,se3033,se3034,se3130,se3131,se3132,se3133,se3134,se3230,se3231,se3232,se3233,se3234,se3330,se3331,se3332,se3333,se3334,se3430,se3431,se3432,se3433,se3434, Updated: 7 September 2023, Getmapping, Using: EDINA Aerial Digimap Service, <https://digimap.edina.ac.uk>, Downloaded: 2026-06-25 15:57:39.668
-High Resolution (25cm) Vertical Aerial Imagery [JPG geospatial data], Scale 1:500, Tiles: se2530,se2531,se2532,se2533,se2534,se2630,se2631,se2632,se2633,se2634,se2730,se2731,se2732,se2733,se2734,se2830,se2831,se2832,se2833,se2834,se2930,se2931,se2932,se2933,se2934, Updated: 7 September 2023, Getmapping, Using: EDINA Aerial Digimap Service, <https://digimap.edina.ac.uk>, Downloaded: 2026-06-25 15:57:39.668
-
