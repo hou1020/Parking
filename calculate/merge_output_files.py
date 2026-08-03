@@ -33,8 +33,18 @@ def find_geojson_files(input_dir):
     return sorted(
         path
         for path in input_dir.rglob("*.geojson")
-        if not path.name.startswith(".")
+        if should_include_geojson(path)
     )
+
+
+def should_include_geojson(path):
+    if path.name.startswith("."):
+        return False
+    if path.name.endswith("_merged.geojson"):
+        return False
+    if "osm_cache" in path.parts:
+        return False
+    return True
 
 
 def group_files_by_folder(files, input_dir):
@@ -62,10 +72,10 @@ def output_file_for(folder, output_dir):
     return output_dir / f"{safe_name}_merged.geojson"
 
 
-def merge_group(folder, files, output_dir):
+def merge_files(name, files, output_file, source_folder=None, summary_folder=None):
     merged = {
         "type": "FeatureCollection",
-        "name": f"{'_'.join(folder.parts)}_merged",
+        "name": name,
         "features": [],
     }
 
@@ -77,22 +87,53 @@ def merge_group(folder, files, output_dir):
         for feature in data.get("features", []):
             feature = dict(feature)
             properties = dict(feature.get("properties") or {})
-            properties["source_folder"] = str(folder)
+            properties["source_folder"] = str(source_folder if source_folder is not None else path.parent)
             properties["source_file"] = path.name
             feature["properties"] = properties
             merged["features"].append(feature)
 
-    output_file = output_file_for(folder, output_dir)
     output_file.parent.mkdir(parents=True, exist_ok=True)
     with output_file.open("w", encoding="utf-8") as file:
         json.dump(merged, file, ensure_ascii=False)
 
     return {
-        "folder": str(folder),
+        "folder": str(summary_folder or source_folder or output_file.stem),
         "input_files": len(files),
         "features": len(merged["features"]),
         "output_file": str(output_file),
     }
+
+
+def merge_group(folder, files, output_dir):
+    return merge_files(
+        f"{'_'.join(folder.parts)}_merged",
+        files,
+        output_file_for(folder, output_dir),
+        source_folder=folder,
+        summary_folder=folder,
+    )
+
+
+def aggregate_groups(groups):
+    aggregates = {"original": [], "removal": []}
+    for folder, files in groups.items():
+        if not folder.parts:
+            continue
+
+        first_part = folder.parts[0]
+        if first_part.endswith("_original"):
+            aggregates["original"].extend(files)
+        elif first_part.endswith("_removal"):
+            aggregates["removal"].extend(files)
+
+    return {name: sorted(files) for name, files in aggregates.items() if files}
+
+
+def cleanup_stale_merged_outputs(output_dir, expected_files):
+    expected_files = {path.resolve() for path in expected_files}
+    for path in output_dir.glob("*_merged.geojson"):
+        if path.resolve() not in expected_files:
+            path.unlink()
 
 
 def main():
@@ -109,13 +150,27 @@ def main():
     print(f"Output directory: {output_dir}")
 
     rows = []
+    expected_outputs = []
     for folder, folder_files in sorted(groups.items()):
         result = merge_group(folder, folder_files, output_dir)
         rows.append(result)
+        expected_outputs.append(Path(result["output_file"]))
         print(
             f"{result['folder']}: merged {result['input_files']} file(s), "
             f"{result['features']} feature(s)"
         )
+
+    for name, aggregate_files in aggregate_groups(groups).items():
+        output_file = output_dir / f"{name}_merged.geojson"
+        result = merge_files(f"{name}_merged", aggregate_files, output_file, summary_folder=name)
+        rows.append(result)
+        expected_outputs.append(output_file)
+        print(
+            f"{result['folder']}: merged {result['input_files']} file(s), "
+            f"{result['features']} feature(s)"
+        )
+
+    cleanup_stale_merged_outputs(output_dir, expected_outputs)
 
     summary_file = output_dir / "merge_summary.csv"
     with summary_file.open("w", newline="", encoding="utf-8") as file:

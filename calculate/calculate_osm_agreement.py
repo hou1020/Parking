@@ -1,6 +1,8 @@
 from pathlib import Path
 import sys
+import time
 
+from argparse import ArgumentParser
 import geopandas as gpd
 import pandas as pd
 import requests
@@ -26,6 +28,38 @@ OVERPASS_URLS = [
     "https://overpass.kumi.systems/api/interpreter",
     "https://overpass.openstreetmap.ru/api/interpreter",
 ]
+OVERPASS_TIMEOUT_SECONDS = 45
+OVERPASS_RETRIES = 1
+OVERPASS_RETRY_WAIT_SECONDS = 10
+
+
+def parse_args():
+    parser = ArgumentParser(
+        description="Calculate OSM parking agreement and write one summary table."
+    )
+    parser.add_argument(
+        "--input-dir",
+        type=Path,
+        default=OUTPUT_FILES_DIR,
+        help="Directory containing model output GeoJSON files.",
+    )
+    parser.add_argument(
+        "--results-dir",
+        type=Path,
+        default=RESULTS_DIR,
+        help="Directory for the summary CSV.",
+    )
+    parser.add_argument(
+        "--save-layers",
+        action="store_true",
+        help="Also save per-file OSM parking, overlap GPKG, and metrics CSV outputs.",
+    )
+    parser.add_argument(
+        "--stop-on-error",
+        action="store_true",
+        help="Stop on the first file-level error instead of recording it in the summary.",
+    )
+    return parser.parse_args()
 
 
 # ===================== 数据清洗 =====================
@@ -98,16 +132,23 @@ def request_overpass(query):
     errors = []
     headers = {"User-Agent": "parking-osm-agreement/1.0"}
 
-    for url in OVERPASS_URLS:
-        try:
-            response = requests.post(
-                url, data={"data": query}, headers=headers, timeout=180
-            )
-            if response.ok:
-                return response.json()
-            errors.append(f"{url}: HTTP {response.status_code}")
-        except requests.RequestException as exc:
-            errors.append(f"{url}: {exc}")
+    for attempt in range(1, OVERPASS_RETRIES + 1):
+        for url in OVERPASS_URLS:
+            try:
+                response = requests.post(
+                    url,
+                    data={"data": query},
+                    headers=headers,
+                    timeout=OVERPASS_TIMEOUT_SECONDS,
+                )
+                if response.ok:
+                    return response.json()
+                errors.append(f"{url}: HTTP {response.status_code}")
+            except requests.RequestException as exc:
+                errors.append(f"{url}: {exc}")
+
+        if attempt < OVERPASS_RETRIES:
+            time.sleep(OVERPASS_RETRY_WAIT_SECONDS * attempt)
 
     raise RuntimeError("All Overpass API requests failed:\n" + "\n".join(errors))
 
@@ -207,7 +248,7 @@ def clip_to_study_area(gdf, study_area):
     return clean_polygons(clipped)
 
 
-def calculate_metrics(model, osm, study_area, overlap_file):
+def calculate_metrics(model, osm, study_area, overlap_file=None):
     model_geom = union_geom(clip_to_study_area(model, study_area))
     osm_geom = union_geom(clip_to_study_area(osm, study_area))
 
@@ -228,30 +269,40 @@ def calculate_metrics(model, osm, study_area, overlap_file):
         "iou": overlap_area / union_area if union_area > 0 else None,
     }
 
-    gpd.GeoDataFrame(
-        {"layer": ["model_osm_overlap"]},
-        geometry=[overlap_geom],
-        crs=TARGET_CRS,
-    ).to_file(overlap_file, layer="overlap", driver="GPKG")
+    if overlap_file is not None:
+        gpd.GeoDataFrame(
+            {"layer": ["model_osm_overlap"]},
+            geometry=[overlap_geom],
+            crs=TARGET_CRS,
+        ).to_file(overlap_file, layer="overlap", driver="GPKG")
 
     return metrics
 
 
 # ===================== 主程序 =====================
 
-def find_model_files():
+def find_model_files(input_dir):
     """查找 output_files 里的所有模型结果文件。"""
     return sorted(
-        path for path in OUTPUT_FILES_DIR.rglob("*.geojson")
-        if not path.name.startswith(".")
+        path for path in input_dir.rglob("*.geojson")
+        if should_include_model_file(path)
     )
 
 
-def process_model_file(model_file):
+def should_include_model_file(path):
+    if path.name.startswith("."):
+        return False
+    if path.name.endswith("_merged.geojson"):
+        return False
+    if "osm_cache" in path.parts:
+        return False
+    return True
+
+
+def process_model_file(model_file, results_dir, save_layers=False):
     """计算单个模型结果与 OSM parking 的重叠指标。"""
     result_name = model_file.stem.replace("_original", "")
-    result_dir = RESULTS_DIR / result_name
-    result_dir.mkdir(parents=True, exist_ok=True)
+    result_dir = results_dir / result_name
 
     osm_file = result_dir / f"{result_name}_osm_parking.gpkg"
     overlap_file = result_dir / f"{result_name}_overlap.gpkg"
@@ -268,44 +319,96 @@ def process_model_file(model_file):
     # 如果论文需要更严谨，可以改成影像 tile 边界或研究区边界。
     study_area = box(*model.total_bounds)
 
-    if osm_file.exists():
+    if save_layers:
+        result_dir.mkdir(parents=True, exist_ok=True)
+
+    if save_layers and osm_file.exists():
         print(f"Reading cached OSM parking: {osm_file}")
         osm = gpd.read_file(osm_file, layer="osm_parking")
     else:
         print("Downloading OSM amenity=parking features...")
         osm = download_osm_parking(study_area)
         osm = clean_polygons(surface_parking_only(osm))
-        osm.to_file(osm_file, layer="osm_parking", driver="GPKG")
+        if save_layers:
+            osm.to_file(osm_file, layer="osm_parking", driver="GPKG")
 
-    metrics = calculate_metrics(model, osm, study_area, overlap_file)
+    metrics = calculate_metrics(
+        model,
+        osm,
+        study_area,
+        overlap_file if save_layers else None,
+    )
     metrics["result_name"] = result_name
     metrics["model_file"] = str(model_file)
-    pd.Series(metrics).to_csv(metrics_file, header=False)
+    if save_layers:
+        pd.Series(metrics).to_csv(metrics_file, header=False)
 
     print(pd.Series(metrics))
-    print(f"Saved: {metrics_file}")
-    print(f"Saved: {osm_file}")
-    print(f"Saved: {overlap_file}")
+    if save_layers:
+        print(f"Saved: {metrics_file}")
+        print(f"Saved: {osm_file}")
+        print(f"Saved: {overlap_file}")
     return metrics
 
 
 def main():
-    model_files = find_model_files()
+    args = parse_args()
+    input_dir = args.input_dir.resolve()
+    results_dir = args.results_dir.resolve()
+
+    model_files = find_model_files(input_dir)
     if not model_files:
-        raise FileNotFoundError(f"No GeoJSON result files found in {OUTPUT_FILES_DIR}")
+        raise FileNotFoundError(f"No GeoJSON result files found in {input_dir}")
 
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    results_dir.mkdir(parents=True, exist_ok=True)
 
-    all_metrics = []
+    summary_file = results_dir / "osm_agreement_summary.csv"
+    current_model_files = {str(path) for path in model_files}
+    if summary_file.exists():
+        previous_rows = pd.read_csv(summary_file).to_dict("records")
+        all_metrics = [
+            row for row in previous_rows
+            if row.get("model_file") in current_model_files and row.get("status") == "ok"
+        ]
+    else:
+        all_metrics = []
+
+    completed = {row.get("model_file") for row in all_metrics}
+
     for model_file in model_files:
-        metrics = process_model_file(model_file)
-        if metrics is not None:
-            all_metrics.append(metrics)
+        if str(model_file) in completed:
+            print(f"Skipping completed file: {model_file}")
+            continue
 
-    if all_metrics:
-        summary_file = RESULTS_DIR / "osm_agreement_summary.csv"
+        try:
+            metrics = process_model_file(model_file, results_dir, save_layers=args.save_layers)
+            if metrics is None:
+                continue
+            metrics["status"] = "ok"
+            metrics["error"] = ""
+        except Exception as exc:
+            if args.stop_on_error:
+                raise
+            print(f"Failed: {model_file}\n{exc}")
+            metrics = {
+                "result_name": model_file.stem.replace("_original", ""),
+                "model_file": str(model_file),
+                "model_area_m2": None,
+                "osm_area_m2": None,
+                "overlap_area_m2": None,
+                "union_area_m2": None,
+                "precision_like": None,
+                "recall_like": None,
+                "iou": None,
+                "status": "failed",
+                "error": repr(exc),
+            }
+
+        all_metrics = [
+            row for row in all_metrics if row.get("model_file") != str(model_file)
+        ] + [metrics]
         pd.DataFrame(all_metrics).to_csv(summary_file, index=False)
-        print(f"\nSaved summary: {summary_file}")
+        print(f"Saved summary: {summary_file}")
 
 
 if __name__ == "__main__":
