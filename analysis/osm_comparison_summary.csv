@@ -1,0 +1,20 @@
+measure,value,unit,note
+manual labelled parking,3.2597,km2,ground truth
+model predicted parking,4.8785,km2,removal output
+OSM amenity=parking,1.7641,km2,
+OSM as share of manual,54.1,%,
+OSM polygons in region,985,count,
+manual polygons,2037,count,
+OSM median polygon area,763.0,m2,
+manual median polygon area,799.0,m2,
+OSM and manual agree,1.1882,km2,67.4% of OSM
+OSM only (manual says no),0.5759,km2,
+manual only (missing from OSM),2.0714,km2,63.5% of labelled parking absent from OSM
+FP total,2.0937,km2,
+FP on OSM parking,0.191,km2,9.1% of FP
+  of which within 5 m of manual,0.0934,km2,48.9% - parcel vs pavement geometry
+  of which beyond 5 m of manual,0.0976,km2,51.1% - genuine disagreement
+  of which within 10 m of manual,0.11,km2,57.6% - parcel vs pavement geometry
+  of which beyond 10 m of manual,0.081,km2,42.4% - genuine disagreement
+  of which within 25 m of manual,0.1332,km2,69.7% - parcel vs pavement geometry
+  of which beyond 25 m of manual,0.0579,km2,30.3% - genuine disagreement

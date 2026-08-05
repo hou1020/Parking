@@ -1,0 +1,10 @@
+source,stratum,n_population,area_population_m2,n_sampled
+fp_other,small_100_300,604,105516.7,20
+fp_other,medium_300_1k,327,165565.3,25
+fp_other,large_1k+,61,117249.6,25
+fn_other,small_100_300,160,30110.2,10
+fn_other,medium_300_1k,112,63493.0,15
+fn_other,large_1k+,25,59161.3,20
+osm_disagree,small_100_300,96,17400.9,8
+osm_disagree,medium_300_1k,66,32677.7,10
+osm_disagree,large_1k+,22,39337.9,12

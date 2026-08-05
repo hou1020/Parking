@@ -1,0 +1,10 @@
+variant,model_km2,tp_km2,fp_km2,fn_km2,precision,recall,iou,note
+A. original,5.5209,2.9139,2.607,0.3458,0.5278,0.8939,0.4967,neither layer removed
+B. original - buildings,5.182,2.833,2.349,0.4266,0.5467,0.8691,0.5051,buildings only
+C. original - roads,5.2107,2.8649,2.3457,0.3947,0.5498,0.8789,0.5111,roads only
+D. original - buildings - roads,4.8785,2.7848,2.0937,0.4749,0.5708,0.8543,0.5202,"both, reconstructed"
+D*. removal (pipeline output),4.8785,2.7848,2.0937,0.4749,0.5708,0.8543,0.5202,"both, as produced by the pipeline"
+E. removal - sports,4.7873,2.7293,2.058,0.5304,0.5701,0.8373,0.5132,OS Greenspace sports
+F. removal - industrial,1.8961,0.909,0.9872,2.3507,0.4794,0.2789,0.214,OSM industrial/commercial
+G. removal - roads_wide,4.3101,2.5698,1.7403,0.6899,0.5962,0.7884,0.514,road buffers +6 m
+H. removal - all three,1.5178,0.7884,0.7294,2.4712,0.5195,0.2419,0.1976,sports + industrial + roads_wide

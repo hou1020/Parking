@@ -1,0 +1,23 @@
+category,area_km2,pct_of_FP,pct_of_standalone
+TOTAL_FP,2.0937,100.0,
+dilation_FP_within_2m,0.3616,17.3,
+standalone_FP_beyond_2m,1.732,82.7,
+dilation_FP_within_5m,0.6037,28.8,
+standalone_FP_beyond_5m,1.49,71.2,
+dilation_FP_within_10m,0.7607,36.3,
+standalone_FP_beyond_10m,1.333,63.7,
+"--- standalone(>5m), exclusive partition ---",1.49,71.2,
+building_FP,0.0,0.0,0.0
+osm_parking_FP,0.0976,4.7,6.6
+sports_courts_FP,0.053,2.5,3.6
+road_adjacent_FP,0.2435,11.6,16.3
+brownfield_bare_FP,0.0356,1.7,2.4
+industrial_yard_FP,0.6207,29.6,41.7
+other_unexplained_FP,0.4396,21.0,29.5
+--- unordered overlap with ALL FP (may overlap; need not sum to 100%) ---,,,
+overlap_building,0.0,0.0,
+overlap_osm_parking,0.191,9.1,
+overlap_sports_courts,0.0655,3.1,
+overlap_road_adjacent,0.3533,16.9,
+overlap_brownfield_bare,0.0474,2.3,
+overlap_industrial_yard,1.1065,52.8,

@@ -1,0 +1,146 @@
+sample_id,source,stratum,area_m2,cell,centroid_x,centroid_y,category,note,options
+fp_s_001,fp_other,small_100_300,122.1,c5r1,430049.6,438407.9,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_002,fp_other,small_100_300,127.5,c3r5,428106.1,434893.1,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_003,fp_other,small_100_300,231.8,c6r3,431225.4,436030.7,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_004,fp_other,small_100_300,103.2,c4r3,429874.8,436403.5,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_005,fp_other,small_100_300,100.3,c7r1,432974.4,438850.1,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_006,fp_other,small_100_300,121.7,c2r9,427252.7,430476.2,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_007,fp_other,small_100_300,252.2,c6r6,431520.1,433232.0,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_008,fp_other,small_100_300,262.6,c2r4,427965.8,435094.2,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_009,fp_other,small_100_300,139.8,c6r7,431713.7,432634.6,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_010,fp_other,small_100_300,162.7,c2r2,427617.5,437329.3,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_011,fp_other,small_100_300,179.0,c2r7,427763.7,432829.8,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_012,fp_other,small_100_300,263.6,c5r5,430451.0,434057.3,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_013,fp_other,small_100_300,173.6,c4r2,429410.7,437577.1,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_014,fp_other,small_100_300,112.6,c0r1,425159.2,438656.9,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_015,fp_other,small_100_300,261.4,c2r2,427406.3,437022.8,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_016,fp_other,small_100_300,124.6,c4r7,429760.8,432967.5,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_017,fp_other,small_100_300,118.9,c5r9,430980.7,430298.1,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_018,fp_other,small_100_300,177.8,c4r5,429261.1,434301.9,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_019,fp_other,small_100_300,132.6,c5r2,430725.6,437620.5,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_s_020,fp_other,small_100_300,160.3,c1r0,426159.8,439886.5,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_021,fp_other,medium_300_1k,367.8,c0r4,425924.0,435453.1,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_022,fp_other,medium_300_1k,828.9,c9r9,434986.1,430952.4,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_023,fp_other,medium_300_1k,418.6,c0r6,425404.3,433773.5,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_024,fp_other,medium_300_1k,368.2,c4r3,429211.0,436265.9,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_025,fp_other,medium_300_1k,901.0,c7r6,432910.3,433648.7,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_026,fp_other,medium_300_1k,669.1,c7r1,432018.7,438119.2,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_027,fp_other,medium_300_1k,366.7,c7r6,432352.3,433435.8,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_028,fp_other,medium_300_1k,445.7,c1r7,426859.5,432474.1,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_029,fp_other,medium_300_1k,318.5,c0r2,425227.8,437179.8,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_030,fp_other,medium_300_1k,476.4,c8r4,433884.9,435026.6,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_031,fp_other,medium_300_1k,537.6,c1r0,426811.9,439214.2,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_032,fp_other,medium_300_1k,716.5,c9r6,434147.8,433711.6,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_033,fp_other,medium_300_1k,550.9,c1r3,426876.6,436908.5,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_034,fp_other,medium_300_1k,318.2,c2r4,427666.9,435877.3,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_035,fp_other,medium_300_1k,304.3,c4r8,429661.5,431281.8,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_036,fp_other,medium_300_1k,374.4,c5r5,430819.1,434212.0,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_037,fp_other,medium_300_1k,530.2,c5r6,430943.2,433666.6,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_038,fp_other,medium_300_1k,390.8,c1r0,426112.5,439370.2,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_039,fp_other,medium_300_1k,465.2,c1r5,426673.9,434431.7,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_040,fp_other,medium_300_1k,393.1,c0r5,425220.4,434704.0,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_041,fp_other,medium_300_1k,716.0,c3r5,428364.9,434246.9,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_042,fp_other,medium_300_1k,336.6,c9r5,434777.1,434466.1,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_043,fp_other,medium_300_1k,385.5,c5r5,430221.6,434570.0,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_044,fp_other,medium_300_1k,488.9,c6r7,431555.8,432330.7,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_m_045,fp_other,medium_300_1k,365.7,c3r5,428567.1,434648.4,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_046,fp_other,large_1k+,1125.2,c4r0,429902.0,439335.0,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_047,fp_other,large_1k+,1391.9,c3r1,428613.0,438183.8,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_048,fp_other,large_1k+,7949.6,c8r8,433852.1,431307.7,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_049,fp_other,large_1k+,1217.2,c8r4,433717.8,435631.9,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_050,fp_other,large_1k+,1061.1,c5r2,430359.3,437116.8,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_051,fp_other,large_1k+,1020.3,c3r9,428873.1,430722.6,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_052,fp_other,large_1k+,1377.4,c6r7,431592.1,432163.0,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_053,fp_other,large_1k+,1241.1,c1r6,426170.3,433474.5,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_054,fp_other,large_1k+,1156.3,c8r2,433886.7,437260.1,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_055,fp_other,large_1k+,1204.5,c7r2,432339.9,437369.1,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_056,fp_other,large_1k+,2262.0,c0r2,425588.4,437742.5,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_057,fp_other,large_1k+,1022.0,c0r5,425911.7,434036.9,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_058,fp_other,large_1k+,1092.2,c3r9,428194.6,430691.9,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_059,fp_other,large_1k+,1184.2,c1r1,426106.8,438700.5,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_060,fp_other,large_1k+,1076.6,c4r0,429279.4,439433.5,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_061,fp_other,large_1k+,1395.3,c5r3,430583.3,436843.1,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_062,fp_other,large_1k+,1362.8,c0r2,425669.6,437703.2,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_063,fp_other,large_1k+,2003.6,c1r1,426031.3,438647.4,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_064,fp_other,large_1k+,1432.3,c9r5,434830.2,434440.0,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_065,fp_other,large_1k+,1336.8,c4r1,429061.3,438223.6,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_066,fp_other,large_1k+,1828.4,c4r8,429953.2,431899.4,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_067,fp_other,large_1k+,1409.3,c6r5,431577.4,434130.0,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_068,fp_other,large_1k+,2325.5,c6r7,431376.3,432177.0,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_069,fp_other,large_1k+,1207.2,c6r5,431444.4,434984.4,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fp_l_070,fp_other,large_1k+,2879.6,c5r7,430487.8,432924.3,,,grey_hardstanding | bare_ground | storage_yard | sports_court | building_house | on_street | real_parking_missed | other
+fn_s_071,fn_other,small_100_300,122.6,c3r5,428453.1,434810.9,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_s_072,fn_other,small_100_300,290.3,c9r7,434816.6,432911.4,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_s_073,fn_other,small_100_300,105.0,c3r7,428073.5,432321.0,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_s_074,fn_other,small_100_300,202.1,c6r7,431258.0,432059.3,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_s_075,fn_other,small_100_300,243.6,c5r5,430958.7,434693.4,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_s_076,fn_other,small_100_300,218.3,c2r8,427840.1,431033.2,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_s_077,fn_other,small_100_300,230.5,c2r6,427495.2,433748.9,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_s_078,fn_other,small_100_300,290.4,c9r5,434301.4,434422.9,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_s_079,fn_other,small_100_300,101.3,c3r6,428086.5,433044.3,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_s_080,fn_other,small_100_300,201.0,c2r4,427735.9,435821.8,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_081,fn_other,medium_300_1k,619.9,c9r8,434917.6,431012.8,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_082,fn_other,medium_300_1k,326.2,c1r8,426518.6,431773.6,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_083,fn_other,medium_300_1k,548.6,c3r8,428212.7,431306.3,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_084,fn_other,medium_300_1k,833.5,c7r2,432157.1,437090.7,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_085,fn_other,medium_300_1k,868.1,c7r5,432603.1,434687.4,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_086,fn_other,medium_300_1k,985.1,c2r8,427688.0,431246.1,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_087,fn_other,medium_300_1k,410.5,c7r8,432768.7,431784.0,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_088,fn_other,medium_300_1k,651.6,c5r7,430838.1,432645.2,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_089,fn_other,medium_300_1k,875.2,c9r1,434463.2,438569.3,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_090,fn_other,medium_300_1k,322.7,c8r7,433083.8,432213.6,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_091,fn_other,medium_300_1k,465.3,c2r9,427838.8,430188.0,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_092,fn_other,medium_300_1k,579.3,c6r9,431605.4,430957.8,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_093,fn_other,medium_300_1k,367.4,c4r7,429027.1,432730.8,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_094,fn_other,medium_300_1k,660.2,c1r3,426988.9,436820.5,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_m_095,fn_other,medium_300_1k,521.2,c4r5,429355.0,434312.3,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_096,fn_other,large_1k+,1663.6,c2r8,427976.1,431662.3,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_097,fn_other,large_1k+,1046.0,c2r7,427989.6,432631.4,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_098,fn_other,large_1k+,1566.9,c8r9,433053.3,430792.5,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_099,fn_other,large_1k+,5514.5,c7r9,432059.3,430643.0,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_100,fn_other,large_1k+,1637.2,c2r8,427714.6,431986.3,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_101,fn_other,large_1k+,1328.9,c8r4,433828.2,435586.0,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_102,fn_other,large_1k+,1012.1,c6r5,431614.3,434856.1,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_103,fn_other,large_1k+,1077.2,c9r6,434253.6,433909.7,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_104,fn_other,large_1k+,5343.3,c4r7,429635.4,432493.6,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_105,fn_other,large_1k+,4937.3,c5r8,430692.6,431210.9,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_106,fn_other,large_1k+,2535.2,c8r8,433444.9,431018.0,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_107,fn_other,large_1k+,1007.8,c4r1,429605.4,438635.8,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_108,fn_other,large_1k+,2444.7,c8r8,433001.2,431531.1,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_109,fn_other,large_1k+,1549.6,c7r8,432917.8,431012.2,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_110,fn_other,large_1k+,2088.6,c4r6,429162.4,433303.1,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_111,fn_other,large_1k+,1206.1,c2r8,427811.3,431784.6,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_112,fn_other,large_1k+,1989.7,c2r1,427068.6,438049.2,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_113,fn_other,large_1k+,1029.4,c7r6,432331.8,433897.2,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_114,fn_other,large_1k+,1094.0,c7r7,432958.6,432249.4,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+fn_l_115,fn_other,large_1k+,2329.5,c5r7,430387.3,432557.7,,,lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | rooftop | other
+os_s_116,osm_disagree,small_100_300,190.6,c5r8,430087.4,431037.3,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_s_117,osm_disagree,small_100_300,212.8,c6r5,431569.8,434970.0,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_s_118,osm_disagree,small_100_300,183.2,c2r5,427886.2,434365.2,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_s_119,osm_disagree,small_100_300,290.6,c4r4,429542.9,435470.8,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_s_120,osm_disagree,small_100_300,122.6,c5r7,430011.5,432863.0,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_s_121,osm_disagree,small_100_300,155.2,c6r5,431104.2,434250.9,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_s_122,osm_disagree,small_100_300,157.7,c2r6,427163.4,433452.2,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_s_123,osm_disagree,small_100_300,138.8,c5r1,430659.1,438163.1,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_m_124,osm_disagree,medium_300_1k,456.0,c5r8,430348.5,431387.3,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_m_125,osm_disagree,medium_300_1k,762.3,c5r7,430303.4,432698.0,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_m_126,osm_disagree,medium_300_1k,398.9,c4r5,429568.9,434888.3,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_m_127,osm_disagree,medium_300_1k,577.1,c5r6,430912.0,433561.5,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_m_128,osm_disagree,medium_300_1k,464.5,c5r1,430730.3,438777.5,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_m_129,osm_disagree,medium_300_1k,781.5,c8r7,433339.0,432307.6,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_m_130,osm_disagree,medium_300_1k,599.8,c3r5,428518.1,434509.2,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_m_131,osm_disagree,medium_300_1k,308.1,c1r4,426527.1,435316.6,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_m_132,osm_disagree,medium_300_1k,964.2,c1r3,426536.6,436721.4,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_m_133,osm_disagree,medium_300_1k,411.9,c4r4,429552.9,435349.8,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_l_134,osm_disagree,large_1k+,1071.7,c3r8,428241.0,431460.0,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_l_135,osm_disagree,large_1k+,1051.4,c6r7,431289.1,432874.5,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_l_136,osm_disagree,large_1k+,1026.1,c2r4,427005.0,435276.7,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_l_137,osm_disagree,large_1k+,1170.4,c5r3,430938.7,436134.6,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_l_138,osm_disagree,large_1k+,1343.2,c6r9,431762.9,430169.2,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_l_139,osm_disagree,large_1k+,1043.7,c4r5,429344.0,434110.1,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_l_140,osm_disagree,large_1k+,1841.5,c7r9,432154.5,430697.8,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_l_141,osm_disagree,large_1k+,1431.2,c6r7,431227.7,432787.2,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_l_142,osm_disagree,large_1k+,1360.2,c4r7,429130.6,432710.7,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_l_143,osm_disagree,large_1k+,2204.6,c3r2,428720.3,437028.5,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_l_144,osm_disagree,large_1k+,1685.3,c0r2,425608.2,437603.3,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other
+os_l_145,osm_disagree,large_1k+,1035.0,c0r2,425704.2,437639.2,,,on_street | multi_storey | private_driveway | storage_yard | real_parking_missed | other

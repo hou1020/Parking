@@ -1,0 +1,10 @@
+measure,value,unit
+rooftop polygons,16,count
+rooftop labelled area,0.0395,km2
+rooftop share of manual,1.21,%
+"recall on rooftop, original",0.916,ratio
+"recall on rooftop, removal",0.115,ratio
+"recall on non-rooftop, original",0.894,ratio
+"recall on non-rooftop, removal",0.863,ratio
+rooftop inside OSM buildings,85.6,%
+detected by original then removed,80.1,%
