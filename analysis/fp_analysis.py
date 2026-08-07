@@ -182,8 +182,12 @@ else:
     for grp, tags in OSM_GROUPS.items():
         try:
             f = ox.features_from_polygon(poly4326, tags).to_crs(27700)
-            f = f[f.geometry.type.isin(["Polygon", "MultiPolygon"])][["geometry"]].copy()
-            f["grp"] = grp
+            f = f[f.geometry.type.isin(["Polygon", "MultiPolygon"])].reset_index()
+            # keep the OSM id so each feature can be traced back, and its last-edit
+            # date, which is needed to tell a stale OSM record from stale imagery
+            idcol = "id" if "id" in f.columns else "osmid"
+            keep = {"geometry": f.geometry, "grp": grp, "osmid": f[idcol]}
+            f = gpd.GeoDataFrame(keep, geometry="geometry", crs=27700)
             frames.append(f)
             osm[grp] = dissolve(f)
             log(f"  fetched {grp}: {len(f)} polygons")

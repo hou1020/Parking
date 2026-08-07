@@ -1,13 +1,17 @@
-category,area_km2,pct_of_FN,pct_of_standalone
-TOTAL_FN,0.4749,100.0,
-erosion_FN_within_2m,0.1585,33.4,
-standalone_FN_beyond_2m,0.3163,66.6,
-erosion_FN_within_5m,0.2569,54.1,
-standalone_FN_beyond_5m,0.218,45.9,
-erosion_FN_within_10m,0.3294,69.4,
-standalone_FN_beyond_10m,0.1455,30.6,
---- standalone(>5m) breakdown ---,0.218,45.9,
-postproc_removed_FN,0.0441,9.3,20.2
-rooftop_tagged_FN,0.0027,0.6,1.3
-inside_buildings_FN,0.0082,1.7,3.7
-other_genuine_miss_FN,0.163,34.3,74.8
+category,area_km2,pct_of_FN,n_lots,pct_of_missed
+TOTAL_FN,0.4749,100.0,,
+erosion_FN_within_2m,0.1585,33.4,,
+standalone_FN_beyond_2m,0.3163,66.6,,
+erosion_FN_within_5m,0.2569,54.1,,
+standalone_FN_beyond_5m,0.218,45.9,,
+erosion_FN_within_10m,0.3294,69.4,,
+standalone_FN_beyond_10m,0.1455,30.6,,
+--- FN by state of the lot it belongs to ---,0.4749,100.0,,
+whole_lot_missed_FN,0.1131,23.8,121,
+partly_detected_FN,0.151,31.8,278,
+fringe_of_detected_FN,0.2108,44.4,1638,
+--- whole_lot_missed breakdown ---,0.1131,23.8,,
+postproc_removed_FN,0.036,7.6,,31.9
+rooftop_tagged_FN,0.0033,0.7,,2.9
+inside_buildings_FN,0.0038,0.8,,3.4
+other_genuine_miss_FN,0.0699,14.7,,61.8

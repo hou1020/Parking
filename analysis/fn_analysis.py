@@ -4,22 +4,33 @@ Author: Hou
 
 FN = manual - model (real parking the final map misses).
 
-(1) Erosion vs standalone split
-    erosion FN    = FN within D metres of a predicted parking area
-                    -> the lot was found but drawn slightly smaller
-    standalone FN = the rest -> a lot (or most of one) missed entirely
-    Reported at D = 2, 5, 10 m; D = 5 m is used for step (2).
+(1) Geometric split: erosion vs standalone
+    erosion FN    = FN lying within D metres of a predicted parking area
+    standalone FN = the rest
+    Reported at D = 2, 5, 10 m. This describes where the missed area sits, but
+    distance alone does not establish whether a lot was found: on a large lot
+    that the model detected only in the middle, the outer ring lies well beyond
+    D and would be counted as standalone even though the lot was detected. The
+    classification in (2) is therefore done per lot, not per fragment.
 
-(2) Attribution of standalone FN (priority partition, subtracted in order):
+(2) Object-level split: was the LOT found at all?
+    Each labelled lot has a detection rate, covered fraction = (lot ∩ model)/lot.
+    FN area is assigned by the state of the lot it belongs to:
+      whole_lot_missed    lot coverage <= MISSED_COV, the model did not find it
+      partly_detected     coverage between MISSED_COV and DETECTED_COV
+      fringe_of_detected  coverage > DETECTED_COV, the lot was found but drawn
+                          too small, so this FN is an outline error, not a miss
+
+(3) Attribution of whole_lot_missed FN (priority partition, subtracted in order):
     postproc_removed : FN the ORIGINAL (pre-removal) model DID detect
                        -> lost to OSM building/road subtraction: a pipeline
                           artefact, not a model failure
-    rooftop_tagged   : remaining FN on polygons tagged "rooftop" in notes
+    rooftop_tagged   : remaining FN on lots tagged "rooftop" in notes
     inside_buildings : remaining FN inside OSM building footprints
                        (rooftop-like but untagged)
-    other            : the rest -> genuine model misses, exported for sampling
+    other            : the rest -> lots the model genuinely did not see
 
-(3) Per-polygon detection rate
+(4) Per-polygon detection rate
     For each manual polygon: covered fraction = (polygon ∩ model) / polygon,
     summarised by size class and by confidence, to test whether small or
     low-confidence lots are missed more often.
@@ -32,7 +43,11 @@ Reads source data read-only. Writes only the outputs below, in this folder.
 Outputs:
   - fn_analysis_summary.csv
   - fn_detection_by_class.csv
-  - fn_unclassified.geojson
+  - fn_unclassified.geojson  : WHOLE LOTS the model essentially missed and that
+                               no other explanation covers, for sampling. Whole
+                               lots are exported rather than FN fragments, so
+                               that "why was this missed" is a question about a
+                               car park rather than about a sliver of one.
 """
 import os, csv
 import geopandas as gpd
@@ -58,6 +73,8 @@ OUT_CLASSES = f"{HERE}/fn_detection_by_class.csv"
 OUT_OTHER = f"{HERE}/fn_unclassified.geojson"
 
 EROSION_D = 5.0
+MISSED_COV = 0.10        # lot coverage at or below this = not found
+DETECTED_COV = 0.70      # lot coverage above this = found, outline too small
 MIN_SAMPLE_M2 = 100.0
 SIZE_BINS = [0, 200, 500, 1000, 2500, 5000, 1e9]
 SIZE_LABELS = ["<200", "200-500", "500-1k", "1k-2.5k", "2.5k-5k", ">5k"]
@@ -147,9 +164,48 @@ for D in (2.0, 5.0, 10.0):
         standalone = stand
 stand_area = area(standalone)
 
-# ---- (2) attribution ----
-log("attributing standalone FN ...")
-parts, rem = {}, standalone
+# ---- (2) object-level split: was the lot found at all? ----
+log("classifying lots by detection rate ...")
+lots = manual_raw.reset_index(drop=True).copy()
+lots["lot_id"] = lots.index
+lots["lot_area"] = lots.geometry.area
+
+
+def coverage(target):
+    """Fraction of each labelled lot covered by a layer."""
+    h = gpd.overlay(lots[["lot_id", "geometry"]], target[["geometry"]],
+                    how="intersection", keep_geom_type=True)
+    c = h.assign(a=h.geometry.area).groupby("lot_id")["a"].sum()
+    return lots["lot_id"].map(c).fillna(0.0) / lots["lot_area"]
+
+
+lots["cov"] = coverage(removal)
+lots["cov_original"] = coverage(original)
+
+groups = {
+    "whole_lot_missed":   lots["cov"] <= MISSED_COV,
+    "partly_detected":    (lots["cov"] > MISSED_COV) & (lots["cov"] <= DETECTED_COV),
+    "fringe_of_detected": lots["cov"] > DETECTED_COV,
+}
+rows.append({"category": "--- FN by state of the lot it belongs to ---",
+             "area_km2": round(fn_area/1e6, 4), "pct_of_FN": 100.0})
+fn_by_group = {}
+for name, mask in groups.items():
+    if not mask.any():
+        fn_by_group[name] = FN.iloc[0:0]; continue
+    g = dissolve(lots[mask], region)
+    part = inter(FN, g)
+    fn_by_group[name] = part
+    log(f"  {name}: {len(lots[mask])} lots, FN {area(part)/1e6:.4f} km2")
+    rows.append({"category": f"{name}_FN", "area_km2": round(area(part)/1e6, 4),
+                 "pct_of_FN": round(100*area(part)/fn_area, 1),
+                 "n_lots": int(mask.sum())})
+
+# ---- (3) attribution of the FN on lots the model did not find ----
+log("attributing whole_lot_missed FN ...")
+missed_fn = fn_by_group["whole_lot_missed"]
+missed_area = area(missed_fn)
+parts, rem = {}, missed_fn
 for name, layer in [("postproc_removed", original),
                     ("rooftop_tagged", rooftop),
                     ("inside_buildings", buildings)]:
@@ -160,30 +216,28 @@ for name, layer in [("postproc_removed", original),
 other = rem
 parts["other"] = area(other)
 
-rows.append({"category": f"--- standalone(>{int(EROSION_D)}m) breakdown ---",
-             "area_km2": round(stand_area/1e6, 4), "pct_of_FN": round(100*stand_area/fn_area, 1)})
+rows.append({"category": "--- whole_lot_missed breakdown ---",
+             "area_km2": round(missed_area/1e6, 4),
+             "pct_of_FN": round(100*missed_area/fn_area, 1)})
 for k, label in [("postproc_removed", "postproc_removed_FN"), ("rooftop_tagged", "rooftop_tagged_FN"),
                  ("inside_buildings", "inside_buildings_FN"), ("other", "other_genuine_miss_FN")]:
     a = parts[k]
-    rows.append({"category": label, "area_km2": round(a/1e6, 4), "pct_of_FN": round(100*a/fn_area, 1),
-                 "pct_of_standalone": round(100*a/stand_area, 1) if stand_area else None})
+    rows.append({"category": label, "area_km2": round(a/1e6, 4),
+                 "pct_of_FN": round(100*a/fn_area, 1),
+                 "pct_of_missed": round(100*a/missed_area, 1) if missed_area else None})
 
 with open(OUT_SUMMARY, "w", newline="") as f:
-    cols = ["category", "area_km2", "pct_of_FN", "pct_of_standalone"]
+    cols = ["category", "area_km2", "pct_of_FN", "n_lots", "pct_of_missed"]
     w = csv.DictWriter(f, fieldnames=cols); w.writeheader()
     for r in rows:
         w.writerow({c: r.get(c, "") for c in cols})
 
 # ---- (3) per-polygon detection rate ----
 log("computing per-polygon detection rate ...")
-m = manual_raw.reset_index(drop=True).copy()
-m["poly_id"] = m.index
-m["area_m2"] = m.geometry.area
-hits = gpd.overlay(m[["poly_id", "geometry"]], removal[["geometry"]],
-                   how="intersection", keep_geom_type=True)
-cov = hits.assign(a=hits.geometry.area).groupby("poly_id")["a"].sum()
-m["covered_m2"] = m["poly_id"].map(cov).fillna(0.0)
-m["detect_rate"] = m["covered_m2"] / m["area_m2"]
+m = lots.copy()
+m["area_m2"] = m["lot_area"]
+m["detect_rate"] = m["cov"]
+m["covered_m2"] = m["cov"] * m["lot_area"]
 m["size_class"] = pd.cut(m["area_m2"], bins=SIZE_BINS, labels=SIZE_LABELS)
 
 class_rows = []
@@ -199,18 +253,23 @@ with open(OUT_CLASSES, "w", newline="") as f:
     w = csv.DictWriter(f, fieldnames=list(class_rows[0].keys()))
     w.writeheader(); w.writerows(class_rows)
 
-if len(other):
-    o = other.copy()
-    o["area_m2"] = o.geometry.area
-    o = o[o["area_m2"] >= MIN_SAMPLE_M2].sort_values("area_m2", ascending=False).reset_index(drop=True)
-    o.to_file(OUT_OTHER, driver="GeoJSON")
-    log(f"exported {len(o)} 'other' FN polygons (>= {MIN_SAMPLE_M2:.0f} m2) for sampling")
+# ---- export: whole lots the model missed, with no other explanation ----
+unexplained = lots[groups["whole_lot_missed"]
+                   & (lots["cov_original"] <= MISSED_COV)     # not a post-processing loss
+                   & (~roof_mask.values)                       # not a tagged rooftop
+                   & (lots["lot_area"] >= MIN_SAMPLE_M2)].copy()
+keep = ["lot_id", "lot_area", "cov", "cov_original", "confidence", "notes", "geometry"]
+out = gpd.GeoDataFrame(unexplained[keep], geometry="geometry", crs=27700)
+out = out.rename(columns={"lot_area": "area_m2"}).sort_values("area_m2", ascending=False)
+out.reset_index(drop=True).to_file(OUT_OTHER, driver="GeoJSON")
+log(f"exported {len(out)} whole lots the model missed (>= {MIN_SAMPLE_M2:.0f} m2), "
+    f"{out['area_m2'].sum()/1e6:.4f} km2")
 
 log(f"\nwrote: {OUT_SUMMARY}\nwrote: {OUT_CLASSES}\nwrote: {OUT_OTHER}")
 
 log("\n=== FN SUMMARY ===")
 for r in rows:
-    ps = r.get("pct_of_standalone", ""); ps = "" if ps in (None, "") else ps
+    ps = r.get("pct_of_missed", ""); ps = "" if ps in (None, "") else ps
     log(f"{r['category']:<36} {str(r['area_km2']):>8} km2  {str(r['pct_of_FN']):>5}% FN  {ps:>6}")
 
 log("\n=== DETECTION RATE BY CLASS ===")

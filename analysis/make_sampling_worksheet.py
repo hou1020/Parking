@@ -10,12 +10,30 @@ remote-sensing accuracy assessment.
 
 Three populations are sampled:
     fp_other      false positives no reference layer explains
-    fn_other      false negatives the model genuinely missed
-    osm_disagree  false positives on OSM parking, more than 5 m from any
-                  labelled parking: OSM calls it parking, the annotation rules
-                  do not, and the model sided with OSM. Sampled separately to
-                  check whether these are definition differences (on-street,
-                  multi-storey, private driveways) or annotation omissions.
+    fn_other      whole labelled lots the model essentially missed, as exported
+                  by fn_analysis.py. Earlier this was built from FN fragments
+                  more than 5 m from a prediction, which had the same flaw as the
+                  third population below: 74% of those fragments sat exactly on
+                  the 5 m boundary, and a fifth of the area belonged to lots the
+                  model had in fact detected, so they were the undrawn edge of a
+                  found car park rather than a missed one. Whole lots are sampled
+                  instead, so "why was this missed" is a question about a car
+                  park rather than about a sliver of one.
+    osm_disagree  OSM car parks the labelling has essentially not covered, to
+                  check whether they are rule-based exclusions (on-street,
+                  multi-storey, private driveways, vehicle storage) or parking
+                  that should have been labelled and was missed.
+
+    An earlier version of the third population was built from false-positive
+    fragments more than 5 m from labelled parking. Inspection showed that was
+    the wrong unit: a third of the sample sat exactly on the 5 m boundary and 12
+    of 30 belonged to an OSM polygon that was already largely labelled, so they
+    were the parcel margin around a correctly labelled car park. OSM outlines
+    follow parcel boundaries rather than the pavement (Qiam et al., 2025), so
+    unlabelled OSM area fringing a labelled lot is expected and is not evidence
+    of a missing label. Defining the population as whole OSM polygons that the
+    labelling has barely touched removes that artefact and makes it a question
+    about the ground truth rather than about the model.
 
 Sampling design
     Area, not polygon count, is what the taxonomy reports, and area is spread
@@ -31,7 +49,11 @@ Estimator (applied later, once categories are filled in)
     summed over strata. This is a ratio estimator, so strata that were
     oversampled relative to their size do not distort the totals.
 
-Reads read-only. Writes only the outputs below, in this folder.
+Existing work is never overwritten: if the worksheet already exists and a
+population already has categories filled in, that population's rows are carried
+over unchanged and only the untouched populations are redrawn.
+
+Reads read-only apart from the outputs below, in this folder.
 Outputs:
   - sampling_worksheet.gpkg   : polygons to inspect, with empty category / note
                                 fields to fill in QGIS
@@ -66,24 +88,25 @@ OUT_STRATA = f"{HERE}/sampling_strata.csv"
 
 SEED = 42
 MIN_AREA = 100.0                     # ignore slivers below this
+MAX_LABELLED = 0.10                  # "essentially unlabelled" OSM car park
 BREAKS = [100, 300, 1000, 1e12]      # small / medium / large
 LABELS = ["small_100_300", "medium_300_1k", "large_1k+"]
 # how many polygons to inspect per stratum
 N_PER_STRATUM = {
     "fp_other":     {"small_100_300": 20, "medium_300_1k": 25, "large_1k+": 25},
     "fn_other":     {"small_100_300": 10, "medium_300_1k": 15, "large_1k+": 20},
-    "osm_disagree": {"small_100_300": 8,  "medium_300_1k": 10, "large_1k+": 12},
+    "osm_disagree": {"small_100_300": 5,  "medium_300_1k": 10, "large_1k+": 15},
 }
 
 # Category lists are fixed before inspection so that classes are not invented
 # to fit what has already been seen.
 CATEGORIES = {
-    "fp_other": "grey_hardstanding | bare_ground | storage_yard | sports_court | "
+    "fp_other": "grey_hardstanding | bare_ground | goods_yard | sports_court | "
                 "building_house | on_street | real_parking_missed | other",
     "fn_other": "lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | "
                 "rooftop | other",
-    "osm_disagree": "on_street | multi_storey | private_driveway | storage_yard | "
-                    "real_parking_missed | other",
+    "osm_disagree": "on_street | multi_storey | private_driveway | vehicle_storage | "
+                    "not_parking | real_parking_missed | other",
 }
 
 
@@ -123,15 +146,23 @@ pops = {
     "fn_other": gpd.read_file(FN_OTHER).to_crs(27700),
 }
 
-# build the OSM-disagreement population: FP on OSM parking, >5 m from manual
+# build the omission-check population: whole OSM car parks the labelling has
+# barely covered. Kept at polygon level so that the parcel margin around a
+# correctly labelled lot is not mistaken for a missing label.
 log("building osm_disagree population ...")
-model = dissolve(gpd.read_file(MODEL), region)
-manual = dissolve(gpd.read_file(MANUAL), region)
+manual_raw = gpd.read_file(MANUAL).to_crs(27700)
+manual_raw["geometry"] = manual_raw.geometry.buffer(0)
+manual_u = unary_union(manual_raw.geometry.values).intersection(region)
+
 ex = gpd.read_file(OSM_CACHE).to_crs(27700)
-osm = dissolve(ex[ex["grp"] == "osm_parking"], region)
-FP = minus(model, manual)
-disagree = minus(inter(FP, osm), buffered(manual, 5.0))
-pops["osm_disagree"] = disagree.explode(index_parts=False).reset_index(drop=True)
+osm = ex[ex["grp"] == "osm_parking"].copy()
+osm = osm[osm.geometry.type.isin(["Polygon", "MultiPolygon"])]
+osm["geometry"] = osm.geometry.buffer(0)
+osm = osm[osm.intersects(region)].reset_index(drop=True)
+osm["_area"] = osm.geometry.area
+osm["labelled_frac"] = osm.geometry.intersection(manual_u).area / osm["_area"]
+pops["osm_disagree"] = osm[osm["labelled_frac"] <= MAX_LABELLED][
+    ["labelled_frac", "geometry"]].reset_index(drop=True)
 
 rng = np.random.default_rng(SEED)
 sample_rows, strata_rows = [], []
@@ -162,14 +193,36 @@ for src, gdf in pops.items():
                 "sample_id": f"{src[:2]}_{stratum[0]}_{len(sample_rows)+1:03d}",
                 "source": src, "stratum": stratum,
                 "area_m2": round(float(sub.loc[i, "area_m2"]), 1),
+                # share of this OSM car park already covered by manual labels;
+                # only meaningful for the osm_disagree population
+                "labelled_frac": (round(float(sub.loc[i, "labelled_frac"]), 3)
+                                  if "labelled_frac" in sub.columns else None),
                 "cell": cell_id,
                 "centroid_x": round(c.x, 1), "centroid_y": round(c.y, 1),
-                "category": "", "note": "",
+                "category": "", "conf": None, "note": "",
                 "options": CATEGORIES[src],
                 "geometry": geom,
             })
 
 samp = gpd.GeoDataFrame(sample_rows, crs=27700)
+
+# carry over any population whose rows have already been worked on, so that
+# regenerating the worksheet cannot destroy completed inspection
+if os.path.exists(OUT_GPKG):
+    prev = gpd.read_file(OUT_GPKG)
+    cat = prev["category"].astype(str).str.strip()
+    done = set(prev.loc[cat.ne("") & cat.ne("None") & cat.ne("nan"), "source"].unique())
+    if done:
+        keep = prev[prev["source"].isin(done)]
+        samp = gpd.GeoDataFrame(
+            pd.concat([keep, samp[~samp["source"].isin(done)]], ignore_index=True),
+            geometry="geometry", crs=27700)
+        strata_rows = [r for r in strata_rows if r["source"] not in done]
+        prev_st = pd.read_csv(OUT_STRATA) if os.path.exists(OUT_STRATA) else None
+        if prev_st is not None:
+            strata_rows = (prev_st[prev_st["source"].isin(done)].to_dict("records")
+                           + strata_rows)
+        log(f"kept existing rows for: {', '.join(sorted(done))}")
 samp.to_file(OUT_GPKG, driver="GPKG", layer="sampling_worksheet")
 samp.drop(columns="geometry").to_csv(OUT_CSV, index=False)
 pd.DataFrame(strata_rows).to_csv(OUT_STRATA, index=False)
