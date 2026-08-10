@@ -101,12 +101,16 @@ N_PER_STRATUM = {
 # Category lists are fixed before inspection so that classes are not invented
 # to fit what has already been seen.
 CATEGORIES = {
-    "fp_other": "grey_hardstanding | bare_ground | goods_yard | sports_court | "
-                "building_house | on_street | real_parking_missed | other",
-    "fn_other": "lorry_van_lot | unusual_surface | shaded_occluded | small_irregular | "
-                "rooftop | other",
-    "osm_disagree": "on_street | multi_storey | private_driveway | vehicle_storage | "
-                    "not_parking | real_parking_missed | other",
+    "fp_other": "grey_hardstanding | unpaved_ground | goods_yard | sports_court | "
+                "building_house | on_street | private_driveway | real_parking_missed | other",
+    # organised by which visual cue is missing: the model was trained on US
+    # lots that are predominantly asphalt with painted bays, so the cue it
+    # relies on is the marking
+    "fn_other": "no_markings | irregular_layout | unusual_surface | no_cars_present | "
+                "obscured | small_awkward_lot | lorry_van_lot | not_parking_in_digimap | "
+                "no_obvious_reason | other",
+    "osm_disagree": "on_street | multi_storey | private_driveway | not_parking | "
+                    "real_parking_missed | other",
 }
 
 
@@ -199,6 +203,11 @@ for src, gdf in pops.items():
                                   if "labelled_frac" in sub.columns else None),
                 "cell": cell_id,
                 "centroid_x": round(c.x, 1), "centroid_y": round(c.y, 1),
+                # confidence recorded when the lot was originally labelled;
+                # the missed-lot population is enriched in low-confidence lots,
+                # so it matters when judging why the model failed
+                "label_conf": (sub.loc[i, "confidence"]
+                               if "confidence" in sub.columns else None),
                 "category": "", "conf": None, "note": "",
                 "options": CATEGORIES[src],
                 "geometry": geom,

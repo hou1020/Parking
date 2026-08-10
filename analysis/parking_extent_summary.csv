@@ -1,0 +1,7 @@
+scope,n_cells,area_km2,labelled_km2,labelled_pct_of_area,predicted_km2,predicted_pct_of_area,calibrated_km2,calibrated_pct_of_area,note
+whole study area,100,100.0,3.2597,3.26,4.8785,4.88,3.2595,3.26,100 x 1 km2 cells
+<1 km from centre,2,2.0,0.1067,5.33,0.1284,6.42,0.0858,4.29,"few cells, read with caution"
+1-2 km from centre,11,11.0,0.7818,7.11,1.1386,10.35,0.7608,6.92,
+2-3 km from centre,14,14.0,0.6725,4.8,1.0071,7.19,0.6729,4.81,
+3-4 km from centre,22,22.0,0.989,4.5,1.4356,6.53,0.9592,4.36,
+>4 km from centre,51,51.0,0.7096,1.39,1.1687,2.29,0.7809,1.53,

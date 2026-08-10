@@ -1,0 +1,595 @@
+# 分析总览 / Analysis Overview
+
+Leeds 地面停车检测：US 训练模型的英国可迁移性评估
+本文件汇总 `analysis/` 下所有脚本、输出、结果与写作思路。
+
+---
+
+## 1. 研究定位
+
+**核心问题**：一个在美国训练的地面停车分割模型（Qiam et al., 2025, ParkSeg），迁移到英国城市后**可靠到什么程度、在哪里失效、为什么失效**。
+
+**三个研究问题**
+
+| RQ | 内容 | 对应产出 |
+|---|---|---|
+| RQ1 | 模型在英国影像上的精度如何？精度在城市内如何变化？ | `validate_removal_vs_manual.py`, `accuracy_vs_distance.py` |
+| RQ2 | 有哪些系统性误差？后处理（及微调）能减少多少？ | `fp_analysis.py`, `fn_analysis.py`, `ablation.py` |
+| RQ3 | 在实测可靠性下，中心城区有多少地是停车、集中在哪里？ | `parking_extent.py`（见 §5.9） |
+
+**主线**：误差的主体不是"认错东西"，而是**边界定位不准 + 对目标尺度与图式的依赖**；而修正模型的管线本身又制造了自己的盲区。
+
+---
+
+## 2. 数据输入（全部只读，从未修改）
+
+| 数据 | 位置 | 内容 |
+|---|---|---|
+| 模型最终输出 | `Parking/calculate/output_files_merged/removal_merged.geojson` | 8180 个多边形，已减 OSM 建筑与道路 |
+| 模型原始输出 | 同上 `original_merged.geojson` | 6814 个多边形，未后处理 |
+| 人工真值 | `manual/leeds_manual.gpkg` | 2037 个多边形，3.26 km²，含 `confidence`(1–3)、`notes`(rooftop) |
+| 验证网格 | `manual/leeds_grid.gpkg` | 100 个 1 km² 格子 |
+| Digimap 航拍 | `Parking/parking-lot-mapping-tool/files/**/*.tif` | 109 瓦片，0.25 m，EPSG:27700；100 块 JPEG 压缩 + 9 块 LZW；版本后缀 `_03`×79 / `_04`×20 / `_05`×10 |
+| OS Open Greenspace | `analysis/OS Open Greenspace .../` | 运动设施等，`function` 字段 |
+| OSM 缓存（建筑/道路） | pipeline 的 `osm_cache/`（2026-06-25 抓取） | 后处理用 |
+
+坐标统一 **EPSG:27700**（单位米），`.area` 直接得 m²。
+
+---
+
+## 3. 文件清单
+
+### 3.1 脚本与输出
+
+| 脚本 | 回答什么 | 输出 |
+|---|---|---|
+| `validate_removal_vs_manual.py` | 模型准不准 | `validation_percell.csv`（100 格）、`validation_summary.csv` |
+| `fp_analysis.py` | 误检从哪来 | `fp_analysis_summary.csv`、`fp_unclassified.geojson`、`ref_cache.gpkg`、`osm_extra.gpkg` |
+| `fn_analysis.py` | 漏检从哪来 | `fn_analysis_summary.csv`、`fn_detection_by_class.csv`、`fn_unclassified.geojson` |
+| `ablation.py` | 后处理值不值 | `ablation_summary.csv`、`rooftop_summary.csv` |
+| `accuracy_vs_distance.py` | 精度随区位变吗 | `accuracy_vs_distance.csv/.png/_summary.csv` |
+| `osm_comparison.py` | OSM 作为参照有多不完整 | `osm_comparison_summary.csv` |
+| `make_sampling_worksheet.py` | 生成分层抽样表 | `sampling_worksheet.gpkg/.csv`、`sampling_strata.csv` |
+| `make_sample_chips.py` | 生成每个样本的影像切片 | `chips/<source>/*.png`、`chips/index.csv` |
+| `sampling_results.py` | 把抽样推算到总体 | `sampling_results.csv`、`sampling_corrections.csv` |
+| `parking_extent.py` | **RQ3**：有多少地是停车、在哪里、多确定 | `parking_extent_summary.csv`、`parking_extent.png` |
+| `make_imagery_vrt.py` | 把瓦片拼成 VRT | `digimap_mosaic.vrt` |
+| `prepare_imagery.py` | 转 Deflate 绕开 libjpeg 冲突 | `imagery_qgis/`（已删，可重建） |
+| `make_full_mosaic.py` | 拼成单张 BigTIFF | `digimap_full.tif`（3.8 GB） |
+
+### 3.2 辅助数据
+
+| 文件 | 内容 | 可删? |
+|---|---|---|
+| `ref_cache.gpkg` | 11.7 万 OSM 建筑 + 道路缓冲的合并结果 | 可，重跑重建（约 2 分钟） |
+| `osm_extra.gpkg` | OSM 工业/棕地/球场/停车（含 `osmid`、`timestamp`、`osm_version`） | 可，需联网重拉 |
+| `leeds_manual_no_rooftop.gpkg` | 剔除 16 个 rooftop 的真值副本 | 保留 |
+| `fp_unclassified.geojson` / `fn_unclassified.geojson` | 待抽样总体 | 保留 |
+| `digimap_full.tif` | 全区全分辨率影像（3.8 GB） | 可，`make_full_mosaic.py` 重建 |
+| `chips/` | 142 张样本切片（44 MB） | 可，`make_sample_chips.py` 重建 |
+| `Rules.md`（在项目根） | 标注规程（中英对照） | 保留 |
+| `sampling_categories.md` | 抽样类别对照表（中英对照） | 保留 |
+
+### 3.3 两套抽样判定（重要区分）
+
+| 文件 | 判定依据 | 内容 |
+|---|---|---|
+| `sampling_worksheet.gpkg` | **Google 卫星底图**（QGIS 中） | fn 41、osm 30 |
+| `chips/index.csv` | **Digimap 航拍**（切片） | fn 42、fp 70、osm 30 |
+
+**后续分析一律使用 `chips/index.csv`**——判断模型为何失败，只能依据模型看到的影像。gpkg 那套保留作为 Google 侧的对照记录（见 §7.3）。
+
+---
+
+## 4. 方法要点
+
+### 4.1 度量定义（面积法）
+
+```
+TP = 模型 ∩ 真值      FP = 模型 − 真值      FN = 真值 − 模型
+precision = TP/(TP+FP)   recall = TP/(TP+FN)   IoU = TP/(TP+FP+FN)
+```
+
+**恒等式自查**：模型 = TP+FP = 4.8785 ✓；真值 = TP+FN = 3.2597 ✓
+
+**两种聚合**
+- **micro（面积加权）**：整区当一块算 → 大停车场权重大，反映"总面积对不对"
+- **macro（逐格平均）**：每格算完再平均 → 每格等权，反映"平均每格做得怎样"
+
+两者差值（IoU 0.520 vs 0.470）本身即信息：**小格表现更差**。
+
+### 4.2 四条必须写进方法章的原则
+
+1. **先 union 再运算**——否则重叠部分面积重复计
+2. **缓冲后必须 dissolve**——相邻缓冲区会重叠，直接 overlay 会重复计（曾导致 erosion+standalone = 113%）
+3. **优先级剥离 + 无序诊断表并列**——互斥分配依赖排序，无序重叠不依赖；两表并列使结论不建立在人为排序上
+4. **按位置摊派 ≠ 逐个确认**——措辞必须是 "FP located on OSM industrial land"，不能说"每块都是堆场"
+
+### 4.3 共用 helper（三个脚本一致）
+
+`dissolve()` 清理+合并+炸开 · `as_parts()` 仅炸开（已合并的缓存） · `area()` · `inter()` · `minus()`（均为 `gpd.overlay` 向量化） · `buffered()` 缓冲后必合并
+
+**性能教训**：第一版 `fn_analysis.py` 用 Python 循环逐个几何运算，跑 1 小时未完；改用 `gpd.overlay` 向量化后 1 分钟完成。
+
+---
+
+## 5. 结果全集
+
+### 5.1 总体精度
+
+| 聚合 | precision | recall | IoU |
+|---|---|---|---|
+| **micro，全部 confidence** | **0.5708** | **0.8543** | **0.5202** |
+| micro，仅 conf 2–3 | 0.5287 | 0.8658 | 0.4886 |
+| macro（逐格平均） | 0.5136 | 0.8468 | 0.4697 |
+
+面积：真值 3.2597 / 模型 4.8785 km² → **多检 1.50×**；TP 2.7848 / FP 2.0937 / FN 0.4749
+
+> conf 2–3 反而使 precision 下降（0.571→0.529）：滤掉 conf1 等于把部分真停车移出真值，模型仍检出 → 变成 FP。说明 **conf1 中确有真停车**。
+
+### 5.2 误检 FP = 2.0937 km²
+
+**虚胖 vs 真误检**
+
+| 阈值 | 边界虚胖 | 真误检 |
+|---|---|---|
+| 2 m | 17.3% | 82.7% |
+| **5 m** | **28.8%** | 71.2% |
+| 10 m | 36.3% | 63.7% |
+
+**互斥分配 vs 无序重叠**（分母均为全部 FP）
+
+| 图层 | 互斥分配 | 无序重叠 |
+|---|---|---|
+| industrial/commercial | 29.6% | **52.8%** |
+| road_adjacent(+6m) | 11.6% | 16.9% |
+| osm_parking | 4.7% | 9.1% |
+| sports_courts | 2.5% | 3.1% |
+| brownfield | 1.7% | 2.3% |
+| building | 0.0% | 0.0% |
+| **other（未解释）** | **21.0%** | — |
+
+**排序稳健性**：把 industrial 从较早挪到最后，仅由 30.0% 变为 29.6% → 结论对剥离顺序不敏感。
+
+> `building` 为 0 是因为 removal 已减掉 OSM 建筑；真正的"小房子 FP"是 OSM 未收录的房子，落在 other 中。
+> 道路需外扩 6 m 才能抓到，因为原道路缓冲已被减除。
+
+### 5.3 漏检 FN = 0.4749 km²（占真值 14.6%）
+
+**侵蚀 vs 整块漏检**
+
+| 阈值 | 边界侵蚀 | 整块漏检 |
+|---|---|---|
+| 2 m | 33.4% | 66.6% |
+| **5 m** | **54.1%** | 45.9% |
+| 10 m | 69.4% | 30.6% |
+
+**按"停车场是否被找到"分类（对象层面，替代距离代理）**
+
+| 类别 | 停车场数 | FN 面积 | 占 FN |
+|---|---|---|---|
+| whole_lot_missed（cov ≤ 0.10） | 121 | 0.1131 | **23.8%** |
+| partly_detected（0.10–0.70） | 278 | 0.1510 | 31.8% |
+| fringe_of_detected（cov > 0.70） | 1638 | 0.2108 | **44.4%** |
+
+**whole_lot_missed 的归因**
+
+| | 面积 km² | 占 FN | 占 missed |
+|---|---|---|---|
+| postproc_removed（管线删的） | 0.0360 | 7.6% | **31.9%** |
+| rooftop_tagged | 0.0033 | 0.7% | 2.9% |
+| inside_buildings | 0.0038 | 0.8% | 3.4% |
+| other（真没看见） | 0.0699 | 14.7% | 61.8% |
+
+> **模型没找到的停车场里，38% 其实是后处理删掉的。**
+> **真正的模型盲区仅占 FN 的 14.7%、占真值的 2.1%。**
+
+**检出率（逐个多边形）**
+
+| 面积 | 平均检出率 | 完全漏掉 |
+|---|---|---|
+| <200 m² | 0.658 | **19.1%** |
+| 200–500 | 0.763 | 8.2% |
+| 500–1k | 0.805 | 5.4% |
+| 1k–2.5k | 0.852 | 3.0% |
+| 2.5k–5k | 0.850 | 4.9% |
+| >5k | 0.864 | **1.8%** |
+
+| confidence | 平均检出率 | 完全漏掉 |
+|---|---|---|
+| 1 | 0.713 | 10.6% |
+| 2 | 0.829 | 3.8% |
+| 3 | 0.856 | 5.4% |
+
+> **越小越易漏；人眼难判的地方模型也难。** 后者与漏检总体中 conf1 占比翻倍（44% vs 全体 21%）互为印证。
+
+### 5.4 后处理消融
+
+**Part 1 — 2×2 因子设计**
+
+| 变体 | P | R | IoU |
+|---|---|---|---|
+| A 原始（无后处理） | 0.528 | 0.894 | 0.497 |
+| B 只减建筑 | 0.547 | 0.869 | 0.505 |
+| C 只减道路 | 0.550 | 0.879 | 0.511 |
+| D 两者（重建） | 0.571 | 0.854 | 0.520 |
+| D* removal（pipeline 实际输出） | 0.571 | 0.854 | 0.520 |
+
+**重建校验 |D − D*| = 0.0%** → 一次性减除 ≡ pipeline 逐瓦片减除，消融可信。
+
+> 集合差可交换：`(X−A)−B = X−(A∪B)`，故 Part 1 顺序不影响结果。顺序只在互斥分类（fp 剥离）中才重要。
+
+**Part 2 — 反面测试（各图层单独，再组合）**
+
+| 变体 | P | R | IoU |
+|---|---|---|---|
+| E 再减球场 | 0.570 | 0.837 | 0.513 ↓ |
+| **F 再减工业用地** | 0.479 | **0.279** | **0.214 💥** |
+| G 再减外扩道路 | **0.596 ↑** | 0.788 ↓ | 0.514 |
+| H 三者全减 | 0.519 | 0.242 | 0.198 |
+
+> **参考数据能解释误差，不能清洗地图。** 工业/商业用地解释了 52.8% 的 FP 位置，但用作过滤器会使 recall 从 0.854 崩到 0.279——因为超市与 retail park 的停车场本就位于该类用地上。
+> 唯一能提升 precision 的额外过滤是外扩道路（+0.025），但代价是 recall −0.066，IoU 净降。**窄条精确图层可用，宽泛整片用地绝对不可用。**
+
+**Part 3 — rooftop 案例**
+
+| 指标 | 值 |
+|---|---|
+| rooftop 多边形 / 面积 | 16 个 / 0.0395 km²（占真值 1.21%） |
+| **original 在 rooftop 上 recall** | **0.916** |
+| **removal 在 rooftop 上 recall** | **0.115** |
+| original 在非 rooftop 上 recall | 0.894 |
+| rooftop 落在 OSM 建筑内 | 85.6% |
+| **original 检出后被后处理删掉** | **80.1%** |
+
+> **模型对屋顶停车的检出率（0.916）高于地面停车（0.894），却被建筑减除删掉 80%。** 管线制造了自己的系统性盲区。
+
+### 5.5 精度与区位
+
+市中心：Leeds City Square，BNG E429832 / N433449；距离范围 0.34–7.64 km。
+
+| 关系 | Pearson r | p |
+|---|---|---|
+| 距离 vs precision | −0.172 | 0.087 ❌ |
+| **停车占比 vs precision** | **+0.536** | **<0.0001** ✅ |
+| 距离 vs precision \| 控制停车占比 | +0.186 | 0.065 ❌ |
+| **停车占比 vs precision \| 控制距离** | **+0.540** | **<0.0001** ✅ |
+| 距离 vs 停车占比 | −0.562 | <0.0001 |
+
+**距离分带**
+
+| 距离 | 格数 | 平均停车占比 | precision | recall | IoU |
+|---|---|---|---|---|---|
+| <1 km | 2 | 5.3% | 0.584 | 0.698 | 0.462 |
+| 1–2 | 11 | 7.1% | 0.545 | 0.828 | 0.489 |
+| 2–3 | 14 | 4.8% | 0.553 | 0.860 | 0.509 |
+| 3–4 | 22 | 4.5% | 0.533 | 0.837 | 0.485 |
+| >4 | 51 | **1.4%** | **0.485** | 0.858 | 0.449 |
+
+> **表面的区位效应是混淆假象。** 偏相关显示：控制停车密度后距离效应消失，控制距离后停车密度效应依旧强劲。**决定精度的是目标的丰度与尺度，而非其在城市中的位置。**
+> ⚠️ recall 的偏相关虽显著（+0.289, p=0.004），但原始 Pearson/Spearman 均不显著、方向不稳，**不建议在论文中强调**。
+
+### 5.6 OSM 作为参照
+
+| 指标 | 值 |
+|---|---|
+| OSM 停车面积 | 1.7641 km²（**仅为真值的 54.1%**） |
+| OSM 多边形 / 中位面积 | 985 / 763 m² |
+| 真值多边形 / 中位面积 | 2037 / 799 m² |
+| OSM ∩ 真值 | 1.1882（OSM 的 67.4%，真值的 36.5%） |
+| 仅 OSM 有 | 0.5759 |
+| **仅真值有（OSM 漏记）** | **2.0714 km² = 63.5%** |
+
+**FP ∩ OSM 停车 = 0.191 km²（9.1% of FP）**
+
+| 距真值 | 占比 |
+|---|---|
+| 5 m 以内 | 48.9% |
+| 5 m 以外 | 51.1% |
+| 25 m 以外 | 30.3% |
+
+> **OSM 不是只记大停车场**（中位面积 763 vs 799 m²，几乎相同），而是**系统性地漏了一半**。
+> 约一半的 FP∩OSM 落在 5 m 内，印证 Qiam 指出的"OSM 沿地块边界而非铺装边缘"；另一半是真实的定义分歧。
+
+**OSM 时间戳**（985/985 匹配到最后编辑时间）
+
+全区分布：2016(15) 2017(22) 2018(22) 2019(64) 2020(67) 2021(142) 2022(39) 2023(54) **2024(354)** 2025(130) 2026(76)
+
+抽样中：`not_parking` 中位编辑年 **2025**（2020–2026）；`real_parking_missed` 中位 2022。
+
+> ⚠️ **判为"OSM 标错"的记录反而是最新的**（11 个中 8 个 2024 年后编辑）。因此**不能断言"OSM 过时"**——在拿到 Digimap 拍摄年份之前，只能中性表述"该处影像上未见停车"。
+
+### 5.7 抽样结果
+
+**分层设计**（比率估计：每层 A_h × 该层样本中类别 c 的面积占比，再求和）
+
+| 总体 | 层 | 总体 n | 总体面积 km² | 抽样 n |
+|---|---|---|---|---|
+| fp_other | small/medium/large | 604 / 327 / 61 | 0.1055 / 0.1656 / 0.1172 | 20 / 25 / 25 |
+| fn_other | 同上 | 34 / 51 / 17 | 0.0079 / 0.0292 / 0.0377 | 10 / 15 / 17 |
+| osm_disagree | 同上 | 97 / 117 / 59 | 0.0192 / 0.0625 / 0.1793 | 5 / 10 / 15 |
+
+**FN 未解释部分（0.0748 km²）**
+
+| 类别 | n | 估计面积 | 占总体 |
+|---|---|---|---|
+| **not_parking_in_digimap** | 15 | 0.0313 | **41.8%** |
+| **irregular_layout** | 11 | 0.0174 | **23.3%** |
+| obscured | 4 | 0.0073 | 9.8% |
+| unusual_surface | 5 | 0.0069 | 9.2% |
+| no_cars_present | 3 | 0.0047 | 6.3% |
+| lorry_van_lot | 2 | 0.0039 | 5.2% |
+| no_markings | 1 | 0.0028 | 3.7% |
+| small_awkward_lot | 1 | 0.0006 | 0.8% |
+
+> **`irregular_layout`（23.3%）远大于 `no_markings`（3.7%）**：失效机制不在"没有画线"，而在**排布不符合模型学到的"车位＋通道"模板**。future work 应补**非规整布局**样本，而非仅无标线样本。
+
+**FP 未解释部分（0.3883 km²）**
+
+| 组 | 类别 | n | 估计面积 | 占总体 |
+|---|---|---|---|---|
+| 真误检 | grey_hardstanding | 16 | 0.0843 | 21.7% |
+| | goods_yard | 3 | 0.0330 | 8.5% |
+| | sports_court | 4 | 0.0204 | 5.2% |
+| | unpaved_ground | 3 | 0.0199 | 5.1% |
+| | building_house | 2 | 0.0155 | 4.0% |
+| | **小计** | | **0.1731** | **44.5%** |
+| **定义差异** | private_driveway | 15 | 0.0786 | 20.2% |
+| | on_street | 11 | 0.0572 | 14.7% |
+| | **小计** | | **0.1358** | **34.9%** |
+| 参考问题 | real_parking_missed | 13 | 0.0667 | 17.2% |
+| 边界外溢 | other | 3 | 0.0128 | 3.3% |
+
+> **超过三分之一的未解释 FP 是"规则排除的真实停车"**，非模型认错东西。
+> 3 个 `other` 距最近标注停车中位 **5.0 m**（其他类别 42–169 m），是相邻停车场的外缘——说明 5 m 阈值是约定而非自然断点，故报告 2/5/10 m 三档。
+
+**OSM 分歧（0.2610 km²）**
+
+| 类别 | n | 估计面积 | 占总体 |
+|---|---|---|---|
+| **not_parking**（OSM 标错） | 11 | 0.1651 | **63.2%** |
+| real_parking_missed（漏标） | 10 | 0.0493 | 18.9% |
+| on_street | 4 | 0.0263 | 10.1% |
+| private_driveway | 5 | 0.0204 | 7.8% |
+
+`not_parking` 的 note 细分：vacant_ground ×6、goods_yard ×2、sports_court ×1、building ×1、other_landuse ×1
+
+> OSM 质量的**双向证据**：漏记 63.5% 的真实停车（omission），且分歧中 63.2% 地上根本没有停车（commission）。
+
+### 5.8 修正后的指标（累积四档，保留未修正值）
+
+| 变体 | TP | manual | model | precision | recall | IoU |
+|---|---|---|---|---|---|---|
+| **1 实测** | 2.7848 | 3.2597 | 4.8785 | **0.5708** | **0.8543** | **0.5202** |
+| 2 ＋参考侧修正 | 2.7848 | 3.2284 | 4.8785 | 0.5708 | 0.8626 | 0.5233 |
+| 3 ＋预测侧修正 | 2.8515 | 3.2951 | 4.8785 | 0.5845 | 0.8654 | 0.5358 |
+| **4 有效（剔除定义差异）** | 2.8515 | 3.2951 | 4.7427 | **0.6012** | 0.8654 | **0.5498** |
+
+**各项调整**
+
+| 调整 | 面积 km² | 占标注面积 | 方向 |
+|---|---|---|---|
+| 参考侧：Digimap 影像中并非停车（`not_parking_in_digimap`） | −0.0313 | 1.0% | 移出真值 |
+| 预测侧：影像中确为停车但未标注（`real_parking_missed`） | +0.0667 | 2.0% | 计入真值与 TP |
+| 定义差异：路边停车 + 私人车道（规则排除） | 0.1358 | 4.2% | 从预测中剔除，不计为误差 |
+| *另计*：经 OSM 发现的漏标停车 | 0.0493 | 1.5% | **未并入**（见下） |
+
+**四档的含义**
+
+1. **实测**——标注原样，不做任何调整。**论文的主报告值应为此档**
+2. **参考侧**——标注底图与模型输入影像不一致所致；模型未检出它们是正确的，故移出真值。此项按构造仅可能存在于"整块漏检且无其他解释"那一桶（见 §7.2）
+3. **预测侧**——镜像情形：Digimap 影像中确为停车、符合规则，模型检出而标注未记录。无论属漏标还是建于底图拍摄之后，都应计入真值
+4. **有效**——`on_street` 与 `private_driveway` 是**真实停车、被规则有意排除**。模型看到它们并非错误，分歧属定义层面。将其从预测中剔除而非计为误差，得到"可归因于模型本身"的精度
+
+> `osm_disagree` 中的 `real_parking_missed`（0.0493 km²）**未并入**：该总体按 OSM 覆盖定义、而非按模型行为定义，其中一部分会与已实施的预测侧修正重叠，合并会重复计数。单独报告即可。
+
+**如何解读**：precision 从 0.571 升到 0.601，**其中约一半的提升来自定义差异而非模型能力**——说明"模型看起来不准"有相当部分是**范围边界画在哪里**的问题，而非识别错误。recall 全程只在 0.854–0.865 之间微动，**核心结论（高召回、低精度、系统性多检）在四档下均不变**。
+
+### 5.9 停车用地的规模与分布（RQ3）
+
+**规模**
+
+| 口径 | 面积 km² | 占 100 km² 研究区 |
+|---|---|---|
+| 手工标注（真值） | 3.2597 | **3.26%** |
+| 模型原始输出 | 4.8785 | 4.88%（**上界**） |
+| **模型 × 校准因子** | **3.2595** | **3.26%** |
+
+**按距市中心分带**
+
+| 距离 | 格数 | 标注停车占比 | 模型占比 | 校准后 km² |
+|---|---|---|---|---|
+| <1 km | 2 | 5.33% ⚠️ | 6.42% | 0.086 |
+| **1–2 km** | 11 | **7.11%** | 10.35% | 0.761 |
+| 2–3 km | 14 | 4.80% | 7.19% | 0.673 |
+| 3–4 km | 22 | 4.50% | 6.53% | 0.959 |
+| >4 km | 51 | 1.39% | 2.29% | 0.781 |
+
+⚠️ <1 km 仅 2 个格子，样本过少，不宜单独解读。
+
+> **停车占比在距中心 1–2 km 的环带最高（7.1%），而非最核心处**，此后随距离单调下降至 >4 km 的 1.4%。这与"核心区地价最高、地面停车被挤到次核心圈层"的预期一致。
+
+**逐格分布**（100 格，标注口径）
+
+| 统计量 | 值 |
+|---|---|
+| 均值 | 3.26% |
+| 中位数 | 1.71% |
+| 标准差 | 3.42 |
+| 最大 | 18.81% |
+| **占比 >10% 的格子** | **6 个** |
+
+最高的几格：c2r8（18.8%，距中心 3.0 km）、c5r7（12.8%，1.2 km）、c6r5（11.2%，2.0 km）、c3r7（11.0%，1.6 km）、c7r9（10.7%，4.0 km）
+
+> 分布**高度右偏**：中位数仅 1.71%，但少数格子超过 10%。**停车用地是高度集中的**，不是均匀铺开的。
+
+**校准——RQ3 的核心论点**
+
+对一张实测 precision = p、recall = r 的地图，预测面积 A 与真实面积 T 满足
+
+$$A \times p = TP = T \times r \quad\Rightarrow\quad T = A \times \frac{p}{r}$$
+
+代入：$4.8785 \times \frac{0.5708}{0.8543} = 4.8785 \times 0.6681 = 3.2595$ km²（真值 3.2597）
+
+在 Leeds 这是**恒等式**（p、r 正是在此测得）。其意义不在于验证，而在于：
+
+> **模型 1.50× 的高估不是随机噪声，而是一个可测量、可校正的系统偏差。** 原始预测面积不可直接使用；但只要在一地测得 p 与 r，即可给出校正估计。该因子能否迁移到其他城市尚未检验，属 future work。
+
+这正面回答了全篇的 "reliable for what"：**模型不能直接用来量面积，但配合一次本地验证就可以。**
+
+**图**：`parking_extent.png` 三联——逐格占比热力图 / 占比 vs 距离散点（含分带均值）/ 逐格分布直方图
+
+⚠️ **边界**：本节只回答"有多少、在哪里、多确定"。**不作任何"某地块应否开发"的论断**——那属于讨论章中挂到 Shoup 机会成本与 Centre for Cities 密度赤字的一段，且只作讨论、不作结论。
+
+---
+
+## 6. 方法上的修正史（写进论文可显示严谨性）
+
+| # | 问题 | 修正 |
+|---|---|---|
+| 1 | fp 剥离顺序把邻近启发式（道路缓冲）排在精确要素（球场多边形）之前 | 改为按证据精确度排序，宽泛用地垫底；**并增列无序重叠表**，使结论不依赖排序（实测 30.0%→29.6%，稳健） |
+| 2 | 缓冲后各部件相互重叠，overlay 求交时面积重复计 | 抽象出 `buffered()`：缓冲后必 dissolve。修正前 erosion+standalone = 113% |
+| 3 | fn 总体定义在**碎片**层面（距模型 >5 m），混入已检出停车场的残边 | 改为**对象**层面（停车场覆盖率 ≤10%）。证据：297 个碎片中 221 个距离恰为 5.0 m；19.2% 面积属于模型已检出 >70% 的停车场 |
+| 4 | osm_disagree 同样定义在碎片层面，捞进大量地块边缘 | 改为完整 OSM 多边形（手工覆盖 ≤10%）。证据：30 个样本中 11 个距离恰为 5.0 m；12/30 的母体 OSM 多边形已被大量标注 |
+| 5 | Python 循环做几何运算，1 小时未完 | 改用 `gpd.overlay` 向量化，1 分钟完成 |
+| 6 | 对已合并的缓存重复做 `buffer(0)`+`unary_union` | 增加 `as_parts()` 快速路径 |
+| 7 | `vehicle_storage` 类别与 `Rules.md` 不符（Target 写明 "whatever use they serve"） | 删除（从未被使用） |
+| 8 | fp 缺 `private_driveway`（规则明确排除，osm 层已用 5 次） | 补入 |
+| 9 | `bare_ground` 字面排除植被 | 改名 `unpaved_ground`，涵盖裸土、草地、灌丛、空地 |
+| 10 | fn 类别未反映实际机制 | 改为按"缺哪个视觉线索"组织；`irregular_layout`（排布/画线方式）与 `small_awkward_lot`（场地形状）分开 |
+
+---
+
+## 7. 影像不一致问题（必须在论文中处理）
+
+### 7.1 问题
+
+标注在 **Google 卫星底图**（XYZ 瓦片 `mt1.google.com/vt/lyrs=s`，EPSG:3857）上完成；模型运行于 **Digimap 航拍**（0.25 m，EPSG:27700）。两者并非同一份影像。
+
+### 7.2 三条证据
+
+**① 空间对齐**（1478 个匹配良好的停车场）
+
+| 量 | 值 |
+|---|---|
+| 平均位移向量 | dx −0.156 / dy −0.137 m（合成 **0.208 m**） |
+| 平均绝对位移 | 1.247 m（中位 0.622） |
+| **方向一致性比值** | **0.167**（0=随机，1=同向） |
+| 八扇区最大占比 | 19%（随机为 12.5%） |
+
+→ 位移方向随机、净偏移仅 0.21 m（不足一个像素）→ **两份影像有效配准**，边界误差归于模型而非底图错位。
+
+**② 时间差影响有上界（逻辑推导）**
+
+模型无法部分检出一个不存在的地物。故凡被检出过（哪怕部分）的停车场必然存在于该影像中：
+
+| FN 组成 | 面积 | 是否可能含不匹配 |
+|---|---|---|
+| fringe_of_detected 0.2108 + partly_detected 0.1510 | | ❌ 必然存在 |
+| postproc_removed 0.0360（original 检出过） | | ❌ 必然存在 |
+| rooftop + inside_buildings 0.0071 | | ❌ 有归因 |
+| **other 0.0699** | | ⚠️ **仅此处** |
+
+→ 不匹配 ≤ 0.0699 km² = **标注面积的 2.1%**；即使全部为不匹配，recall 也仅由 0.854 升至 0.873。
+
+**③ 实测值（抽样）**
+
+42 个样本中 15 个为 `not_parking_in_digimap` → 估计 **0.0313 km² = 标注面积的 1.0%**，recall 0.854→0.863，**precision 完全不受影响**。
+
+### 7.3 附带产出：配对判定
+
+同一批 42 个样本、同一人、同一套类别，分别对着两份影像各判一次：
+
+| 类别 | Google（gpkg） | Digimap（index.csv） |
+|---|---|---|
+| not_parking_in_digimap | — | **15** |
+| unusual_surface | **16** | 5 |
+| no_obvious_reason | 3 | 0 |
+| no_cars_present | 0 | 3 |
+| irregular_layout | 10 | 11 |
+| obscured | 4 | 4 |
+
+`osm_disagree` 那 30 个**两边完全一致**（11/10/5/4），因其判断不依赖路面细节。
+
+> 这是一个**关于方法本身的发现**：迁移研究中的误差归因，取决于分析者检视的是哪份影像；而正确答案只能是模型的输入。
+
+### 7.4 论文中的表述
+
+**方法章**
+
+> Labelling was carried out over a satellite basemap, whereas the model operated on Digimap aerial tiles. Sampled errors were therefore inspected against the Digimap imagery rather than the labelling basemap, since model failure can only be assessed against the imagery the model was given. Displacement between labelled and predicted lot centroids averages 1.25 m with no consistent direction (mean resultant 0.21 m over 1,478 matched lots), indicating effective co-registration. Any temporal discrepancy is bounded by the fact that a lot absent from the model's input imagery cannot be partially detected: of the 14.6% of labelled area the model misses, all but 2.1% belongs to lots that were detected at least in part, or that the pre-removal model detected. Inspection of the missed-lot sample gives an estimate of 1.0% of labelled area, raising recall from 0.854 to 0.863 and leaving precision unchanged.
+
+**局限章**
+
+> Ideally the reference would have been drawn on the same imagery the model consumes, as the source protocol requires. The discrepancy was identified after labelling was complete, and re-labelling 2,037 lots was not feasible within the project timeframe. Its effect is therefore bounded and measured rather than eliminated.
+
+---
+
+## 8. 待办
+
+### 8.1 分析
+
+- [x] ~~补 FP 侧修正~~ 已完成，见 §5.8
+- [x] ~~有效 precision~~ 已完成，见 §5.8
+- [ ] 可选：配对判定的正式统计（§7.3）
+- [x] ~~RQ3：停车规模与分布~~ 已完成，见 §5.9
+- [ ] **图**：逐格精度地图、FP/FN 构成图、各误差类别的示例切片（`chips/` 现成）、消融对比图
+
+**分析到此为止。** 余下时间全部用于写作。
+
+### 8.2 外部信息（只有本人能查）
+
+- [ ] **Digimap 拍摄年份**：Aerial Digimap → Get Feature Information，点击查看瓦片名与拍摄日期。**三种版本后缀各查两点**：
+  - `_03`（79 块）：53.73427, −1.61493 ／ 53.79719, −1.61435
+  - `_04`（20 块）：53.77921, −1.61452 ／ 53.78815, −1.59926
+  - `_05`（10 块）：53.77022, −1.61460 ／ 53.77007, −1.56909
+- [ ] **Google 影像日期**：Google Earth Pro 定位同一坐标，底部显示 Imagery Date（仅为近似，两者非同一服务）
+- [ ] **授权问题**：用 Google XYZ 瓦片作为标注底图是否可接受——**建议问 Clara**
+
+### 8.3 写作（8 月 20 日 10:00 截止）
+
+| 章 | 词数 | 内容 |
+|---|---|---|
+| 1 引言 | ~1,000 | 英国缺一致停车数据；有美国模型但迁移性未验证；三个 RQ |
+| 2 背景 | ~2,500 | ①停车作为用地 + 英国数据缺口（Shoup、Haklay、NPPF）②遥感分割（SegFormer、Qiam）③**跨域迁移与英美城市差异**（新增，见下）④缺口 |
+| 3 方法 | ~2,500 | 标注规程（Qiam-based，全文写出）；管线；验证设计；误差类型学方法（自动摊派 + 分层抽样）；消融设计；影像一致性核查 |
+| 4 结果 | ~3,000 | 4.1 精度与空间变化｜4.2 FP 类型学｜4.3 FN 类型学｜4.4 消融与 rooftop｜4.5 精度 vs 区位｜4.6 抽样与修正｜**4.7 停车规模与分布（RQ3）** |
+| 5 讨论 | ~1,500 | reliable for what；城市形态解释；管线权衡；参考数据的边界；局限 |
+| 6 结论 | ~500 | 回答三个 RQ；贡献；future work |
+
+**背景章 2.3 节要写的英美差异**（每条都能对应一个误差类别）
+
+| 差异 | 对应类别 |
+|---|---|
+| 英国停车场更小、更不规则 | small_awkward_lot、尺寸效应 |
+| 无标线场地更常见；规则接受"有车+布局"即算停车 | no_markings、irregular_layout |
+| 块石铺装、碎石路面 | unusual_surface |
+| **Leeds 位于 53.8°N，太阳高度角远低于 ParkSeg 的美国训练城市（多在 30–42°N）→ 阴影更长**；街道树冠更密 | obscured |
+| 商用车/厢式车比例 | lorry_van_lot |
+| **影像为 RGB（`rgb_250`），无 NIR；而 Qiam 指出 NIR 有助于区分停车场周围的草地** | unpaved_ground（草地误检） |
+
+**四个核心论点**
+
+1. **不对称可靠性**：recall 0.85 稳定、precision 0.57 且多检 1.5× → **能可靠定位停车，不能可靠测量面积**；下游只能做相对比较，绝对面积仅为上界。四档修正后 precision 0.571→0.601、recall 始终在 0.854–0.865 之间，**结论不因修正而改变**
+2. **误差主体是边界与图式，不是识别能力**：FP 29% 虚胖 + FN 54% 侵蚀；真正的模型盲区仅占真值 2.1%；失效集中在小而不规整的目标
+3. **管线是双刃剑**：建筑与道路各贡献约 +0.02 precision，代价 recall −0.04；且删掉了 80% 的屋顶停车（模型本可检出 0.916）；整块漏检中 38% 由管线造成
+4. **参考数据能解释误差，不能清洗地图**：工业用地解释 52.8% 的 FP 位置，用作过滤器却使 recall 崩至 0.279
+5. **偏差可测即可用**：模型高估 1.50×，但 T = A × p/r 使其可校正；停车占地 3.26%，集中于距中心 1–2 km 环带、且高度右偏（中位 1.7%、6 格超过 10%）
+
+**必须写清的诚实点**
+
+- 按位置摊派 ≠ 逐个确认
+- 5 m 阈值是约定而非自然断点（故报 2/5/10 三档；3 个 `other` 样本距离中位 5.0 m 即为佐证）
+- 单人标注；conf1 检出率显著更低 → **真值的不确定性给可测精度设了上限**
+- 影像不一致：已界定并实测（1.0%），非消除
+- OSM 时间戳显示"标错"的记录反而较新 → 在拿到影像日期前不可断言"OSM 过时"
+
+---
+
+## 9. 环境
+
+- Python：`/opt/anaconda3/envs/casa/bin/python`（3.12.3）
+- 关键包：geopandas 1.1.3、shapely 2.1.1、osmnx 2.1.1、pymupdf、tifffile、imagecodecs、matplotlib、scipy
+- 重跑顺序：`fp_analysis.py` → `fn_analysis.py` → `ablation.py` → `accuracy_vs_distance.py` → `osm_comparison.py` → `make_sampling_worksheet.py` → `make_sample_chips.py` → `sampling_results.py`
+- ⚠️ 磁盘余量紧张（曾因写入 3 GB 影像副本而写满）。`digimap_full.tif` 占 3.8 GB，可删后用 `make_full_mosaic.py` 重建
+- ⚠️ QGIS 无法读 JPEG 压缩的 Digimap 瓦片（libjpeg 版本冲突）。绕开方式：`digimap_full.tif`（Deflate）或 `chips/`
