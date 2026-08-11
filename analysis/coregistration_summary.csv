@@ -1,0 +1,24 @@
+measure,value,unit,note
+lots compared,1478,count,"cover >= 70%, area >= 300 m2"
+mean dx,-0.156,m,east positive
+mean dy,-0.137,m,north positive
+mean displacement vector,0.208,m,"resultant of the mean dx, dy"
+"mean displacement vector, in pixels",0.83,px,imagery is 0.25 m; a systematic offset below 1 px cannot be resolved
+mean absolute displacement,1.247,m,
+"mean absolute displacement, in pixels",4.99,px,
+median absolute displacement,0.622,m,
+direction consistency ratio,0.167,ratio,"|mean vector| / mean absolute; 0 = shared component negligible, 1 = uniform shift"
+"dx different from zero, p",0.0002,p,"t = -3.68; significant but sub-pixel, n = 1478"
+"dy different from zero, p",0.0004,p,"t = -3.57; significant but sub-pixel, n = 1478"
+largest of 8 direction sectors,19.4,%,12.5% would be perfectly uniform
+"direction sectors uniform, p",3.7e-33,p,"chi2 = 169.2, df = 7; directions are not uniform"
+
+"direction sector (deg, 0 = east)",n,,
+0-45,131,,
+45-90,96,,
+90-135,134,,
+135-180,197,,
+180-225,244,,
+225-270,287,,
+270-315,237,,
+315-360,152,,

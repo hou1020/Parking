@@ -1,0 +1,12 @@
+# Regenerable local data products
+__pycache__/
+patches/
+patch_index.csv
+
+# Large/downloaded model weights and run outputs
+best_model.ckpt
+finetuned.ckpt
+fit_val_split.csv
+finetune_log.csv
+evaluation.csv
+boundary_bands.csv
