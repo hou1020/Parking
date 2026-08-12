@@ -1,7 +1,9 @@
 # 2. Background
 
-> **草稿 v1**｜正文约 2,530 词
+> **草稿 v2**｜正文 3,095 词（含表 3,258）｜引用 18 条
+> v2 补入五条新文献：Bates & Leibling (2012)、Maggiori et al. (2017)、Hong et al. (2023)、Berry et al. (2019)、Hurst-Tarrab et al. (2020)
 > 引用均已对照 `resource/` 下原文核过，唯 **Qiam et al. (2025) 无 PDF**，§2.4 与 §2.5 中标 ⚠️ 的具体说法需最后对论文原文复核一次
+> ⚠️ **超预算 595 词**（目标 2,500）。可裁处见文末批注
 > 待办：引用格式统一；`[Table 2.1]` 已排
 
 ---
@@ -24,11 +26,15 @@ The same gap appears in the densification literature. Centre for Cities research
 
 ## 2.2 What is known about parking extent, and where that knowledge comes from
 
-Systematic parking inventories exist, but almost exclusively for American cities, and they were built by methods that do not port straightforwardly to the UK.
+Systematic parking inventories exist, but they are overwhelmingly American, and they were built by methods that do not port straightforwardly to the UK. The British evidence that does exist measures something different, in one atypical city, by means too expensive to repeat.
 
 Scharnhorst (2018) compiled comprehensive inventories for five US cities — New York, Philadelphia, Seattle, Des Moines and Jackson, Wyoming — combining satellite imagery with tax and cadastral records. The results are striking both for supply and for its use: reviewing occupancy studies across the five cities, he reports empty stalls making up 68 per cent of supply in Jackson's residential core and 61 per cent in its midtown area, and 92 per cent of spaces empty in a major public facility in Des Moines. Downtown Philadelphia carries more than 100 parking spaces per acre. Hoehne et al. (2019) take a different route for metropolitan Phoenix, cross-referencing cadastral and roadway data against minimum parking requirements to estimate 12.2 million parking spaces in 2017 — against 4.04 million inhabitants, 2.86 million registered personal vehicles and 1.84 million jobs — with 10.9 million of those spaces added since 1960.
 
-Two things follow for the present study. The first is substantive: where parking has been counted, it has consistently been found in quantities far exceeding observed use, which is what makes its land take a live question rather than an accounting curiosity. The second is methodological, and is the more important here. Both studies depend on institutional data that either does not exist in comparable form in the UK or does not carry the same information: Hoehne et al.'s method requires codified minimum parking requirements attached to parcels, and Scharnhorst's requires cadastral records that identify parking as a use. Neither is available as a national UK dataset. An approach that reads parking directly from imagery, and therefore depends on no institutional record at all, is attractive precisely because it sidesteps this.
+The British evidence is thinner, and its own authors say so. The most substantial recent review of UK parking policy, Bates and Leibling's (2012) study for the RAC Foundation, concludes that a central obstacle to coherent policy is simply the absence of data: their study, they write, shows "how little information is collected about the quantity of parking space" that exists (p. 99), a problem they attribute to fragmented responsibility and to local authorities lacking the resources to audit their own parking supply. Where UK measurement has been attempted it has been local and survey-based. The fullest example remains a study commissioned for London, in which parking availability was estimated by inspecting a sample of three hundred 500 m squares on the ground, later partially resurveyed; it put the capital's supply at roughly 6.8 million spaces, of which some 1.8 million were private driveways and garages and 2.4 million were unrestricted on-street (Bates and Leibling, 2012).
+
+Three limitations of that evidence base define the opening this study works in. It counts **spaces rather than land area**, which cannot answer a question about how much ground a city gives over to parking. It is **concentrated on London**, which is atypical of British cities in density, land value and parking regulation alike. And it rests on **ground survey**, which is expensive enough that the exercise has not been repeated at scale or extended to other cities. No comparable measurement of off-street surface parking *area* appears to exist for a British city outside London.
+
+Two further things follow for the present study. The first is substantive: where parking has been counted, it has consistently been found in quantities far exceeding observed use, which is what makes its land take a live question rather than an accounting curiosity. The second is methodological, and is the more important here. The American studies depend on institutional data that either does not exist in comparable form in the UK or does not carry the same information: Hoehne et al.'s method requires codified minimum parking requirements attached to parcels, and Scharnhorst's requires cadastral records that identify parking as a use. Neither is available as a national UK dataset, and the British alternative — sending surveyors out to look — is precisely what has proved too costly to repeat. An approach that reads parking directly from imagery, and therefore depends on no institutional record and no fieldwork, is attractive because it sidesteps both.
 
 A related strand of work provides the spatial framing rather than the counts. Jiao (2015) shows that urban land density follows regular, describable functions of distance from the centre, which supplies a natural way to organise a within-city analysis: not "how much parking is there" alone, but how its share of land changes across the urban gradient.
 
@@ -40,6 +46,8 @@ The authors also report "excellent zero-shot robustness", demonstrated on Citysc
 
 Applying such a model to parking is attractive because parking is, visually, a comparatively well-defined target: a paved surface, usually with painted bays, usually with vehicles on it, usually adjacent to a building or road. It is also a target whose boundary is genuinely ambiguous — where a car park ends and its access road, service yard or forecourt begins is a matter of definition rather than of observation. That ambiguity is not incidental to what follows: it turns out to account for a substantial share of the apparent error measured in Chapter 4, and separating it from genuine misrecognition is one of the main analytical tasks of this study.
 
+A small body of work has taken parking specifically as the segmentation target, and it is worth noting both what it has achieved and how it has been evaluated. Berry et al. (2019) address a problem that follows directly from the boundary ambiguity above: adjacent car parks merge into one another under ordinary semantic segmentation, so they segment *instances* using associative embeddings, deliberately choosing a method independent of object classification and tolerant of missing labels. Hurst-Tarrab et al. (2020) assemble APKLOT, a set of roughly 7,000 parking-block polygons across 500 labelled satellite images, and report that all their models exceed 50% IoU on the satellite view. That figure is a useful marker: it indicates the order of accuracy this task supports even when training and test data are drawn from the same source, and it is one of the few published points of comparison for a parking segmentation result. What this literature does not do is ask what a resulting map is fit for. Accuracy is reported as an endpoint rather than as a property that determines which downstream uses survive.
+
 ## 2.4 The model used here and its annotation definition
 
 The model applied in this study is the parking-lot segmentation network released by Qiam et al. (2025), who introduce both a pipeline and an NIR-enhanced training dataset for the task. The released checkpoint is a SegFormer-B5 configuration whose backbone was initialised from Cityscapes weights and fine-tuned on their parking dataset. It is used here exactly as released, with no UK training data.
@@ -50,7 +58,9 @@ Two consequences run through this dissertation. First, any reference dataset use
 
 ## 2.5 Domain shift: what could go wrong across a national boundary
 
-A model trained in one geographical setting frequently performs worse in another, a problem framed in the remote-sensing literature as domain shift and surveyed comprehensively by Lyu et al. (2025). The sources are usually decomposed into sensor and resolution differences, atmospheric and illumination differences, and differences in the appearance and arrangement of the objects themselves.
+A model trained in one geographical setting frequently performs worse in another, a problem framed in the remote-sensing literature as domain shift and surveyed comprehensively by Lyu et al. (2025). The sources are usually decomposed into sensor and resolution differences, atmospheric and illumination differences, and differences in the appearance and arrangement of the objects themselves. It is a sufficiently recognised problem that benchmarks have been built specifically to measure it. Maggiori et al. (2017) constructed the Inria Aerial Image Labeling benchmark from 810 km² of 0.3 m RGB imagery over ten cities in North America and Europe, splitting it so that testing is performed, in their words, over entirely different cities rather than over held-out parts of the training area. Their reported figure is worth carrying forward: a network reaching about 60% IoU for building footprints across unseen cities was judged to generalise satisfactorily. Hong et al. (2023) make the same point from the other direction, arguing that models succeeding within a single city meet a performance bottleneck across cities and regions, and building the C2Seg benchmark across Berlin–Augsburg and Beijing–Wuhan to study it.
+
+Two features of this literature matter for what follows. The benchmarks are closely comparable to the present setting — Maggiori et al. work at 0.3 m with RGB bands and two classes, against 0.25 m RGB and two classes here — which means their accuracy levels provide a reasonable frame of reference for the figures reported in Chapter 4. But they also test transfer between cities within a broadly shared building stock, whereas the transfer examined here crosses a national boundary, an imagery programme, and a different tradition of laying out car parks.
 
 Most of that literature is concerned with *correcting* domain shift through adaptation methods. That framing is not available to the user this study has in mind. Adaptation presupposes either labelled data in the target domain or a substantial engineering effort to exploit unlabelled data; a planner or analyst who wants to know how much land in their city is car park has neither, and their realistic option is to run the published checkpoint on the imagery they hold. The relevant question for them is not how the shift could be corrected but what the uncorrected output can still be trusted to do. That question is under-served: accuracy metrics reported in transfer studies describe how far performance has fallen, but not which downstream uses survive the fall.
 
@@ -60,7 +70,7 @@ Stating "the model was trained in the US and applied in the UK" is not, on its o
 
 | Difference between the training and application settings | Expected failure |
 |---|---|
-| British off-street car parks are typically smaller and more irregularly shaped than American ones | Failures concentrated in small lots and awkward site geometry |
+| British off-street car parks are typically smaller and more irregularly shaped than American ones — a prior of this study, drawn from the labelling rather than from a source, and tested rather than assumed | Failures concentrated in small lots and awkward site geometry |
 | Unmarked parking is more common; the annotation rules accept vehicles plus layout as sufficient evidence | Missed lots lacking painted bay markings |
 | Setts, block paving and gravel are common surfacing materials | Missed lots whose surface is not asphalt |
 | Leeds lies at 53.8 °N, well north of the US cities in the training data (mostly 30–42 °N), so solar elevation is lower and shadows longer; street tree canopy is also denser | Missed or fragmented lots under shadow and canopy occlusion |
@@ -83,6 +93,23 @@ OSM is therefore treated in this study in two distinct roles, kept strictly sepa
 
 ## 2.7 Research gap
 
-The four literatures leave a gap where they meet. Parking is argued to be under-used urban land, but the empirical evidence for how much land it occupies is almost entirely American and rests on institutional records the UK does not hold in comparable form. English planning policy now names car parks explicitly as under-utilised land to be brought forward, and the densification literature identifies exactly the kind of city — and the kind of inner ring — where that land would matter most, but neither can point to a measurement. Segmentation models can produce such a measurement at scale, and one trained specifically for parking is publicly available, but the remote-sensing literature that would tell us whether it transfers is largely concerned with correcting domain shift rather than characterising the residual reliability of an uncorrected transfer. And the reference dataset that would let a UK user check the output for themselves is incomplete in ways that vary from place to place.
+The four literatures leave a gap where they meet. Parking is argued to be under-used urban land, but the empirical evidence for how much land it occupies is overwhelmingly American and rests on institutional records the UK does not hold in comparable form; the British evidence counts spaces rather than area, covers London rather than the country, and its own authors identify the absence of data as the central problem. English planning policy now names car parks explicitly as under-utilised land to be brought forward, and the densification literature identifies exactly the kind of city — and the kind of inner ring — where that land would matter most, but neither can point to a measurement. Segmentation models can produce such a measurement at scale, and one trained specifically for parking is publicly available, but the parking segmentation literature reports accuracy as an endpoint, and the transfer literature is largely concerned with correcting domain shift rather than characterising the residual reliability of an uncorrected transfer. And the reference dataset that would let a UK user check the output for themselves is incomplete in ways that vary from place to place.
 
 The gap this dissertation addresses is therefore not that nobody has mapped parking in Leeds. It is that a scalable method exists whose transferred output has never been tested in a way that establishes *what it can be used for*. Reporting a precision and a recall does not answer that question. Establishing which errors are boundary effects, which are systematic confusions, which are disagreements about definition, and which are artefacts of the processing pipeline — and then testing whether the residual bias is stable enough to be corrected, and at what spatial grain — does. That is the contribution attempted here.
+
+---
+
+> ## 批注：字数与可裁处
+>
+> 本章 3,095 词，超预算 595。方法章 2,964，超 464。两章合计超 1,059 词，若其余各章按计划，全篇约 12,059 —— **超出 CASA 上限 12,000**。需要在两章之间收回约 1,000 词。
+>
+> 本章建议裁的三处，按"裁掉损失最小"排序：
+>
+> | 处 | 约可裁 | 代价 |
+> |---|---|---|
+> | §2.2 伦敦 6.8 million 车位的分项明细 | 60 词 | 只留总数与"数车位不数面积"这一点，论证不受影响 |
+> | §2.3 SegFormer 架构描述（MiT-B0–B5、位置编码） | 120 词 | 压成两句。zero-shot robustness 那段**不能动**，它是本章的关键转折 |
+> | §2.5 第二段"两个特征"中的第一点 | 80 词 | 分辨率可比性可以并进前一句 |
+> | §2.1 Livingstone 与 Habermehl 各一句 | 90 词 | 密度化文献是背景而非论证主干 |
+>
+> 合计约 350 词，其余从方法章收回。**§2.2 的英国证据段和 §2.5 的 Maggiori 基准段不建议裁**——前者是 gap 陈述的支柱，后者是第 4 章数字唯一的外部参照系。
