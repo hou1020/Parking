@@ -1,0 +1,20 @@
+# 6. Conclusion
+
+> **草稿 v1**｜目标 500 词
+> 待办：引用格式统一
+
+---
+
+This dissertation tested whether a US-trained surface-parking segmentation model can be used to measure off-street surface parking in a British city. The model was applied to 100 km² of Leeds exactly as released, with no UK training data, and evaluated against 2,037 manually labelled car parks drawn to the source model's own target definition. The error was then decomposed rather than merely reported: attributed exhaustively against independent reference layers, characterised by stratified sampling of 142 image chips adjudicated on the imagery the model actually consumed, and tested by ablation of the post-processing stage.
+
+The transfer works asymmetrically. Recall of 0.854 is high and spatially even; precision of 0.571 is neither, and the model predicts 1.50 times the labelled parking area. Accuracy within the city tracks not distance from the centre but how much parking a cell contains — an apparent location effect that dissolves once parking abundance is controlled for.
+
+What the error is not is a failure to recognise parking: the genuine blind spot — parking present in the imagery that the model did not see — is at most 2.1% of labelled area, or under 3% of all error area. Boundary placement is the largest single component, at 28.8% of false-positive and 54.1% of false-negative area, with the remainder split between confusions with particular look-alike surfaces, disagreement over what counts as parking, and pipeline artefacts. Among the sampled whole-lot misses, irregular arrangement was the most frequently identified mechanism and absent markings among the least. Post-processing is a real trade, buying 0.043 of precision for 0.040 of recall, but it also creates a blind spot of its own: the raw model detects rooftop parking better than ground-level parking, and building subtraction deletes four fifths of it.
+
+Under that measured reliability, surface parking covers 3.26% of the study area as labelled, or 3.30% after the sampled corrections. The highest shares fall in the inner 2 km, reaching 7.11% in the 1–2 km band, with a clear decline beyond; and it is strongly concentrated: a median cell gives over 1.71%, while six exceed 10%.
+
+**Contributions.** Four, in ascending order of transferability beyond this case. First, an empirical measurement of how a published US-trained parking segmentation model behaves in a British city, previously unavailable. Second, a reusable method for decomposing area-based segmentation error into boundary effects, attributable confusions, definitional disagreement and pipeline artefacts — a decomposition that turns a single accuracy figure into a statement about which uses survive. Third, evidence that a post-processing step justified by a sound premise can create a systematic blind spot, which is an argument for evaluating correction stages rather than assuming them. Fourth, a bias-correction estimator with its spatial grain established by hold-out rather than asserted: it holds to about ±7% at half-city scale and fails at the scale of a single square kilometre.
+
+**Future work.** The calibration factor reduces to a ratio of labelled to predicted area, so testing whether it transfers between cities requires only labelled totals over a sample of cells rather than a repeat of the full error analysis undertaken here — which makes multi-city validation affordable and is the obvious next step. The typology points to a direction for training data: irregularly arranged car parks rather than simply unmarked ones, on the strength of eleven sampled chips. Imagery carrying a near-infrared band would test the one expected failure this study could not examine. And whether local fine-tuning moves the boundary component, the definitional component or neither is a question the decomposition developed here is well placed to answer.
+
+A transferred model cannot yet be trusted to measure how much land a British city gives to parking. Paired with one local validation, it can — and that is a materially different claim from either accepting or dismissing the map.
