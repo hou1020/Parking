@@ -6,6 +6,13 @@ Author: Hou
     fig_error_composition.png   what the FP and FN area is made of, two levels deep (4.2, 4.3)
     fig_error_chips.png     one worked example of each failure category (4.2, 4.3)
     fig_ablation.png        the post-processing trade-off on the precision-recall plane (4.4)
+    fig_accuracy_vs_location.png  the confounding of distance and parking share (4.5)
+    parking_extent.png      how much parking there is and where it sits (4.6)
+    calibration_transfer.png      how far the calibration factor carries (4.7)
+
+The last two are redrawn here in the chapter's own idiom; parking_extent.py and
+calibration_transfer.py remain the analysis of record and still write their own
+working versions into analysis/.
 
 Reads read-only. Writes only into write/figures/.
 """
@@ -67,7 +74,8 @@ fig.legend(handles=[
     Line2D([], [], marker="o", color="none", mfc="white", mec=INK, mew=1.5,
            label="city centre"),
     MplPolygon([(0, 0)], facecolor="#e8e6e1", hatch="///", edgecolor="white",
-               label="no labelled parking in cell (recall and IoU undefined)")],
+               label="no labelled parking in cell (recall undefined; precision and "
+                     "IoU are 0 and carry no information about accuracy)")],
     loc="lower center", ncol=2, fontsize=8.5, frameon=False, bbox_to_anchor=(.5, -.02))
 fig.savefig(f"{OUTDIR}/fig_accuracy_maps.png", dpi=200, bbox_inches="tight",
             facecolor="white")
@@ -184,6 +192,18 @@ def black_fraction(path):
     return float((a.sum(axis=2) < 24).mean())
 
 
+# The default rule — largest chip with usable imagery — picks a legible example for most
+# categories but not all: the largest goods yard is a featureless concrete apron, the
+# largest on-street sample is a cluttered campus, and so on. Where a smaller chip shows the
+# mechanism more clearly, it is named here. Everything else is still chosen automatically.
+PINNED = {
+    ("fp_other", "goods_yard"):      "fp_l_052",   # containers, beside a real car park
+    ("fp_other", "on_street"):       "fp_l_066",   # kerbside rows on a terraced street
+    ("fn_other", "unusual_surface"): "fn_s_072",   # red block paving against asphalt
+    ("fn_other", "no_cars_present"): "fn_l_099",   # paved but empty, detected lot alongside
+}
+
+
 fig, axes = plt.subplots(4, 3, figsize=(11.4, 15.4))
 for ax, (src, cat) in zip(axes.ravel(), WANT):
     sel = idx[(idx["source"] == src) & (idx["category"] == cat)].copy()
@@ -191,11 +211,14 @@ for ax, (src, cat) in zip(axes.ravel(), WANT):
         ax.axis("off"); continue
     sel["path"] = sel["sample_id"].map(lambda s: f"{HERE}/chips/{src}/{s}.png")
     sel["black"] = sel["path"].map(black_fraction)
-    usable = sel[sel["black"] < 0.06]
-    row = (usable if len(usable) else sel.sort_values("black")).sort_values(
-        "area_m2", ascending=False).iloc[0]
-    if row["black"] >= 0.06:
-        log(f"  note: every {cat} chip has imagery gaps; using the cleanest")
+    if (src, cat) in PINNED:
+        row = sel[sel["sample_id"] == PINNED[(src, cat)]].iloc[0]
+    else:
+        usable = sel[sel["black"] < 0.06]
+        row = (usable if len(usable) else sel.sort_values("black")).sort_values(
+            "area_m2", ascending=False).iloc[0]
+        if row["black"] >= 0.06:
+            log(f"  note: every {cat} chip has imagery gaps; using the cleanest")
     ax.imshow(np.array(Image.open(row["path"])))
     pct = share.get((src, cat))
     tag = "FP" if src == "fp_other" else "FN"
@@ -278,11 +301,150 @@ ax.legend(handles=[
            label="post-processing factorial (A–D)"),
     Line2D([], [], color="none", marker="s", mfc="white", mec=RESID, mew=1.8,
            ms=9, label="reference layers used as filters (E–H)")],
-    loc="upper left", fontsize=8.6, frameon=True, framealpha=.95)
+    loc="lower right", fontsize=8.6, frameon=True, framealpha=.95)
 ax.set_title("Post-processing buys precision with recall; land-use filters destroy the map",
              fontsize=10.5, color=INK, pad=12)
 fig.tight_layout()
 fig.savefig(f"{OUTDIR}/fig_ablation.png", dpi=200, bbox_inches="tight",
             facecolor="white")
 log(f"  wrote {OUTDIR}/fig_ablation.png")
+
+
+# --------------------------------- figure 4.5  accuracy against location, 3 panels
+log("fig_accuracy_vs_location ...")
+from scipy import stats as _st
+
+av = pd.read_csv(f"{HERE}/accuracy_vs_distance.csv")
+av["share_pct"] = av["parking_share"] * 100
+BANDS = [0, 1, 2, 3, 4, 99]
+BAND_LAB = ["<1", "1-2", "2-3", "3-4", ">4"]
+av["band"] = pd.cut(av["dist_km"], BANDS, labels=BAND_LAB)
+
+PANELS = [("dist_km", "prec_all", "Distance from centre (km)", "Precision",
+           "Distance does not predict precision"),
+          ("share_pct", "prec_all", "Parking share of cell (%)", "Precision",
+           "Parking share does"),
+          ("dist_km", "share_pct", "Distance from centre (km)",
+           "Parking share of cell (%)", "and distance predicts parking share")]
+
+fig, axes = plt.subplots(1, 3, figsize=(13.2, 4.5))
+for ax, (xc, yc, xl, yl, title) in zip(axes, PANELS):
+    d = av[[xc, yc]].dropna()
+    r, p = _st.pearsonr(d[xc], d[yc])
+    ax.scatter(d[xc], d[yc], s=26, facecolor=ATTRIB, alpha=.5, edgecolor="none")
+    m, b = np.polyfit(d[xc], d[yc], 1)
+    xs = np.linspace(d[xc].min(), d[xc].max(), 50)
+    sig = p < .05
+    ax.plot(xs, m * xs + b, color=RESID if sig else MUTED, lw=1.8,
+            ls="-" if sig else (0, (5, 3)))
+    if yc == "prec_all":
+        bm = av.groupby("band", observed=True).agg(x=(xc, "mean"), y=(yc, "mean"))
+        ax.plot(bm["x"], bm["y"], color=INK, lw=1.1, marker="D", ms=5.5,
+                mfc="white", mec=INK, zorder=4, label="distance-band mean")
+        if xc == "dist_km":
+            ax.legend(fontsize=8, loc="lower left", frameon=False)
+    ax.text(.03, .965, f"r = {r:+.3f}\np = {p:.4f}" if p >= .0001
+            else f"r = {r:+.3f}\np < 0.0001",
+            transform=ax.transAxes, va="top", ha="left", fontsize=8.6,
+            color=RESID if sig else MUTED, linespacing=1.4,
+            bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="none", alpha=.85))
+    ax.set_xlabel(xl, fontsize=9); ax.set_ylabel(yl, fontsize=9)
+    ax.set_title(title, fontsize=9.8, color=INK)
+    ax.grid(alpha=.15)
+
+fig.suptitle("The apparent location effect is confounded: distance tracks parking share, "
+             "and parking share is what moves precision", fontsize=10.6, y=1.02)
+fig.text(.5, -.05, "Partial correlations: precision against parking share, controlling for "
+                   "distance, r = +0.540 (p < 0.0001);\nprecision against distance, "
+                   "controlling for parking share, r = +0.186 (p = 0.065).",
+         ha="center", fontsize=8.4, color=MUTED, linespacing=1.5)
+fig.tight_layout()
+fig.savefig(f"{OUTDIR}/fig_accuracy_vs_location.png", dpi=200, bbox_inches="tight",
+            facecolor="white")
+log(f"  wrote {OUTDIR}/fig_accuracy_vs_location.png")
+
+
+# ------------------------------------------------- figure 4.6  extent of parking
+# Redrawn here in the same idiom as the rest of the chapter; analysis/parking_extent.py
+# remains the analysis of record and still writes its own working version.
+log("fig_parking_extent ...")
+ex = pd.read_csv(f"{HERE}/accuracy_vs_distance.csv")
+ex["manual_share"] = 100 * ex["manual_all_m2"] / 1e6
+ex["model_share"] = 100 * ex["model_m2"] / 1e6
+ex["band"] = pd.cut(ex["dist_km"], bins=[0, 1, 2, 3, 4, 99],
+                    labels=["<1", "1-2", "2-3", "3-4", ">4"])
+gx = grid.merge(ex, on=["col_index", "row_index"], how="left")
+
+fig, axes = plt.subplots(1, 3, figsize=(14.6, 4.8))
+
+ax = axes[0]
+gx.plot(ax=ax, column="manual_share", cmap="YlOrRd", vmin=0, vmax=19,
+        edgecolor="white", linewidth=.4)
+ax.plot(*CENTRE, marker="o", ms=6, mfc="white", mec=INK, mew=1.5, zorder=5)
+ax.set_title("Labelled parking, % of each km² cell", fontsize=10, color=INK)
+ax.set_aspect("equal"); ax.set_xticks([]); ax.set_yticks([])
+for s in ax.spines.values():
+    s.set_visible(False)
+sm = plt.cm.ScalarMappable(cmap="YlOrRd", norm=plt.Normalize(0, 19))
+cb = fig.colorbar(sm, ax=ax, fraction=.046, pad=.02)
+cb.ax.tick_params(labelsize=8); cb.outline.set_visible(False)
+
+ax = axes[1]
+ax.scatter(ex["dist_km"], ex["model_share"], s=20, color=WARM, alpha=.55,
+           edgecolor="none", label="predicted", zorder=2)
+ax.scatter(ex["dist_km"], ex["manual_share"], s=26, color=ATTRIB, alpha=.75,
+           edgecolor="none", label="labelled", zorder=3)
+bm = ex.groupby("band", observed=True).agg(d=("dist_km", "mean"),
+                                           s=("manual_share", "mean"))
+ax.plot(bm["d"], bm["s"], color=RESID, lw=1.6, marker="D", ms=6, mfc="white",
+        mec=RESID, mew=1.5, label="distance-band mean, labelled", zorder=4)
+ax.set_xlabel("Distance from centre (km)"); ax.set_ylabel("Parking share of cell (%)")
+ax.set_title("Parking share falls with distance", fontsize=10, color=INK)
+ax.legend(fontsize=8.2, frameon=False); ax.grid(alpha=.15)
+
+ax = axes[2]
+mean_s, med_s = ex["manual_share"].mean(), ex["manual_share"].median()
+ax.hist(ex["manual_share"], bins=20, color=BOUNDARY, edgecolor="white", lw=.8)
+ax.axvline(mean_s, color=RESID, lw=1.5, label=f"mean {mean_s:.2f}%")
+ax.axvline(med_s, color=INK, lw=1.5, ls="--", label=f"median {med_s:.2f}%")
+ax.set_xlabel("Parking share of cell (%)"); ax.set_ylabel("Cells")
+ax.set_title("and is concentrated, not spread evenly", fontsize=10, color=INK)
+ax.legend(fontsize=8.2, frameon=False); ax.grid(alpha=.15)
+
+fig.suptitle("Surface parking covers 3.26% of the study area, unevenly: a band around the "
+             "centre holds most of it", fontsize=10.6, y=1.02)
+fig.tight_layout()
+fig.savefig(f"{OUTDIR}/parking_extent.png", dpi=200, bbox_inches="tight",
+            facecolor="white")
+log(f"  wrote {OUTDIR}/parking_extent.png")
+
+
+# --------------------------------------- figure 4.7  calibration factor transfer
+log("fig_calibration_transfer ...")
+er = pd.read_csv(f"{HERE}/calibration_transfer_errors.csv")
+SCHEMES = [("random half split", "Random half split", "half the city predicts the other half"),
+           ("leave one distance band out", "Leave one distance band out", "5 tests only"),
+           ("leave one cell out", "Leave one cell out", "the estimator fails at 1 km²")]
+
+fig, axes = plt.subplots(1, 3, figsize=(14.6, 4.4))
+for ax, (key, title, sub) in zip(axes, SCHEMES):
+    e = er.loc[er["scheme"] == key, "error_pct"].to_numpy()
+    ax.hist(e, bins=min(25, max(5, len(e) // 3)), color=BOUNDARY, edgecolor="white", lw=.8)
+    ax.axvline(0, color=MUTED, lw=1, zorder=1)
+    ax.axvline(float(np.median(e)), color=RESID, lw=1.6,
+               label=f"median {np.median(e):+.1f}%")
+    ax.axvline(float(e.mean()), color=INK, lw=1.5, ls="--",
+               label=f"mean {e.mean():+.1f}%  (Table 4.10)")
+    ax.set_xlabel("Error of calibrated estimate (%)")
+    ax.set_ylabel("Held-out sets")
+    ax.set_title(f"{title}\n{sub}", fontsize=10, color=INK, linespacing=1.35)
+    ax.legend(fontsize=8.2, frameon=False); ax.grid(alpha=.15)
+
+fig.suptitle("The calibration factor transfers across half a city but not to a single cell",
+             fontsize=10.6, y=1.04)
+fig.tight_layout()
+fig.savefig(f"{OUTDIR}/calibration_transfer.png", dpi=200, bbox_inches="tight",
+            facecolor="white")
+log(f"  wrote {OUTDIR}/calibration_transfer.png")
+
 log("\ndone")

@@ -133,7 +133,7 @@ for a, b in zip(ys[:-1], ys[1:]):
 box(L, 29, "original output\n6,814 polygons", fc="#f2f2ef", lw=1.5, weight="bold")
 arrow(L, ys[4] - BH / 2, L, 29 + BH / 2)
 
-box(L, 16, "− OSM building footprints\n− road buffers, 14–5 m by class", fs=7.5, w=34)
+box(L, 16, "− OSM building footprints\n− road buffers, 14–4 m by class", fs=7.5, w=34)
 arrow(L, 29 - BH / 2, L, 16 + BH / 2)
 
 box(L, 3, "removal output\n8,180 polygons", fc="#f2f2ef", lw=1.5, weight="bold")

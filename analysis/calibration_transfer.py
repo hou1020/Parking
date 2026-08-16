@@ -57,6 +57,7 @@ import warnings; warnings.filterwarnings("ignore")
 HERE = os.path.dirname(os.path.abspath(__file__))
 PERCELL = f"{HERE}/accuracy_vs_distance.csv"
 OUT_CSV = f"{HERE}/calibration_transfer_summary.csv"
+OUT_ERRS = f"{HERE}/calibration_transfer_errors.csv"
 OUT_FIG = f"{HERE}/calibration_transfer.png"
 
 N_SPLITS = 200
@@ -173,6 +174,17 @@ with open(OUT_CSV, "w", newline="") as f:
     w.writerow({"scheme": "by distance band", "n_tests": "n_cells", "mean_error_pct": "error_pct"})
     for b in band_rows:
         w.writerow({"scheme": b["band"], "n_tests": b["n_cells"], "mean_error_pct": b["error_pct"]})
+
+# The individual hold-out errors, so the results-chapter figure is drawn from the
+# same numbers this script summarises rather than recomputing the schemes.
+with open(OUT_ERRS, "w", newline="") as f:
+    w = csv.writer(f)
+    w.writerow(["scheme", "error_pct"])
+    for name, e in [("random half split", e_half),
+                    ("leave one distance band out", e_band),
+                    ("leave one cell out", e_loo)]:
+        for v in e:
+            w.writerow([name, round(float(v), 6)])
 
 log(f"\nwrote: {OUT_CSV}\n")
 log(pd.DataFrame(rows)[["scheme", "n_tests", "mean_error_pct", "sd_pct",

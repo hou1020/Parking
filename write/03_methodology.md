@@ -6,19 +6,19 @@
 
 ---
 
-This chapter sets out how the transfer was tested. It describes the study area and the imagery the model consumed (3.1), the annotation protocol used to build an independent reference (3.2), the segmentation pipeline itself (3.3), and the accuracy measures (3.4). It then sets out the two complementary procedures used to characterise error — automated attribution against reference layers (3.5) and stratified sampling with visual adjudication (3.6) — followed by the ablation design used to isolate the contribution of post-processing (3.7). Two checks close the chapter: one on the consistency of the two imagery sources (3.8), and one on the estimator used to correct the model's systematic bias (3.9).
+This chapter sets out how the transfer was tested. It describes the study area and the imagery the model consumed (3.1), the annotation protocol used to build an independent reference (3.2), the segmentation pipeline itself (3.3), and the accuracy measures (3.4). It then sets out the two complementary procedures used to characterise error — automated attribution against reference layers (3.5) and stratified sampling with visual adjudication (3.6) — followed by the ablation design used to isolate the contribution of post-processing (3.7). Two checks close the chapter: one on the imagery underlying the reference and the predictions (3.8), and one on the estimator used to correct the model's systematic bias (3.9).
 
 ---
 
 ## 3.1 Study area and data
 
-The study area is a 100 km² square centred on Leeds, divided into one hundred 1 km² cells on the British National Grid (Figure 3.1). The city centre is taken as City Square (E 429832, N 433449); cell centroids lie between 0.34 km and 7.64 km from it. Leeds was chosen as a large English city outside London with substantial surface parking in and around its core, and with complete aerial coverage at the resolution the model requires. A square grid rather than an administrative boundary was used so that every cell is an equal-area unit and per-cell statistics are directly comparable.
+The study area is a 100 km² square centred on Leeds, divided into one hundred 1 km² cells on the British National Grid (Figure 3.1). The city centre is taken as City Square (E 429832, N 433449); cell centroids lie between 0.34 km and 7.64 km from it. Leeds was chosen as a large English city outside London with substantial surface parking in and around its core, and with complete aerial coverage at the resolution the model requires. A square grid rather than an administrative boundary was used so that every cell is an equal-area unit and per-cell statistics are directly comparable. The choice of areal unit is not neutral — figures computed over zones depend on how the zones are drawn, the modifiable areal unit problem (Openshaw, 1984) — so the unit is held constant throughout and whole-area figures are reported alongside per-cell ones.
 
 ![Study area](figures/fig_study_area.png)
 
 **Figure 3.1** The study area: one hundred 1 km² validation cells on the British National Grid, the 2,037 manually labelled surface parking polygons, and distance rings from City Square. Labelled parking is visibly concentrated in a band around, rather than at, the centre — a pattern quantified in 4.7.
 
-The imagery is Getmapping aerial photography supplied through Digimap: 109 tiles at 0.25 m ground sample distance, three visible bands (RGB), projected in EPSG:27700. The tiles carry three version suffixes — `_03` (79 tiles), `_04` (20) and `_05` (10) — reflecting different capture and processing runs; capture dates are not published with the download, a limitation returned to in 3.8. All spatial operations are carried out in EPSG:27700, whose units are metres, so polygon areas are read directly in m² without further projection.
+The imagery is Getmapping aerial photography supplied through Digimap: 109 tiles at 0.25 m ground sample distance, three visible bands (RGB), projected in EPSG:27700. The tiles carry three version suffixes — `_03` (79 tiles), `_04` (20) and `_05` (10) — reflecting different processing runs. All spatial operations are carried out in EPSG:27700, whose units are metres, so polygon areas are read directly in m² without further projection.
 
 Three reference datasets are used, none of them as ground truth. OpenStreetMap building footprints and road centrelines (retrieved 25 June 2026) are inputs to the post-processing stage. OpenStreetMap land use, brownfield, pitch and `amenity=parking` polygons are used only to attribute errors after the fact. Ordnance Survey Open Greenspace supplies sports facilities. The distinction matters: reference layers are used here to explain where errors fall, and — with the deliberate exception tested in 3.7 — never to decide what the map should contain.
 
@@ -26,14 +26,11 @@ Three reference datasets are used, none of them as ground truth. OpenStreetMap b
 
 ## 3.2 Annotation protocol
 
-Accuracy figures are only meaningful against a reference that follows the definition the model was trained on. The annotation rules therefore follow those of Qiam et al. (2025), whose dataset the model was trained on, and are reproduced in full in Appendix A. The target is off-street surface parking: open-air, ground-level areas used for parking, outside the public road. Labels are binary. No minimum size threshold is applied. Marked bays and the aisles connecting them are included, as is rooftop parking where the parking surface is visible from above; on-street parking and enclosed multi-storey structures are excluded. Where markings are absent, an area is labelled only where parked vehicles and a bay-and-aisle layout together make the use unambiguous. Boundaries are drawn at the edge of the paving rather than the parcel line.
+Accuracy figures are only meaningful against a reference that follows the definition the model was trained on. The annotation rules therefore follow those of Qiam, Devunuri and Lehe (2025), whose dataset the model was trained on, and are reproduced in full in Appendix A. The target is off-street surface parking: open-air, ground-level areas used for parking, outside the public road. Labels are binary. No minimum size threshold is applied. Marked bays and the aisles connecting them are included, as is rooftop parking where the parking surface is visible from above; on-street parking and enclosed multi-storey structures are excluded. Where markings are absent, an area is labelled only where parked vehicles and a bay-and-aisle layout together make the use unambiguous. Boundaries are drawn at the edge of the paving rather than the parcel line.
 
-Two deviations from the source protocol were made and are kept visible throughout the analysis:
+One boundary inside residential parking is worth stating explicitly, because it is the commonest ambiguous case in a British city. Parking courts shared between several dwellings are labelled; driveways and forecourts serving a single household are not. A communal court resembles a small car park in layout and in what it does, while a single driveway does not. The distinction is not introduced here: UK parking measurement already separates private residential parking into driveway and communal categories, and the two were surveyed and reported separately in the London study described in §2.2 (Bates and Leibling, 2012).
 
-1. **Residential parking.** Single-household driveways and forecourts are not labelled, while shared residential parking courts serving several dwellings are. This extends the source rule excluding access driveways: a single-house driveway is private curtilage rather than a car park, whereas a communal court meets the stated target. Because this *narrows* the source definition, predictions falling on private driveways are separated out as a definitional difference rather than counted as model error (3.6).
-2. **Use served.** A `vehicle_storage` category considered during development was dropped, as recording the use served conflicts with the source protocol's explicit position that surface car parks count "whatever use they serve".
-
-Labelling was carried out in QGIS by a single annotator over a satellite basemap, producing 2,037 polygons with a confidence attribute (3 = clear, 2 = fairly clear, 1 = uncertain) and a free-text note used to flag rooftop cases. Summed individually the polygons cover 3.2677 km²; after dissolving to remove self-overlap between adjacent polygons and clipping to the grid, the reference covers **3.2597 km²**, and this dissolved figure is used throughout. One cell (c0r9) contains no labelled parking, so recall is undefined there and per-cell statistics involving recall use $n = 99$.
+Labelling was carried out in QGIS by a single annotator over a satellite basemap, producing 2,037 polygons with a confidence attribute (3 = clear, 2 = fairly clear, 1 = uncertain) and a free-text note used to flag rooftop cases. Summed individually the polygons cover 3.2677 km². Dissolving them leaves both the area and the part count unchanged, so no two labelled polygons overlap; the reference is nonetheless dissolved before every comparison, since the accuracy measures of 3.4 are only well defined on non-overlapping geometry and the property should be enforced rather than assumed. Clipping to the study grid removes 0.0081 km² where polygons cross the outer boundary, giving the **3.2597 km²** used throughout. One cell (c0r9) contains no labelled parking, so recall is undefined there and per-cell statistics involving recall use $n = 99$.
 
 Single-annotator labelling is a limitation with a measurable consequence rather than a generic caveat. Detection rates fall systematically with annotator confidence (4.3), so the reference itself places a ceiling on measurable accuracy; this is quantified in the results and returned to in the discussion.
 
@@ -41,7 +38,7 @@ Single-annotator labelling is a limitation with a measurable consequence rather 
 
 ## 3.3 Model and pipeline
 
-The model is the SegFormer (Xie et al., 2021) parking-lot segmentation network released by Qiam et al. (2025), a B5 configuration whose backbone was initialised from Cityscapes weights and fine-tuned by those authors on their parking dataset. The published checkpoint is used exactly as released. **No UK imagery was used to adjust the weights**, so what is measured here is zero-shot transfer: the accuracy a UK user would obtain by taking the model off the shelf.
+The model is the SegFormer (Xie et al., 2021) parking-lot segmentation network released by Qiam, Devunuri and Lehe (2025), a B5 configuration whose backbone was initialised from Cityscapes weights and fine-tuned by those authors on their parking dataset. The published checkpoint is used exactly as released. **No UK imagery was used to adjust the weights**, so what is measured here is zero-shot transfer: the accuracy a UK user would obtain by taking the model off the shelf.
 
 ![Pipeline](figures/fig_pipeline.png)
 
@@ -72,7 +69,7 @@ The output before subtraction (6,814 polygons) and after (8,180 polygons) are bo
 
 ## 3.4 Validation design
 
-Accuracy is measured by area rather than by object. Let $M$ and $R$ denote the dissolved model and reference geometry, and $|\cdot|$ denote area in m². Dissolving before comparison ensures overlapping geometry is not double-counted. The three quantities are then set operations:
+Accuracy is measured by area rather than by object, following the general practice in land-cover accuracy assessment of comparing a map against an independent reference over a defined spatial support (Foody, 2002; Olofsson et al., 2014). Let $M$ and $R$ denote the dissolved model and reference geometry, and $|\cdot|$ denote area in m². Dissolving before comparison ensures overlapping geometry is not double-counted. The three quantities are then set operations:
 
 $$
 \mathrm{TP} = M \cap R, \qquad \mathrm{FP} = M \setminus R, \qquad \mathrm{FN} = R \setminus M
@@ -86,7 +83,7 @@ $$
 \text{IoU} = \frac{|\mathrm{TP}|}{|\mathrm{TP}| + |\mathrm{FP}| + |\mathrm{FN}|}
 $$
 
-Area-based measures were chosen over object-based matching because the question is how much land the map assigns to parking, and because object matching would require an arbitrary rule for when a split or merged polygon counts as the same lot — a rule the post-processing stage makes particularly unstable. As an internal check, $|M| = |\mathrm{TP}| + |\mathrm{FP}|$ and $|R| = |\mathrm{TP}| + |\mathrm{FN}|$; both hold to four decimal places.
+Area-based measures were chosen over object-based matching because the question is how much land the map assigns to parking, and because object matching would require an arbitrary rule for when a split or merged polygon counts as the same lot — a rule the post-processing stage makes particularly unstable. The unit on which accuracy is assessed is itself a design decision rather than a given, and one that governs what the resulting figures mean (Stehman and Foody, 2019). As an internal check, $|M| = |\mathrm{TP}| + |\mathrm{FP}|$ and $|R| = |\mathrm{TP}| + |\mathrm{FN}|$; both hold to four decimal places.
 
 Two aggregations over the $n$ cells are reported. Writing $\mathrm{TP}_c$ for the true positive area within cell $c$, the **micro** (area-weighted) and **macro** (cell-averaged) forms of precision are
 
@@ -104,14 +101,16 @@ and recall and IoU follow the same pattern. The micro figure treats the whole st
 
 The first characterisation of error asks where FP and FN area falls relative to independent layers. It is applied exhaustively to all of it.
 
-**Boundary effects are separated first.** FP area within a fixed distance $d$ of a labelled lot is boundary *dilation* — the model drawing the same car park slightly too large — as distinct from a standalone false detection elsewhere. Symmetrically, FN area within $d$ of a predicted area is *erosion*: reference area the model did not cover, but lying immediately alongside something it did find.
+**Boundary effects are separated first.** An area-based measure treats segmentation as pixel-level classification and returns a single figure in which a car park drawn slightly too wide and a car park invented in the wrong place are indistinguishable (Csurka, Larlus and Perronnin, 2013). The segmentation literature's response has been to evaluate within a band of fixed distance from the contour: Boundary IoU computes overlap only over pixels lying within a specified distance of the boundary, recovering a sensitivity to boundary error that mask IoU loses — particularly for large objects, whose interiors dominate the score (Cheng et al., 2021). The construction used here is of that family but serves a different purpose. Rather than producing a boundary-aware score, it partitions the error, so that the boundary component and the remainder can be reported separately and attributed to different causes.
+
+FP area within a fixed distance $d$ of a labelled lot is boundary *dilation* — the model drawing the same car park slightly too large — as distinct from a standalone false detection elsewhere. Symmetrically, FN area within $d$ of a predicted area is *erosion*: reference area the model did not cover, but lying immediately alongside something it did find.
 
 $$
 \mathrm{FP}_{\text{dilation}}(d) = \mathrm{FP} \cap \big(R \oplus d\big), \qquad
 \mathrm{FN}_{\text{erosion}}(d) = \mathrm{FN} \cap \big(M \oplus d\big)
 $$
 
-where $\oplus$ denotes dilation by a buffer of $d$ metres. Erosion is defined against the *prediction* rather than against the reference boundary, so that it captures only reference area adjacent to a detection; defining it against the reference boundary would also count the outer edge of lots the model missed entirely, which is a detection failure rather than a boundary effect. Because no threshold separates the two cleanly, results are reported at $d = 2$, 5 and 10 m, with 5 m used as the working value. That this is a convention rather than a natural break is demonstrated rather than asserted: the sampled FP fragments that no category explained sit at a median distance of exactly 5.0 m from the nearest labelled lot, against 42–169 m for every substantive category (4.6).
+where $\oplus$ denotes dilation by a buffer of $d$ metres. Erosion is defined against the *prediction* rather than against the reference boundary, so that it captures only reference area adjacent to a detection; defining it against the reference boundary would also count the outer edge of lots the model missed entirely, which is a detection failure rather than a boundary effect. Because no threshold separates the two cleanly, results are reported at $d = 2$, 5 and 10 m, with 5 m used as the working value. Sensitivity to the width chosen is a known property of band-based measures rather than a peculiarity of this application (Cheng et al., 2021), which is why three are given. That 5 m is a convention rather than a natural break is also visible in the sampled evidence: the sampled FP fragments that no category explained sit at a median distance of exactly 5.0 m from the nearest labelled lot, against 42–169 m for every substantive category (4.6).
 
 **Standalone FP is then attributed in two ways, reported side by side.**
 
@@ -136,7 +135,7 @@ Throughout, attribution is positional and is worded as such. A false positive ly
 
 ## 3.6 Error typology II: stratified sampling
 
-Automated attribution leaves a residual in each direction that no reference layer explains. These residuals are characterised by stratified random sampling with visual adjudication (Table 3.2).
+Automated attribution leaves a residual in each direction that no reference layer explains. These residuals are characterised by stratified random sampling with visual adjudication (Table 3.2). The design follows the three-part structure recommended for accuracy assessment — a sampling design, a response design specifying how each sampled unit is judged, and an analysis that scales the sample back to the population (Olofsson et al., 2014; Stehman and Foody, 2019).
 
 **Table 3.2** Sampling design. Large polygons are deliberately oversampled; the ratio estimator corrects for this.
 
@@ -153,7 +152,7 @@ Automated attribution leaves a residual in each direction that no reference laye
 | | > 1,000 | 59 | 0.1793 | 15 |
 | **Total** | | | | **142** |
 
-Estimates use a ratio estimator. For stratum $h$ of known total area $A_h$, with sample $s_h$ and polygon areas $a_i$, the estimated area of category $c$ is
+Estimates use a stratified ratio estimator (Cochran, 1977). For stratum $h$ of known total area $A_h$, with sample $s_h$ and polygon areas $a_i$, the estimated area of category $c$ is
 
 $$
 \hat{A}_c = \sum_h A_h \cdot \frac{\sum_{i \in s_h,\, i \in c} a_i}{\sum_{i \in s_h} a_i}
@@ -163,7 +162,7 @@ so that oversampling of large polygons does not distort the totals.
 
 The sampling frame excludes polygons below 100 m². For unexplained FP this removes 0.0513 km², or **11.7%** of that population (0.4396 km² in total, 0.3883 km² in frame). Percentages reported for this population are therefore shares of the frame, and the corrections derived from them (4.6) implicitly assume the excluded slivers have the same composition as the sampled material. The assumption is conservative in the direction that matters: were the slivers composed like the sampled polygons, the upward correction to precision would be *larger* than the one reported. Slivers below 100 m² are in any case more plausibly boundary artefacts than real parking, so they are not extrapolated to.
 
-Each sample was inspected as an image chip cut from the Digimap tiles and assigned one category from a fixed list, with an optional note. **Adjudication was carried out against the Digimap imagery rather than the labelling basemap**, since a model's failure can only be assessed against the imagery it was given. Categories are organised by failure *mechanism* rather than surface appearance — what visual cue was absent — so that the typology maps onto plausible causes rather than onto descriptions.
+Each sample was inspected as an image chip cut from the Digimap tiles and assigned one category from a fixed list, with an optional note. **Adjudication was carried out against the Digimap imagery**, since a model's failure can only be assessed against the imagery it was given. Categories are organised by failure *mechanism* rather than surface appearance — what visual cue was absent — so that the typology maps onto plausible causes rather than onto descriptions.
 
 ---
 
@@ -185,7 +184,7 @@ Rooftop parking is examined separately as a case where the pipeline and the mode
 
 ## 3.8 Consistency of the two imagery sources
 
-Labelling was carried out over a satellite basemap, whereas the model operated on Digimap aerial tiles. These are not the same imagery, and the discrepancy was identified after labelling was complete. Rather than being set aside, its effect is bounded and measured by three independent checks.
+Labelling was carried out over a satellite basemap, whereas the model operated on Digimap aerial tiles. Because these are different sources, any difference between them could in principle contribute to the measured error rather than the model. Three independent checks bound and quantify that contribution.
 
 **(i) Spatial alignment.** For the 1,478 labelled lots the model detected to better than 70% and larger than 300 m², let $\mathbf{d}_i$ be the vector from the centroid of the labelled polygon to the centroid of the intersecting prediction. A registration offset displaces every lot in the same direction, so the mean *vector* is large; imprecise boundaries displace lots in varying directions, so the mean vector stays small while individual displacements do not. The two are separated by
 
@@ -206,7 +205,7 @@ A related check addresses whether OpenStreetMap disagreement can be attributed t
 
 ## 3.9 The calibration estimator and its spatial grain
 
-Where a map has precision $p$ and recall $r$, predicted area $|M|$ relates to true area $|R|$ by
+Adjusting a mapped area using reference data is established practice: the area a map reports is biased by its own commission and omission error, and a reference sample provides the terms with which to correct it (Olofsson et al., 2014). The estimator used here is a simplified form of that idea, expressed through the two measures already reported. Where a map has precision $p$ and recall $r$, predicted area $|M|$ relates to true area $|R|$ by
 
 $$
 |M| \cdot p = |\mathrm{TP}| = |R| \cdot r
@@ -222,7 +221,7 @@ $$
 
 that is, the labelled area of the training cells divided by their predicted area. The estimator therefore requires only a labelled *total area* on a sample of cells, not a full object-level error analysis — which is what would make calibrating it in a second city affordable. Precision and recall are not redundant: they establish that the bias is systematic rather than noise, while what follows establishes the grain at which it holds.
 
-The question that matters for use is whether a factor fitted on one part of the city predicts another part, and how finely it can be applied. Three hold-out schemes are used (Table 3.3), each fitting $p/r$ on a training set of cells $\mathcal{T}$ and applying it to held-out cells $\mathcal{H}$ the fit never saw. Error is reported relative to the labelled area of the held-out set:
+The question that matters for use is whether a factor fitted on one part of the city predicts another part, and how finely it can be applied. Three hold-out schemes are used (Table 3.3), each fitting $p/r$ on a training set of cells $\mathcal{T}$ and applying it to held-out cells $\mathcal{H}$ the fit never saw. Whole cells are the unit held out rather than individual polygons: parking is spatially dependent at short range, and splitting dependent units at random is known to understate predictive error, so blocks are withheld instead (Roberts et al., 2017). Error is reported relative to the labelled area of the held-out set:
 
 $$
 e = \frac{\left(\sum_{c \in \mathcal{H}} |M_c|\right)\left(p/r\right)_{\mathcal{T}} - \sum_{c \in \mathcal{H}} |R_c|}{\sum_{c \in \mathcal{H}} |R_c|}
