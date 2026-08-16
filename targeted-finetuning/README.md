@@ -140,28 +140,17 @@ Resumable: category rasters, weight codes and the checkpoint are each cached, wi
 
 ### If an import fails with a numpy or scipy `AttributeError`
 
-`module 'numpy._core._multiarray_umath' has no attribute '_blas_supports_fpe'` means the numpy
-**installation on disk** is inconsistent: pip half-replaced it, so the `.py` files come from a
-newer version than the compiled `.so`.
+Something like `module 'numpy._core._multiarray_umath' has no attribute '_blas_supports_fpe'`
+means pip replaced numpy's files on disk after the process had already loaded the old C
+extension — the new `.py` files and the old `.so` disagree.
 
-**"Restart session" does not fix this.** It restarts the Python process but keeps the same VM
-and the same damaged `dist-packages`. Either:
+**Restart the runtime and run all cells again.** Nothing needs editing; after a restart both
+halves of numpy come from the same version.
 
-* run `pip install -q --force-reinstall --no-cache-dir numpy scipy`, then restart the session —
-  this repairs the install and keeps the cloned repository and the 100 pulled TIFFs; or
-* **Runtime → Disconnect and delete runtime** for a clean VM, at the cost of re-cloning.
-
-Section 2 now handles both ends of this itself:
-
-* it probes `numpy`/`scipy`/`pandas` in a **subprocess** before doing anything, so a broken
-  runtime is caught in section 2 rather than in section 7, and repairs and restarts on its own;
-* it **pins numpy, scipy and pandas to the versions the runtime already ships** while
-  installing geopandas and rasterio, so their dependency resolution cannot drag numpy to a new
-  version. This is the actual cause — dropping `--upgrade` is not sufficient on its own,
-  because pip still upgrades *dependencies* to satisfy a requirement;
-* if the pins cannot be honoured it retries with `--no-deps` rather than corrupting the
-  environment, and re-checks the imports afterwards;
-* `import torch` is held back until the environment has settled.
+Section 2 is built to avoid causing this: it installs nothing with `--upgrade`, installs only
+packages that are missing or at the wrong pin, holds `import torch` back until after the
+install, and restarts the runtime itself if a dependency forced numpy or scipy to change
+anyway.
 
 ### Outputs, all to `MyDrive/Parking_targeted_run/`
 
