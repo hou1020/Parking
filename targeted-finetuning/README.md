@@ -138,6 +138,20 @@ Roughly 1.5–2.5 h end to end on a T4, faster on an A100:
 Resumable: category rasters, weight codes and the checkpoint are each cached, with a
 `FORCE_*` flag to redo any stage.
 
+### If an import fails with a numpy or scipy `AttributeError`
+
+Something like `module 'numpy._core._multiarray_umath' has no attribute '_blas_supports_fpe'`
+means pip replaced numpy's files on disk after the process had already loaded the old C
+extension — the new `.py` files and the old `.so` disagree.
+
+**Restart the runtime and run all cells again.** Nothing needs editing; after a restart both
+halves of numpy come from the same version.
+
+Section 2 is built to avoid causing this: it installs nothing with `--upgrade`, installs only
+packages that are missing or at the wrong pin, holds `import torch` back until after the
+install, and restarts the runtime itself if a dependency forced numpy or scipy to change
+anyway.
+
 ### Outputs, all to `MyDrive/Parking_targeted_run/`
 
 | File | Contents |
