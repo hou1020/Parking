@@ -1,200 +1,229 @@
 # Targeted fine-tuning — closing the loop between the typology and the intervention
 
-**Status:** designed and ready to run; not yet run.
 **Relationship to `fine-tuning/`:** strictly additive. Nothing in that folder is modified.
 `modeling.py` and `patch_data.py` are imported from it read-only so the preprocessing contract
-cannot drift between the two experiments.
+cannot drift between experiments.
+
+| | |
+|---|---|
+| **Run 1** | complete. Results in `Parking_targeted_run/`, copied locally under `Parking_targeted_run/`. Mistuned — see §3. |
+| **Run 2** | ready to run. Rebalanced and resumable. Writes to `Parking_targeted_run2/`; run 1's folder is never written to. |
 
 ---
 
 ## 1. Why this exists
 
-The first experiment fed the model every Leeds label and let it work things out. It raised
-held-out IoU from 0.485 to 0.614, but bought 0.247 of precision with 0.127 of recall, and
-false-negative area more than doubled. Standalone false positives fell 74.5%, which *looked*
-like the model learning the narrower Leeds definition — on-street parking and private
-driveways that the annotation rules exclude.
+The first fine-tuning experiment fed the model every Leeds label and let it work things out. It
+raised held-out IoU from 0.485 to 0.614, but bought 0.247 of precision with 0.127 of recall.
+Standalone false positives fell 74.5%, which *looked* like the model learning the narrower
+Leeds definition — on-street parking and private driveways that the annotation rules exclude.
 
-That reading is confounded. **The model contracted everywhere.** A map that simply predicts
-less will show a fall in standalone FP for a trivial reason, so the 74.5% cannot on its own be
-attributed to any particular confusion class.
-
-There is one piece of evidence against pure contraction, and it is worth stating because it
-motivates the design here: true positives fell only 14.4% while false positives fell 71.9%.
-Uniform shrinkage would not produce that asymmetry, so the fine-tuned model's probability field
-*is* better ordered. But better ordered *with respect to what* remains unknown.
-
-This experiment answers that by making the supervision category-aware and then measuring
-whether the removal is selective.
+That reading is confounded: **the model contracted everywhere**, and a map that predicts less
+shows a fall in standalone FP for a trivial reason. This experiment makes the supervision
+category-aware and then measures whether the removal is selective.
 
 ## 2. Design
 
-### Three arms, one held-out set
+### Arms, all on the same 50 held-out cells
 
-| Arm | Model | Source |
-|---|---|---|
-| A | zero-shot | released `best_model.ckpt` |
-| B | generic fine-tune | the first experiment's epoch-3 checkpoint (optional) |
-| C | **targeted fine-tune** | this notebook |
+| Arm | Model |
+|---|---|
+| A | zero-shot — released `best_model.ckpt` |
+| B | generic fine-tune — the first experiment's checkpoint (skipped if absent) |
+| C | targeted, **best validation IoU** — same selection rule as the generic run, so C vs B isolates the loss weighting |
+| D | targeted, **best validation recall** within `IOU_TOL` of the best IoU — measures what the selection rule costs, model held fixed |
 
-All three are scored on the same 50 held-out cells, same preprocessing, raw pixel output.
-Arm B runs only if the first experiment's `finetuned.ckpt` is in Drive; the notebook says so
-and continues with A and C otherwise.
+### What makes C and D "targeted"
 
-### What makes arm C "targeted"
-
-The supervision is built from the zero-shot model's **own errors on the training half**,
-attributed to the same reference layers used in §4.2 of the dissertation:
+Supervision is built from the zero-shot model's **own errors on the training half**, attributed
+to the same reference layers used in §4.2 of the dissertation:
 
 1. Run the released model over the 50 training cells.
 2. `FP = pred ∧ ¬ref`, `FN = ¬pred ∧ ref`; split FP at 5 m into dilation and standalone.
 3. Attribute the standalone FP by peeling order — building, OSM parking, sports, road buffer,
-   curtilage, brownfield, industrial — most specific evidence first, exactly as
-   `analysis/fp_analysis.py` does.
+   curtilage, brownfield, industrial — most specific evidence first, as `fp_analysis.py` does.
 4. Emit a per-pixel code raster, and train with weighted cross-entropy.
 
 | Code | Meaning | Weight |
-|---|---|---:|
+|---|---|---|
 | 0 | ordinary pixel, **including boundary/dilation FP** | 1.0 |
 | 1 | standalone FP no layer explains | 1.0 |
-| 2 | false negative (missed parking) | 3.0 |
+| 2 | false negative (missed parking) | **computed — see §3** |
 | 3 | standalone FP on a precise layer — road, curtilage, OSM parking, sports | 5.0 |
 | 4 | standalone FP on a broad land-use layer — brownfield, industrial | 2.0 |
 
-Three of those choices carry the design:
-
-**Boundary FP is deliberately left at weight 1.** Upweighting false positives that lie within
-5 m of a real car park is precisely how a model is taught to draw everything smaller — the
-failure mode of the generic run. Only *standalone* FP becomes a hard negative.
-
-**False negatives are upweighted.** The generic run lost 0.127 of recall. Weighting missed
-parking pushes the other way, so recall loss and FP removal can be separated rather than
-observed as one lump.
+**Boundary FP is deliberately left at weight 1.** Upweighting false positives within 5 m of a
+real car park is precisely how a model is taught to draw everything smaller. Run 1 confirmed the
+guard works: boundary FP and FN erosion were both unchanged between the generic and targeted
+models, at every threshold.
 
 **Broad land-use layers get a lower weight than precise ones.** §4.4 showed that subtracting
 industrial land outright collapses recall from 0.854 to 0.279, because supermarket and
-retail-park car parks sit on exactly that land. The risk is much smaller here — weight is
-applied only where the reference says background, so a real retail car park is a true positive
-and never touched — but the tiering mirrors `fp_analysis.py`'s own specificity ordering rather
-than pretending a land-use blanket is as good evidence as a road buffer.
+retail-park car parks sit on exactly that land. Weight is applied only where the reference says
+background, so a real retail car park is a true positive and never touched — but the tiering
+mirrors `fp_analysis.py`'s own specificity ordering rather than pretending a land-use blanket is
+as good evidence as a road buffer.
 
 ### Controls
 
-* Optimiser (Adam), LR (2e-5), batch size (2), epochs (6), seed (42), mixed precision, the
-  cell-level 40/10 fit/validation split and the best-epoch-on-validation-IoU rule are **all
-  identical to the generic run**. The loss weighting is the only difference.
-* The loss is normalised by the **sum of weights**, not the pixel count. Dividing by count
-  would make the weighted loss numerically larger and effectively raise the learning rate,
-  confounding the comparison with the thing being tested.
+* Optimiser (Adam), LR (2e-5), batch size (2), seed (42), mixed precision, the cell-level 40/10
+  fit/validation split and the epoch-selection rule for arm C are **identical to the generic
+  run**. The loss weighting is the only difference between B and C.
+* The loss is normalised by the **sum of weights**, not the pixel count. Dividing by count would
+  make the weighted loss numerically larger and effectively raise the learning rate,
+  confounding the comparison with the thing being tested. With all weights at 1.0 the function
+  reduces exactly to the generic run's loss.
 * Weight maps are derived from **training-half cells only**. The held-out 50 are never read
   until evaluation.
-* Epoch selection still uses parking-class IoU, even though IoU selection is part of what
-  pulled the generic run conservative. Changing it would break comparability; the notebook
-  logs per-epoch precision and recall as well, so the effect of the criterion stays visible.
 
-### The measurement
+### Sanity check
 
-For each arm: micro/macro precision, recall, IoU; FP split into dilation and standalone at
-2/5/10 m; FN split against the *prediction*; and standalone FP attributed to the seven
-categories. From those, the derived quantity that answers the question:
+Arm A must reproduce the first experiment's held-out zero-shot row — micro P 0.5190, R 0.8819,
+IoU 0.4853. The notebook checks this and prints a loud warning if it does not. Run 1 reproduced
+it exactly.
 
-> **removal rate by category** = (FP_zero-shot − FP_arm) / FP_zero-shot
+## 3. What run 1 found, and what run 2 changes
 
-If removal is uniform, every category shows the same rate. If targeting worked, the four
-precise categories show a higher rate than the rest, and recall holds up better than arm B's.
+Run 1 established two things that hold:
 
-### Built-in sanity check
+* **The targeting reaches its categories.** Selectivity gap +9.7 (generic) → +16.1 (targeted),
+  with the increment concentrated in the targeted layers (+7.7 points on average) rather than
+  the others (+1.3).
+* **The boundary guard works.** FP dilation 0.1302 → 0.1259 km²; FN erosion at 2 m actually
+  *improved*, 0.1055 → 0.0926. The extra suppression did not come from shrinking edges.
 
-Arm A must reproduce the first experiment's held-out zero-shot row — micro P 0.5190,
-R 0.8819, IoU 0.4853. The notebook checks this and prints a loud warning if it does not. If
-arm A has drifted, nothing downstream is comparable and the run should be discarded.
+But its headline was worse than the generic model's (IoU 0.5795 vs 0.6136, recall 0.6935 vs
+0.7548), and the log showed this was **configuration, not a property of the task**:
 
-## 3. New layer: `curtilage`
+**Fault 1 — the counterweight was ~4× too weak.** Hard-negative pixels carried 4.04% of the
+gradient mass; the false-negative counterweight only 0.93%. A 4.33 : 1 tilt toward predicting
+less, which guarantees a contracting model. `W_FN` was guessed at 3.0.
 
-The sampled typology attributed 20.2% of the unexplained FP residual to private driveways,
-but that came from manual chip inspection — no layer in the pipeline represents it. Here it is
+*Fix:* `W_FN` is now **computed** so that false-negative gradient mass equals the total
+upweighted false-positive mass. It is also computed over the **fit patches** rather than whole
+cells — sampling kept every positive patch but only an equal number of empty ones, so parking,
+and therefore FN, is much denser in what the loss actually sees. Run 1 balanced against the
+wrong denominator as well as with the wrong target.
+
+**Fault 2 — wrong epoch budget, and IoU picked the wrong checkpoint.** Validation recall was
+still climbing at epoch 6 (0.532 → 0.710 → 0.731 → 0.758 → 0.794), and epoch 5 held 0.063 more
+recall than the selected epoch 3 for 0.0018 less IoU. Only the best-IoU checkpoint was saved, so
+epoch 5's weights were lost.
+
+*Fix:* 12 epochs; every candidate checkpoint kept; both the best-IoU and the best-recall-within-
+tolerance epochs evaluated as separate arms.
+
+One signal that is **not** explained by either fault: run 1's best validation IoU (0.6300) never
+reached the generic run's best (0.6543). The weighting did not improve overall segmentation
+quality at any epoch. IoU is the metric most hostile to a precision/recall rebalance, so this is
+weak evidence — but it should not be forgotten if run 2 repeats it.
+
+## 4. New layer: `curtilage`
+
+The sampled typology attributed 20.2% of the unexplained FP residual to private driveways, but
+that came from manual chip inspection — no layer in the pipeline represents it. Here it is
 approximated as OSM building footprints buffered outward 8 m with the footprints removed.
 
 This is a **proxy**, and §4.2's standing caveat applies to it more than to any other layer:
 attribution is by location, not by inspection. FP falling in the curtilage band is "FP
-immediately adjacent to a building", which is not the same as a confirmed residential
-forecourt. Report it as such.
+immediately adjacent to a building", which is not the same as a confirmed residential forecourt.
+Report it as such.
 
-## 4. Running it
+## 5. Running it
 
-Upload `run_targeted_colab.ipynb` to Colab, choose a GPU runtime, run all cells. The notebook
-is self-contained: it clones the repository for data, so nothing needs to be pushed first.
+Upload `run_targeted_colab.ipynb` to Colab, choose a GPU runtime, run all cells. The notebook is
+self-contained: it clones the repository for data, so nothing needs to be pushed first.
 
-Roughly 1.5–2.5 h end to end on a T4, faster on an A100:
+### Caching — what a disconnect costs
 
-| Stage | Approx. |
-|---|---|
-| clone + LFS pull of 100 TIFFs | 10–20 min |
-| category rasters (100 cells, cached to Drive after the first run) | 5–10 min |
-| zero-shot inference on 2,256 training patches + code rasters | 10–15 min |
-| training, 6 epochs × 909 steps | 40–70 min |
-| evaluation, 3 arms × 3,200 patches with distance transforms | 20–40 min |
+| Stage | Cached to | Cost if the runtime is recycled |
+|---|---|---|
+| clone + 100 LFS TIFFs | not cacheable | 10–20 min |
+| prepared patches | `RUN/prepared_data/` | ~1 min copy |
+| category rasters | `RUN/cache/category_layers.npz` | seconds |
+| weight codes | `RUN/weight_codes.zip` | ~30 s unzip |
+| training | `last.ckpt` + `epochs/` + `targeted_log.csv`, **written every epoch** | resumes at the next epoch |
+| each evaluation arm | `eval_cache/*.json` | only the unfinished arm |
 
-Resumable: category rasters, weight codes and the checkpoint are each cached, with a
-`FORCE_*` flag to redo any stage.
+After a drop the only unavoidable cost is the LFS pull. Everything else resumes, and reusable
+caches are searched across `Parking_targeted_run2`, `Parking_targeted_run` and
+`Parking_finetuning_run`, so run 1's work is reused without being overwritten.
 
-### If an import fails with a numpy or scipy `AttributeError`
+Resumed training restores the optimiser, the gradient scaler **and the batch sampler's epoch
+counter**, so the data ordering matches what an uninterrupted run would have had. Candidate
+checkpoints outside `IOU_TOL` of the running best are pruned as they fall out of contention,
+keeping Drive usage near 2 GB rather than 4.
 
-Something like `module 'numpy._core._multiarray_umath' has no attribute '_blas_supports_fpe'`
-means pip replaced numpy's files on disk after the process had already loaded the old C
-extension — the new `.py` files and the old `.so` disagree.
+The category-raster build now streams one cell at a time straight into the compressed archive
+(peak memory ~16 MB instead of 1.6 GB), and both it and the codes archive are written to a
+`.partial` file and renamed on completion, so an interrupted write never leaves a corrupt cache.
 
-**Restart the runtime and run all cells again.** Nothing needs editing; after a restart both
-halves of numpy come from the same version.
+Roughly 2–3 h end to end on a T4 for a cold run, faster on an A100; far less when caches hit.
 
-Section 2 is built to avoid causing this: it installs nothing with `--upgrade`, installs only
-packages that are missing or at the wrong pin, holds `import torch` back until after the
-install, and restarts the runtime itself if a dependency forced numpy or scipy to change
-anyway.
-
-### Outputs, all to `MyDrive/Parking_targeted_run/`
+### Outputs, all to `MyDrive/Parking_targeted_run2/`
 
 | File | Contents |
 |---|---|
-| `weight_codes.csv` | composition of the five weight codes over the training half |
+| `weight_codes.csv` | composition of the five weight codes |
 | `targeted_log.csv` | per-epoch loss, validation precision, recall, IoU |
-| `targeted.ckpt` | best-epoch weights |
-| `evaluation_3arm.csv` | micro and macro metrics for every arm |
-| `boundary_bands_3arm.csv` | dilation/standalone FP and erosion/standalone FN at 2, 5, 10 m |
+| `epochs/epoch_NN.ckpt` | candidate checkpoints |
+| `targeted.ckpt` | best-IoU weights |
+| `evaluation_arms.csv` | micro and macro metrics for every arm |
+| `boundary_bands_arms.csv` | dilation/standalone FP and erosion/standalone FN at 2, 5, 10 m |
 | `standalone_fp_by_category.csv` | the attribution, per arm |
+| `selectivity.csv` | targeted vs other removal rates and the gap |
 | `table1_overall.csv`, `table2_category_removal.csv` | the two tables for the write-up |
 
-## 5. How to read the result — decided in advance
+### If an import fails with a numpy or scipy `AttributeError`
 
-Stating the readings before the run is what stops the outcome being narrated after the fact.
+`module 'numpy._core._multiarray_umath' has no attribute '_blas_supports_fpe'` means pip
+replaced numpy's files on disk after the process had already loaded the old C extension — the
+new `.py` files and the old `.so` disagree. **Restart the runtime and run all cells again.** If a
+plain session restart does not clear it, the on-disk install is genuinely inconsistent: run
+`pip install -q --force-reinstall --no-cache-dir numpy scipy`, restart, and run all again.
 
-**(1) Selectivity gap large and positive, recall held.** Targeting reached the categories the
-typology named. §4.8 can then say local supervision corrects definitional disagreement
-*specifically*, and that the decomposition is what made the better intervention possible. This
-is the strongest outcome and the one that puts the typology at the centre of the future-work
-argument.
+Section 2 avoids causing it: nothing is installed with `--upgrade`, only missing or wrongly
+pinned packages are touched, `import torch` is held back until after the install, and the cell
+restarts the runtime itself if a dependency forced numpy or scipy to change.
 
-**(2) Gap near zero in both arms.** Both models simply contracted; the definitional reading of
-the generic run's 74.5% is unsupported. This is a **negative result that is still worth
-reporting** — it converts the write-up's current hedge ("consistent with, but does not prove")
-into a measurement, which is stronger than a caveat.
+## 6. How to read the result — decided in advance
 
-**(3) Gap positive but recall still falls.** Targeting reaches the right pixels and the model
-still shrinks. That points at the decision rule rather than the training signal, and makes the
-argmax-versus-tuned-threshold comparison the obvious next step.
+1. **Arm A must reproduce 0.5190 / 0.8819 / 0.4853.** If not, stop; nothing else is comparable.
+2. **Check the gradient-mass print in section 8.** Suppression and recovery mass should now be
+   near 1 : 1, against run 1's 4.33 : 1. If they are not, the rest is uninterpretable in the
+   same way run 1 was.
+3. **Recall, arm C vs arm B.** Run 1 gave 0.6935 against 0.7548. If the rebalance worked, C
+   should reach or beat B while keeping the higher precision.
+4. **Selectivity gap.** Run 1: B +9.7, C +16.1. The real question is whether the gap survives
+   once the model is no longer contracting — a gap that appears *only* under contraction is not
+   evidence about categories.
+5. **Arm D versus arm C.** How much recall the IoU selection rule costs with the model fixed.
+   This is a direct, cheap answer to a question the write-up currently raises and cannot settle.
+6. **Whole-lot share of FN.** Run 1's targeted arm put 68% of false-negative area in whole-lot
+   misses against the generic model's 58%. If the rebalance works this should fall back.
 
-None of the three requires any headline figure in Chapters 4–6 to change. Arm A is the same
-released model on the same held-out cells.
+### Three outcomes, three sentences for §4.8
 
-## 6. Limitations, in advance
+* **Gap survives, recall restored.** The typology did more than describe the error — it improved
+  the intervention. Local supervision corrects definitional disagreement *specifically*, and the
+  decomposition is what made that possible.
+* **Gap collapses once contraction stops.** The selectivity in run 1 was an artefact of a
+  shrinking map. That is a negative result worth reporting: it converts the write-up's hedge
+  ("consistent with, but does not prove") into a measurement.
+* **Gap survives but recall still falls.** Targeting reaches the right pixels and the model still
+  shrinks even when the counterweight is balanced. That is evidence the categories are not
+  separable from legitimate parking by anything in the imagery — which would make the
+  definitional component a scope-definition problem rather than a model problem.
 
-* One run, one seed, one weight setting. Same as the first experiment — this does not fix
-  that, it adds a second point.
-* The weight tiers (5.0 / 3.0 / 2.0) are a judgement, not a search. A different tiering would
-  give a different operating point.
+## 7. Limitations, in advance
+
+* Still one seed and one weight tiering per run. Run 2 adds a second configuration, not a search.
+* The tiers (5.0 / 2.0 / 1.0, with `W_FN` solved) are a judgement about *relative* evidence
+  strength, not a tuned optimum.
 * `curtilage` and `industrial` are positional proxies, not confirmed object classes.
 * Evaluation is pixel-wise on raw output, with no polygonisation, no 1,000 px² minimum and no
-  OSM subtraction — so these numbers are comparable to the first experiment's and to nothing
-  else in the dissertation.
-* Epoch selection on IoU is retained for comparability, which means the conservative bias that
-  criterion introduces is present in arm C too.
+  OSM subtraction — comparable to the fine-tuning experiments and to nothing else in the
+  dissertation.
+* The human-adjudicated sample (31 `fp_other` chips in the held-out half, of which 11 are the
+  definitional classes) is **not** used anywhere here. Adding it to the evaluation would give
+  inspection-based rather than positional evidence, and is the obvious next step.

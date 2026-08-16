@@ -1,0 +1,25 @@
+model,category,standalone_fp_km2
+A zero-shot,building,0.0762
+A zero-shot,osm_parking,0.0578
+A zero-shot,sports,0.0241
+A zero-shot,road_wide,0.2164
+A zero-shot,curtilage,0.1947
+A zero-shot,brownfield,0.0175
+A zero-shot,industrial,0.2363
+A zero-shot,other,0.1307
+B generic FT,building,0.0172
+B generic FT,osm_parking,0.0331
+B generic FT,sports,0.0024
+B generic FT,road_wide,0.0402
+B generic FT,curtilage,0.0472
+B generic FT,brownfield,0.0141
+B generic FT,industrial,0.0664
+B generic FT,other,0.0229
+C targeted FT,building,0.0171
+C targeted FT,osm_parking,0.0273
+C targeted FT,sports,0.0014
+C targeted FT,road_wide,0.0247
+C targeted FT,curtilage,0.0293
+C targeted FT,brownfield,0.0137
+C targeted FT,industrial,0.0528
+C targeted FT,other,0.0272

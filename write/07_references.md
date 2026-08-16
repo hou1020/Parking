@@ -1,9 +1,9 @@
 # References
 
-> **草稿 v3**｜30 条，Harvard（Cite Them Right）
+> **草稿 v4**｜32 条，Harvard（Cite Them Right）
 > **正文引用**：三位作者列全，四位及以上用 *et al.*
 > **本表**：作者六位以内列全，超过六位用 *et al.*（Cite Them Right 允许四位以上简写）
-> **核实状态**：30 条已全部对照原文核实，原文存于 `resource/`（Qiam et al. 存于 `Parking/literature/`）。两处例外须留意：Openshaw (1984) 原件（CATMOG 38）扉页未印年份，1984 取自标准目录记录，文内引及 1983 年资料可佐证下限；Stehman & Foody (2019) 本地为机构库接受稿，非出版版，如需引页码须回出版版核对。
+> **核实状态**：32 条已全部对照原文核实，原文存于 `resource/`（Qiam et al. 存于 `Parking/literature/`）。三处例外须留意：Openshaw (1984) 原件（CATMOG 38）扉页未印年份，1984 取自标准目录记录，文内引及 1983 年资料可佐证下限；Stehman & Foody (2019) 与 Stehman & Wickham (2011) 本地均为接受稿（后者取自 US EPA Science Inventory 公开存档），非出版版，卷期页取自出版方著录，如需引页码须回出版版核对。
 
 ---
 
@@ -20,6 +20,8 @@ Csurka, G., Larlus, D. and Perronnin, F. (2013) 'What is a good evaluation measu
 Devillers, R., Bédard, Y., Jeansoulin, R. and Moulin, B. (2007) 'Towards spatial data quality information analysis tools for experts assessing the fitness for use of spatial data', *International Journal of Geographical Information Science*, 21(3), pp. 261–282. doi:10.1080/13658810600911879.
 
 Foody, G.M. (2002) 'Status of land cover classification accuracy assessment', *Remote Sensing of Environment*, 80(1), pp. 185–201. doi:10.1016/S0034-4257(01)00295-4.
+
+Foody, G.M. (2005) 'Local characterization of thematic classification accuracy through spatially constrained confusion matrices', *International Journal of Remote Sensing*, 26(6), pp. 1217–1228. doi:10.1080/01431160512331326521.
 
 Goodchild, M.F. (2007) 'Citizens as sensors: the world of volunteered geography', *GeoJournal*, 69(4), pp. 211–221. doi:10.1007/s10708-007-9111-y.
 
@@ -62,6 +64,8 @@ Sehra, S.S., Singh, J. and Rai, H.S. (2013) 'Assessment of OpenStreetMap data �
 Shoup, D.C. (2005) *The high cost of free parking*. Chicago: Planners Press, American Planning Association.
 
 Stehman, S.V. and Foody, G.M. (2019) 'Key issues in rigorous accuracy assessment of land cover products', *Remote Sensing of Environment*, 231, 111199. doi:10.1016/j.rse.2019.05.018.
+
+Stehman, S.V. and Wickham, J.D. (2011) 'Pixels, blocks of pixels, and polygons: choosing a spatial unit for thematic accuracy assessment', *Remote Sensing of Environment*, 115(12), pp. 3044–3055. doi:10.1016/j.rse.2011.06.007.
 
 Xie, E., Wang, W., Yu, Z., Anandkumar, A., Alvarez, J.M. and Luo, P. (2021) 'SegFormer: simple and efficient design for semantic segmentation with transformers', *Advances in Neural Information Processing Systems*, 34, pp. 12077–12090.
 
