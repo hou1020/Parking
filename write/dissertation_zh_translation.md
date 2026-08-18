@@ -72,11 +72,11 @@ The United Kingdom holds no consistent spatial record of off-street surface park
 
 **英文原稿**
 
-This dissertation applies that US-trained model, exactly as released and with no UK training data, to 100 km² of Leeds, evaluating it against 2,037 manually labelled car parks drawn to the source model's own target definition. Rather than reporting accuracy alone, it decomposes the error: attributed against independent reference layers, characterised by stratified sampling of 142 image chips adjudicated on the imagery the model actually consumed, and tested by ablating the post-processing stage.
+This dissertation applies that US-trained model, exactly as released and with no UK training data in the primary analysis, to 100 km² of Leeds, evaluating it against 2,037 manually labelled car parks drawn to the source model's own target definition. Rather than reporting accuracy alone, it decomposes the error: attributed against independent reference layers, characterised by stratified sampling of 142 image chips adjudicated on the imagery the model actually consumed, and tested by ablating the post-processing stage.
 
 **中文翻译**
 
-本论文将这一美国训练的模型完全按照公开版本、不使用任何英国训练数据，应用于利兹 100 km² 的区域，并用 2,037 个按照源模型目标定义人工标注的停车场进行评估。本研究不只报告准确率，还进一步分解误差：利用独立参考图层归因错误；通过对 142 个影像样本进行分层抽样，并依据模型实际使用的影像进行人工判读；同时通过消融实验检验后处理阶段的影响。
+本论文将这一美国训练的模型完全按照公开版本、在主分析中不使用任何英国训练数据，应用于利兹 100 km² 的区域，并用 2,037 个按照源模型目标定义人工标注的停车场进行评估。本研究不只报告准确率，还进一步分解误差：利用独立参考图层归因错误；通过对 142 个影像样本进行分层抽样，并依据模型实际使用的影像进行人工判读；同时通过消融实验检验后处理阶段的影响。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -102,11 +102,11 @@ Transfer proves asymmetric. Recall is **0.854** and spatially even; precision is
 
 **英文原稿**
 
-Measured against that reliability, the labelled reference puts surface parking at **3.26%** of the study area, concentrated in the inner 2 km and declining sharply beyond it. The over-prediction is systematic and correctable to within about ±7% at half-city scale, though not at the scale of a single square kilometre. A transferred map cannot measure how much land a city gives to parking on its own; paired with one local validation, it can — a materially different claim from either accepting or dismissing it.
+Measured against that reliability, the labelled reference puts surface parking at **3.26%** of the study area, concentrated in the inner 2 km and declining sharply beyond it. The over-prediction is systematic and correctable to within about ±7% at half-city scale, though not at the scale of a single square kilometre. A bounded fine-tuning supplement is reported separately. A transferred map cannot measure how much land a city gives to parking on its own; paired with one local validation, it can — a materially different claim from either accepting or dismissing it.
 
 **中文翻译**
 
-在这一可靠性水平下，人工参考数据表明，露天停车场占研究区面积的 **3.26%**，主要集中在内侧 2 km 范围内，此后迅速下降。模型的高估具有系统性；在半个城市的尺度上，经校正后的误差可以控制在约 ±7%，但在单个 1 km² 网格尺度上不能做到这一点。一个迁移而来的地图无法单独测量一座城市有多少土地用于停车；但如果配合一次本地验证，它可以做到——这一结论与简单地接受或否定这张地图有本质区别。
+在这一可靠性水平下，人工参考数据表明，露天停车场占研究区面积的 **3.26%**，主要集中在内侧 2 km 范围内，此后迅速下降。模型的高估具有系统性；在半个城市的尺度上，经校正后的误差可以控制在约 ±7%，但在单个 1 km² 网格尺度上不能做到这一点。另有一项范围受限的微调补充实验，单独报告。一个迁移而来的地图无法单独测量一座城市有多少土地用于停车；但如果配合一次本地验证，它可以做到——这一结论与简单地接受或否定这张地图有本质区别。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -255,7 +255,7 @@ The three are sequential rather than parallel. RQ1 establishes whether the trans
 
 **英文原稿**
 
-The study covers 100 km² of Leeds, validated against 2,037 manually labelled car parks. That it examines one city in depth rather than several in outline is a design decision, not a shortfall. Comparing cities presupposes that the model's output is trustworthy, and that had never been established in the UK; spending the available effort on a labelled reference, a per-cell validation and a sampled error typology establishes what the map supports before anything is built on it. Multi-city extension then becomes future work with a defined precondition, which §4.7 specifies.
+The study covers 100 km² of Leeds, validated against 2,037 manually labelled car parks. That it examines one city in depth rather than several in outline is a design decision, not a shortfall. Comparing cities presupposes that the model's output is trustworthy, and that had never been established in the UK; spending the available effort on a labelled reference, a per-cell validation and a sampled error typology establishes what the map supports before anything is built on it. Multi-city extension then becomes future work with a defined precondition, which §5.5 specifies.
 
 **中文翻译**
 
@@ -571,11 +571,11 @@ Two studies take parking specifically as the segmentation target. Berry et al. (
 
 **英文原稿**
 
-The model applied in this study is the parking-lot segmentation network released by Qiam, Devunuri and Lehe (2025), who introduce both a pipeline and an NIR-enhanced training dataset for the task. The released checkpoint is a SegFormer-B5 configuration whose backbone was initialised from Cityscapes weights and fine-tuned on their parking dataset, as documented in the released model card and repository. No published accuracy figure is carried over to describe it. It is used here exactly as released, with no UK training data.
+The model applied in this study is the parking-lot segmentation network released by Qiam, Devunuri and Lehe (2025), who introduce both a pipeline and an NIR-enhanced training dataset for the task. The released checkpoint is a SegFormer-B5 configuration whose backbone was initialised from Cityscapes weights and fine-tuned on their parking dataset, as documented in the released model card and repository. No published accuracy figure is carried over to describe it. It is used here exactly as released, with no UK training data in the primary analysis.
 
 **中文翻译**
 
-本研究使用 Qiam、Devunuri 和 Lehe（2025）公开的停车场分割网络；他们同时提出处理流程和加入近红外信息的训练数据集。模型卡与发布仓库显示，公开检查点采用 SegFormer-B5 配置，骨干网络由 Cityscapes 权重初始化，再用其停车数据集微调。本文不把论文中的任何已发表准确率数字移用来描述该检查点，而是完全按发布版本、在不加入英国训练数据的条件下使用。
+本研究使用 Qiam、Devunuri 和 Lehe（2025）公开的停车场分割网络；他们同时提出处理流程和加入近红外信息的训练数据集。模型卡与发布仓库显示，公开检查点采用 SegFormer-B5 配置，骨干网络由 Cityscapes 权重初始化，再用其停车数据集微调。本文不把论文中的任何已发表准确率数字移用来描述该检查点，而是完全按发布版本、在主分析中不加入英国训练数据的条件下使用。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -929,11 +929,11 @@ Appendix D lists the code repository, the licensing position of each dataset and
 
 **英文原稿**
 
-Accuracy figures are only meaningful against a reference that follows the definition the model was trained on. The annotation rules therefore follow those of Qiam, Devunuri and Lehe (2025), whose dataset the model was trained on, and are reproduced in full in Appendix A. The target is off-street surface parking: open-air, ground-level areas used for parking, outside the public road. Labels are binary. No minimum size threshold is applied. Marked bays and the aisles connecting them are included, as is rooftop parking where the parking surface is visible from above; on-street parking and enclosed multi-storey structures are excluded. Where markings are absent, an area is labelled only where parked vehicles and a bay-and-aisle layout together make the use unambiguous. Boundaries are drawn at the edge of the paving rather than the parcel line.
+Accuracy figures are only meaningful against a reference that follows the definition the model was trained on. The annotation rules therefore follow those of Qiam, Devunuri and Lehe (2025), whose dataset the model was trained on, and are reproduced in full in Appendix A. The target is off-street surface parking: open-air parking surfaces visible from above, outside the public road. Labels are binary. No minimum size threshold is applied. Marked bays and the aisles connecting them are included, as is rooftop parking where the parking surface is visible from above; on-street parking and enclosed multi-storey structures are excluded. Where markings are absent, an area is labelled only where parked vehicles and a bay-and-aisle layout together make the use unambiguous. Boundaries are drawn at the edge of the paving rather than the parcel line.
 
 **中文翻译**
 
-准确率只有在参考数据与模型训练时采用同一定义时才有意义。因此，标注规则遵循 Qiam、Devunuri 和 Lehe（2025）的训练数据规则，完整版本见附录 A。目标是公共道路以外、露天且位于地面的停车区域。标签为二元标签，不设最小面积。包括停车位及连接车位的通道，也包括从上方可以看见停车面的屋顶停车场；不包括路边停车和封闭式多层停车楼。若没有标线，只有当停放车辆和“车位—通道”布局同时清楚表明停车用途时才标注。边界沿铺装面边缘绘制，而不是沿地块边界。
+准确率只有在参考数据与模型训练时采用同一定义时才有意义。因此，标注规则遵循 Qiam、Devunuri 和 Lehe（2025）的训练数据规则，完整版本见附录 A。目标是公共道路以外、从上方可见的露天停车面。标签为二元标签，不设最小面积。包括停车位及连接车位的通道，也包括从上方可以看见停车面的屋顶停车场；不包括路边停车和封闭式多层停车楼。若没有标线，只有当停放车辆和“车位—通道”布局同时清楚表明停车用途时才标注。边界沿铺装面边缘绘制，而不是沿地块边界。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -3663,11 +3663,11 @@ A supplementary experiment tested the other half of that proposition — whether
 
 **英文原稿**
 
-This dissertation tested whether a US-trained surface-parking segmentation model can be used to measure off-street surface parking in a British city. The model was applied to 100 km² of Leeds exactly as released, with no UK training data, and evaluated against 2,037 manually labelled car parks drawn to the source model's own target definition. The error was then decomposed rather than merely reported: attributed exhaustively against independent reference layers, characterised by stratified sampling of 142 image chips adjudicated on the imagery the model actually consumed, and tested by ablation of the post-processing stage.
+This dissertation tested whether a US-trained surface-parking segmentation model can be used to measure off-street surface parking in a British city. The model was applied to 100 km² of Leeds exactly as released, with no UK training data in the primary analysis, and evaluated against 2,037 manually labelled car parks drawn to the source model's own target definition. The error was then decomposed rather than merely reported: attributed exhaustively against independent reference layers, characterised by stratified sampling of 142 image chips adjudicated on the imagery the model actually consumed, and tested by ablation of the post-processing stage.
 
 **中文翻译**
 
-本论文检验了一个在美国数据上训练的地面停车分割模型，能否用于测量英国城市的路外地面停车。模型完全按公开版本应用于利兹 100 km² 的研究区，没有使用任何英国训练数据；评估参考是按照原模型目标定义人工绘制的 2,037 个停车场。研究没有停留在报告一个准确率数字，而是进一步分解误差：用独立参考图层对全部误差作自动归因，对 142 个影像切片进行分层抽样并依据模型实际使用的影像人工判断，还通过消融实验检验后处理阶段。
+本论文检验了一个在美国数据上训练的地面停车分割模型，能否用于测量英国城市的路外地面停车。模型完全按公开版本应用于利兹 100 km² 的研究区，主分析中没有使用任何英国训练数据；评估参考是按照原模型目标定义人工绘制的 2,037 个停车场。研究没有停留在报告一个准确率数字，而是进一步分解误差：用独立参考图层对全部误差作自动归因，对 142 个影像切片进行分层抽样并依据模型实际使用的影像人工判断，还通过消融实验检验后处理阶段。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3895,11 +3895,11 @@ The rules follow the annotation method of the US-trained model applied here (Qia
 
 **英文原稿**
 
-Off-street surface parking: open-air, ground-level areas used for parking, outside public roads. Labels are binary (parking / non-parking). The use served is not recorded, as it cannot be judged reliably from imagery. No minimum-size threshold is applied — all off-street surface parking is labelled regardless of size, to match the definition the model was trained on.
+Off-street surface parking: open-air parking surfaces visible from above, outside public roads. Labels are binary (parking / non-parking). The use served is not recorded, as it cannot be judged reliably from imagery. No minimum-size threshold is applied — all off-street surface parking is labelled regardless of size, to match the definition the model was trained on.
 
 **中文翻译**
 
-路外地面停车：位于公共道路之外、露天、地面层且用于停车的区域。标签为二分类（停车／非停车）。不记录服务用途，因为无法仅凭影像可靠判断。不设最小面积阈值——无论大小，所有路外地面停车均予标注，以匹配模型训练时的定义。
+路外地面停车：位于公共道路之外、从上方可见的露天停车面。标签为二分类（停车／非停车）。不记录服务用途，因为无法仅凭影像可靠判断。不设最小面积阈值——无论大小，所有路外地面停车均予标注，以匹配模型训练时的定义。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -4101,11 +4101,11 @@ Only very short entrances belonging to a car park are included. Longer access ro
 
 **英文原稿**
 
-Only clear or fairly clear areas (confidence 2–3) enter the main validation. Results under both the full label set and the confidence 2–3 subset are reported in Appendix B, so that the effect of this filter is visible rather than assumed.
+The main validation uses the full label set. Results for the confidence 2–3 subset are reported alongside it in Appendix B as a sensitivity analysis, so that the effect of the uncertain labels is visible rather than assumed.
 
 **中文翻译**
 
-主验证只纳入清楚或较清楚的区域（confidence 2–3）。附录 B 同时报告完整标签集和 confidence 2–3 子集的结果，使该筛选的影响可见，而不是被默认无影响。
+主验证使用完整标签集。附录 B 另以 confidence 2–3 子集的结果作为敏感性分析并列报告，使不确定标签的影响可见，而不是被默认无影响。
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -4133,11 +4133,11 @@ The model is validated against these labels, so the labels must match the defini
 
 **英文原稿**
 
-Annotating surface parking as a binary polygon class is an established approach in comparable aerial-imagery datasets — APKLOT (Hurst-Tarrab et al., 2020) and Grab-Pklot (Yin et al., 2022) are both built this way — so the approach is not ad hoc. APKLOT likewise fixes its target with an explicit include-and-exclude list, though it segments parking blocks rather than whole car parks, so the internal aisles labelled here fall outside its target; Grab-Pklot annotates whole carparks, the closer analogue to the target used here. Because a single annotator labelled the data, a sample was re-labelled after an interval and the agreement between the two passes is reported as IoU in §4.3, so that annotator consistency is measured rather than asserted. Any point at which these rules differ from the source protocol is noted above, and error caused by such definitional difference is separated from model error in §4.2.
+Annotating surface parking as a binary polygon class is an established approach in comparable aerial-imagery datasets — APKLOT (Hurst-Tarrab et al., 2020) and Grab-Pklot (Yin et al., 2022) are both built this way — so the approach is not ad hoc. APKLOT likewise fixes its target with an explicit include-and-exclude list, though it segments parking blocks rather than whole car parks, so the internal aisles labelled here fall outside its target; Grab-Pklot annotates whole carparks, the closer analogue to the target used here. The data were labelled by a single annotator, and no second labelling pass or inter-annotator agreement coefficient was produced; §5.5 treats this as a limitation, and Table 4.4 reports how far detection differs for the lots the annotator marked uncertain. Any point at which these rules differ from the source protocol is noted above, and error caused by such definitional difference is separated from model error in §4.2.
 
 **中文翻译**
 
-把地面停车标成二分类多边形，在可比的航空影像数据集中是已确立的做法——APKLOT（Hurst-Tarrab et al., 2020）与 Grab-Pklot（Yin et al., 2022）都是这样构建的——因此本方法并非任意设定。APKLOT 同样以显式的纳入与排除清单界定目标，但它分割的是停车区块而非整个停车场，因此本规程所标注的内部通道不在其目标之内；Grab-Pklot 标注的是整个停车场，与本研究采用的目标更为接近。由于数据由单一标注者绘制，研究在间隔一段时间后重新标注一个样本，并在 §4.3 以 IoU 报告两轮的一致程度，从而实测而不是宣称标注一致性。凡本规程不同于来源规程之处，均已在上文标明；定义差异导致的误差也在 §4.2 中与模型错误分开。
+把地面停车标成二分类多边形，在可比的航空影像数据集中是已确立的做法——APKLOT（Hurst-Tarrab et al., 2020）与 Grab-Pklot（Yin et al., 2022）都是这样构建的——因此本方法并非任意设定。APKLOT 同样以显式的纳入与排除清单界定目标，但它分割的是停车区块而非整个停车场，因此本规程所标注的内部通道不在其目标之内；Grab-Pklot 标注的是整个停车场，与本研究采用的目标更为接近。数据由单一标注者绘制，未做第二轮复标，也未给出标注者间一致性系数；§5.5 将此列为局限，表 4.4 则报告标注者标记为不确定的停车场在检出率上的差距。凡本规程不同于来源规程之处，均已在上文标明；定义差异导致的误差也在 §4.2 中与模型错误分开。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -4171,11 +4171,11 @@ Annotating surface parking as a binary polygon class is an established approach 
 
 **英文原稿**
 
-Supporting tables for §4.1 and §4.6. The study area is a 10 × 10 grid of 1 km² cells; every cell is validated against the manual reference of Appendix A. `all` uses the complete label set, `c23` the confidence 2–3 subset, so that the effect of the confidence filter is visible throughout.
+Supporting tables for §4.1 and §4.5. The study area is a 10 × 10 grid of 1 km² cells; every cell is validated against the manual reference of Appendix A. `all` uses the complete label set, `c23` the confidence 2–3 subset, so that the effect of the confidence filter is visible throughout.
 
 **中文翻译**
 
-本附录提供 §4.1 与 §4.6 的支撑表。研究区是由 1 km² 单元组成的 10 × 10 网格；每个单元均以附录 A 的人工参考进行验证。`all` 使用完整标签集，`c23` 使用 confidence 2–3 子集，使置信度筛选的影响在所有结果中都可见。
+本附录提供 §4.1 与 §4.5 的支撑表。研究区是由 1 km² 单元组成的 10 × 10 网格；每个单元均以附录 A 的人工参考进行验证。`all` 使用完整标签集，`c23` 使用 confidence 2–3 子集，使置信度筛选的影响在所有结果中都可见。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -4557,11 +4557,11 @@ Generated from `analysis/validation_summary.csv`, `analysis/accuracy_vs_distance
 
 **英文原稿**
 
-The analysis in Chapters 4 and 5 measures the released checkpoint applied to Leeds without any UK training data. This appendix reports a bounded supplementary experiment that departs from that boundary alone, in order to ask a question the main study cannot: if a user does hold local pixel-level labels, what does the error typology of §4.2 buy them?
+The primary analysis in Chapters 4 and 5 measures the released checkpoint applied to Leeds without any UK training data. This appendix reports a bounded supplementary experiment that departs from that boundary alone, in order to ask a question the main study cannot: if a user does hold local pixel-level labels, what does the error typology of §4.2 buy them?
 
 **中文翻译**
 
-第 4、5 章分析的是在完全不使用英国训练数据的情况下，把已发布检查点应用于利兹的结果。本附录只偏离这一边界，报告一项范围受限的补充实验，以回答主研究无法回答的问题：如果使用者确实拥有本地像素级标签，§4.2 的误差类型学能带来什么？
+第 4、5 章的主分析测量的是在完全不使用英国训练数据的情况下，把已发布检查点应用于利兹的结果。本附录只偏离这一边界，报告一项范围受限的补充实验，以回答主研究无法回答的问题：如果使用者确实拥有本地像素级标签，§4.2 的误差类型学能带来什么？
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -4719,7 +4719,7 @@ An earlier targeted configuration was run with a hand-set counterweight and is n
 
 **英文原稿**
 
-The two targeted checkpoints come from a single training trajectory, not from two independently trained models. Epoch 12 gave the best validation IoU (0.6105); among epochs within 0.02 of it, epoch 7 gave the highest validation recall (0.8385) at validation IoU 0.6093. The two differ by 0.0012 in validation IoU, which is within the run-to-run variation visible across epochs 7 to 12, so the pair should be read as two operating points on one trade-off curve rather than as a better and a worse model.
+The two targeted checkpoints come from a single training trajectory, not from two independently trained models. Epoch 12 gave the best validation IoU (0.6105); among epochs within 0.02 of it, epoch 7 gave the highest validation recall (0.8385) at validation IoU 0.6093. The two differ by 0.0012 in validation IoU, which is within the epoch-to-epoch variation visible across epochs 7 to 12, so the pair should be read as two operating points on one trade-off curve rather than as a better and a worse model.
 
 **中文翻译**
 
@@ -5130,16 +5130,16 @@ The conclusion this supports is that positional targeted weighting produced no o
 
 - **One seed, one weighting scheme.** Every arm was trained once. The epoch-to-epoch spread in validation IoU across epochs 7 to 12 is comparable to the gap between the two targeted checkpoints, so the experiment cannot separate a small real effect from run-to-run variation.
 - **Positional proxies are not visual categories.** Standalone false positives were weighted by the layer they fall on. A false positive on industrial land may be a roof, a hardstanding, a road or a vehicle storage yard; these are one location but not one appearance, and weighting them together may present the network with no consistent feature to learn. This is the most likely explanation for the negative result and is untested.
-- **Raw pixels only.** No arm passes through the post-processing of §3.4. Comparison with Chapter 4 is invalid in both directions.
+- **Raw pixels only.** No arm passes through the post-processing of §3.3. Comparison with Chapter 4 is invalid in both directions.
 - **Validation is a parking-enriched sample.** Epoch and threshold selection used the 438 retained patches of ten cells, not whole cells, so the selected operating points are tuned on a distribution denser in parking than the test cells.
-- **One city, one annotator.** Fit, validation and test cells are all Leeds, labelled by the same annotator against the same protocol. Nothing here tests whether a fine-tuned model transfers to a second British city, which remains the precondition identified in §4.7.
+- **One city, one annotator.** Fit, validation and test cells are all Leeds, labelled by the same annotator against the same protocol. Nothing here tests whether a fine-tuned model transfers to a second British city, which remains the precondition identified in §5.5.
 - **The threshold result is about aggregate accuracy.** It shows no measurable overall advantage from targeted weighting; it does not establish that the two models are equivalent, nor that targeted training is unproductive in general.
 
 **中文翻译**
 
-- **单一种子、单一加权方案。** 每个分支只训练一次。第 7–12 epoch 的验证 IoU 波动与两个定向检查点之间的差距相当，因此实验无法区分较小的真实效应与逐次运行波动。
+- **单一种子、单一加权方案。** 每个分支只训练一次。第 7–12 epoch 的验证 IoU 波动与两个定向检查点之间的差距相当，因此实验无法区分较小的真实效应与逐个 epoch 之间的波动。
 - **位置代理不是视觉类别。** 独立 FP 按其落入的图层加权。工业用地上的 FP 可能是屋顶、硬化空地、道路或车辆存放场；它们位置相同、外观却不一致，将其共同加权可能无法向网络提供一致的可学习特征。这是阴性结果最可能但尚未检验的解释。
-- **仅原始像素。** 所有分支均未经过 §3.4 的后处理，因此不能从任何方向与第 4 章比较。
+- **仅原始像素。** 所有分支均未经过 §3.3 的后处理，因此不能从任何方向与第 4 章比较。
 - **验证集是停车富集样本。** epoch 与阈值选择使用十个单元中保留的 438 个图块，而非完整单元，因此所选运行点针对的是停车密度高于测试单元的分布。
 - **单一城市、单一标注者。** 拟合、验证与测试单元都来自利兹，并由同一标注者按同一规程标注。本实验没有检验微调模型是否能迁移到第二座英国城市，而这仍是 §4.7 指出的前提。
 - **阈值结论只针对汇总准确率。** 它只表明定向加权没有可测的总体优势；不能证明两个模型等价，也不能证明定向训练在一般情况下无效。
@@ -5191,23 +5191,23 @@ All code written for this study is archived at **https://github.com/hou1020/Park
 
 | Directory | Contents |
 |---|---|
-| `calculate/` | Tiling, inference and post-processing over the 100 km² study area (§3.4) |
-| `analysis/` | Validation, error attribution, sampling, ablation and calibration (§3.5–§3.8) |
+| `calculate/` | Agreement against the manual and OSM references, polygon filtering and result merging |
+| `analysis/` | Validation, error attribution, sampling, ablation and calibration (§3.4–§3.9) |
 | `manual/`, `fine-tuning/*.gpkg` | The manual reference labels and the 1 km² grid |
 | `fine-tuning/` | Generic fine-tuning of the released checkpoint (Appendix C) |
 | `targeted-finetuning/` | Targeted loss weighting and the threshold sweep (Appendix C) |
-| `parking-lot-mapping-tool/` | The released pipeline as obtained from its authors, unmodified |
+| `parking-lot-mapping-tool/` | The released pipeline, with the UK-specific tiling, inference and post-processing written for this study (§3.3) |
 
 **中文翻译**
 
 | 目录 | 内容 |
 |---|---|
-| `calculate/` | 对 100 km² 研究区进行切片、推理和后处理（§3.4） |
-| `analysis/` | 验证、误差归因、抽样、消融和校准（§3.5–§3.8） |
+| `calculate/` | 与人工参考及 OSM 的一致性计算、多边形过滤与结果合并 |
+| `analysis/` | 验证、误差归因、抽样、消融和校准（§3.4–§3.9） |
 | `manual/`、`fine-tuning/*.gpkg` | 人工参考标签与 1 km² 网格 |
 | `fine-tuning/` | 对已发布检查点的普通微调（附录 C） |
 | `targeted-finetuning/` | 定向损失加权与阈值扫描（附录 C） |
-| `parking-lot-mapping-tool/` | 从作者处取得且未经修改的发布流程 |
+| `parking-lot-mapping-tool/` | 已发布流程，含为本研究编写的英国专用切片、推理与后处理（§3.3） |
 
 > **段落审读**
 > - **逻辑用途：** 建立表格、代码与源文件的一一映射
@@ -5220,11 +5220,11 @@ All code written for this study is archived at **https://github.com/hou1020/Park
 
 **英文原稿**
 
-Getmapping aerial photography supplied through Digimap: 109 tiles at 0.25 m ground sample distance, three visible bands, EPSG:27700. This imagery is licensed to UCL for academic use and **cannot be redistributed**, so it is not held in the repository. The tile identifiers and version suffixes needed to reorder the same coverage are recorded in `calculate/`, and every processing step from the raw tiles onward is reproducible from the code once the imagery is obtained under an equivalent licence.
+Getmapping aerial photography supplied through Digimap: 109 tiles at 0.25 m ground sample distance, three visible bands, EPSG:27700. The tile identifiers and version suffixes needed to reorder the same coverage are recorded in `parking-lot-mapping-tool/output_files/tif_processing_progress.csv` and in the download folder names under `parking-lot-mapping-tool/files/`, and every processing step from the raw tiles onward is reproducible from the code once the imagery is obtained under an equivalent licence.
 
 **中文翻译**
 
-通过 Digimap 提供的 Getmapping 航空摄影：109 个图块，地面采样距离 0.25 m，三个可见光波段，EPSG:27700。该影像由 UCL 获得学术使用许可，**不得再分发**，因此不存放于仓库。重新订购相同覆盖范围所需的图块标识符和版本后缀记录在 `calculate/` 中；只要在同等许可下取得影像，从原始图块开始的每一步均可由代码复现。
+通过 Digimap 提供的 Getmapping 航空摄影：109 个图块，地面采样距离 0.25 m，三个可见光波段，EPSG:27700。重新订购相同覆盖范围所需的图块标识符和版本后缀记录在 `parking-lot-mapping-tool/output_files/tif_processing_progress.csv` 及 `parking-lot-mapping-tool/files/` 下的下载目录名中；只要在同等许可下取得影像，从原始图块开始的每一步均可由代码复现。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -5239,7 +5239,7 @@ Getmapping aerial photography supplied through Digimap: 109 tiles at 0.25 m grou
 
 | Source | Use | Retrieved |
 |---|---|---|
-| OpenStreetMap building footprints, road centrelines | Post-processing inputs (§3.4) | 25 June 2026 |
+| OpenStreetMap building footprints, road centrelines | Post-processing inputs (§3.3) | 25 June 2026 |
 | OpenStreetMap land use, brownfield, pitch, `amenity=parking` | Error attribution only (§4.2) | 25 June 2026 |
 | Ordnance Survey Open Greenspace | Sports facilities in error attribution | — |
 
@@ -5247,7 +5247,7 @@ Getmapping aerial photography supplied through Digimap: 109 tiles at 0.25 m grou
 
 | 来源 | 用途 | 获取日期 |
 |---|---|---|
-| OpenStreetMap 建筑轮廓、道路中心线 | 后处理输入（§3.4） | 2026 年 6 月 25 日 |
+| OpenStreetMap 建筑轮廓、道路中心线 | 后处理输入（§3.3） | 2026 年 6 月 25 日 |
 | OpenStreetMap 土地利用、棕地、运动场、`amenity=parking` | 仅用于误差归因（§4.2） | 2026 年 6 月 25 日 |
 | Ordnance Survey Open Greenspace | 误差归因中的运动设施 | — |
 
@@ -5294,11 +5294,11 @@ The 2,037 manually labelled car parks are held in the repository as GeoPackage, 
 
 **英文原稿**
 
-The segmentation network is the published checkpoint of Qiam, Devunuri and Lehe (2025), obtained from the authors' release and used without modification in the primary analysis. The fine-tuned checkpoints produced for Appendix C are derived works of that release and are not redistributed; the training code and logs that generate them are in `targeted-finetuning/`.
+The segmentation network is the published checkpoint of Qiam, Devunuri and Lehe (2025), obtained from the authors' release and used without modification in the primary analysis. The fine-tuned checkpoints produced for Appendix C are derived works of that release and are not redistributed; the training code and logs that generate them are in `fine-tuning/` for the generic arm and `targeted-finetuning/` for the targeted loss weighting and threshold sweep.
 
 **中文翻译**
 
-分割网络为 Qiam、Devunuri 和 Lehe（2025）的已发布检查点，从作者发布版本取得，在主分析中未经修改使用。附录 C 产生的微调检查点是该发布版本的衍生作品，不予再分发；生成它们的训练代码与日志位于 `targeted-finetuning/`。
+分割网络为 Qiam、Devunuri 和 Lehe（2025）的已发布检查点，从作者发布版本取得，在主分析中未经修改使用。附录 C 产生的微调检查点是该发布版本的衍生作品，不予再分发；生成它们的训练代码与日志分别位于 `fine-tuning/`（通用微调）与 `targeted-finetuning/`（定向损失加权与阈值扫描）。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -5311,11 +5311,11 @@ The segmentation network is the published checkpoint of Qiam, Devunuri and Lehe 
 
 **英文原稿**
 
-Each table in this dissertation is generated from a file in the repository rather than transcribed:
+Each appendix table is generated from a file in the repository rather than transcribed:
 
 **中文翻译**
 
-论文中的每张表均由仓库文件生成，而非手工抄录：
+附录中的每张表均由仓库文件生成，而非手工抄录：
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -5357,11 +5357,11 @@ Each table in this dissertation is generated from a file in the repository rathe
 
 **英文原稿**
 
-The city-wide inference and the fine-tuning experiments require a GPU and were run in Google Colab; the notebooks (`run_finetuning_colab.ipynb`, `run_targeted_colab.ipynb`, `threshold_sweep_colab.ipynb`) pin the package versions they depend on and cache intermediate outputs, so a run interrupted partway resumes rather than restarting. All other analysis runs on CPU from the committed CSVs.
+The city-wide inference and the fine-tuning experiments require a GPU and were run in Google Colab; the notebooks (`run_finetuning_colab.ipynb`, `run_targeted_colab.ipynb`, `threshold_sweep_colab.ipynb`) pin `transformers==4.57.1`, otherwise running against the Colab environment's own package versions, and cache intermediate outputs, so a run interrupted partway resumes rather than restarting. All other analysis runs on CPU from the committed CSVs.
 
 **中文翻译**
 
-全城推理和微调实验需要 GPU，并在 Google Colab 中运行；笔记本（`run_finetuning_colab.ipynb`、`run_targeted_colab.ipynb`、`threshold_sweep_colab.ipynb`）固定了所依赖的软件包版本，并缓存中间输出，因此运行中断后可以续接而无需从头开始。其他所有分析均可在 CPU 上从已提交的 CSV 运行。
+全城推理和微调实验需要 GPU，并在 Google Colab 中运行；笔记本（`run_finetuning_colab.ipynb`、`run_targeted_colab.ipynb`、`threshold_sweep_colab.ipynb`）固定了 `transformers==4.57.1`，其余依赖沿用 Colab 环境自带版本，并缓存中间输出，因此运行中断后可以续接而无需从头开始。其他所有分析均可在 CPU 上从已提交的 CSV 运行。
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -5714,11 +5714,11 @@ On 5 August three analyses were added: false negatives broken down by class, an 
 
 **英文原稿**
 
-*Eight commits.*
+*Seven commits.*
 
 **中文翻译**
 
-*八次提交。*
+*七次提交。*
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -5761,11 +5761,11 @@ The meeting later that day found that no writing had begun, and it was agreed to
 
 **英文原稿**
 
-*Five commits to date.*
+*Ten commits to date.*
 
 **中文翻译**
 
-*截至记录时五次提交。*
+*截至记录时十次提交。*
 
 > **段落审读**
 > - **逻辑用途：** 记录写作与补充实验的收尾阶段
@@ -5776,11 +5776,11 @@ The meeting later that day found that no writing had begun, and it was agreed to
 
 **英文原稿**
 
-The remaining chapters — abstract, introduction, results, discussion and conclusion — and the reference list were committed on 16 August. A targeted fine-tuning experiment was set up and iterated the same day, with the calibration-transfer error table added and the methods and results figures regenerated. The remaining time before submission was given to the front matter, reducing the manuscript to the word limit, and proofreading.
+The remaining chapters — abstract, introduction, results, discussion and conclusion — and the reference list were committed on 16 August. A targeted fine-tuning experiment was set up and iterated the same day, with the calibration-transfer error table added and the methods and results figures regenerated. The remaining time before submission is given to the front matter, reducing the manuscript to the word limit, and proofreading.
 
 **中文翻译**
 
-其余章节——摘要、引言、结果、讨论、结论——以及参考文献表于 8 月 16 日提交。同日设置并迭代定向微调实验，加入校准迁移误差表，并重新生成方法与结果图。提交前剩余时间用于完成前置材料、把论文压缩到字数限制并校对。
+其余章节——摘要、引言、结果、讨论、结论——以及参考文献表于 8 月 16 日提交。同日设置并迭代定向微调实验，加入校准迁移误差表，并重新生成方法与结果图。提交前的剩余时间将用于完成前置材料、把论文压缩到字数限制并校对。
 
 > **段落审读**
 > - **逻辑用途：** 记录写作与补充实验的收尾阶段

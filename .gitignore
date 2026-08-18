@@ -4,3 +4,9 @@ __pycache__/
 
 .idea/
 *.tif.aux.xml
+
+# Licensed Digimap / Getmapping aerial imagery — must never be committed.
+# Already-tracked files are NOT affected by these rules; they must be removed
+# from the index and from history separately.
+*.tif
+*.tiff
