@@ -69,7 +69,7 @@ On 5 August three analyses were added: false negatives broken down by class, an 
 
 ### Phase 6 — Calibration, fine-tuning and the start of writing (11 – 12 August)
 
-*Eight commits.*
+*Seven commits.*
 
 The morning of 11 August was spent on a calibration-transfer analysis and a co-registration check, and on generating the first methods figures. A Colab fine-tuning notebook was then built and iterated through six commits in a single afternoon, using the manual annotations and grid produced in Phase 4.
 
@@ -77,9 +77,9 @@ The meeting later that day found that no writing had begun, and it was agreed to
 
 ### Phase 7 — Write-up and targeted fine-tuning (13 – 20 August)
 
-*Five commits to date.*
+*Ten commits to date.*
 
-The remaining chapters — abstract, introduction, results, discussion and conclusion — and the reference list were committed on 16 August. A targeted fine-tuning experiment was set up and iterated the same day, with the calibration-transfer error table added and the methods and results figures regenerated. The remaining time before submission was given to the front matter, reducing the manuscript to the word limit, and proofreading.
+The remaining chapters — abstract, introduction, results, discussion and conclusion — and the reference list were committed on 16 August. A targeted fine-tuning experiment was set up and iterated the same day, with the calibration-transfer error table added and the methods and results figures regenerated. The remaining time before submission is given to the front matter, reducing the manuscript to the word limit, and proofreading.
 
 ## E.4 Reflection
 

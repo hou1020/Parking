@@ -2,7 +2,7 @@
 
 ## C.1 Purpose and standing
 
-The analysis in Chapters 4 and 5 measures the released checkpoint applied to Leeds without any UK training data. This appendix reports a bounded supplementary experiment that departs from that boundary alone, in order to ask a question the main study cannot: if a user does hold local pixel-level labels, what does the error typology of §4.2 buy them?
+The primary analysis in Chapters 4 and 5 measures the released checkpoint applied to Leeds without any UK training data. This appendix reports a bounded supplementary experiment that departs from that boundary alone, in order to ask a question the main study cannot: if a user does hold local pixel-level labels, what does the error typology of §4.2 buy them?
 
 Three interventions are compared against the zero-shot model: generic fine-tuning on Leeds labels, targeted fine-tuning that weights the loss by the attributed false-positive categories, and probability-threshold adjustment of the generic model with no retraining.
 
@@ -30,7 +30,7 @@ Both fine-tuning arms start from the released checkpoint and share batch size, l
 
 An earlier targeted configuration was run with a hand-set counterweight and is not reported here: its suppression and recovery terms were unbalanced, which confounds the comparison the arm was built to make. Only the rebalanced run is reported.
 
-The two targeted checkpoints come from a single training trajectory, not from two independently trained models. Epoch 12 gave the best validation IoU (0.6105); among epochs within 0.02 of it, epoch 7 gave the highest validation recall (0.8385) at validation IoU 0.6093. The two differ by 0.0012 in validation IoU, which is within the run-to-run variation visible across epochs 7 to 12, so the pair should be read as two operating points on one trade-off curve rather than as a better and a worse model.
+The two targeted checkpoints come from a single training trajectory, not from two independently trained models. Epoch 12 gave the best validation IoU (0.6105); among epochs within 0.02 of it, epoch 7 gave the highest validation recall (0.8385) at validation IoU 0.6093. The two differ by 0.0012 in validation IoU, which is within the epoch-to-epoch variation visible across epochs 7 to 12, so the pair should be read as two operating points on one trade-off curve rather than as a better and a worse model.
 
 **Table C.1 — Overall accuracy, 50 held-out cells, raw pixels (micro)**
 
@@ -114,9 +114,9 @@ The conclusion this supports is that positional targeted weighting produced no o
 
 - **One seed, one weighting scheme.** Every arm was trained once. The epoch-to-epoch spread in validation IoU across epochs 7 to 12 is comparable to the gap between the two targeted checkpoints, so the experiment cannot separate a small real effect from run-to-run variation.
 - **Positional proxies are not visual categories.** Standalone false positives were weighted by the layer they fall on. A false positive on industrial land may be a roof, a hardstanding, a road or a vehicle storage yard; these are one location but not one appearance, and weighting them together may present the network with no consistent feature to learn. This is the most likely explanation for the negative result and is untested.
-- **Raw pixels only.** No arm passes through the post-processing of §3.4. Comparison with Chapter 4 is invalid in both directions.
+- **Raw pixels only.** No arm passes through the post-processing of §3.3. Comparison with Chapter 4 is invalid in both directions.
 - **Validation is a parking-enriched sample.** Epoch and threshold selection used the 438 retained patches of ten cells, not whole cells, so the selected operating points are tuned on a distribution denser in parking than the test cells.
-- **One city, one annotator.** Fit, validation and test cells are all Leeds, labelled by the same annotator against the same protocol. Nothing here tests whether a fine-tuned model transfers to a second British city, which remains the precondition identified in §4.7.
+- **One city, one annotator.** Fit, validation and test cells are all Leeds, labelled by the same annotator against the same protocol. Nothing here tests whether a fine-tuned model transfers to a second British city, which remains the precondition identified in §5.5.
 - **The threshold result is about aggregate accuracy.** It shows no measurable overall advantage from targeted weighting; it does not establish that the two models are equivalent, nor that targeted training is unproductive in general.
 
 ## C.8 Files

@@ -8,7 +8,7 @@ The rules follow the annotation method of the US-trained model applied here (Qia
 
 ## A.2 Target
 
-Off-street surface parking: open-air, ground-level areas used for parking, outside public roads. Labels are binary (parking / non-parking). The use served is not recorded, as it cannot be judged reliably from imagery. No minimum-size threshold is applied — all off-street surface parking is labelled regardless of size, to match the definition the model was trained on.
+Off-street surface parking: open-air parking surfaces visible from above, outside public roads. Labels are binary (parking / non-parking). The use served is not recorded, as it cannot be judged reliably from imagery. No minimum-size threshold is applied — all off-street surface parking is labelled regardless of size, to match the definition the model was trained on.
 
 ## A.3 Identifying parking
 
@@ -49,13 +49,13 @@ Only very short entrances belonging to a car park are included. Longer access ro
 | `confidence` | 3 = clear, 2 = fairly clear, 1 = uncertain |
 | `notes` | Optional note for ambiguous cases |
 
-Only clear or fairly clear areas (confidence 2–3) enter the main validation. Results under both the full label set and the confidence 2–3 subset are reported in Appendix B, so that the effect of this filter is visible rather than assumed.
+The main validation uses the full label set. Results for the confidence 2–3 subset are reported alongside it in Appendix B as a sensitivity analysis, so that the effect of the uncertain labels is visible rather than assumed.
 
 ## A.7 Why these rules, and how reliable they are
 
 The model is validated against these labels, so the labels must match the definition the model was trained on. The rules therefore follow Qiam, Devunuri and Lehe (2025) as closely as possible: the same off-street surface target, pavement-edge boundaries, rooftop parking only where the deck is visible, and no minimum-size cut-off.
 
-Annotating surface parking as a binary polygon class is an established approach in comparable aerial-imagery datasets — APKLOT (Hurst-Tarrab et al., 2020) and Grab-Pklot (Yin et al., 2022) are both built this way — so the approach is not ad hoc. APKLOT likewise fixes its target with an explicit include-and-exclude list, though it segments parking blocks rather than whole car parks, so the internal aisles labelled here fall outside its target; Grab-Pklot annotates whole carparks, the closer analogue to the target used here. Because a single annotator labelled the data, a sample was re-labelled after an interval and the agreement between the two passes is reported as IoU in §4.3, so that annotator consistency is measured rather than asserted. Any point at which these rules differ from the source protocol is noted above, and error caused by such definitional difference is separated from model error in §4.2.
+Annotating surface parking as a binary polygon class is an established approach in comparable aerial-imagery datasets — APKLOT (Hurst-Tarrab et al., 2020) and Grab-Pklot (Yin et al., 2022) are both built this way — so the approach is not ad hoc. APKLOT likewise fixes its target with an explicit include-and-exclude list, though it segments parking blocks rather than whole car parks, so the internal aisles labelled here fall outside its target; Grab-Pklot annotates whole carparks, the closer analogue to the target used here. The data were labelled by a single annotator, and no second labelling pass or inter-annotator agreement coefficient was produced; §5.5 treats this as a limitation, and Table 4.4 reports how far detection differs for the lots the annotator marked uncertain. Any point at which these rules differ from the source protocol is noted above, and error caused by such definitional difference is separated from model error in §4.2.
 
 ## A.8 Sources
 

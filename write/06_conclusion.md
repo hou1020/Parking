@@ -5,7 +5,7 @@
 
 ---
 
-This dissertation tested whether a US-trained surface-parking segmentation model can be used to measure off-street surface parking in a British city. The model was applied to 100 km² of Leeds exactly as released, with no UK training data, and evaluated against 2,037 manually labelled car parks drawn to the source model's own target definition. The error was then decomposed rather than merely reported: attributed exhaustively against independent reference layers, characterised by stratified sampling of 142 image chips adjudicated on the imagery the model actually consumed, and tested by ablation of the post-processing stage.
+This dissertation tested whether a US-trained surface-parking segmentation model can be used to measure off-street surface parking in a British city. The model was applied to 100 km² of Leeds exactly as released, with no UK training data in the primary analysis, and evaluated against 2,037 manually labelled car parks drawn to the source model's own target definition. The error was then decomposed rather than merely reported: attributed exhaustively against independent reference layers, characterised by stratified sampling of 142 image chips adjudicated on the imagery the model actually consumed, and tested by ablation of the post-processing stage.
 
 The transfer works asymmetrically. Recall of 0.854 is high and spatially even; precision of 0.571 is neither, and the model predicts 1.50 times the labelled parking area. Accuracy within the city tracks not distance from the centre but how much parking a cell contains — an apparent location effect that dissolves once parking abundance is controlled for.
 

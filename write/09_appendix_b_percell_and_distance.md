@@ -1,6 +1,6 @@
 # Appendix B — Per-cell validation and accuracy by distance
 
-Supporting tables for §4.1 and §4.6. The study area is a 10 × 10 grid of 1 km² cells; every cell is validated against the manual reference of Appendix A. `all` uses the complete label set, `c23` the confidence 2–3 subset, so that the effect of the confidence filter is visible throughout.
+Supporting tables for §4.1 and §4.5. The study area is a 10 × 10 grid of 1 km² cells; every cell is validated against the manual reference of Appendix A. `all` uses the complete label set, `c23` the confidence 2–3 subset, so that the effect of the confidence filter is visible throughout.
 
 ## B.1 Overall validation
 
