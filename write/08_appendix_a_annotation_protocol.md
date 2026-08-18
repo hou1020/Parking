@@ -1,0 +1,64 @@
+# Appendix A — Manual annotation protocol
+
+These are the rules under which the 2,037 reference car parks of §3.2 were labelled. They are reproduced in full because the measured precision depends on where the scope line was drawn as much as on what the model can see (§5.5), so the protocol has to be inspectable rather than summarised.
+
+## A.1 Basis
+
+The rules follow the annotation method of the US-trained model applied here (Qiam, Devunuri and Lehe, 2025). The same rules are used so that the accuracy figures are valid: ground-truth labels must follow the definition the model was trained on. Labelling was carried out in QGIS over the Google Satellite basemap.
+
+## A.2 Target
+
+Off-street surface parking: open-air, ground-level areas used for parking, outside public roads. Labels are binary (parking / non-parking). The use served is not recorded, as it cannot be judged reliably from imagery. No minimum-size threshold is applied — all off-street surface parking is labelled regardless of size, to match the definition the model was trained on.
+
+## A.3 Identifying parking
+
+An area is labelled as parking where it has marked parking bays, or — where markings are absent — parked cars and a layout of bays and aisles that clearly show parking use. Areas whose use is unclear are left unlabelled or marked confidence 1.
+
+**Include**
+
+- Surface car parks, whatever use they serve.
+- Parking bays and the internal aisles that connect them.
+- Rooftop parking where the parking surface is visible from above.
+
+**Exclude**
+
+- On-street parking.
+- Multi-storey or underground car parks with no visible parking surface.
+
+**Treated as non-parking**, and also the common look-alikes the model most often confuses:
+
+- Sports courts, storage or depot yards, and other non-parking hardstanding.
+- Buildings, roads, pavements and landscaping.
+
+## A.4 Driveways
+
+Only very short entrances belonging to a car park are included. Longer access roads are excluded, so that the labels do not teach the model to recognise roads (Qiam, Devunuri and Lehe, 2025).
+
+**Supplementary rule — residential parking.** Individual single-house driveways or forecourts — a few cars, clearly one household — are not labelled: they are private curtilage, not a car park. Shared or communal residential parking courts serving several dwellings are labelled. This extends the source authors' driveway rule rather than contradicting it: a single-house driveway is private access, like the driveways they exclude, whereas a communal court is genuine off-street surface parking under their target. This is the one point at which the protocol narrows the source definition, and the resulting difference is held separate in the error analysis of §4.2 rather than counted as model error.
+
+## A.5 Boundary
+
+- Draw along the edge of the paving, not the parcel boundary.
+- Keep one car park as one polygon, even where it is split by planting islands.
+- Align to the current image. Where OpenStreetMap or another reference is out of date — a demolished building, for instance — follow the current image. OpenStreetMap parking is used only as a starting reference, never as ground truth.
+
+## A.6 Attributes
+
+| Field | Description |
+|---|---|
+| `confidence` | 3 = clear, 2 = fairly clear, 1 = uncertain |
+| `notes` | Optional note for ambiguous cases |
+
+Only clear or fairly clear areas (confidence 2–3) enter the main validation. Results under both the full label set and the confidence 2–3 subset are reported in Appendix B, so that the effect of this filter is visible rather than assumed.
+
+## A.7 Why these rules, and how reliable they are
+
+The model is validated against these labels, so the labels must match the definition the model was trained on. The rules therefore follow Qiam, Devunuri and Lehe (2025) as closely as possible: the same off-street surface target, pavement-edge boundaries, rooftop parking only where the deck is visible, and no minimum-size cut-off.
+
+Annotating surface parking as a binary polygon class is an established approach in comparable aerial-imagery datasets — APKLOT (Hurst-Tarrab et al., 2020) and Grab-Pklot (Yin et al., 2022) are both built this way — so the approach is not ad hoc. APKLOT likewise fixes its target with an explicit include-and-exclude list, though it segments parking blocks rather than whole car parks, so the internal aisles labelled here fall outside its target; Grab-Pklot annotates whole carparks, the closer analogue to the target used here. Because a single annotator labelled the data, a sample was re-labelled after an interval and the agreement between the two passes is reported as IoU in §4.3, so that annotator consistency is measured rather than asserted. Any point at which these rules differ from the source protocol is noted above, and error caused by such definitional difference is separated from model error in §4.2.
+
+## A.8 Sources
+
+- Qiam, S., Devunuri, S. and Lehe, L.J. (2025) 'A pipeline and NIR-enhanced dataset for parking lot segmentation', *WACV*.
+- Hurst-Tarrab, N., Chang, L., Gonzalez-Mendoza, M. and Hernandez-Gress, N. (2020) 'Robust parking block segmentation from a surveillance camera perspective', *Applied Sciences*, 10(15), 5364.
+- Yin, Y., Hu, W., Tran, A., Kruppa, H., Zimmermann, R. and Ng, S.-K. (2022) 'A context-enriched satellite imagery dataset and an approach for parking lot detection', *WACV*, pp. 1371–1380.

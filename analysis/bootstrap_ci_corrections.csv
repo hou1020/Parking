@@ -1,0 +1,8 @@
+variant,precision,precision_lo,precision_hi,recall,recall_lo,recall_hi,iou,iou_lo,iou_hi,note
+1 as measured,0.5708,,,0.8543,,,0.5202,,,"no sampled input, so no interval"
+2 + reference side,0.5708,0.5708,0.5708,0.8626,0.8612,0.8643,0.5233,0.5228,0.5239,
+3 + prediction side,0.5845,0.5783,0.5917,0.8654,0.8635,0.8675,0.5358,0.5301,0.5424,
+4 effective,0.6012,0.5941,0.609,0.8654,0.8635,0.8675,0.5498,0.5434,0.5569,
+"input: reference side, not parking in Digimap",0.0313,0.0262,0.0376,,,,,,,"km2, not a ratio"
+"input: prediction side, parking never labelled",0.0667,0.0366,0.1018,,,,,,,"km2, not a ratio"
+input: on-street + private driveways,0.1358,0.0968,0.1798,,,,,,,"km2, not a ratio"

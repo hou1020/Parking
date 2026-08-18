@@ -1,0 +1,10 @@
+category,zero_shot_km2,B generic FT_km2,B generic FT_rm_%,C targeted e12 (best IoU)_km2,C targeted e12 (best IoU)_rm_%,D targeted e7 (best recall)_km2,D targeted e7 (best recall)_rm_%
+building,0.0762,0.0172,77.4,0.012,84.3,0.0218,71.4
+osm_parking,0.0578,0.0331,42.7,0.0346,40.1,0.0397,31.3
+sports,0.0241,0.0024,90.0,0.0006,97.5,0.0029,88.0
+road_wide,0.2164,0.0402,81.4,0.0477,78.0,0.0777,64.1
+curtilage,0.1947,0.0472,75.8,0.0573,70.6,0.0975,49.9
+brownfield,0.0175,0.0141,19.4,0.0145,17.1,0.0161,8.0
+industrial,0.2363,0.0664,71.9,0.0664,71.9,0.1002,57.6
+other,0.1307,0.0229,82.5,0.027,79.3,0.0453,65.3
+TOTAL,0.9537,0.2435,74.5,0.2601,72.7,0.4012,57.9

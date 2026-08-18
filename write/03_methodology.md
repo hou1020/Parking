@@ -2,7 +2,7 @@
 
 > **草稿 v2**｜正文约 2,950 词（方法章允许适度超，见 Slater 先例）
 > 图：`figures/` 下两张已生成｜表 3.1–3.3 已排｜公式已改 LaTeX
-> 待办：引用格式统一；标注规程全文进 Appendix A
+> 待办：引用格式统一
 
 ---
 
@@ -22,6 +22,8 @@ The imagery is Getmapping aerial photography supplied through Digimap: 109 tiles
 
 Three reference datasets are used, none of them as ground truth. OpenStreetMap building footprints and road centrelines (retrieved 25 June 2026) are inputs to the post-processing stage. OpenStreetMap land use, brownfield, pitch and `amenity=parking` polygons are used only to attribute errors after the fact. Ordnance Survey Open Greenspace supplies sports facilities. The distinction matters: reference layers are used here to explain where errors fall, and — with the deliberate exception tested in 3.7 — never to decide what the map should contain.
 
+Appendix D lists the code repository, the licensing position of each dataset and the file behind every table reported here. The aerial imagery is licensed to the institution and cannot be redistributed; everything else, including the manual reference labels, is available.
+
 ---
 
 ## 3.2 Annotation protocol
@@ -38,7 +40,7 @@ Single-annotator labelling is a limitation with a measurable consequence rather 
 
 ## 3.3 Model and pipeline
 
-The model is the SegFormer (Xie et al., 2021) parking-lot segmentation network released by Qiam, Devunuri and Lehe (2025), a B5 configuration whose backbone was initialised from Cityscapes weights and fine-tuned by those authors on their parking dataset. The published checkpoint is used exactly as released. **No UK imagery was used to adjust the weights**, so what is measured here is zero-shot transfer: the accuracy a UK user would obtain by taking the model off the shelf.
+The model is the SegFormer (Xie et al., 2021) parking-lot segmentation network released by Qiam, Devunuri and Lehe (2025). The released checkpoint is a B5 configuration whose backbone was initialised from Cityscapes weights and fine-tuned by those authors on their parking dataset, as documented in the released model card and repository. The published checkpoint is used exactly as released. **No UK imagery was used to adjust the weights**, so what is measured here is zero-shot transfer: the accuracy a UK user would obtain by taking the model off the shelf. The primary analysis retains that checkpoint throughout. A separate supplementary experiment, reported in Appendix C, compares generic fine-tuning, positional targeted loss weighting and validation-selected thresholding on raw pixel output from a fixed 40/10/50 cell split; none of its figures enters the analysis that follows.
 
 ![Pipeline](figures/fig_pipeline.png)
 
@@ -61,7 +63,7 @@ Two post-processing subtractions follow, both UK-specific. OpenStreetMap buildin
 | primary_link | 7 | | | |
 | secondary_link | 6 | | | |
 
-Footways, cycleways, bridleways, tracks, steps, pedestrian ways and **service roads** are excluded from the road layer, service roads in particular because they commonly run *through* car parks; buffering them would remove the aisles the protocol explicitly includes. Both subtractions are evaluated rather than assumed in 3.7.
+The half-widths are approximations by class rather than measured carriageway dimensions: each value is a plausible half-width for the road type the OSM class denotes, with 5 m applied to any class not listed. Footways, cycleways, bridleways, tracks, steps, pedestrian ways and **service roads** are excluded from the road layer, service roads in particular because they commonly run *through* car parks; buffering them would remove the aisles the protocol explicitly includes. Both subtractions are evaluated rather than assumed in 3.7.
 
 The output before subtraction (6,814 polygons) and after (8,180 polygons) are both retained. The increase in count reflects single lots being split by the subtracted geometry, which is why polygon counts are never interpreted as numbers of car parks.
 
@@ -127,6 +129,8 @@ Presenting both means the substantive conclusions do not depend on an ordering d
 | partly detected | $0.10 < \gamma \le 0.70$ | partial failure |
 | fringe of detected lot | $\gamma > 0.70$ | boundary imprecision |
 
+Both cut points are conventions, as the 5 m band is, and both were varied. The lower one is not load-bearing: from $\gamma \le 0.05$ to $\gamma \le 0.20$ the whole-lot-missed share moves between 22.3% and 29.9% of FN, and the residual left as genuine non-detection between 2.0% and 2.9% of labelled area, so what is concluded from it does not turn on where it sits. The upper one is more consequential — at 0.60, 0.70 and 0.80 the fringe class takes 51.0%, 44.4% and 31.9% of FN — so that share is quoted with its threshold attached.
+
 Only the first is treated as a detection failure, and is further attributed to post-processing removal, rooftop labelling, containment within OSM buildings, or genuine non-detection.
 
 Throughout, attribution is positional and is worded as such. A false positive lying on OSM industrial land is reported as *located on* industrial land; it is not a claim that each such polygon was individually confirmed to be a storage yard.
@@ -158,7 +162,7 @@ $$
 \hat{A}_c = \sum_h A_h \cdot \frac{\sum_{i \in s_h,\, i \in c} a_i}{\sum_{i \in s_h} a_i}
 $$
 
-so that oversampling of large polygons does not distort the totals.
+so that oversampling of large polygons does not distort the totals. Intervals on these estimates come from a stratified bootstrap: the inspected polygons are resampled with replacement within each stratum and the estimator recomputed 5,000 times, with each replicate's deviation scaled by $\sqrt{1 - n_h/N_h}$ so that heavily sampled strata contribute proportionately less spread — the largest missed-lot stratum, inspected in full at 17 of 17, contributes none. The intervals cover sampling variance only: not adjudication error, and not the frame exclusion described next.
 
 The sampling frame excludes polygons below 100 m². For unexplained FP this removes 0.0513 km², or **11.7%** of that population (0.4396 km² in total, 0.3883 km² in frame). Percentages reported for this population are therefore shares of the frame, and the corrections derived from them (4.6) implicitly assume the excluded slivers have the same composition as the sampled material. The assumption is conservative in the direction that matters: were the slivers composed like the sampled polygons, the upward correction to precision would be *larger* than the one reported. Slivers below 100 m² are in any case more plausibly boundary artefacts than real parking, so they are not extrapolated to.
 

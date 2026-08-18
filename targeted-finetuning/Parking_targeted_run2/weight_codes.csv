@@ -1,0 +1,6 @@
+code,meaning,km2,pct
+0,ordinary (incl. boundary FP),49.0989879375,98.197975875
+1,"standalone FP, unattributed",0.1195018125,0.239003625
+2,false negative,0.1624433125,0.324886625
+3,"standalone FP, precise layer",0.422233125,0.84446625
+4,"standalone FP, broad layer",0.1968338125,0.393667625

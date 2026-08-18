@@ -52,6 +52,7 @@ Leeds 地面停车检测：US 训练模型的英国可迁移性评估
 | `make_sampling_worksheet.py` | 生成分层抽样表 | `sampling_worksheet.gpkg/.csv`、`sampling_strata.csv` |
 | `make_sample_chips.py` | 生成每个样本的影像切片 | `chips/<source>/*.png`、`chips/index.csv` |
 | `sampling_results.py` | 把抽样推算到总体 | `sampling_results.csv`、`sampling_corrections.csv` |
+| `bootstrap_ci.py` | 抽样估计的 95% 区间（分层自助＋FPC） | `bootstrap_ci_results.csv`、`bootstrap_ci_corrections.csv` |
 | `parking_extent.py` | **RQ3**：有多少地是停车、在哪里、多确定 | `parking_extent_summary.csv`、`parking_extent.png` |
 | `coregistration_check.py` | 两份影像是否配准 | `coregistration_summary.csv` |
 | `osm_timestamps.py` | OSM 记录何时最后编辑 | `osm_timestamps_summary.csv` |
@@ -726,6 +727,6 @@ $$\frac{p}{r} = \frac{TP/A}{TP/T} = \frac{T}{A}$$
 
 - Python：`/opt/anaconda3/envs/casa/bin/python`（3.12.3）
 - 关键包：geopandas 1.1.3、shapely 2.1.1、osmnx 2.1.1、pymupdf、tifffile、imagecodecs、matplotlib、scipy
-- 重跑顺序：`fp_analysis.py` → `fn_analysis.py` → `ablation.py` → `accuracy_vs_distance.py` → `osm_comparison.py` → `make_sampling_worksheet.py` → `make_sample_chips.py` → `sampling_results.py`
+- 重跑顺序：`fp_analysis.py` → `fn_analysis.py` → `ablation.py` → `accuracy_vs_distance.py` → `osm_comparison.py` → `make_sampling_worksheet.py` → `make_sample_chips.py` → `sampling_results.py` → `bootstrap_ci.py`
 - ⚠️ 磁盘余量紧张（曾因写入 3 GB 影像副本而写满）。`digimap_full.tif` 占 3.8 GB，可删后用 `make_full_mosaic.py` 重建
 - ⚠️ QGIS 无法读 JPEG 压缩的 Digimap 瓦片（libjpeg 版本冲突）。绕开方式：`digimap_full.tif`（Deflate）或 `chips/`

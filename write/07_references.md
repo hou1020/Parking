@@ -1,9 +1,9 @@
 # References
 
-> **草稿 v4**｜32 条，Harvard（Cite Them Right）
+> **草稿 v5**｜33 条，Harvard（Cite Them Right）
 > **正文引用**：三位作者列全，四位及以上用 *et al.*
 > **本表**：作者六位以内列全，超过六位用 *et al.*（Cite Them Right 允许四位以上简写）
-> **核实状态**：32 条已全部对照原文核实，原文存于 `resource/`（Qiam et al. 存于 `Parking/literature/`）。三处例外须留意：Openshaw (1984) 原件（CATMOG 38）扉页未印年份，1984 取自标准目录记录，文内引及 1983 年资料可佐证下限；Stehman & Foody (2019) 与 Stehman & Wickham (2011) 本地均为接受稿（后者取自 US EPA Science Inventory 公开存档），非出版版，卷期页取自出版方著录，如需引页码须回出版版核对。
+> **核实状态**：33 条已全部对照原文核实，原文存于 `resource/`（Qiam et al. 存于 `Parking/literature/`）。三处例外须留意：Openshaw (1984) 原件（CATMOG 38）扉页未印年份，1984 取自标准目录记录，文内引及 1983 年资料可佐证下限；Stehman & Foody (2019) 与 Stehman & Wickham (2011) 本地均为接受稿（后者取自 US EPA Science Inventory 公开存档），非出版版，卷期页取自出版方著录，如需引页码须回出版版核对。Yin et al. (2022) 已用 Poppler 抽出全部十页正文，书目信息与正文论断均对照原文核实。
 
 ---
 
@@ -68,5 +68,7 @@ Stehman, S.V. and Foody, G.M. (2019) 'Key issues in rigorous accuracy assessment
 Stehman, S.V. and Wickham, J.D. (2011) 'Pixels, blocks of pixels, and polygons: choosing a spatial unit for thematic accuracy assessment', *Remote Sensing of Environment*, 115(12), pp. 3044–3055. doi:10.1016/j.rse.2011.06.007.
 
 Xie, E., Wang, W., Yu, Z., Anandkumar, A., Alvarez, J.M. and Luo, P. (2021) 'SegFormer: simple and efficient design for semantic segmentation with transformers', *Advances in Neural Information Processing Systems*, 34, pp. 12077–12090.
+
+Yin, Y., Hu, W., Tran, A., Kruppa, H., Zimmermann, R. and Ng, S.-K. (2022) 'A context-enriched satellite imagery dataset and an approach for parking lot detection', in *2022 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)*. IEEE, pp. 1371–1380. doi:10.1109/WACV51458.2022.00146.
 
 Zhou, Q., Wang, S. and Liu, Y. (2022) 'Exploring the accuracy and completeness patterns of global land-cover/land-use data in OpenStreetMap', *Applied Geography*, 145, 102742. doi:10.1016/j.apgeog.2022.102742.

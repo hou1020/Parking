@@ -1,0 +1,4 @@
+arm,targeted_%,other_%,gap_pts
+B generic FT,72.5,62.8,9.7
+C targeted e12 (best IoU),71.6,63.2,8.4
+D targeted e7 (best recall),58.3,50.6,7.8

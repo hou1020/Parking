@@ -105,7 +105,7 @@ Lots below 200 m² are missed outright more than ten times as often as lots abov
 
 **Figure 4.3** One worked example of each failure category, on the Digimap imagery the model was given. Red outlines the sampled polygon, blue the model's prediction, yellow other labelled parking nearby.
 
-Irregular layout was assigned to 11 of the 42 chips and absent markings to one, so the latter estimate rests on a single observation and its 3.7% should not be read as a precise share. What the sample does support is that irregular arrangement was the most frequently identified mechanism and unmarked surfacing among the least — which revises the expectation set out in §2.5, where unmarked surfaces were anticipated as the difficulty.
+Irregular layout was assigned to 11 of the 42 chips and absent markings to one, so the latter estimate rests on a single observation and its 3.7% should not be read as a precise share. The two are nonetheless separated cleanly by their intervals — 23.3% [16.9, 31.1] against 3.7% [0.6, 9.8] — so the ordering does not depend on that one chip. What the sample supports is that irregular arrangement was the most frequently identified mechanism and unmarked surfacing among the least — which revises the expectation set out in §2.5, where unmarked surfaces were anticipated as the difficulty.
 
 ## 4.4 Post-processing and the reference layers as filters
 
@@ -158,7 +158,7 @@ Distance from the city centre does not predict precision. The share of a cell gi
 
 All three metrics are reported to avoid selective presentation, but only precision is interpreted here. The partial correlations for recall and IoU reach significance while their raw correlations do not, and their signs reverse between the two; with n = 100 and two strongly correlated predictors this pattern is not a stable basis for a claim.
 
-Read across distance bands, precision falls from 0.584 within 1 km to 0.485 beyond 4 km while recall stays between 0.70 and 0.86 (see Figure 4.5 and Appendix C). The band means move with parking share, not with distance.
+Read across distance bands, precision falls from 0.584 within 1 km to 0.485 beyond 4 km while recall stays between 0.70 and 0.86 (see Figure 4.5 and Appendix B). The band means move with parking share, not with distance.
 
 ![Accuracy and location](figures/fig_accuracy_vs_location.png)
 
@@ -176,6 +176,8 @@ Applying the sampled estimates as corrections gives four cumulative variants:
 | 2 + reference-side (−0.0313, not parking in the imagery) | 3.2284 | 4.8785 | 0.5708 | 0.8626 | 0.5233 |
 | 3 + prediction-side (+0.0667, parking the labelling missed) | 3.2951 | 4.8785 | 0.5845 | 0.8654 | 0.5358 |
 | **4 Effective (−0.1358, definitional exclusions removed)** | 3.2951 | 4.7427 | **0.6012** | 0.8654 | **0.5498** |
+
+The corrected figures carry sampling uncertainty, and the bootstrap of §3.6 puts 95% intervals on them: precision 0.5845 [0.5783, 0.5917] at variant 3 and 0.6012 [0.5941, 0.6090] at variant 4, recall 0.8654 [0.8635, 0.8675], IoU 0.5498 [0.5434, 0.5569]. The variant-4 interval does not reach the measured 0.5708, so the gain is not an artefact of which polygons happened to be sampled. The intervals are narrow because the corrections are small relative to the quantities they adjust: a near-threefold range in the estimated prediction-side correction, 0.0366 to 0.1018 km², moves precision by under a point and a half.
 
 Precision rises from 0.571 to 0.601 across the four steps, and roughly half of that gain comes from the final step — removing on-street parking and private driveways from the prediction, which are real parking excluded by rule rather than model error. Recall moves only between 0.854 and 0.865. **The headline pattern does not change under any correction**; variant 1 is reported throughout as the primary figure.
 

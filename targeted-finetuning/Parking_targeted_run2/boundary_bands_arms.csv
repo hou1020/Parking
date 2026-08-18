@@ -1,0 +1,13 @@
+model,distance_m,fp_dilation_km2,fp_standalone_km2,fn_erosion_km2,fn_standalone_km2
+A zero-shot,2.0,0.2123,1.1151,0.0524,0.1393
+A zero-shot,5.0,0.3737,0.9537,0.0858,0.1059
+A zero-shot,10.0,0.472,0.8554,0.114,0.0777
+B generic FT,2.0,0.0845,0.2891,0.1055,0.2927
+B generic FT,5.0,0.1302,0.2434,0.1684,0.2298
+B generic FT,10.0,0.1613,0.2123,0.2172,0.181
+C targeted e12 (best IoU),2.0,0.1002,0.3102,0.0955,0.3644
+C targeted e12 (best IoU),5.0,0.1503,0.2602,0.1686,0.2913
+C targeted e12 (best IoU),10.0,0.1816,0.2288,0.2338,0.2261
+D targeted e7 (best recall),2.0,0.1463,0.4909,0.0721,0.2766
+D targeted e7 (best recall),5.0,0.2359,0.4013,0.1254,0.2233
+D targeted e7 (best recall),10.0,0.2939,0.3433,0.1759,0.1729
