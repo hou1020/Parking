@@ -1,13 +1,13 @@
 # 论文全文英中对照译稿与逐段证据审读
 
-> 本文件翻译自 `00_abstract.md` 至 `12_appendix_e_research_log.md` 的当前英文全文，供理解、校对论证与数据审计使用。英文原稿未作改动；引文作者、年份、表号、图号、数字、公式、路径与代码名均按原文保留。每个正文单元均按“英文原稿—中文翻译—段落审读”的顺序排列；审读分别标明逻辑用途、核对结论、引用文献中的对应原句、原始数据／文本依据和可加强之处。这里插入的英文论文正文用于英中对照，但引用论断的证据仍以文献原文核对索引为准。
+> 本文件以 `dissertation_zh_translation.md` 为底稿，对英文正文作压缩与平实化润色，并同步更新中文译文。研究逻辑、关键结论、引文作者与年份、表图编号、数字、公式、路径和代码名均予保留。每个正文单元仍按“英文原稿—中文翻译—段落审读”的顺序排列；引用论断的证据以文献原文核对索引为准。
 
 > **段落审读**
 > - **逻辑用途：** 说明译文范围与批注阅读方式
 > - **核对状态：** ✅ 已核对：章节范围已与编号 00–12 的当前文件清单核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
 > - **原始数据／文本依据：** 译稿范围说明；无外部数据。
-> - **可加强：** 英文正文再修改后，应同步标注译稿对应的提交版本或日期。
+> - **可加强：** 正式提交前补充最终版本号或日期，以便追踪本次压缩润色稿。
 
 ---
 
@@ -17,7 +17,7 @@
 
 | 证据 | 文献原句（短摘录） | 定位与核对说明 | 本地原文 |
 |---|---|---|---|
-| <a id="l01"></a>**L01** Bates and Leibling (2012) | “how little information is collected”；“expensive to make on the ground”；“very difficult, and costly, to rectify across the whole of the UK” | 报告 pp. 99、106、109；分别支持英国停车供给数据不足、地面测量成本高且通常限于小范围，以及全国补齐数据困难且昂贵。 | [PDF](</Users/hou/Desktop/dissertation/resource/spaced_out-bates_leibling-jul12.pdf>) |
+| <a id="l01"></a>**L01** Bates and Leibling (2012) | “This study has shown how little information is collected about the quantity of parking space that is available” | p. 99；直接支持英国停车供给数据不足。 | [PDF](</Users/hou/Desktop/dissertation/resource/spaced_out-bates_leibling-jul12.pdf>) |
 | <a id="l02"></a>**L02** Berry et al. (2019) | “differentiate adjacent parking areas from each other” | 论文方法说明；支持用实例分割拆分相邻停车区。 | [PDF](</Users/hou/Desktop/dissertation/resource/3347146.3359364.pdf>) |
 | <a id="l03"></a>**L03** Cheng et al. (2021) | “Boundary IoU is significantly more sensitive than the standard Mask IoU measure to boundary errors for large objects” | 摘要；直接支持大目标边界敏感性。 | [PDF](</Users/hou/Desktop/dissertation/resource/Cheng_Boundary_IoU_Improving_Object-Centric_Image_Segmentation_Evaluation_CVPR_2021_paper.pdf>) |
 | <a id="l04"></a>**L04** Cochran (1977) | “based on a separate ratio in each stratum” | 分层比率估计章节；支持各层分别构造比率。 | [PDF](</Users/hou/Desktop/dissertation/resource/Cochran_1977_Sampling Techniques.pdf>) |
@@ -28,11 +28,11 @@
 | <a id="l09"></a>**L09** Goodchild (2007) | “I term this volunteered geographic information (VGI)” | 正文概念提出处；直接支持 VGI 术语来源。 | [PDF](</Users/hou/Desktop/dissertation/resource/s10708-007-9111-y.pdf>) |
 | <a id="l10"></a>**L10** Habermehl and McFarlane (2025) | “we identify the tensions and contradictions of current densification approaches” | 摘要；支持把密度提升理解为有争议的过程。 | [PDF](</Users/hou/Desktop/dissertation/resource/Int J Urban Regional Res - 2025 - Habermehl - THE DENSITY DIALECTIC  Between Hard and Gentle Densification in London.pdf>) |
 | <a id="l11"></a>**L11** Haklay (2010) | “OSM information can be fairly accurate: on average within about 6 m” | 摘要；仅直接支持已有覆盖处的位置精度，完整度差异需结合正文结果。 | [PDF](</Users/hou/Desktop/dissertation/resource/haklay-2010-how-good-is-volunteered-geographical-information-a-comparative-study-of-openstreetmap-and-ordnance-survey.pdf>) |
-| <a id="l12"></a>**L12** Hoehne et al. (2019) | “cadastral and roadway data with minimum parking requirements”；“12.2 million parking spaces [...] 2.86 million registered personal vehicles”；“difficult to conclude if parking is oversupplied” | 摘要、方法 §2.2 及讨论 §4；支持数据组合方式和 Phoenix 2017 数字，同时限定该总量比较不能直接证明整体供给过剩。 | [PDF](</Users/hou/Desktop/dissertation/resource/1-s2.0-S0264275118311636-main.pdf>) |
+| <a id="l12"></a>**L12** Hoehne et al. (2019) | “there were 12.2 million parking spaces … 2.86 million registered personal vehicles” | 摘要；数字对应 Phoenix 2017。 | [PDF](</Users/hou/Desktop/dissertation/resource/1-s2.0-S0264275118311636-main.pdf>) |
 | <a id="l13"></a>**L13** Hong et al. (2023) | “models tend to meet the performance bottleneck in the case studies across cities or regions” | 摘要；直接支持跨城市泛化瓶颈。 | [PDF](</Users/hou/Desktop/dissertation/resource/2309.16499v2.pdf>) |
 | <a id="l14"></a>**L14** Hurst-Tarrab et al. (2020) | “achieves more than 50% intersection over union (IoU) in all the testing sets” | 摘要；直接支持停车分割 IoU 比较值。 | [PDF](</Users/hou/Desktop/dissertation/resource/applsci-10-05364-v2.pdf>) |
 | <a id="l15"></a>**L15** Jiao (2015) | “urban land density decreases slowly in the main urban core area” | 结果讨论；支持用距中心距离组织城市土地密度剖面。 | [PDF](</Users/hou/Desktop/dissertation/resource/1-s2.0-S0169204615000481-main.pdf>) |
-| <a id="l16"></a>**L16** Lange, Kovacevic and Johnson (2026) | “Manchester, Birmingham, Liverpool, Leeds and Glasgow [...] have some of the largest density gaps”；“Post-war neighbourhoods are up to 40 per cent less dense” | pp. 8–9，Figures 3a–3b；支持把 Leeds 列入密度差距最大的一组英国大城市，并支持战后社区最高约 40% 的密度差。 | [PDF](</Users/hou/Desktop/dissertation/resource/Course-correction-April-2026.pdf>) |
+| <a id="l16"></a>**L16** Lange, Kovacevic and Johnson (2026) | “Post-war neighbourhoods are up to 40 per cent less dense than similarly located pre-war neighbourhoods” | p. 12，Figure 3a；直接支持 40% 密度差。 | [PDF](</Users/hou/Desktop/dissertation/resource/Course-correction-April-2026.pdf>) |
 | <a id="l17"></a>**L17** Livingstone, Fiorentino and Short (2021) | “the agency and influence of planning processes and densification policies on urban landscapes in London” | 摘要；支持伦敦密度政策实践研究。 | [PDF](</Users/hou/Desktop/dissertation/resource/88-1-3041-1-10-20210217.pdf>) |
 | <a id="l18"></a>**L18** Lv et al. (2023) | “Semantic segmentation is a fundamental but challenging problem of pixel-level remote sensing (RS) data analysis.” | 摘要；支持遥感语义分割的研究背景。 | [PDF](</Users/hou/Desktop/dissertation/resource/fevo-11-1201125.pdf>) |
 | <a id="l19"></a>**L19** Lyu et al. (2025) | “variations in ground sampling distance, imaging modes from various sensors, geographical landscapes, and environmental conditions” | 摘要；直接列出遥感领域偏移来源。 | [PDF](</Users/hou/Desktop/dissertation/resource/2510.15615v1.pdf>) |
@@ -40,9 +40,9 @@
 | <a id="l21"></a>**L21** MHCLG (2024) | “building on or above service yards, car parks, lock-ups and railway infrastructure” | NPPF para. 125(d)；para. 124 另要求尽量利用 brownfield land。 | [PDF](</Users/hou/Desktop/dissertation/resource/NPPF_December_2024.pdf>) |
 | <a id="l22"></a>**L22** Olofsson et al. (2014) | “the three major components: sampling design, response design and analysis” | 摘要；直接支持准确率评估三部分框架及基于参考样本的面积估计。 | [PDF](</Users/hou/Desktop/dissertation/resource/articolo_oloffson.pdf>) |
 | <a id="l23"></a>**L23** Openshaw (1984) | “different aggregations yield different results” | MAUP 论述处；直接支持分区方式会改变统计结果。 | [PDF](</Users/hou/Desktop/dissertation/resource/38-maup-openshaw.pdf>) |
-| <a id="l24"></a>**L24** Qiam, Devunuri and Lehe (2025) | “drawn along the edge of the pavement”；“Vegetation reflects more NIR”；“removing areas which are actually buildings”；“removing areas which are roads” | pp. 1229–1232；支持铺装边界与 NIR 动机，并确认原始流程已包含建筑和道路扣除；极短车道规则见 pp. 1229–1230。 | [PDF](</Users/hou/Desktop/dissertation/Parking/literature/A_Pipeline_and_NIR-Enhanced_Dataset_for_Parking_Lot_Segmentation.pdf>) |
+| <a id="l24"></a>**L24** Qiam, Devunuri and Lehe (2025) | “Parking lot annotations must be drawn along the edge of the pavement”; “Vegetation reflects more NIR” | pp. 1229–1230；直接支持铺装边界与 NIR 动机；极短车道规则见同页。 | [PDF](</Users/hou/Desktop/dissertation/Parking/literature/A_Pipeline_and_NIR-Enhanced_Dataset_for_Parking_Lot_Segmentation.pdf>) |
 | <a id="l25"></a>**L25** Roberts et al. (2017) | “randomly drawn folds lead to artificially low error estimates” | 模拟结果；直接支持空间依赖数据采用分块验证。 | [PDF](</Users/hou/Desktop/dissertation/resource/Ecography - 2016 - Roberts - Cross‐validation strategies for data with temporal  spatial  hierarchical  or phylogenetic.pdf>) |
-| <a id="l26"></a>**L26** Scharnhorst (2018) | “empty parking stalls made up 68 percent”；“a custom job for each city”；“Almost all [...] came from satellite or aerial imagery” | 报告 pp. 2、8–9；支持 Jackson 的 68% 空置比例，并说明其结构式停车依赖城市各异的税务评估记录，而地面停车主要来自航空或卫星影像。 | [PDF](</Users/hou/Desktop/dissertation/resource/18806-research-riha-parking-report.pdf>) |
+| <a id="l26"></a>**L26** Scharnhorst (2018) | “empty parking stalls made up 68 percent of the supply in the residential core” | Jackson 结果；直接支持 68% 空置比例。 | [PDF](</Users/hou/Desktop/dissertation/resource/18806-research-riha-parking-report.pdf>) |
 | <a id="l27"></a>**L27** Sehra, Singh and Rai (2013) | “the discrepancies between the rural and urban areas in the USA showed an opposite tendency … the rural data was, in parts, even more complete” | 综述 p. 18 的美国案例；正文已改写为“方向不一致”，与本句直接对应。 | [PDF](</Users/hou/Desktop/dissertation/resource/Assessment_of_OpenStreetMap_Data_-_A_Review.pdf>) |
 | <a id="l28"></a>**L28** Shoup (2005) | “parking requirements reduce density because each building has its own, unshared parking” | 土地利用／密度讨论；支持停车配建的空间机会成本。 | [PDF](</Users/hou/Desktop/dissertation/resource/High Cost of Free Parking_26_07_09_01_26_53.pdf>) |
 | <a id="l29"></a>**L29** Stehman and Foody (2019) | “the three major components of accuracy assessment, the sampling design, response design, and analysis” | 接受稿摘要；支持严谨准确率评估的设计框架。 | [PDF](</Users/hou/Desktop/dissertation/resource/AccuracyReview_Final_Submitted.pdf>) |
@@ -72,11 +72,11 @@ The United Kingdom holds no consistent spatial record of off-street surface park
 
 **英文原稿**
 
-This dissertation applies that US-trained model, exactly as released and with no UK training data in the primary analysis, to 100 km² of Leeds, evaluating it against 2,037 manually labelled car parks drawn to the source model's target definition. Rather than reporting accuracy alone, it attributes error against independent reference layers, characterises it through a stratified sample of 142 image chips, and tests the building- and road-subtraction stage by ablation.
+This dissertation applies that US-trained model, exactly as released and with no UK training data in the primary analysis, to 100 km² of Leeds, evaluating it against 2,037 manually labelled car parks drawn to the source model's own target definition. Rather than reporting accuracy alone, it decomposes the error: attributed against independent reference layers, characterised by stratified sampling of 142 image chips adjudicated on the imagery the model actually consumed, and tested by ablating the post-processing stage.
 
 **中文翻译**
 
-本论文将这一美国训练的模型完全按照公开版本、在主分析中不使用任何英国训练数据，应用于利兹 100 km² 的区域，并用 2,037 个按照源模型目标定义人工标注的停车场进行评估。本研究不只报告准确率，还利用独立参考图层归因误差，通过对 142 个影像样本进行分层抽样加以刻画，并以消融实验检验建筑和道路扣除阶段。
+本论文将这一美国训练的模型完全按照公开版本、在主分析中不使用任何英国训练数据，应用于利兹 100 km² 的区域，并用 2,037 个按照源模型目标定义人工标注的停车场进行评估。本研究不只报告准确率，还进一步分解误差：利用独立参考图层归因错误；通过对 142 个影像样本进行分层抽样，并依据模型实际使用的影像进行人工判读；同时通过消融实验检验后处理阶段的影响。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -87,11 +87,11 @@ This dissertation applies that US-trained model, exactly as released and with no
 
 **英文原稿**
 
-Transfer proves asymmetric. Recall is **0.854** and less spatially variable than precision, which is **0.571**; predicted area is **1.50 times** the labelled area. Error is concentrated in boundary placement rather than misrecognition: automated attribution leaves **2.1% of labelled area** as unresolved whole-lot FN, while a separate sampled reference-side correction is **1.0%**. The building-subtraction stage creates a blind spot of its own, deleting four fifths of the rooftop parking retained in the pre-subtraction output.
+Transfer proves asymmetric. Recall is **0.854** and spatially even; precision is **0.571**, and predicted area is **1.50 times** the labelled area. Error is concentrated in boundary placement rather than misrecognition — the genuine blind spot is at most 2.1% of labelled area — and the post-processing pipeline creates a blind spot of its own, deleting four fifths of the rooftop parking that the raw model detects more reliably than parking at ground level.
 
 **中文翻译**
 
-结果表明，模型迁移具有明显的不对称性。召回率为 **0.854**，其空间变异小于精确率；精确率为 **0.571**，预测面积是标注面积的 **1.50 倍**。误差主要来自边界划分，而不是无法识别停车场：自动归因后，仍有占标注面积 **2.1%** 的整块漏检 FN 未得到解释；另行抽样得到的参考侧校正为 **1.0%**。建筑扣除阶段又制造了自己的盲区，删除了扣除前输出中保留的屋顶停车面积的五分之四。
+结果表明，模型迁移具有明显的不对称性。召回率为 **0.854**，且空间分布较为均匀；精确率为 **0.571**，预测面积是标注面积的 **1.50 倍**。误差主要来自边界划分，而不是无法识别停车场——真正的识别盲区最多只占标注面积的 2.1%。与此同时，后处理流程又制造了自己的盲区：原始模型识别屋顶停车场的能力甚至优于地面停车场，但后处理删除了其中五分之四。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -102,11 +102,11 @@ Transfer proves asymmetric. Recall is **0.854** and less spatially variable than
 
 **英文原稿**
 
-Measured against that reliability, the labelled reference puts surface parking at **3.26%** of the study area, concentrated in the inner 2 km and declining sharply beyond it. Within Leeds, local calibration corrects over-prediction to about ±7% at half-city scale, though not at 1 km². A bounded fine-tuning supplement is reported separately. The transferred map does not support uncorrected area measurement, but local calibration makes aggregate estimation possible within the city; transfer between cities remains untested.
+Measured against that reliability, the labelled reference puts surface parking at **3.26%** of the study area, concentrated in the inner 2 km and declining sharply beyond it. The over-prediction is systematic and correctable to within about ±7% at half-city scale, though not at the scale of a single square kilometre. A bounded fine-tuning supplement is reported separately. A transferred map cannot measure how much land a city gives to parking on its own; paired with one local validation, it can — a materially different claim from either accepting or dismissing it.
 
 **中文翻译**
 
-在这一可靠性水平下，人工参考数据表明，露天停车场占研究区面积的 **3.26%**，主要集中在内侧 2 km 范围内，此后迅速下降。在利兹内部，本地校准可把半城尺度的高估校正到约 ±7%，但在 1 km² 尺度上不能做到。另有一项范围受限的微调补充实验，单独报告。迁移地图不支持未经校准的面积测量，但本地校准使同一城市内部的聚合估计成为可能；城市之间的迁移仍未得到检验。
+在这一可靠性水平下，人工参考数据表明，露天停车场占研究区面积的 **3.26%**，主要集中在内侧 2 km 范围内，此后迅速下降。模型的高估具有系统性；在半个城市的尺度上，经校正后的误差可以控制在约 ±7%，但在单个 1 km² 网格尺度上不能做到这一点。另有一项范围受限的微调补充实验，单独报告。一个迁移而来的地图无法单独测量一座城市有多少土地用于停车；但如果配合一次本地验证，它可以做到——这一结论与简单地接受或否定这张地图有本质区别。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -123,11 +123,11 @@ Measured against that reliability, the labelled reference puts surface parking a
 
 **英文原稿**
 
-Surface parking is widespread in cities but rarely inventoried consistently. It is usually treated as a transport question — how many spaces, priced how, used when — but its more consequential character is spatial. A minimum parking requirement is a rule about how much land a building must set aside, so the cumulative effect of decades of such rules is a pattern of land use, one that generates little activity and no housing, and for which no single agency is typically responsible for inventorying (Shoup, 2005).
+Surface parking is widespread but rarely inventoried. Although usually treated as a transport question—how many spaces exist, how they are priced and when they are used—its wider consequence is spatial. Minimum parking requirements determine how much land buildings must set aside; accumulated over decades, they create a land-use pattern that generates little activity or housing and falls between institutional responsibilities (Shoup, 2005).
 
 **中文翻译**
 
-露天停车场广泛存在于城市之中，却很少得到一致、系统的清点。停车通常被视为一个交通问题——有多少车位、如何定价、何时使用——但它更重要的属性其实是空间性的。最低停车位配建要求，本质上是一条规定建筑必须留出多少土地用于停车的规则。因此，几十年累积下来，这些规定形成了一种土地利用格局：这些土地几乎不产生城市活动，也不提供住房，而且通常没有单一机构负责系统清点（Shoup, 2005）。
+露天停车场十分普遍，却很少被系统清点。停车通常被视为交通问题——车位数量、定价和使用时段——但其更广泛的影响在于空间。最低停车位配建要求决定建筑必须留出多少土地；几十年累积下来，便形成几乎不产生活动或住房、又不属于任何机构明确清点职责的土地利用格局（Shoup, 2005）。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -138,11 +138,11 @@ Surface parking is widespread in cities but rarely inventoried consistently. It 
 
 **英文原稿**
 
-In England that omission has become awkward. The National Planning Policy Framework asks planning authorities to bring forward under-utilised land, and names car parks explicitly among its examples (MHCLG, 2024, para. 125(d)). The instruction presupposes an answer that England lacks consistently: where are they, and how much land do they hold? The densification literature runs into the same wall. Britain's largest cities are found to carry substantial density gaps relative to their European peers, driven in part by the neighbourhoods lying just beyond the city centre (Lange, Kovacevic and Johnson, 2026), yet no consistent measurement exists of how much of that inner land is currently held as car park.
+This omission now conflicts with English planning policy. The National Planning Policy Framework asks authorities to bring forward under-used land and explicitly names car parks (MHCLG, 2024, para. 125(d)), yet their location and area remain unknown. Research also finds substantial density gaps between Britain’s largest cities and European peers, partly in neighbourhoods just beyond the centre (Lange, Kovacevic and Johnson, 2026), but cannot measure how much inner-city land is surface parking.
 
 **中文翻译**
 
-在英格兰，这一缺失如今变得越来越难以忽视。《国家规划政策框架》要求地方规划部门推动利用低效土地，并明确将停车场列为例子之一（MHCLG, 2024, para. 125(d)）。但这项要求预设了一个英格兰尚无一致答案的问题：这些停车场在哪里，又占用了多少土地？城市密度提升研究也遇到了同样的障碍。研究发现，与欧洲同类城市相比，英国最大的城市存在显著的密度缺口，其中一部分由紧邻市中心之外的社区造成（Lange, Kovacevic and Johnson, 2026）；然而，目前并没有统一测量能够说明这些内城区土地中有多少正在被停车场占用。
+这一缺失如今与英格兰规划政策形成直接矛盾。《国家规划政策框架》要求地方部门推动低效土地利用，并明确列出停车场（MHCLG, 2024, para. 125(d)），但停车场的位置和面积仍不清楚。研究还发现，英国最大城市与欧洲同类城市存在显著密度差距，部分集中在市中心外围社区（Lange, Kovacevic and Johnson, 2026），却无法测量内城区有多少土地用于露天停车。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -153,11 +153,11 @@ In England that omission has become awkward. The National Planning Policy Framew
 
 **英文原稿**
 
-The gap is not for want of trying. It reflects how parking has been measured where it has been measured at all. American inventories are the fullest available, but they are built from cadastral records and codified parking requirements that the UK does not hold in comparable form (Scharnhorst, 2018; Hoehne et al., 2019). British measurement has been local and survey-based — most substantially a sample of on-the-ground inspections in London — and counts *spaces* rather than land area. The authors of the most substantial recent UK review conclude bluntly that little information is collected about how much parking exists at all (Bates and Leibling, 2012).
+The gap reflects existing measurement methods. Detailed US inventories combine cadastral records with codified parking requirements, for which the UK has no comparable data (Scharnhorst, 2018; Hoehne et al., 2019). British work is local and survey-based—most notably sampled field inspections in London—and counts *spaces*, not land area. A major UK review therefore concludes that little information is collected on parking supply (Bates and Leibling, 2012).
 
 **中文翻译**
 
-这一空白并不是因为从未有人尝试，而是由既有停车测量方法造成的。美国拥有目前最完整的停车清单，但这些清单依赖地籍记录和编码明确的停车配建要求，而英国并没有可比形式的数据（Scharnhorst, 2018; Hoehne et al., 2019）。英国的测量则主要是地方性的实地调查——其中规模最大的是伦敦的地面抽样调查——而且统计的是*车位数量*，不是土地面积。英国近年来最重要的一份停车研究直言，关于停车设施究竟有多少，现实中几乎没有收集相关信息（Bates and Leibling, 2012）。
+这一空白源于既有测量方法。美国的详细清单结合地籍记录和明确编码的停车配建要求，而英国缺少可比数据（Scharnhorst, 2018; Hoehne et al., 2019）。英国研究主要是地方性的实地调查，最典型的是伦敦抽样调查，而且统计*车位数量*而非土地面积。因此，一项重要的英国综述认为，现有停车供给信息极少（Bates and Leibling, 2012）。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -183,11 +183,11 @@ Segmentation of aerial imagery offers a way past both obstacles, because it depe
 
 **英文原稿**
 
-The risk is that models transfer badly. A network trained on one country's imagery and urban form may perform quite differently on another's, a problem sufficiently recognised that benchmarks exist to measure it (Maggiori et al., 2017; Lyu et al., 2025). Nor does the architecture's own robustness claim settle the matter: SegFormer's reported zero-shot robustness is demonstrated against corrupted images of familiar cities, which is close to the opposite of the situation here (Xie et al., 2021). Before a transferred map is used as evidence about land, someone has to establish what it can be used for.
+The risk is poor geographical transfer: a network trained on one country’s imagery and urban form may behave differently in another (Maggiori et al., 2017; Lyu et al., 2025). SegFormer’s reported zero-shot robustness does not resolve this risk because it concerns corrupted images of familiar cities, not clean images of an unfamiliar national setting (Xie et al., 2021). The resulting map therefore requires a fitness-for-use assessment before it supports land-use claims.
 
 **中文翻译**
 
-风险在于，模型可能无法良好迁移。在一个国家的影像和城市形态上训练的网络，应用到另一个国家时，表现可能完全不同。这个问题已经受到足够重视，以至于研究者专门建立了衡量这种差异的基准数据集（Maggiori et al., 2017; Lyu et al., 2025）。模型架构本身关于稳健性的声明也不能解决问题：SegFormer 所报告的零样本稳健性，是在熟悉城市的影像受到噪声、模糊等破坏时得到的，这几乎与本研究的情形相反（Xie et al., 2021）。在把迁移得到的地图用作土地证据之前，必须先确定它究竟可以用于什么。
+风险在于地理迁移不佳：在一国影像和城市形态上训练的网络，到另一国可能表现不同（Maggiori et al., 2017; Lyu et al., 2025）。SegFormer 报告的零样本稳健性并不能排除这一风险，因为其测试对象是熟悉城市的受损影像，而不是陌生国家环境中的清晰影像（Xie et al., 2021）。因此，迁移地图在用于土地论断前必须接受用途适合性评估。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -198,11 +198,11 @@ The risk is that models transfer badly. A network trained on one country's image
 
 **英文原稿**
 
-That last phrase names an established question rather than a new one. Spatial data quality is conventionally divided into *internal* quality, meaning how far a dataset matches the ground, and *external* quality or **fitness for use**, meaning whether it is adequate for a particular purpose — a distinction that exists because the same dataset can be sufficient for one task and useless for another, so quality cannot be settled independently of the use (Devillers et al., 2007). This dissertation is a fitness-for-use assessment of a transferred model, and its contribution is to make that assessment quantitative: not whether the map is good, but which uses its measured error still permits.
+Spatial data quality distinguishes *internal* quality—agreement with the ground—from *external* quality or **fitness for use**—adequacy for a specific purpose. The distinction recognises that one dataset may suit one task but not another (Devillers et al., 2007). This dissertation makes that assessment quantitative for a transferred model: it asks which uses remain defensible given the measured error, rather than whether the map is simply “good”.
 
 **中文翻译**
 
-最后这句话并不是提出了一个全新的问题，而是对应了一个已有的数据质量概念。空间数据质量通常被分为*内部质量*与*外部质量*：内部质量指数据与现实地表的吻合程度；外部质量或**用途适合性（fitness for use）**，则指数据是否足以支持某项具体用途。之所以需要这种区分，是因为同一数据集可能适合一种任务，却完全不适合另一种任务，因此数据质量不能脱离用途单独判断（Devillers et al., 2007）。本论文所做的是对迁移模型进行用途适合性评估，并把这种评估量化：问题不是这张地图笼统而言“好不好”，而是它已经测得的误差仍允许哪些用途。
+空间数据质量区分*内部质量*——与地面实况的吻合程度——和*外部质量*或**用途适合性（fitness for use）**——对特定用途是否充分。同一数据集可能适合一种任务却不适合另一种（Devillers et al., 2007）。本论文将迁移模型的这一评估量化：不笼统判断地图“好不好”，而是判断在已测误差下哪些用途仍然成立。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -255,26 +255,26 @@ The three are sequential rather than parallel. RQ1 establishes whether the trans
 
 **英文原稿**
 
-The study covers 100 km² of Leeds, validated against 2,037 manually labelled car parks. One city is examined in depth rather than several in outline because comparing cities presupposes that the model's output is trustworthy, and the literature reviewed here had not established that in the UK; spending the available effort on a labelled reference, a per-cell validation and a sampled error typology establishes what the map supports before anything is built on it. Multi-city extension then becomes future work with a defined precondition, which §5.5 specifies.
+The study covers 100 km² of Leeds and validates the model against 2,037 manually labelled car parks. Studying one city in depth permits a labelled reference, cell-level validation and sampled error typology before any cross-city comparison assumes that the output is trustworthy. Section 5.5 defines the conditions for a later multi-city extension.
 
 **中文翻译**
 
-本研究覆盖利兹 100 km² 的区域，并以 2,037 个手工标注的停车场进行验证。之所以深入研究一座城市而非粗略比较多座城市，是因为城市间比较预设模型输出值得信任，而本研究所综述的文献尚未在英国确立这种可信度。因此，本研究将有限的工作量用于建立人工参考、逐网格验证和抽样错误分类，在基于地图开展其他分析之前，先确定地图能够支持哪些用途。这样，多城市扩展就成为具有明确前提条件的未来研究；§5.5 对这一条件作了具体说明。
+本研究覆盖利兹 100 km²，并以 2,037 个人工标注停车场验证模型。深入研究一座城市，使本研究能先建立标注参考、逐网格验证和抽样误差类型，再进行任何以输出可信为前提的跨城市比较。§5.5 说明了未来扩展至多城市所需的条件。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
 > - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** 作者论证／章节结构，无独立数据；本段核对值：100, 2,037, 5.5；译文对应位置：`01_introduction.md`（仅作定位，不作为引文证据）
+> - **原始数据／文本依据：** 作者论证／章节结构，无独立数据；本段核对值：100, 2,037, 4.7；译文对应位置：`01_introduction.md`（仅作定位，不作为引文证据）
 > - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
 
 **英文原稿**
 
-Three boundaries define the primary analysis. The target is off-street surface parking as the source model defines it, so on-street parking and enclosed structures are outside it by rule. The model is used exactly as released, with no UK training data, because what is being measured is what an off-the-shelf user would obtain; a bounded supplementary experiment departs from this second boundary alone and is reported separately in Appendix C. And the study identifies where parking is and how much land it occupies; it does not judge whether any site should be redeveloped, a question requiring ownership, access, demand and viability information that none of the data used here contains.
+The primary analysis has three boundaries. It covers off-street surface parking under the source model’s definition, excluding on-street parking and enclosed structures. It uses the released model without UK training data to represent an off-the-shelf application; only the bounded experiment in Appendix C relaxes this condition. Finally, it maps parking location and area but does not assess redevelopment, which would require ownership, access, demand and viability data.
 
 **中文翻译**
 
-主分析遵循三条边界。第一，研究目标是源模型所定义的路外露天停车场，因此路边停车和封闭式停车建筑按规则排除。第二，模型完全按照公开版本使用，不采用任何英国训练数据，因为本研究衡量的是普通使用者直接采用现成模型时会得到的结果；另有一项范围受限的补充实验，仅突破第二条边界，其结果单独报告于附录 C。第三，本研究识别停车场的位置及其占地面积，但不判断任何具体地点是否应该重建。后者需要所有权、出入条件、停车需求和开发可行性等信息，而本研究使用的数据均不包含这些内容。
+主分析有三个边界。第一，研究对象依源模型定义为路外地面停车，不含路边停车和封闭式设施。第二，模型按发布版本使用，不加入英国训练数据，以代表直接使用现成模型的情形；只有附录 C 的受限实验放宽这一条件。第三，研究只测绘停车位置和面积，不判断场地是否应再开发，因为后者需要所有权、出入、需求和可行性数据。
 
 > **段落审读**
 > - **逻辑用途：** 限制结论适用范围，防止从城市尺度证据跳到地块判断
@@ -287,28 +287,28 @@ Three boundaries define the primary analysis. The target is off-street surface p
 
 **英文原稿**
 
-All data are secondary and either openly licensed or licensed to the institution, and no human participants are involved. Two points warrant reflection nonetheless. The labelling was carried out by a single annotator, so the reference embodies one person's judgement on a target whose boundaries are genuinely ambiguous. Second, an output identifying low-intensity urban land could be read as a development prospectus. The scope statement above is a substantive commitment, not a formality: no site-level claim is made anywhere in what follows.
+All data are secondary, openly or institutionally licensed, and involve no human participants. Three issues remain. A single annotator labelled a target with ambiguous boundaries; §4.3 quantifies the resulting limit on measurable accuracy. The reference and model imagery also differ, an effect measured in §3.8. Finally, a map of low-intensity land could be mistaken for a development prospectus, so this study makes no site-level redevelopment claim.
 
 **中文翻译**
 
-本研究使用的全部数据都是二手数据，或者采用开放许可，或者由学校获得授权；研究不涉及任何人类参与者。尽管如此，仍有两个问题需要反思。首先，标注由一名标注者完成，因此人工参考包含个人对一个边界本身就存在模糊性的目标所作的判断。其次，一张识别低强度城市用地的地图可能被理解为开发机会清单。前述范围声明是一项实质性的承诺，而不是形式要求：下文不会作出任何具体地块层面的判断。
+所有数据均为开放许可或机构许可的二手数据，不涉及人类参与者，但仍有三个问题。第一，单一标注者判断边界本就模糊的对象；§4.3 量化了这对可测准确率的限制。第二，参考影像与模型影像不同，§3.8 测量了这一影响。第三，低强度用地地图可能被误作开发清单，因此本研究不提出任何场地层面的再开发主张。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
 > - **核对状态：** ✅ 已核对：已与项目协议、脚本、日志和文件路径核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** 作者论证／章节结构，无独立数据；译文对应位置：`01_introduction.md`（仅作定位，不作为引文证据）
+> - **原始数据／文本依据：** 作者论证／章节结构，无独立数据；本段核对值：4.3, 3.8；译文对应位置：`01_introduction.md`（仅作定位，不作为引文证据）
 > - **可加强：** 增加第二标注者与标注者间一致性，而不只依赖重标一致性。
 
 ## 1.5 论文结构
 
 **英文原稿**
 
-Chapter 2 brings together four literatures — parking as urban land, the evidence on its extent, segmentation of aerial imagery, and the limits of volunteered reference data — and states the gap where they meet. Chapter 3 sets out the annotation protocol, the pipeline, the accuracy measures, the two-track error typology, the ablation design and the checks on imagery consistency and on the calibration estimator. Chapter 4 reports the measured accuracy, decomposes the error, tests the building and road subtractions, shows the apparent location effect to be confounded, and gives the extent and distribution of surface parking. Chapter 5 answers the three research questions, states what the transferred map does and does not support, and sets out the limitations. Chapter 6 concludes.
+Chapter 2 reviews parking as land use, existing inventories, aerial-image segmentation and volunteered reference data, then states the research gap. Chapter 3 presents the annotation, pipeline, evaluation, error typology, ablation and calibration methods. Chapter 4 reports accuracy, error sources, post-processing effects and parking distribution. Chapter 5 answers the research questions and defines valid uses and limitations; Chapter 6 concludes.
 
 **中文翻译**
 
-第 2 章汇集四组通常彼此分离的文献：停车作为城市土地、停车规模的既有证据、航空影像分割，以及自愿地理信息作为参考数据的局限，并指出它们交汇处的研究空白。第 3 章介绍标注规则、处理流程、准确率指标、两条错误分类路径、消融实验设计，以及影像一致性和校准估计量的检验。第 4 章报告实测准确率、分解误差、检验建筑和道路扣除、说明表面的区位效应受到混杂，并给出露天停车场的规模与分布。第 5 章回答三个研究问题，说明迁移地图能够和不能够支持什么，并讨论研究局限。第 6 章总结全文。
+第 2 章回顾停车土地利用、既有清单、航空影像分割和志愿参考数据，并提出研究空白。第 3 章介绍标注、流程、评价、误差类型、消融和校正方法。第 4 章报告准确率、误差来源、后处理影响和停车分布。第 5 章回答研究问题并界定有效用途与局限，第 6 章总结全文。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -323,11 +323,11 @@ Chapter 2 brings together four literatures — parking as urban land, the eviden
 
 **英文原稿**
 
-This chapter brings together four literatures that rarely meet. Section 2.1 sets out why the land occupied by surface parking is worth measuring, and why UK policy has recently made that question sharper. Section 2.2 reviews what is actually known about parking extent, and shows that the evidence base and the methods behind it are predominantly American. Sections 2.3 and 2.4 turn to the method that could close that gap — semantic segmentation of aerial imagery, and the specific model used here. Section 2.5 asks what could go wrong when such a model crosses a national boundary, and converts that question into a set of expectations the results chapter can test. Section 2.6 explains why the obvious alternative reference, OpenStreetMap, cannot serve as ground truth. Section 2.7 states the gap.
+This chapter connects four literatures: surface parking as land use, evidence on its extent, aerial-image segmentation and volunteered reference data. It then examines geographical transfer, sets testable expectations and states the research gap.
 
 **中文翻译**
 
-本章汇集四组很少被放在一起讨论的文献。§2.1 说明为什么值得测量露天停车场占用的土地，以及英国近期政策为何使这个问题更加紧迫。§2.2 回顾我们实际上知道多少停车规模信息，并说明既有证据及其背后的方法主要来自美国。§2.3 和 §2.4 转向可能填补这一空白的方法——航空影像语义分割，以及本研究使用的具体模型。§2.5 讨论模型跨越国界时可能出现什么问题，并把这些问题转化为结果章可以检验的一组预期。§2.6 解释为什么看似显然的替代参考 OpenStreetMap 不能充当地面真值。§2.7 最后明确研究空白。
+本章连接四组文献：露天停车的土地利用意义、既有规模证据、航空影像分割和志愿参考数据。随后讨论地理迁移，提出可检验预期，并明确研究空白。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -340,11 +340,11 @@ This chapter brings together four literatures that rarely meet. Section 2.1 sets
 
 **英文原稿**
 
-The case for treating parking as a land-use question rather than a transport one was made most forcefully by Shoup (2005). Minimum parking requirements, he argues, operate as a hidden subsidy: by obliging developers to supply parking regardless of demand, they raise development costs, encourage driving, and commit land to a use that generates little activity and no housing. The argument's force is spatial. A parking requirement is a rule about how much land a building must set aside, so its cumulative effect is a pattern of land use — and one that is rarely inventoried, because no single agency is typically responsible for counting it.
+Shoup (2005) frames parking as a land-use issue. Minimum requirements oblige developers to provide spaces regardless of demand, raising costs, encouraging driving and committing land to a use that produces little activity or housing. Their cumulative spatial effect is rarely inventoried because no agency is responsible for doing so.
 
 **中文翻译**
 
-Shoup（2005）最有力地主张，应把停车视为土地利用问题，而不仅仅是交通问题。他认为，最低停车位配建要求是一种隐性补贴：无论实际需求如何，它都迫使开发者提供停车位，从而增加开发成本、鼓励驾车，并把土地长期固定在一种几乎不产生活动、也不提供住房的用途上。这个论点的力量来自空间层面。停车配建规定决定建筑必须留出多少土地，因此其累积结果是一种土地利用格局；但这种格局很少被系统统计，因为通常没有单一机构负责清点它。
+Shoup（2005）把停车界定为土地利用问题。最低停车位配建要求不论需求都迫使开发者提供车位，从而提高成本、鼓励驾车，并把土地用于几乎不产生活动或住房的用途。其累积空间影响很少被清点，因为没有机构对此负责。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -385,11 +385,11 @@ That framing has become directly relevant to English planning policy. The Nation
 
 **英文原稿**
 
-Car parks are thus named in national policy as an example of under-utilised land. The policy instruction presupposes a spatial answer that England does not hold consistently: where are they, and how much land do they hold?
+Car parks are thus named in national policy as an example of under-utilised land. The policy instruction presupposes a spatial answer to a question nobody has answered: where are they, and how much land do they hold?
 
 **中文翻译**
 
-因此，国家政策明确把停车场列为低效土地的例子。可是，这项政策要求预设了一个英格兰尚未一致掌握答案的空间问题：停车场在哪里，又占用了多少土地？
+因此，国家政策明确把停车场列为低效土地的例子。可是，这项政策要求预设了一个尚无人回答的空间问题：停车场在哪里，又占用了多少土地？
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -400,11 +400,11 @@ Car parks are thus named in national policy as an example of under-utilised land
 
 **英文原稿**
 
-The same gap appears in the densification literature. Centre for Cities research finds that Britain's largest cities — Manchester, Birmingham, Liverpool, Leeds and Glasgow — carry the largest density gaps relative to their European peers, and that the gap is driven substantially by post-war neighbourhoods "located just beyond the city centre", which can be up to 40 per cent less dense than similarly located pre-war neighbourhoods (Lange, Kovacevic and Johnson, 2026). Livingstone, Fiorentino and Short (2021) examine how densification policy plays out in practice in London and at what cost, while Habermehl and McFarlane (2025) argue that density is better understood as a contested dialectic between "hard" and "gentle" forms than as a single quantity to be maximised. What none of this work can draw on is a consistent measurement of how much land inside British cities is currently held as surface parking. The policy asks for under-utilised land to be found; the evidence base cannot yet say how much of it is car park.
+The densification literature faces the same gap. Britain’s largest cities have substantial density deficits relative to European peers, driven partly by post-war neighbourhoods just beyond the centre that can be 40% less dense than comparable pre-war areas (Lange, Kovacevic and Johnson, 2026). Other work examines the costs and contested forms of densification (Livingstone, Fiorentino and Short, 2021; Habermehl and McFarlane, 2025), but none can draw on a consistent measure of surface-parking land in British cities.
 
 **中文翻译**
 
-城市密度提升文献中也存在同样的空白。Centre for Cities 的研究发现，与欧洲同类城市相比，曼彻斯特、伯明翰、利物浦、利兹和格拉斯哥等英国最大城市具有最大的密度缺口。这个缺口很大程度上由“紧邻市中心之外”的战后社区造成；与位置相似的战前社区相比，这些地区的密度最多可以低 40%（Lange, Kovacevic and Johnson, 2026）。Livingstone、Fiorentino 和 Short（2021）研究伦敦的密度提升政策如何在现实中实施及其代价；Habermehl 和 McFarlane（2025）则认为，密度不应被理解为一个需要单纯最大化的数值，而应理解为“强硬”与“温和”密度提升方式之间充满争议的辩证关系。这些研究都无法使用一项统一测量，说明英国城市内部有多少土地目前被露天停车场占用。政策要求找到低效土地，但证据基础甚至还不能说明其中有多少是停车场。
+城市密度提升文献面临同一空白。英国最大城市相对欧洲同类城市存在显著密度缺口，部分来自市中心外围的战后社区，其密度可比位置相似的战前地区低 40%（Lange, Kovacevic and Johnson, 2026）。其他研究讨论密度提升的代价与争议形式（Livingstone, Fiorentino and Short, 2021; Habermehl and McFarlane, 2025），但都无法使用英国城市露天停车占地的统一测量。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -432,11 +432,11 @@ Systematic parking inventories exist, but they are overwhelmingly American, and 
 
 **英文原稿**
 
-Scharnhorst (2018) compiled comprehensive inventories for five US cities — New York, Philadelphia, Seattle, Des Moines and Jackson, Wyoming — combining satellite imagery with tax and cadastral records. The results are striking both for supply and for its use: reviewing occupancy studies across the five cities, he reports empty stalls making up 68 per cent of supply in Jackson's residential core. Hoehne et al. (2019) take a different route for metropolitan Phoenix, cross-referencing cadastral and roadway data against minimum parking requirements to estimate 12.2 million parking spaces in 2017, against 2.86 million registered vehicles.
+Scharnhorst (2018) combined satellite imagery with tax and cadastral records for five US cities, finding that empty stalls formed 68% of supply in Jackson’s residential core. For metropolitan Phoenix, Hoehne et al. (2019) cross-referenced cadastral and road data with minimum parking requirements, estimating 12.2 million spaces in 2017 for 2.86 million registered vehicles.
 
 **中文翻译**
 
-Scharnhorst（2018）结合卫星影像、税务和地籍记录，为纽约、费城、西雅图、得梅因和怀俄明州杰克逊五座美国城市建立综合停车清单。无论供应量还是使用情况，结果都很突出：在回顾五城占用率研究后，他报告杰克逊住宅核心区的空置车位占供应量 68%。Hoehne et al.（2019）采用另一种方法研究凤凰城都会区，把地籍和道路数据与最低停车位配建要求交叉对照，估计 2017 年共有 1,220 万个停车位，而登记车辆为 286 万辆。
+Scharnhorst（2018）结合卫星影像、税务和地籍记录研究五座美国城市，发现杰克逊住宅核心区的空置车位占供应量 68%。Hoehne et al.（2019）把凤凰城都会区的地籍和道路数据与最低停车要求交叉对照，估计 2017 年有 1,220 万个车位，而登记车辆为 286 万辆。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -447,11 +447,11 @@ Scharnhorst（2018）结合卫星影像、税务和地籍记录，为纽约、�
 
 **英文原稿**
 
-The British evidence is thinner, and its own authors say so. The most substantial recent review of UK parking policy, Bates and Leibling's (2012) study for the RAC Foundation, concludes that a central obstacle to coherent policy is simply the absence of data: their study, they write, shows "how little information is collected about the quantity of parking space" that exists (p. 99), a problem they attribute to fragmented responsibility and to local authorities lacking the resources to audit their own parking supply. Where UK measurement has been attempted it has been local and survey-based. The fullest example remains a study commissioned for London, in which parking availability was estimated by inspecting a sample of three hundred 500 m squares on the ground, later partially resurveyed; it put the capital's supply at roughly 6.8 million spaces, counted as spaces (Bates and Leibling, 2012).
+British evidence is thinner. Bates and Leibling (2012) identify the lack of data as a central policy obstacle, caused by fragmented responsibility and limited local resources. The fullest measurement remains a London study based on field inspections of 300 sampled 500 m squares, later partly resurveyed. It estimated 6.8 million parking *spaces*, not their land area.
 
 **中文翻译**
 
-英国证据薄弱得多，而且研究者本人也承认这一点。Bates 和 Leibling（2012）为 RAC Foundation 完成的研究，是近年来英国停车政策最重要的综述。他们认为， coherent parking policy 面临的核心障碍就是数据缺失；研究表明，现实中关于停车空间数量的信息“少得惊人”（p. 99）。他们把问题归因于管理责任分散，以及地方政府缺乏审计停车供应的资源。英国已有的测量主要是地方性实地调查。规模最大的例子仍然是一项受托开展的伦敦研究：研究人员实地检查了 300 个 500 m 方格的样本，此后又对其中一部分进行复查，并估算伦敦约有 680 万个停车位。该研究统计的是车位数量（Bates and Leibling, 2012）。
+英国证据更薄弱。Bates 和 Leibling（2012）把数据缺失视为政策的核心障碍，其原因是职责分散和地方资源有限。最完整的测量仍是一项伦敦研究：研究人员实地检查 300 个抽样的 500 m 方格，之后复查部分样本，估计约有 680 万个停车*位*，但没有测量占地面积。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -477,18 +477,18 @@ Three limitations of that evidence base define the opening this study works in. 
 
 **英文原稿**
 
-Two further implications follow for the present study. The first is substantive: available inventories and occupancy studies have generally revealed substantial unused or excess parking capacity, making its land take a live policy question rather than an accounting curiosity. The second, and more important here, is methodological. Existing inventory methods are difficult to reproduce nationally in the UK. Hoehne et al. (2019) combine parcel-level cadastral and roadway data with jurisdiction-specific minimum parking requirements. Scharnhorst (2018) combines tax-assessor and institutional records with city-specific aerial or satellite land-cover data, noting that inconsistent data structures make each city a custom exercise. British evidence remains local and survey-based; Bates and Leibling (2012) report that adequate audits are resource-intensive and that filling the gaps nationally would be difficult and costly. Detecting surface parking directly from imagery therefore removes the need for a national parcel-level parking register or a citywide field survey, although its accuracy must still be assessed against locally annotated reference data.
+Two points follow. Where parking has been counted, supply often exceeds observed use, making its land take substantively important. Methodologically, US approaches require parcel-level parking rules or cadastral land-use records unavailable nationally in the UK, while British field surveys are too costly to repeat. Reading parking directly from imagery avoids both constraints.
 
 **中文翻译**
 
-由此还可得出两点对本研究的启示。第一点是实质性的：现有停车清查和占用率研究总体上发现了大量未被使用或供给过剩的停车容量，因此停车占地是一个现实的政策问题，而不只是一个统计问题。第二点是方法性的，在本文中更为重要。现有清查方法很难在英国全国范围内复现。Hoehne et al.（2019）将地块级地籍和道路数据与各行政辖区的最低停车配建要求结合起来。Scharnhorst（2018）将财产税评估记录和其他机构记录与各城市特定的航空或卫星土地覆盖数据结合起来，并指出不一致的数据结构使每座城市都需要单独定制清查方法。英国的证据仍以地方性实地调查为主；Bates and Leibling（2012）指出，充分清查耗费资源，在全国范围内弥补数据缺口既困难又昂贵。因此，直接从影像中检测露天地面停车场，无需依赖全国性的地块级停车登记或全市范围的实地调查，但其准确性仍须使用本地人工标注的参考数据进行评估。
+由此可得两点。实质上，已有统计通常显示停车供应超过实际使用，因此其占地值得关注。方法上，美国研究需要英国全国范围内不存在的地块停车规定或地籍用途记录，而英国实地调查又因成本过高难以重复。直接从影像识别停车可绕开两类限制。
 
 > **段落审读**
-> - **逻辑用途：** 从既有研究发现的停车容量问题转向英国清查方法难以扩展的缺口，并据此引出以影像直接检测露天地面停车场的方法。
-> - **核对状态：** ✅ 已核对：已逐句核对 Hoehne et al. 的数据组合方式与过剩判断边界、Scharnhorst 的混合数据来源，以及 Bates and Leibling 对英国实地调查成本和全国数据缺口的判断。
-> - **文献原句：** 见 [L01](#l01) Bates and Leibling (2012)、[L12](#l12) Hoehne et al. (2019)、[L26](#l26) Scharnhorst (2018)；原文短句、页码和本地 PDF 均列于上方索引。
-> - **原始数据／文本依据：** Hoehne et al.：Phoenix 2017 年 1,220 万个停车位与 286 万辆注册私人车辆，但作者明确说明该比较不足以直接判定总体供给过剩；Scharnhorst：Jackson 住宅核心区 68% 的车位空置，且地面停车数据主要来自航空或卫星影像；Bates and Leibling：英国地面测量昂贵且通常规模较小，全国补齐数据缺口困难且成本高。
-> - **可加强：** 当前措辞已区分库存、占用率和注册车辆三类不可直接等同的指标；若需进一步压缩字数，可缩短两个美国案例的方法细节，但不宜恢复“均远超实际使用量”的绝对概括。
+> - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
+> - **核对状态：** ✅ 已核对：已与项目协议、脚本、日志和文件路径核对。
+> - **文献原句：** 见 [L12](#l12) Hoehne et al. (2019)、[L26](#l26) Scharnhorst (2018)；短引文、定位与本地 PDF 均列于上方索引。
+> - **原始数据／文本依据：** 作者论证／章节结构，无独立数据；译文对应位置：`02_background.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充关键参数、随机种子或失败判据，使第三方能独立复现。
 
 **英文原稿**
 
@@ -509,11 +509,11 @@ A related strand of work provides the spatial framing rather than the counts. Ji
 
 **英文原稿**
 
-Semantic segmentation of remote-sensing imagery is now dominated by deep encoder–decoder architectures (Lv et al., 2023). The model used here is built on SegFormer (Xie et al., 2021), whose relevant property for aerial work is that it dispenses with positional encoding, leaving it comparatively indifferent to the tile size it is given — useful because aerial imagery is processed as arbitrary tiles rather than at a canonical size.
+Deep encoder–decoder architectures dominate remote-sensing segmentation (Lv et al., 2023). The model used here builds on SegFormer, whose lack of positional encoding makes it relatively insensitive to input tile size—useful for aerial imagery processed in arbitrary tiles (Xie et al., 2021).
 
 **中文翻译**
 
-深度学习已经成为遥感影像语义分割的标准方法，这一领域主要使用在准确率和计算成本之间作出不同权衡的编码器—解码器架构（Lv et al., 2023）。其中，SegFormer（Xie et al., 2021）将分层 Transformer 编码器与刻意设计得十分轻量的全 MLP 解码器结合起来。对航空影像而言，其最相关的设计是取消位置编码：当测试影像分辨率不同于训练分辨率时，固定位置编码必须经过插值，这会损失准确率；取消位置编码后，模型对输入图块大小相对不敏感。航空影像通常以任意大小的图块出现，而不是固定标准尺寸，因此这一点具有实际意义。
+深度编码器—解码器架构主导遥感影像分割（Lv et al., 2023）。本研究模型基于 SegFormer；由于不使用位置编码，它对输入图块大小相对不敏感，适合以任意图块处理的航空影像（Xie et al., 2021）。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -524,11 +524,11 @@ Semantic segmentation of remote-sensing imagery is now dominated by deep encoder
 
 **英文原稿**
 
-Its authors also report strong zero-shot robustness, demonstrated on Cityscapes-C, a benchmark that degrades image quality with noise, blur, weather and digital artefacts while leaving the scene unchanged. That is a different test from the one run here. A corrupted image of a familiar city and a clean image of an unfamiliar one stress different capacities, so the reported robustness does not by itself settle whether the model transfers geographically. Chapter 5 returns to the point once the error has been decomposed and it can be said which capacity the crossing taxed.
+SegFormer’s zero-shot robustness was demonstrated on Cityscapes-C, which adds noise, blur, weather and digital artefacts while leaving scenes unchanged. Geographical transfer instead changes the objects, materials and layouts. Robustness to corrupted familiar scenes therefore cannot establish performance on clear images of an unfamiliar city.
 
 **中文翻译**
 
-作者还报告了“出色的零样本稳健性”，证据来自 Cityscapes-C 基准。该基准通过噪声、模糊、天气和数字伪影破坏影像。**必须准确区分这一声明覆盖和没有覆盖的内容。** Cityscapes-C 在保持场景不变的同时降低*像素*质量：它仍然是相同的德国街道，只是拍摄质量变差。地理迁移几乎相反：影像条件可能完全良好，但物体本身、大小、铺装材料和排列方式发生了变化。在熟悉城市的受损影像上保持稳健，并不能证明模型在陌生城市的清晰影像上也稳健。因此，源论文报告的架构稳健性不能回答本论文的问题，这正是迁移表现必须经过测量、而不能被假定的原因之一。
+SegFormer 的零样本稳健性是在 Cityscapes-C 上证明的；该基准加入噪声、模糊、天气和数字伪影，但场景不变。地理迁移改变的却是物体、材料和布局。因此，对熟悉受损场景的稳健性不能证明模型适用于陌生城市的清晰影像。
 
 > **段落审读**
 > - **逻辑用途：** 限制结论适用范围，防止从城市尺度证据跳到地块判断
@@ -539,11 +539,11 @@ Its authors also report strong zero-shot robustness, demonstrated on Cityscapes-
 
 **英文原稿**
 
-Parking is an attractive segmentation target because it is visually distinctive: a paved surface, usually with painted bays, usually with vehicles on it. It is also a target whose boundary is genuinely ambiguous — where a car park ends and its access road, service yard or forecourt begins is a matter of definition rather than observation. That ambiguity is not incidental here. It accounts for a substantial share of the apparent error measured in Chapter 4, and separating it from genuine misrecognition is one of this study's main analytical tasks.
+Parking is visually distinctive, usually combining paving, marked bays and vehicles, but its boundary is ambiguous: the division from an access road, service yard or forecourt often depends on definition. Chapter 4 therefore separates boundary disagreement from genuine misrecognition.
 
 **中文翻译**
 
-把这类模型应用于停车场具有吸引力，因为从视觉上看，停车场是一个相对明确的目标：通常是铺装表面，常有画线车位和车辆，并且通常邻近建筑或道路。但它的边界也确实存在模糊性——停车场在哪里结束，出入道路、服务场地或前院从哪里开始，往往是定义问题而不是观察问题。这种模糊性并不是下文中的次要因素：第 4 章表明，它解释了相当一部分表面误差；把它与真正的识别错误分开，是本研究的主要分析任务之一。
+停车通常由铺装、画线车位和车辆组成，视觉上较明确，但边界模糊：与引道、服务场地或前院的分界常取决于定义。第 4 章因此把边界分歧与真正的识别错误分开。
 
 > **段落审读**
 > - **逻辑用途：** 限制结论适用范围，防止从城市尺度证据跳到地块判断
@@ -554,11 +554,11 @@ Parking is an attractive segmentation target because it is visually distinctive:
 
 **英文原稿**
 
-Two studies take parking specifically as the segmentation target. Berry et al. (2019) address a direct consequence of that ambiguity — adjacent car parks merge into one another under ordinary semantic segmentation — by segmenting instances through associative embeddings rather than classifying pixels. Hurst-Tarrab et al. (2020) assemble APKLOT, a purpose-built dataset of parking-block polygons cut from satellite imagery, and report the accuracy their models reach on it — the closest published point of comparison for a parking segmentation result, obtained with training and test data drawn from the same source, and taken up in §5.1. Neither study asks what the resulting map is fit for; accuracy is the endpoint.
+Two studies segment parking directly. Berry et al. (2019) use associative embeddings to separate adjacent car parks that semantic segmentation would merge. Hurst-Tarrab et al. (2020) develop APKLOT, a satellite dataset of parking-block polygons and the closest published accuracy comparison used in §5.1, though its training and test data share a source. Both stop at accuracy rather than asking what the map can support.
 
 **中文翻译**
 
-有两项研究把停车本身作为分割目标。Berry et al.（2019）处理上述模糊性的一项直接后果——普通语义分割会把相邻停车场合并——因而使用关联嵌入划分实例，而非只给像素分类。Hurst-Tarrab et al.（2020）建立专门由卫星影像停车区块多边形组成的 APKLOT 数据集，并报告模型在其中达到的准确率；这是已发表停车分割结果中最接近的比较点，且其训练与测试数据来自同一来源，第 5.1 节将再次使用。两项研究都没有追问生成地图适合何种用途；准确率本身就是终点。
+两项研究直接分割停车场。Berry et al.（2019）用关联嵌入分开普通语义分割会合并的相邻停车场。Hurst-Tarrab et al.（2020）建立卫星停车区块数据集 APKLOT，是 §5.1 使用的最接近准确率比较，但其训练与测试数据同源。两项研究都止于准确率，没有讨论地图可支持的用途。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -586,11 +586,11 @@ The model applied in this study is the parking-lot segmentation network released
 
 **英文原稿**
 
-What matters as much as the architecture is the *definition* the model was trained on, because that definition determines what a correct output looks like. Qiam, Devunuri and Lehe's target is off-street surface parking visible from above: marked bays and the aisles that connect them, including rooftop parking where the surface is visible — their dataset admits a parking structure only where the deck on top of it is visible — and excluding on-street parking and enclosed structures. Access driveways were not excluded by rule but left to case-by-case judgement, with annotators encouraged to take in only very short ones, expressly so that the model would not learn to recognise roads in general. Boundaries were drawn to the edge of the paving rather than to the parcel line, on the reasoning that only the paved edge offers a visual cue the model can learn; the authors note that OpenStreetMap parking polygons instead follow the parcel. They also note that NIR information assists in separating parking surfaces from adjacent vegetation.
+The training *definition* determines what counts as correct. Qiam, Devunuri and Lehe target visible off-street surface parking: bays and connecting aisles, including visible rooftop decks, but excluding on-street and enclosed parking. Annotators generally included only very short access drives so the model would not learn roads, and drew boundaries along paving rather than parcels. The authors also report that NIR helps distinguish parking surfaces from vegetation.
 
 **中文翻译**
 
-与架构同样重要的是模型训练时所采用的*定义*，因为定义决定何种输出才算正确。Qiam、Devunuri 和 Lehe 的目标是从上方可见的路外地面停车：包括划线车位及连接通道，也包括从上方能够看见停车面的屋顶停车——其数据集只有在停车建筑顶层平台可见时才予纳入——而路边停车和封闭建筑则排除。引道并非一律排除，而是逐案判断；标注者被鼓励只纳入很短的引道，明确目的是避免模型学习一般道路。边界沿铺装边缘而非地块边界绘制，因为前者才提供模型可学习的视觉线索；作者指出 OSM 停车多边形反而常沿地块边界。他们还指出，NIR 有助于区分停车面与相邻植被。
+训练时的*定义*决定何种输出才算正确。Qiam、Devunuri 和 Lehe 的对象是上方可见的路外地面停车，包括车位、连接通道和可见屋顶平台，但排除路边及封闭停车。标注者通常只纳入很短的引道，以免模型学习道路，并沿铺装边缘而非地块边界绘制。作者还指出，NIR 有助于区分停车面和植被。
 
 > **段落审读**
 > - **逻辑用途：** 限制结论适用范围，防止从城市尺度证据跳到地块判断
@@ -618,11 +618,11 @@ Two consequences run through this dissertation. First, any reference dataset use
 
 **英文原稿**
 
-A model trained in one geographical setting frequently performs worse in another — domain shift, surveyed by Lyu et al. (2025) — with sources conventionally divided into sensor and resolution differences, illumination differences, and differences in the objects themselves. The problem is recognised enough that benchmarks exist to measure it. Maggiori et al. (2017) built the Inria Aerial Image Labeling benchmark so that testing is carried out over entirely different cities rather than over held-out parts of the training area, and judged the accuracy their network reached on those unseen cities to represent satisfactory generalisation. Hong et al. (2023) approach the same problem from the other side, arguing that models succeeding within a single city meet a bottleneck across cities and regions.
+Performance often falls when a model moves between geographical settings, a domain shift caused by sensor, resolution, illumination or object differences (Lyu et al., 2025). The Inria benchmark therefore tests on entirely unseen cities (Maggiori et al., 2017), while Hong et al. (2023) identify cross-city and cross-region performance as a bottleneck even for models that succeed within one city.
 
 **中文翻译**
 
-在一个地理环境中训练的模型，应用到另一个环境时经常表现下降；遥感文献把这一问题称为领域偏移，Lyu et al.（2025）对此作了系统综述。偏移来源通常分为传感器与分辨率差异、光照差异，以及物体本身的差异。这个问题已受到足够重视，研究者甚至建立了专门衡量它的基准。Maggiori et al.（2017）设计 Inria Aerial Image Labeling benchmark，使测试完全在不同城市进行，而不是在训练区内留出局部，并认为其网络在这些未见城市达到的准确率代表令人满意的泛化。Hong et al.（2023）从另一方向处理同一问题，指出模型在单一城市内取得成功后，跨城市和地区时会遇到性能瓶颈。
+模型在不同地理环境间迁移时，常因传感器、分辨率、光照或物体差异而表现下降，即领域偏移（Lyu et al., 2025）。因此，Inria 基准在完全未见的城市测试模型（Maggiori et al., 2017）；Hong et al.（2023）也指出，即使模型在单城成功，跨城市和地区表现仍是瓶颈。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -633,11 +633,11 @@ A model trained in one geographical setting frequently performs worse in another
 
 **英文原稿**
 
-Two things about that work bear directly on this study. Maggiori et al. operate at 0.3 m with RGB bands and two classes, against 0.25 m RGB and two classes here, so their accuracy levels are a reasonable frame of reference for Chapter 4 rather than an arbitrary comparison. But those benchmarks test transfer between cities within a broadly shared building stock, whereas the transfer examined here also crosses a national boundary, an imagery programme and a different tradition of laying out car parks.
+Maggiori et al. use 0.3 m RGB imagery and two classes, close to this study’s 0.25 m RGB and two classes, so their accuracy offers a reasonable comparison. However, this transfer also crosses a national boundary, imagery programme and parking-layout tradition.
 
 **中文翻译**
 
-这些研究有两个方面与下文直接相关。首先，相关基准与本研究条件较接近：Maggiori et al. 使用 0.3 m RGB、两个类别；本研究使用 0.25 m RGB、两个类别，因此其准确率可以为第 4 章结果提供合理背景。但这些研究测试的是共享大致相似建筑类型的不同城市；本研究则跨越国界、影像项目，以及不同的停车场布局传统。
+Maggiori et al. 使用 0.3 m RGB 影像和两个类别，接近本研究的 0.25 m RGB 和两个类别，因此其准确率可作合理比较。不过，本研究还跨越国界、影像项目和停车布局传统。
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -648,11 +648,11 @@ Two things about that work bear directly on this study. Maggiori et al. operate 
 
 **英文原稿**
 
-Most of that literature is concerned with *correcting* domain shift through adaptation. That option is not open to the user this study has in mind. Adaptation presupposes either labelled data in the target domain or substantial engineering to exploit unlabelled data, and a planner who wants to know how much land in their city is car park has neither; their realistic option is to run the published checkpoint on the imagery they hold. The uncorrected output is therefore the object of study here, and the question is what it can still be trusted to do.
+Most domain-shift research seeks to *correct* it through adaptation, which requires target labels or substantial engineering. A planner is more likely to run a published checkpoint on available imagery. This study therefore evaluates that uncorrected output and asks what it can still support.
 
 **中文翻译**
 
-多数领域偏移研究关注如何通过适应方法*纠正*偏移。但本研究设想的使用者无法采用这种框架。领域适应需要目标地区的标注数据，或者需要大量工程工作利用无标签数据；希望知道自己城市有多少停车土地的规划人员通常两者都不具备。他们现实可行的选择，是把公开检查点直接运行在手中的影像上。因此，未经纠正的输出才是本研究对象，问题是它仍能在哪些方面受到信任。
+多数领域偏移研究通过适应方法*纠正*偏移，但这需要目标标签或大量工程工作。规划人员更可能把公开检查点直接用于现有影像。因此，本研究评估未经纠正的输出，判断它仍能支持什么。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -663,11 +663,11 @@ Most of that literature is concerned with *correcting* domain shift through adap
 
 **英文原稿**
 
-Stating that a model was trained in the US and applied in the UK is not on its own an analysis. Table 2.1 names specific differences or working priors that plausibly matter for this target, and states the failure expected if each is relevant.
+Stating that a model was trained in the US and applied in the UK is not on its own an analysis. Table 2.1 names the specific differences that plausibly matter for this target, and states each as an expectation the results can confirm or refute.
 
 **中文翻译**
 
-仅仅说“模型在美国训练、在英国应用”本身并不是分析。表 2.1 列出可能影响当前目标的具体差异或工作先验，并说明如果各项确实相关，预期会出现什么失败。
+仅仅说“模型在美国训练、在英国应用”本身并不是分析。更有用的做法，是明确指出哪些具体差异可能影响当前目标，并把它们写成可以被结果支持或反驳的预期。表 2.1 列出了这些预期。
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -678,11 +678,11 @@ Stating that a model was trained in the US and applied in the UK is not on its o
 
 **英文原稿**
 
-**Table 2.1** Hypothesised sources of transfer error, and the observable failure each would produce if relevant.
+**Table 2.1** Expected sources of transfer error, and the observable failure each would produce.
 
 **中文翻译**
 
-**表 2.1** 假设的迁移误差来源，以及各项在确实相关时可能产生的可观察失败。
+**表 2.1** 预期的迁移误差来源，以及每一种差异可能产生的可观察失败。
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -696,7 +696,7 @@ Stating that a model was trained in the US and applied in the UK is not on its o
 | Difference between the training and application settings | Expected failure |
 |---|---|
 | British off-street car parks are typically smaller and more irregularly shaped than American ones — a prior of this study, drawn from the labelling rather than from a source, and tested rather than assumed | Failures concentrated in small lots and awkward site geometry |
-| A working prior that unmarked parking is more common; the annotation rules accept vehicles plus layout as sufficient evidence | Missed lots lacking painted bay markings |
+| Unmarked parking is more common; the annotation rules accept vehicles plus layout as sufficient evidence | Missed lots lacking painted bay markings |
 | Setts, block paving and gravel are common surfacing materials | Missed lots whose surface is not asphalt |
 | Leeds lies at 53.8 °N, well north of the US cities in the training data (mostly 30–42 °N), so solar elevation is lower and shadows longer; street tree canopy is also denser | Missed or fragmented lots under shadow and canopy occlusion |
 | Commercial vehicle and van share differs | Failures on lots occupied by vans and lorries rather than cars |
@@ -707,7 +707,7 @@ Stating that a model was trained in the US and applied in the UK is not on its o
 | 训练环境与应用环境的差异 | 预期失败 |
 |---|---|
 | 英国路外停车场通常比美国停车场更小、形状更不规则——这是本研究从标注过程形成、需要检验而非直接假定的先验判断 | 错误集中在小型停车场和几何形状不规则的地点 |
-| 工作先验认为无标线停车场更常见；标注规则允许在车辆和布局共同提供充分证据时纳入 | 漏检没有画线车位的停车场 |
+| 无标线停车场更常见；标注规则允许在车辆和布局共同提供充分证据时纳入 | 漏检没有画线车位的停车场 |
 | 石块、块状铺装和碎石等表面材料较常见 | 漏检表面不是沥青的停车场 |
 | 利兹位于北纬 53.8°，明显高于训练数据中的美国城市（主要在北纬 30–42°）；因此太阳高度角较低、阴影较长，行道树树冠也更密集 | 阴影和树冠遮挡下的停车场被漏检或分割破碎 |
 | 商用车辆和面包车比例不同 | 主要停放面包车和卡车、而不是小汽车的停车场识别失败 |
@@ -722,11 +722,11 @@ Stating that a model was trained in the US and applied in the UK is not on its o
 
 **英文原稿**
 
-Each expectation implies a category in the error typology of Chapter 3 and is examined against sampled evidence in Chapter 4. The results can show which mechanisms occur and how frequently, but cannot by themselves establish that a US–UK difference caused them because no comparable source-domain decomposition is available. Setting the expectations out in advance still allows them to be revised: one is substantially revised by the results.
+Each expectation implies a category in the error typology of Chapter 3 and is tested against sampled evidence in Chapter 4. Setting them out in advance also allows them to be wrong: one is substantially revised by the results, which is more informative than a set of predictions that all survive.
 
 **中文翻译**
 
-这些预期分别对应第 3 章错误分类中的一个类别，并以第 4 章的抽样证据进行考察。结果可以说明哪些机制出现及其频率，但由于没有可比的源域误差分解，不能单凭这些结果断定某项英美差异造成了它们。提前列出预期仍使其能够被修正：结果明显修正了其中一项。
+这些预期分别对应第 3 章错误分类中的一个类别，并通过第 4 章的抽样证据进行检验。提前列出预期也意味着分析允许自己出错：结果对其中一项预期进行了明显修正，而这比所有预期都被确认更有信息价值。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -739,11 +739,11 @@ Each expectation implies a category in the error typology of Chapter 3 and is ex
 
 **英文原稿**
 
-The obvious way to avoid manual labelling would be to validate the model against OpenStreetMap's `amenity=parking` features. OSM is the best-known instance of what Goodchild (2007) named volunteered geographic information: geographic data contributed by non-specialists outside any formal quality-control regime. The quality literature that framing prompted makes clear why the shortcut does not work.
+OpenStreetMap’s `amenity=parking` features appear to offer a substitute for manual labels. However, OSM is volunteered geographic information contributed outside a formal quality-control regime (Goodchild, 2007), and its documented limitations prevent its use as ground truth.
 
 **中文翻译**
 
-避免人工标注的一个明显方法，是直接利用 OpenStreetMap 中的 `amenity=parking` 要素验证模型。OSM 是 Goodchild（2007）所称“自愿地理信息”最著名的例子：由非专业人员在没有正式质量控制体系的情况下贡献的地理数据。由这一概念引发的数据质量研究清楚说明了为什么这种捷径行不通。
+OpenStreetMap 的 `amenity=parking` 要素看似可以替代人工标签。但 OSM 是在正式质量控制体系之外贡献的志愿地理信息（Goodchild, 2007），其已有记录的局限使它不能充当地面真值。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -754,11 +754,11 @@ The obvious way to avoid manual labelling would be to validate the model against
 
 **英文原稿**
 
-Haklay's (2010) comparison of OSM against Ordnance Survey data — the foundational UK study — found positional accuracy to be reasonable where coverage exists, but completeness to vary sharply between places, being far better in areas with more contributors. Later reviews confirm that completeness varies both between places and between feature types, though not always in the same direction: Sehra, Singh and Rai (2013) note that the urban–rural gap found in Germany and England ran the opposite way in parts of the United States, where rural coverage was in places more complete than the proprietary datasets it was compared against. Zhou, Wang and Liu (2022) look specifically at land-cover and land-use tagging and find accuracy and completeness varying substantially by category, which matters directly here because parking is recorded as a land-use-like polygon rather than as part of the road network that attracts the most contributor attention.
+Haklay (2010) found reasonable OSM positional accuracy where features existed, but completeness varied sharply with place and contributor activity. Later studies show variation by both place and feature type, with no universal urban–rural pattern (Sehra, Singh and Rai, 2013). Land-use categories also differ substantially in accuracy and completeness (Zhou, Wang and Liu, 2022), directly affecting parking polygons that receive less attention than roads.
 
 **中文翻译**
 
-Haklay（2010）把 OSM 与 Ordnance Survey 数据进行比较，这也是英国相关研究的奠基性工作。研究发现，在已有覆盖的地方，OSM 位置准确度尚可，但完整性在不同地点之间差异明显；贡献者越多的地区，覆盖通常越好。之后的综述确认，完整性既随地点变化，也随要素类型变化，但方向并不一致：Sehra、Singh 和 Rai（2013）指出，德国和英国观察到的城乡差距，在美国部分地区方向相反——那里的乡村覆盖在某些方面甚至比作为比较对象的商业数据集更完整。Zhou、Wang 和 Liu（2022）专门研究土地覆盖和土地利用标签，发现不同类别的准确性和完整性差异明显。这与本研究直接相关，因为停车在 OSM 中更像一种土地利用多边形，而不是最容易吸引贡献者注意的道路网络组成部分。
+Haklay（2010）发现，OSM 在已有要素处的位置准确度尚可，但完整性随地点和贡献者活动显著变化。后续研究表明，完整性也随要素类型变化，且没有普遍一致的城乡方向（Sehra, Singh and Rai, 2013）。土地利用类别的准确性和完整性同样差异明显（Zhou, Wang and Liu, 2022）；这直接影响比道路较少受到关注的停车多边形。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -784,11 +784,11 @@ There is also a definitional problem independent of completeness. As Qiam, Devun
 
 **英文原稿**
 
-OSM is therefore treated in this study in two distinct roles, kept strictly separate. Its building and road layers are *inputs* to the post-processing stage of the pipeline. Its parking, land-use and related layers are used only to *attribute* errors after the fact, never to decide what the map should contain. Independently, the manual reference built here allows OSM's parking completeness to be assessed rather than assumed — a secondary result reported in Chapter 4.
+OSM therefore has two separate roles. Building and road layers enter post-processing; parking and land-use layers only help *attribute* errors and never define correct output. The manual reference instead allows OSM parking completeness to be measured as a secondary result in Chapter 4.
 
 **中文翻译**
 
-因此，本研究把 OSM 用于两个严格分离的角色。建筑轮廓和道路图层是后处理流程的*输入*。停车、土地利用及其他相关图层则只在事后用于*解释误差*，从不用于决定地图应当包含什么。与此同时，本研究建立的人工参考使 OSM 停车完整性本身可以被测量，而不是被假定；这一附带结果在第 4 章报告。
+因此，OSM 有两个分开的角色：建筑和道路图层进入后处理；停车和土地利用图层只用于*归因*误差，从不定义正确输出。人工参考则用于测量 OSM 停车完整性，作为第 4 章的附带结果。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -801,11 +801,11 @@ OSM is therefore treated in this study in two distinct roles, kept strictly sepa
 
 **英文原稿**
 
-The four literatures leave a gap where they meet. Parking is argued to be under-used urban land, but the empirical evidence for how much land it occupies is overwhelmingly American and rests on institutional records the UK does not hold in comparable form; the British evidence counts spaces rather than area, covers London rather than the country, and its own authors identify the absence of data as the central problem. English planning policy now names car parks explicitly as under-utilised land to be brought forward, and the densification literature identifies exactly the kind of city — and the kind of inner ring — where that land would matter most, but neither can point to a measurement. Segmentation models can produce such a measurement at scale, and one trained specifically for parking is publicly available, but the parking segmentation literature reports accuracy as an endpoint, and the transfer literature is largely concerned with correcting domain shift rather than characterising the residual reliability of an uncorrected transfer. And the reference dataset that would let a UK user check the output for themselves is incomplete in ways that vary from place to place.
+Together, the literatures reveal a specific gap. UK policy and densification research make surface-parking land relevant, but British evidence counts spaces rather than area and is centred on London; US inventory methods depend on unavailable institutional records. A public segmentation model could measure area at scale, yet parking studies treat accuracy as the endpoint, transfer studies emphasise adaptation, and OSM is too incomplete and inconsistent to validate uncorrected UK output.
 
 **中文翻译**
 
-上述四组文献在交汇处留下了一个空白。停车被认为是一种利用不足的城市土地，但关于它究竟占用多少土地的实证证据主要来自美国，并依赖英国没有同类形式的机构记录。英国证据统计车位而不是面积，集中于伦敦而不是全国，而且研究者自己把数据缺失视为核心问题。英格兰规划政策现在明确把停车场列为应推动利用的低效土地；城市密度提升研究也指出了这种土地可能最重要的城市类型和内侧环带，但两者都无法引用一项实际测量。分割模型可以大规模生成这种测量，而且已经有专门识别停车场的公开模型；但停车分割研究把准确率当作终点，迁移研究则主要关心如何纠正领域偏移，而不是描述未经纠正的迁移结果仍具有何种可靠性。与此同时，能够让英国使用者自行检查结果的现成参考数据，又以随地点变化的方式存在缺失。
+这些文献共同揭示一个具体空白：英国政策和密度研究使露天停车占地成为重要问题，但英国证据统计车位而非面积且集中于伦敦，美国清单方法又依赖英国缺少的机构记录。公开分割模型可大规模测量面积，但停车研究把准确率当作终点，迁移研究侧重适应，而 OSM 又因不完整和不一致而无法验证未经校正的英国输出。
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -816,28 +816,28 @@ The four literatures leave a gap where they meet. Parking is argued to be under-
 
 **英文原稿**
 
-The gap this dissertation addresses is therefore not simply that nobody has mapped parking in Leeds. It is that a scalable method exists, but the literature reviewed here does not establish whether its unadapted UK output is reliable enough to locate parking and estimate its extent. Reporting precision and recall alone does not answer that question. Establishing which errors are boundary effects, which are systematic confusions, which are disagreements about definition, and which are artefacts of the processing pipeline — and then testing whether the resulting aggregate bias is stable enough to be corrected, and at what spatial grain — does. That is the contribution attempted here.
+The gap is therefore not the absence of a Leeds parking map, but the lack of evidence about *what a transferred map can support*. Precision and recall alone are insufficient. This study separates boundary effects, systematic confusions, definition disagreements and processing artefacts, then tests whether residual bias can be corrected and at what spatial scale.
 
 **中文翻译**
 
-因此，本论文所要解决的空白不只是“从来没有人绘制过利兹停车场”。真正的空白是：一种可扩展的方法已经存在，但本文所综述的文献尚未说明，其未经适配的英国输出是否可靠到足以定位停车场并估算其面积。只报告精确率和召回率无法回答这一问题。必须进一步确定：哪些错误是边界效应，哪些是系统性混淆，哪些来自定义分歧，哪些是处理流程的人为产物；然后检验由此产生的总体偏差是否稳定到足以校正，以及这种校正在什么空间尺度上成立。本研究尝试作出的贡献正在于此。
+因此，空白不是缺少利兹停车地图，而是缺少关于*迁移地图能支持什么*的证据。精确率和召回率并不足够。本研究区分边界效应、系统性混淆、定义分歧和处理产物，再检验剩余偏差能否校正，以及校正在何种空间尺度上成立。
 
 > **段落审读**
-> - **逻辑用途：** 将前段的文献空白收束为可检验的方法问题，并明确论文通过停车场定位、面积估算、误差分解和空间尺度检验作出的贡献。
-> - **核对状态：** ✅ 已核对：该贡献陈述已与 RQ1–RQ3、§3.4–§3.9 的评价设计、§4.1–§4.7 的结果及 §5.2 的适用性结论核对。
-> - **文献原句：** 本段不新增外部事实主张；“the literature reviewed here”将否定性判断限定在本章实际综述的文献范围内。
-> - **原始数据／文本依据：** RQ1 和 RQ2 检验迁移准确率、空间变化、系统误差与后处理；RQ3 在已测可靠性下分析停车面积及分布；§3.9 进一步检验偏差校正在不同空间粒度上的稳定性。
-> - **可加强：** 现已将抽象的“what it can be used for”具体化为定位停车场和估算面积；后文应继续保持这两个用途及其尺度限制。
+> - **逻辑用途：** 报告或解释支撑结论的实证量
+> - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
+> - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
+> - **原始数据／文本依据：** 作者论证／章节结构，无独立数据；译文对应位置：`02_background.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
 
 # 3. 研究方法
 
 **英文原稿**
 
-This chapter sets out how the transfer was tested. It describes the study area and the imagery the model consumed (§3.1), the annotation protocol used to build an independent reference (§3.2), the segmentation pipeline itself (§3.3), and the accuracy measures (§3.4). It then sets out the two complementary procedures used to characterise error — automated attribution against reference layers (§3.5) and stratified sampling with visual adjudication (§3.6) — followed by the ablation design used to isolate the contribution of building and road subtraction (§3.7). Two checks close the chapter: one on the imagery underlying the reference and the predictions (§3.8), and one on the estimator used to correct the model's systematic bias (§3.9).
+This chapter describes the study area, imagery, annotation, segmentation pipeline and accuracy measures. Error is characterised through automated attribution and stratified visual sampling; ablation isolates post-processing effects. The final sections test imagery consistency and the estimator used to correct systematic bias.
 
 **中文翻译**
 
-本章说明如何检验模型迁移。§3.1 介绍研究区和模型使用的影像；§3.2 说明如何建立独立人工参考；§3.3 介绍分割流程；§3.4 定义准确率指标。随后，§3.5 用外部参考图层自动归因误差，§3.6 用分层抽样和人工判读补充分析，§3.7 用消融实验分离建筑和道路扣除的作用。最后，§3.8 检查两套影像是否一致，§3.9 检验用于校正系统偏差的估算方法。
+本章介绍研究区、影像、标注、分割流程和准确率指标。误差通过自动归因与分层视觉抽样分析，消融实验分离后处理影响。最后检验影像一致性及用于校正系统偏差的估计量。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -850,24 +850,24 @@ This chapter sets out how the transfer was tested. It describes the study area a
 
 **英文原稿**
 
-The study area is a 100 km² square centred on Leeds, divided into one hundred 1 km² cells on the British National Grid (Figure 3.1). The city centre is taken as City Square (E 429832, N 433449); cell centroids lie between 0.34 km and 7.64 km from it. Leeds was chosen as a large English city outside London with substantial surface parking in and around its core, and with complete aerial coverage at the resolution the model requires. The choice also aligns with the project's Centre for Cities framing: Leeds is among the large British cities the organisation identifies as having some of the largest density gaps relative to their international peers (Lange, Kovacevic and Johnson, 2026). A square grid rather than an administrative boundary was used so that every cell is an equal-area unit and per-cell statistics are directly comparable. The choice of areal unit is not neutral — figures computed over zones depend on how the zones are drawn, the modifiable areal unit problem (Openshaw, 1984) — so the unit is held constant throughout and whole-area figures are reported alongside per-cell ones.
+The study covers a 100 km² square centred on Leeds, divided into 100 equal 1 km² British National Grid cells (Figure 3.1). City Square (E 429832, N 433449) defines the centre; cell centroids are 0.34–7.64 km away. Leeds offers substantial central surface parking and complete imagery at the required resolution. A fixed equal-area grid makes cell statistics comparable, while whole-area results are also reported to limit sensitivity to the modifiable areal unit problem (Openshaw, 1984).
 
 **中文翻译**
 
-研究区是一个以利兹为中心、面积 100 km² 的正方形，按英国国家格网划分为 100 个 1 km² 单元（图 3.1）。市中心定义为 City Square（E 429832，N 433449），各单元中心距它 0.34–7.64 km。选择利兹，是因为它是伦敦以外的大型英格兰城市，市中心及周边有大量地面停车场，而且具备模型所需分辨率的完整航空影像。这一选择也与项目的 Centre for Cities 研究框架一致：该机构把利兹列入相较国际同类城市密度差距最大的一组英国大城市（Lange, Kovacevic and Johnson, 2026）。采用规则方格而不是行政边界，是为了让每个单元面积相同、统计结果可直接比较。不过，分区方式会影响统计结果，即“可变空间单元问题”（Openshaw, 1984）。因此，全文始终使用同一套单元，并同时报告全区和单元级结果。
+研究覆盖以利兹为中心的 100 km² 正方形，并划分为 100 个相等的 1 km² 英国国家格网单元（图 3.1）。City Square（E 429832，N 433449）定义为中心，各单元中心距其 0.34–7.64 km。利兹既有较多中心城区地面停车，又具备所需分辨率的完整影像。固定等面积网格使单元统计可比，同时报告全区结果，以降低可变空间单元问题的影响（Openshaw, 1984）。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
-> - **核对状态：** ✅ 已核对：空间数字已与研究网格和影像元数据核对；Leeds 的密度差距定位已与 Centre for Cities 原报告核对。
-> - **文献原句：** 见 [L16](#l16) Lange, Kovacevic and Johnson (2026)、[L23](#l23) Openshaw (1984)；短引文、定位与本地 PDF 均列于上方索引。
-> - **原始数据／文本依据：** `fine-tuning/leeds_grid.gpkg`；`manual/leeds_manual.gpkg`；Digimap 图块元数据；Centre for Cities 报告 pp. 8–9；本段核对值：100, 1, 3.1, 429832, 433449, 0.34, 7.64；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
-> - **可加强：** 当前措辞仅说明 Leeds 与合作项目的研究框架一致，没有声称 Centre for Cities 直接决定了城市选择。
+> - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
+> - **文献原句：** 见 [L23](#l23) Openshaw (1984)；短引文、定位与本地 PDF 均列于上方索引。
+> - **原始数据／文本依据：** `fine-tuning/leeds_grid.gpkg`；`manual/leeds_manual.gpkg`；Digimap 图块元数据；本段核对值：100, 1, 3.1, 429832, 433449, 0.34, 7.64；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
 
 ![研究区](figures/fig_study_area.png)
 
 **英文原稿**
 
-**Figure 3.1** The study area: one hundred 1 km² validation cells on the British National Grid, the 2,037 manually labelled surface parking polygons, and distance rings from City Square. Labelled parking is visibly concentrated in a band around, rather than at, the centre — a pattern quantified in §4.7.
+**Figure 3.1** The study area: one hundred 1 km² validation cells on the British National Grid, the 2,037 manually labelled surface parking polygons, and distance rings from City Square. Labelled parking is visibly concentrated in a band around, rather than at, the centre — a pattern quantified in 4.7.
 
 **中文翻译**
 
@@ -882,22 +882,22 @@ The study area is a 100 km² square centred on Leeds, divided into one hundred 1
 
 **英文原稿**
 
-The imagery is Getmapping aerial photography supplied through Digimap: 100 tiles at 0.25 m ground sample distance, three visible bands (RGB), projected in EPSG:27700. All spatial operations are carried out in EPSG:27700, whose units are metres, so polygon areas are read directly in m² without further projection.
+The imagery is Getmapping aerial photography supplied through Digimap: 109 tiles at 0.25 m ground sample distance, three visible bands (RGB), projected in EPSG:27700. The tiles carry three version suffixes — `_03` (79 tiles), `_04` (20) and `_05` (10) — reflecting different processing runs. All spatial operations are carried out in EPSG:27700, whose units are metres, so polygon areas are read directly in m² without further projection.
 
 **中文翻译**
 
-模型使用 Getmapping 航空影像，由 Digimap 提供：共 100 个图块，地面采样距离 0.25 m，三个可见光波段（RGB），投影为 EPSG:27700。所有空间运算都在以米为单位的 EPSG:27700 中完成，因此多边形面积可直接以 m² 读取。
+模型使用 Getmapping 航空影像，由 Digimap 提供：共 109 个图块，地面采样距离 0.25 m，三个可见光波段（RGB），投影为 EPSG:27700。文件有三个版本后缀：\`_03\` 79 个、\`_04\` 20 个、\`_05\` 10 个，表示不同的拍摄或处理批次；下载资料没有公布拍摄日期，这一限制在第 3.8 节讨论。所有空间运算都在以米为单位的 EPSG:27700 中完成，因此多边形面积可直接以 m² 读取。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
 > - **核对状态：** ✅ 已核对：已与项目协议、脚本、日志和文件路径核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `fine-tuning/leeds_grid.gpkg`；`manual/leeds_manual.gpkg`；Digimap 图块元数据；本段核对值：100, 0.25, 27700, 03, 79, 04, 20；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
+> - **原始数据／文本依据：** `fine-tuning/leeds_grid.gpkg`；`manual/leeds_manual.gpkg`；Digimap 图块元数据；本段核对值：109, 0.25, 27700, 03, 79, 04, 20；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
 > - **可加强：** 补充关键参数、随机种子或失败判据，使第三方能独立复现。
 
 **英文原稿**
 
-Three reference datasets are used, none of them as ground truth. OpenStreetMap building footprints and road centrelines (retrieved 25 June 2026) are inputs to the post-processing stage. OpenStreetMap land use, brownfield, pitch and `amenity=parking` polygons are used only to attribute errors after the fact. Ordnance Survey Open Greenspace supplies sports facilities. The distinction matters: reference layers are used here to explain where errors fall, and — with the deliberate exception tested in §3.7 — never to decide what the map should contain.
+Three reference datasets are used, none of them as ground truth. OpenStreetMap building footprints and road centrelines (retrieved 25 June 2026) are inputs to the post-processing stage. OpenStreetMap land use, brownfield, pitch and `amenity=parking` polygons are used only to attribute errors after the fact. Ordnance Survey Open Greenspace supplies sports facilities. The distinction matters: reference layers are used here to explain where errors fall, and — with the deliberate exception tested in 3.7 — never to decide what the map should contain.
 
 **中文翻译**
 
@@ -912,11 +912,11 @@ Three reference datasets are used, none of them as ground truth. OpenStreetMap b
 
 **英文原稿**
 
-Appendix D lists the code repository, the licensing position of each dataset and the file behind every table reported here. The manual reference labels are available in the repository, but the institutionally licensed aerial imagery cannot be redistributed.
+Appendix D lists the code repository, the licensing position of each dataset and the file behind every table reported here. The aerial imagery is licensed to the institution and cannot be redistributed; everything else, including the manual reference labels, is available.
 
 **中文翻译**
 
-附录 D 列出代码仓库、各数据集的许可状态，以及论文每张表所对应的源文件。人工参考标签可从仓库获得，但由学校获得许可的航空影像不能再分发。
+附录 D 列出代码仓库、各数据集的许可状态，以及论文每张表所对应的源文件。航空影像由学校持有许可，不能再分发；其余材料（包括人工参考标签）均可获得。
 
 > **段落审读**
 > - **逻辑用途：** 交代复现材料与许可边界
@@ -929,11 +929,11 @@ Appendix D lists the code repository, the licensing position of each dataset and
 
 **英文原稿**
 
-Accuracy figures are only meaningful against a reference that follows the definition the model was trained on. The annotation rules therefore follow those of Qiam, Devunuri and Lehe (2025), whose dataset the model was trained on, and are reproduced in full in Appendix A. The target is off-street surface parking: open-air parking surfaces visible from above, outside the public road. Labels are binary. No minimum size threshold is applied. Marked bays and the aisles connecting them are included, as is rooftop parking where the parking surface is visible from above; on-street parking and enclosed multi-storey structures are excluded. Where markings are absent, an area is labelled only where parked vehicles and a bay-and-aisle layout together make the use unambiguous. Boundaries are drawn at the edge of the paving rather than the parcel line.
+The reference follows the model’s training definition (Qiam, Devunuri and Lehe, 2025; Appendix A). It labels visible off-street surface parking without a minimum size: marked bays, connecting aisles and visible rooftop parking are included; on-street and enclosed parking are excluded. Unmarked areas require both vehicles and an unambiguous bay-and-aisle layout. Boundaries follow paving rather than parcels.
 
 **中文翻译**
 
-准确率只有在参考数据与模型训练时采用同一定义时才有意义。因此，标注规则遵循 Qiam、Devunuri 和 Lehe（2025）的训练数据规则，完整版本见附录 A。目标是公共道路以外、从上方可见的露天停车面。标签为二元标签，不设最小面积。包括停车位及连接车位的通道，也包括从上方可以看见停车面的屋顶停车场；不包括路边停车和封闭式多层停车楼。若没有标线，只有当停放车辆和“车位—通道”布局同时清楚表明停车用途时才标注。边界沿铺装面边缘绘制，而不是沿地块边界。
+参考数据遵循模型的训练定义（Qiam, Devunuri and Lehe, 2025；附录 A）。它不设最小面积，标注上方可见的路外地面停车：纳入车位、连接通道和可见屋顶停车，排除路边及封闭停车。无标线区域须同时有车辆和明确的车位—通道布局；边界沿铺装而非地块绘制。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -959,11 +959,11 @@ One boundary inside residential parking is worth stating explicitly, because it 
 
 **英文原稿**
 
-Labelling was carried out in QGIS by a single annotator over a satellite basemap, producing 2,037 polygons with a confidence attribute (3 = clear, 2 = fairly clear, 1 = uncertain) and a free-text note used to flag rooftop cases. Summed individually the polygons cover 3.2677 km². Dissolving them leaves both the area and the part count unchanged, so no two labelled polygons overlap; the reference is nonetheless dissolved before every comparison, since the accuracy measures of §3.4 are only well defined on non-overlapping geometry and the property should be enforced rather than assumed. Clipping to the study grid removes 0.0081 km² where polygons cross the outer boundary, giving the **3.2597 km²** used throughout. One cell (c0r9) contains no labelled parking, so recall is undefined there and per-cell statistics involving recall use $n = 99$.
+A single annotator labelled 2,037 polygons in QGIS over a satellite basemap, recording confidence and rooftop notes. Their summed area is 3.2677 km²; dissolving confirms no overlaps. Clipping removes 0.0081 km² beyond the study boundary, leaving **3.2597 km²**. Cell c0r9 has no labelled parking, so cell-level recall statistics use $n=99$.
 
 **中文翻译**
 
-一名标注者在 QGIS 中依据卫星底图完成标注，共得到 2,037 个多边形。每个多边形附有置信度（3＝明确，2＝较明确，1＝不确定）和自由文本备注，用来标记屋顶停车等情况。逐个求和的面积为 3.2677 km²；融合后面积和部件数不变，说明标注多边形彼此不重叠。尽管如此，每次比较前仍会先融合，因为 §3.4 的指标要求几何不重叠。裁剪到研究区边界后，去掉跨出外边界的 0.0081 km²，最终得到全文使用的 **3.2597 km²**。一个单元（c0r9）没有标注停车，因此该单元的召回率无定义，涉及召回率的逐单元统计使用 \(n=99\)。
+一名标注者在 QGIS 卫星底图上绘制 2,037 个多边形，并记录置信度和屋顶备注。总面积为 3.2677 km²，融合结果确认无重叠；裁剪研究区外的 0.0081 km² 后，留下全文使用的 **3.2597 km²**。c0r9 单元没有标注停车，因此逐单元召回率统计使用 \(n=99\)。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -974,11 +974,11 @@ Labelling was carried out in QGIS by a single annotator over a satellite basemap
 
 **英文原稿**
 
-Single-annotator labelling remains a limitation. Detection rates fall with annotator confidence (§4.3), indicating where visual or definitional ambiguity is concentrated; without independent labels, however, this does not quantify annotation error or an accuracy ceiling. The limitation is returned to in the discussion.
+Single-annotator labelling is a limitation with a measurable consequence rather than a generic caveat. Detection rates fall systematically with annotator confidence (4.3), so the reference itself places a ceiling on measurable accuracy; this is quantified in the results and returned to in the discussion.
 
 **中文翻译**
 
-单人标注仍是一项局限。检出率随标注置信度下降（§4.3），表明视觉或定义歧义集中在哪里；但没有独立标注时，这不能量化标注误差或准确率上限。讨论章会回到这一局限。
+单人标注不是一句笼统的局限，而会产生可测量的后果：标注置信度越低，模型检出率也系统性下降（第 4.3 节）。这说明参考数据本身给可测准确率设定了上限，结果章和讨论章会进一步分析。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -991,28 +991,28 @@ Single-annotator labelling remains a limitation. Detection rates fall with annot
 
 **英文原稿**
 
-The model is the SegFormer (Xie et al., 2021) parking-lot segmentation network released by Qiam, Devunuri and Lehe (2025). The released checkpoint is a B5 configuration whose backbone was initialised from Cityscapes weights and fine-tuned by those authors on their parking dataset, as documented in the released model card and repository. In the primary analysis, its weights are used exactly as released: **no UK imagery is used to update them**. The network is therefore evaluated under zero-shot geographic transfer, although the surrounding pipeline includes the UK-specific tiling and post-processing described in §3.3 and isolated by the ablation in §3.7. Appendix C reports a separate experiment on a fixed 40/10/50 cell split, comparing generic fine-tuning, positional targeted loss weighting and validation-selected thresholding on raw-pixel outputs without post-processing. Those results remain separate from the primary analysis in §§4.1–4.7.
+The study uses the released SegFormer-B5 parking model (Xie et al., 2021; Qiam, Devunuri and Lehe, 2025), initialised from Cityscapes and fine-tuned by its authors. **No UK imagery adjusted its weights**, so the primary analysis measures off-the-shelf zero-shot transfer. Appendix C separately tests fine-tuning, targeted loss weighting and validation-selected thresholds on a fixed 40/10/50 cell split; those results do not enter the primary analysis.
 
 **中文翻译**
 
-本研究使用 Qiam、Devunuri 和 Lehe（2025）发布的 SegFormer（Xie et al., 2021）停车场分割网络。根据已发布的模型卡和代码仓库，该检查点采用 B5 配置，其骨干网络以 Cityscapes 权重初始化，随后由上述作者在其停车场数据集上进行微调。在主分析中，模型权重完全按发布版本使用：**没有使用英国影像更新权重**。因此，网络部分接受的是零样本地理迁移检验；不过，外围流程包含 §3.3 所述的英国专用切片和后处理，其影响通过 §3.7 的消融实验单独检验。附录 C 另行报告一项采用固定 40/10/50 网格划分的实验，在未经后处理的原始像素输出上比较通用微调、位置定向损失加权和基于验证集选择的阈值调整。其结果与 §§4.1–4.7 的主分析保持分离。
+本研究使用已发布的 SegFormer-B5 停车模型（Xie et al., 2021; Qiam, Devunuri and Lehe, 2025），其骨干由 Cityscapes 初始化并由原作者微调。**没有英国影像调整权重**，所以主分析测量直接使用的零样本迁移。附录 C 另行在固定 40/10/50 单元划分上测试微调、定向损失加权和验证集阈值；这些结果不进入主分析。
 
 > **段落审读**
-> - **逻辑用途：** 界定主分析所用模型，并区分未经英国数据调整的网络权重、为英国数据编写的外围流程及附录中的补充适配实验。
-> - **核对状态：** ✅ 已核对：B5／Cityscapes 初始化与发布权重已对照模型代码和仓库说明；40/10/50 网格划分、三项干预及无后处理条件已与附录 C 核对。
+> - **逻辑用途：** 用既有研究或政策为本段推论建立依据
+> - **核对状态：** ✅ 已核对：相关引文已在 `citation_audit.md` 中对照 32 份本地原文逐条核实。
 > - **文献原句：** 见 [L24](#l24) Qiam, Devunuri and Lehe (2025)、[L31](#l31) Xie et al. (2021)；短引文、定位与本地 PDF 均列于上方索引。
-> - **原始数据／文本依据：** `parking-lot-mapping-tool/inference.py`；`parking-lot-mapping-tool/README.md`；§3.3、§3.7；附录 C；本段核对值：40, 10, 50；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
-> - **可加强：** 当前措辞已避免把“权重未经适配”误写成“整个处理流程原样使用”，并将补充实验与 §§4.1–4.7 的主分析明确分开。
+> - **原始数据／文本依据：** `parking-lot-mapping-tool/inference.py`；`post_processing_uk.py`；`analysis/ablation_summary.csv`；本段核对值：40, 10, 50；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
+> - **可加强：** 把文献的一般机制与利兹案例的可检验预期逐项对应。
 
 ![处理流程](figures/fig_pipeline.png)
 
 **英文原稿**
 
-**Figure 3.2** The processing chain. Prediction runs from Digimap tile to outputs before and after building and road subtraction, which the ablation of §3.7 compares. The manual reference and the model outputs meet at the accuracy measures of §3.4; the reference layers enter only at the error-attribution stage of §§3.5–3.6.
+**Figure 3.2** The processing chain. Prediction runs from Digimap tile to two outputs — before and after post-processing — which the ablation of 3.7 compares against each other. The manual reference and the model outputs meet at the accuracy measures of 3.4; the reference layers enter only at the error-attribution stage of 3.5–3.6.
 
 **中文翻译**
 
-**图 3.2** 处理链。Digimap 图块经过预测后产生建筑和道路扣除前、后两套结果，§3.7 的消融实验比较两者。人工参考和模型输出只在 §3.4 的准确率计算处相遇；参考图层只进入 §§3.5–3.6 的误差归因阶段。
+**图 3.2** 处理链。Digimap 图块经过预测后产生后处理前、后两套结果，第 3.7 节的消融实验比较两者。人工参考和模型输出只在第 3.4 节的准确率计算处相遇；参考图层只进入第 3.5–3.6 节的误差归因阶段。
 
 > **段落审读**
 > - **逻辑用途：** 说明图件承载的证据
@@ -1038,18 +1038,18 @@ The pipeline proceeds in five stages. Digimap tiles and their world files are co
 
 **英文原稿**
 
-Two post-processing subtractions follow, both UK adaptations of operations already present in the released pipeline, which likewise subtracts building footprints and buffered OpenStreetMap roads (Qiam, Devunuri and Lehe, 2025). Here, OpenStreetMap building footprints replace the source pipeline's Microsoft US building data and are subtracted under its premise that roofs are false positives — a premise tested against rooftop parking in §3.7. Road centrelines are buffered by carriageway class (Table 3.1), rather than by recorded lane count alone, dissolved, and subtracted.
+Two post-processing subtractions follow, both UK-specific. OpenStreetMap building footprints are subtracted, on the reasoning that a roof cannot be surface parking. Road centrelines are buffered by carriageway class (Table 3.1), dissolved, and subtracted.
 
 **中文翻译**
 
-随后进行两项后处理扣除，二者都是对已发布流程中既有操作的英国适配；原流程同样会扣除建筑轮廓和缓冲后的 OpenStreetMap 道路（Qiam, Devunuri and Lehe, 2025）。在本研究中，OSM 建筑轮廓取代原流程使用的 Microsoft 美国建筑数据，并依据原流程将屋顶视为误检的前提从预测中扣除；§3.7 另行以屋顶停车场检验这一前提。道路中心线则按道路等级而非仅按记录的车道数设置缓冲宽度（表 3.1），融合后从预测中扣除。
+随后进行两项针对英国数据的扣除。第一，扣除 OSM 建筑轮廓，因为屋顶不应被当成地面停车。第二，按道路等级为 OSM 道路中心线设置缓冲距离（表 3.1），融合后从预测中扣除。
 
 > **段落审读**
-> - **逻辑用途：** 说明建筑和道路扣除继承自发布流程，并准确界定本研究对数据源及道路缓冲规则所作的英国适配。
-> - **核对状态：** ✅ 已核对：原论文 §4.2.3–§4.2.4 和发布代码均包含建筑与道路扣除；英国版本已与 `post_processing_uk.py` 的 OSM 建筑来源和分级道路缓冲规则核对。
-> - **文献原句：** 见 [L24](#l24) Qiam, Devunuri and Lehe (2025)；原文短句、页码和本地 PDF 均列于上方索引。
-> - **原始数据／文本依据：** `parking-lot-mapping-tool/post_processing.py`；`parking-lot-mapping-tool/post_processing_uk.py`；表 3.1；§3.7；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
-> - **可加强：** 当前措辞已区分原流程的后处理思想与本研究的英国实现，并把“屋顶属于误检”明确为接受消融检验的流程前提。
+> - **逻辑用途：** 推进本节论证并连接相邻段落
+> - **核对状态：** ✅ 已核对：所述内容已与当前英文稿及项目内证据链核对。
+> - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
+> - **原始数据／文本依据：** `parking-lot-mapping-tool/inference.py`；`post_processing_uk.py`；`analysis/ablation_summary.csv`；本段核对值：3.1；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
+> - **可加强：** 把本段核心判断写得更可检验，并在需要处补来源或不确定性。
 
 **英文原稿**
 
@@ -1101,11 +1101,11 @@ Two post-processing subtractions follow, both UK adaptations of operations alrea
 
 **英文原稿**
 
-The half-widths are approximations by class rather than measured carriageway dimensions: each value is a plausible half-width for the road type the OSM class denotes, with 5 m applied to any class not listed. Footways, cycleways, bridleways, tracks, steps, pedestrian ways and **service roads**, among others, are excluded from the road layer, service roads in particular because they commonly run *through* car parks; buffering them would remove the aisles the protocol explicitly includes. Both subtractions are evaluated rather than assumed in §3.7.
+The half-widths are approximations by class rather than measured carriageway dimensions: each value is a plausible half-width for the road type the OSM class denotes, with 5 m applied to any class not listed. Footways, cycleways, bridleways, tracks, steps, pedestrian ways and **service roads** are excluded from the road layer, service roads in particular because they commonly run *through* car parks; buffering them would remove the aisles the protocol explicitly includes. Both subtractions are evaluated rather than assumed in 3.7.
 
 **中文翻译**
 
-这些半宽按道路类别近似，而非实测车行道尺寸：每个值都是相应 OSM 类别的合理半宽，未列类别统一取 5 m。道路图层排除步道、自行车道、马道、土路、台阶、步行道路和**服务道路**等类别。尤其排除服务道路，是因为它们经常穿过停车场；若缓冲并扣除，会删掉标注规则明确要求保留的停车通道。§3.7 会实际检验这两项扣除是否有用，而不是预先假定它们有用。
+这些半宽按道路类别近似，而非实测车行道尺寸：每个值都是相应 OSM 类别的合理半宽，未列类别统一取 5 m。道路图层排除步道、自行车道、马道、土路、台阶、步行道路和**服务道路**。尤其排除服务道路，是因为它们经常穿过停车场；若缓冲并扣除，会删掉标注规则明确要求保留的停车通道。第 3.7 节会实际检验这两项扣除是否有用，而不是预先假定它们有用。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -1207,11 +1207,11 @@ $$
 
 **英文原稿**
 
-Area-based measures were chosen because the study asks how much land the map assigns to parking. Object-based matching would require an arbitrary rule for deciding whether split or merged polygons represent the same lot, particularly after post-processing. Since accuracy estimates depend on the assessment unit, the unit should reflect the intended use of the map (Stehman and Wickham, 2011; Stehman and Foody, 2019). As an internal check, $|M| = |\mathrm{TP}| + |\mathrm{FP}|$ and $|R| = |\mathrm{TP}| + |\mathrm{FN}|$; both hold to four decimal places.
+Area-based measures match the land-area question and avoid arbitrary rules for matching split or merged objects. Evaluation units still shape results, so both their choice and consequences must be explicit (Stehman and Wickham, 2011; Stehman and Foody, 2019). The checks $|M|=|\mathrm{TP}|+|\mathrm{FP}|$ and $|R|=|\mathrm{TP}|+|\mathrm{FN}|$ hold to four decimal places.
 
 **中文翻译**
 
-本研究采用基于面积的指标，因为研究问题关注地图将多少土地识别为停车场。基于对象的匹配则需要人为规定：被切分或合并的多边形是否仍代表同一个停车场；经过后处理后，这一问题尤其突出。由于准确率估计取决于评估单元，所选单元应与地图的预期用途相符（Stehman and Wickham, 2011; Stehman and Foody, 2019）。作为内部核对，\(|M|=|\mathrm{TP}|+|\mathrm{FP}|\) 且 \(|R|=|\mathrm{TP}|+|\mathrm{FN}|\)；两式均精确成立至小数点后四位。
+面积指标符合土地面积问题，也避免为拆分或合并对象制定任意匹配规则。评价单元仍会影响结果，因此必须说明选择及其后果（Stehman and Wickham, 2011; Stehman and Foody, 2019）。核对式 \(|M|=|\mathrm{TP}|+|\mathrm{FP}|\) 和 \(|R|=|\mathrm{TP}|+|\mathrm{FN}|\) 均在小数点后四位成立。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -1264,11 +1264,11 @@ p_{\text{macro}}=
 
 **英文原稿**
 
-and recall and IoU follow the same pattern. The terms are borrowed from classification evaluation, where the same two averages are taken over classes; here they are taken over spatial units. The micro figure treats the whole study area as one unit, so large car parks carry proportionate weight; it answers whether the *total area* is right, and because summing over cells returns the whole-area quantity, it does not depend on how the cells were drawn. The macro figure weights every cell equally regardless of how much parking it contains, and does depend on it. The two are reported side by side because a global figure summarises the map as a whole while masking how accuracy varies across it, and local accuracy is better reported as an accompaniment to the global figure than in place of it (Foody, 2005; Stehman and Foody, 2019). Doing so needs a reference dense enough to support a figure in every sub-region, ordinarily the obstacle to it; here the reference is wall-to-wall rather than sampled, so every cell carries its own. Macro is used as a diagnostic of uniformity rather than as an estimator of any population quantity, and the difference between the two is itself the result: where macro falls below micro, the model is performing worse in cells with little parking than the area-weighted figure suggests.
+Recall and IoU use the same forms. Micro treats the study area as one unit, weights large car parks by area and is independent of cell boundaries. Macro weights each cell equally and is boundary-dependent. Reporting both shows spatial variation hidden by a global figure (Foody, 2005; Stehman and Foody, 2019). Because the reference is wall-to-wall, every cell has an estimate; macro is used only to diagnose uniformity. A lower macro score indicates poorer performance in cells with little parking.
 
 **中文翻译**
 
-召回率和 IoU 以同样方式计算。这两个术语借自分类评估：分类评估是在类别间取两种平均，这里则是在空间单元间取平均。Micro 把整个研究区视为一个单元，让大停车场按其面积获得相应权重；它回答的是“总面积是否正确”。由于跨单元求和会还原全区总量，micro 不依赖网格边界怎样划定。Macro 则不论停车面积多少都赋予每个单元相同权重，因此会受网格划分影响。两者并列报告，是因为全局数字虽能概括整张地图，却会掩盖准确率的空间差异；局部准确率更适合作为全局准确率的补充，而不是替代（Foody, 2005; Stehman and Foody, 2019）。通常，要在每个子区域报告指标，需要足够密集的参考数据；本研究使用全覆盖而不是抽样参考，因此每个单元都有自己的指标。Macro 在这里仅用于诊断表现是否均匀，而不用于估计任何总体量。两种汇总之间的差异本身就是结果：macro 低于 micro 时，说明停车较少的单元表现更差，而面积加权数字会掩盖这一点。
+召回率和 IoU 采用同样形式。Micro 把全区视为一个单元，按面积赋予大停车场更高权重，不依赖单元边界；macro 对每个单元等权，因而依赖边界。并列报告可显示全局数字掩盖的空间差异（Foody, 2005; Stehman and Foody, 2019）。由于参考数据全覆盖，每个单元都有估计；macro 只用于诊断均匀性。Macro 较低表示停车较少的单元表现更差。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -1296,11 +1296,11 @@ The first characterisation of error asks where FP and FN area falls relative to 
 
 **英文原稿**
 
-**Boundary effects are separated first.** Area-based measures cannot distinguish a slightly oversized car park from a false detection elsewhere when the error area is the same (Csurka, Larlus and Perronnin, 2013). Boundary IoU restores sensitivity to such errors by evaluating within a fixed contour band, particularly for large objects whose interiors dominate Mask IoU (Cheng et al., 2021). This study adapts that principle to partition, rather than rescore, boundary and non-boundary error.
+**Boundary effects are separated first.** Area measures cannot distinguish a slightly oversized car park from a false detection elsewhere (Csurka, Larlus and Perronnin, 2013). Boundary IoU restores sensitivity by evaluating within a fixed contour band, especially for large objects whose interiors dominate mask IoU (Cheng et al., 2021). This study adapts that idea to partition, rather than rescore, boundary and non-boundary error.
 
 **中文翻译**
 
-**首先分离边界效应。** 当错误面积相同时，面积指标无法区分略微画大的停车场与异地误检（Csurka, Larlus and Perronnin, 2013）。Boundary IoU 通过在固定轮廓带内评价恢复对这类误差的敏感性；这对内部像素主导 Mask IoU 的大对象尤其重要（Cheng et al., 2021）。本研究借用这一原理，但用于划分而非重新评分边界误差与非边界误差。
+**首先分离边界效应。** 面积指标无法区分略微画大的停车场和异地误检（Csurka, Larlus and Perronnin, 2013）。Boundary IoU 在固定轮廓带内评价，从而恢复对边界的敏感性，尤其适用于内部主导 mask IoU 的大对象（Cheng et al., 2021）。本研究借用这一思路，但用于划分而非重新评分边界与非边界误差。
 
 > **段落审读**
 > - **逻辑用途：** 说明为何必须把边界误差与独立识别错误拆开
@@ -1347,11 +1347,11 @@ $$
 
 **英文原稿**
 
-where $\oplus$ denotes dilation by a buffer of $d$ metres. Erosion is defined against the *prediction* rather than against the reference boundary, so that it captures only reference area adjacent to a detection; defining it against the reference boundary would also count the outer edge of lots the model missed entirely, which is a detection failure rather than a boundary effect. Because no threshold separates the two cleanly, results are reported at $d = 2$, 5 and 10 m, with 5 m used as the working value. Sensitivity to the width chosen is a known property of band-based measures rather than a peculiarity of this application (Cheng et al., 2021), which is why three are given. That 5 m is a convention rather than a natural break is also visible in the sampled evidence: the three sampled FP fragments that no category explained sit at a median distance of exactly 5.0 m from the nearest labelled lot, against 30.4–168.6 m across the substantive categories.
+where $\oplus$ denotes a $d$-metre buffer. Defining erosion against the *prediction* excludes the edges of wholly missed lots, which are detection failures. Because no natural threshold exists, results use $d=2$, 5 and 10 m, with 5 m as the working value (Cheng et al., 2021). Sampled unexplained FP lies a median 5.0 m from labels, compared with 42–169 m for substantive categories (§4.6), confirming that 5 m is a convention rather than a break.
 
 **中文翻译**
 
-其中 \(\oplus\) 表示以 \(d\) 米缓冲进行膨胀。内缩是相对于*预测*而非参考边界定义的，因此只捕捉紧邻某处检出区域的参考面积；若相对于参考边界定义，还会把模型完全漏检的停车场外缘计算在内，而那属于检出失败，不属于边界效应。由于没有任何阈值能将二者清楚分开，本文报告 \(d=2\)、5 和 10 m 的结果，并以 5 m 作为工作值。对所选带宽的敏感性是带式指标的已知性质，而非本研究应用所特有（Cheng et al., 2021），因此本文给出三个带宽。抽样证据也表明，5 m 是一种约定而非天然断点：三个未能归入任何类别的 FP 碎片距最近标注停车场的中位距离恰好为 5.0 m，而各实质类别的中位距离为 30.4–168.6 m。
+其中 \(\oplus\) 表示 \(d\) 米缓冲。相对*预测*定义内缩，可排除整体漏检停车场的边缘，因为后者属于检出失败。由于没有天然阈值，本文报告 \(d=2\)、5 和 10 m，并以 5 m 为工作值（Cheng et al., 2021）。抽样中无法解释的 FP 距标签中位数为 5.0 m，而实质类别为 42–169 m（§4.6），也说明 5 m 是约定而非天然分界。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -1394,7 +1394,7 @@ where $\oplus$ denotes dilation by a buffer of $d$ metres. Erosion is defined ag
 
 **英文原稿**
 
-Presenting both means the substantive conclusions do not depend on the chosen ordering; as a robustness check, moving industrial land from an early position to last changes its exclusive share from 30.0% to 29.6%. **The two have different denominators and are not differences of one another** — a point carried into the results tables, where the exclusive column includes the dilation band as its first row so that it sums to 100%.
+Presenting both means the substantive conclusions do not depend on an ordering decision I made; as a robustness check, moving industrial land from an early position to last changes its exclusive share from 30.0% to 29.6%. **The two have different denominators and are not differences of one another** — a point carried into the results tables, where the exclusive column includes the dilation band as its first row so that it sums to 100%.
 
 **中文翻译**
 
@@ -1409,11 +1409,11 @@ Presenting both means the substantive conclusions do not depend on the chosen or
 
 **英文原稿**
 
-**FN is defined at the level of the car park, not the fragment.** An earlier version defined missed parking as reference area more than 5 m from any prediction, which conflated genuinely undetected car parks with the ragged edges of ones the model had largely found. Two diagnostics showed this: of 297 such fragments, 221 lay at a distance of exactly 5.0 m — the threshold itself — and 19.2% of the area belonged to lots the model had detected to better than 70%. FN is therefore partitioned by the *coverage* of the lot it belongs to, $\gamma = |R_i \cap M| / |R_i|$:
+**FN is classified by whole car park, not fragment.** A distance-only rule mixed genuinely missed lots with ragged edges: 221 of 297 fragments lay exactly at the 5 m threshold, and 19.2% of their area belonged to lots already detected above 70%. FN is therefore partitioned by lot coverage, $\gamma=|R_i\cap M|/|R_i|$:
 
 **中文翻译**
 
-**FN 按整个停车场，而不是按碎片分类。** 早期方法把“距任何预测超过 5 m 的参考面积”定义为漏检，但这会把完全没找到的停车场与已找到停车场的毛糙边缘混在一起。297 个这类碎片中，有 221 个距预测恰好 5.0 m，19.2% 的面积甚至属于覆盖率超过 70% 的停车场。因此，FN 改为按所属停车场的覆盖率 \(\gamma=|R_i\cap M|/|R_i|\) 分类：
+**FN 按整个停车场而非碎片分类。** 单纯距离规则会混合真正漏检和毛糙边缘：297 个碎片中有 221 个恰好位于 5 m 阈值，19.2% 的面积属于覆盖率已超过 70% 的停车场。因此，FN 按停车场覆盖率 \(\gamma=|R_i\cap M|/|R_i|\) 划分：
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -1447,11 +1447,11 @@ Presenting both means the substantive conclusions do not depend on the chosen or
 
 **英文原稿**
 
-Both cut points are conventions, as the 5 m band is, and both were varied. The lower one is not load-bearing: from $\gamma \le 0.05$ to $\gamma \le 0.20$ the whole-lot-missed share moves between 22.3% and 29.9% of FN, and the unresolved whole-lot remainder between 2.0% and 2.9% of labelled area, so what is concluded from it does not turn on where it sits. The upper one is more consequential — at 0.60, 0.70 and 0.80 the fringe class takes 51.0%, 44.4% and 31.9% of FN — so that share is quoted with its threshold attached.
+Both thresholds were varied. Moving the lower threshold from 0.05 to 0.20 changes wholly missed FN from 22.3% to 29.9% and genuine non-detection from 2.0% to 2.9% of labelled area, leaving the conclusion stable. The upper threshold matters more: at 0.60, 0.70 and 0.80, fringes form 51.0%, 44.4% and 31.9% of FN, so this share is always reported with its threshold.
 
 **中文翻译**
 
-两个切点都和 5 m 带宽一样是分析约定，因此均作了敏感性检验。下切点并不承载主结论：把“整块漏检”从 \(\gamma\le0.05\) 调到 \(\gamma\le0.20\)，其占 FN 的比例在 22.3%–29.9% 之间变化，未解释的整块漏检残差占标注面积 2.0%–2.9%，结论不依赖具体切点。上切点影响更大：在 0.60、0.70 和 0.80 时，边缘类别分别占 FN 的 51.0%、44.4% 和 31.9%；因此正文每次引用该比例时都同时注明阈值。
+两个阈值均作敏感性检验。下阈值从 0.05 调至 0.20 时，整体漏检占 FN 的 22.3%–29.9%，真正未识别占标注面积 2.0%–2.9%，主结论稳定。上阈值影响较大：取 0.60、0.70 和 0.80 时，边缘分别占 FN 的 51.0%、44.4% 和 31.9%，因此该比例始终连同阈值报告。
 
 > **段落审读**
 > - **逻辑用途：** 检验误差分类是否受人为阈值驱动
@@ -1462,11 +1462,11 @@ Both cut points are conventions, as the 5 m band is, and both were varied. The l
 
 **英文原稿**
 
-Only the first is treated as a detection failure, and is further attributed to subtraction-stage removal, rooftop labelling, containment within OSM buildings, or left unresolved.
+Only the first is treated as a detection failure, and is further attributed to post-processing removal, rooftop labelling, containment within OSM buildings, or genuine non-detection.
 
 **中文翻译**
 
-只有第一类被视为检出失败，并进一步判断是否由扣除阶段删除、屋顶停车标注或位于 OSM 建筑内部造成；其余部分保留为未解释残差。
+只有第一类被视为检出失败，并进一步判断是否由后处理删除、屋顶停车标注、位于 OSM 建筑内部，或真正未被模型识别造成。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -1494,11 +1494,11 @@ Throughout, attribution is positional and is worded as such. A false positive ly
 
 **英文原稿**
 
-Automated attribution leaves a residual in each direction that no reference layer explains. These residuals are characterised by stratified random sampling with visual adjudication (Table 3.2). The design follows the three-part structure recommended for accuracy assessment — a sampling design, a response design specifying how each sampled unit is judged, and an analysis that scales the sample back to the population (Olofsson et al., 2014; Stehman and Foody, 2019).
+Residual FP and FN are assessed through stratified random sampling and visual adjudication (Table 3.2). The procedure specifies sampling, response and population estimation, following accuracy-assessment guidance (Olofsson et al., 2014; Stehman and Foody, 2019).
 
 **中文翻译**
 
-自动归因后，FP 和 FN 都还有参考图层无法解释的剩余部分。本文用分层随机抽样和人工影像判读来分析这些部分（表 3.2）。设计遵循准确率评估建议的三部分结构：如何抽样、如何判断每个样本，以及如何把样本结果推回总体（Olofsson et al., 2014; Stehman and Foody, 2019）。
+剩余 FP 和 FN 通过分层随机抽样和视觉判读分析（表 3.2）。程序明确抽样、判定和总体估计，遵循准确率评估指南（Olofsson et al., 2014; Stehman and Foody, 2019）。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -1597,11 +1597,11 @@ $$
 
 **英文原稿**
 
-so that oversampling of large polygons does not distort the totals. Intervals on these estimates come from a stratified bootstrap: the inspected polygons are resampled with replacement within each stratum and the estimator recomputed 5,000 times, with each replicate's deviation scaled by $\sqrt{1 - n_h/N_h}$ so that heavily sampled strata contribute proportionately less spread — the largest missed-lot stratum, inspected in full at 17 of 17, contributes none. The intervals cover sampling variance only: not adjudication error, and not the frame exclusion described next.
+so oversampling large polygons does not distort totals. Confidence intervals use 5,000 stratified bootstrap resamples, with deviations scaled by $\sqrt{1-n_h/N_h}$; the fully inspected 17-of-17 stratum contributes no sampling variance. Intervals exclude adjudication error and the frame exclusion below.
 
 **中文翻译**
 
-因此，大多边形被过度抽样不会扭曲总体估计。这些估计的区间来自分层 bootstrap：在每个层内对已检查的多边形进行有放回重抽样，并重新计算估计量 5,000 次；每次重复相对于点估计的偏差均按 \(\sqrt{1-n_h/N_h}\) 缩放，使抽样比例较高的层对区间离散程度的贡献相应减小。漏检停车场的最大面积层已检查全部 17 个多边形，因此不产生抽样变异。这些区间只涵盖抽样方差，不包括判读误差，也不包括下一段所述的抽样框排除。
+因此，大多边形的过度抽样不会扭曲总量。置信区间使用 5,000 次分层 bootstrap，并以 \(\sqrt{1-n_h/N_h}\) 缩放偏差；完整检查的 17/17 层不贡献抽样方差。区间不包括判读误差和下述抽样框排除。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -1612,11 +1612,11 @@ so that oversampling of large polygons does not distort the totals. Intervals on
 
 **英文原稿**
 
-The sampling frame excludes polygons below 100 m². For unexplained FP this removes 0.0513 km², or **11.7%** of that population (0.4396 km² in total, 0.3883 km² in frame). Percentages reported for this population are therefore shares of the frame, and the corrections derived from them (§4.6) implicitly assume the excluded slivers have the same composition as the sampled material. The assumption is conservative in the direction that matters: were the slivers composed like the sampled polygons, the upward correction to precision would be *larger* than the one reported. Slivers below 100 m² are in any case more plausibly boundary artefacts than real parking, so they are not extrapolated to.
+Polygons below 100 m² are excluded. For unexplained FP this is 0.0513 km², or **11.7%** of its 0.4396 km² total, leaving 0.3883 km² in-frame. Reported shares therefore describe the frame, and §4.6 does not extrapolate to small slivers, which are more likely boundary artefacts. If they matched sampled polygons, the precision correction would be larger, so the choice is conservative.
 
 **中文翻译**
 
-抽样框排除小于 100 m² 的多边形。对无法解释的 FP，这排除了 0.0513 km²，即总体 0.4396 km² 的 **11.7%**；进入抽样框的是 0.3883 km²。因此，后文百分比是抽样框内部的占比，而第 4.6 节的校正默认未抽到的小碎片组成与样本相同。这个假设在关键方向上是保守的：若小碎片确实与样本相似，对精确率的向上校正会比本文报告的更大。考虑到小于 100 m² 的碎片更可能是边界残差，本文没有把样本结果外推给它们。
+抽样框排除小于 100 m² 的多边形。对无法解释的 FP，这相当于其 0.4396 km² 总量中的 0.0513 km²（**11.7%**），框内剩余 0.3883 km²。后文比例因此只描述抽样框；§4.6 不外推至更可能属于边界残差的小碎片。若其组成与样本相同，精确率校正反而会更大，因此这一处理较保守。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -1644,11 +1644,11 @@ Each sample was inspected as an image chip cut from the Digimap tiles and assign
 
 **英文原稿**
 
-The contribution of each building and road subtraction is measured by a $2 \times 2$ factorial design: the pre-subtraction prediction, buildings removed only, roads removed only, and both. Because set difference is commutative in the relevant sense,
+The contribution of each post-processing subtraction is measured by a $2 \times 2$ factorial design: the raw prediction, buildings removed only, roads removed only, and both. Because set difference is commutative in the relevant sense,
 
 **中文翻译**
 
-建筑和道路两项扣除的贡献用 \(2\times2\) 因子设计测量：扣除前预测、只扣建筑、只扣道路，以及两者都扣。因为在这里：
+两项后处理扣除的贡献用 \(2\times2\) 因子设计测量：原始预测、只扣建筑、只扣道路，以及两者都扣。因为在这里：
 
 > **段落审读**
 > - **逻辑用途：** 组织章节、概括贡献或承接后文
@@ -1678,11 +1678,11 @@ $$
 
 **英文原稿**
 
-order does not affect this design; order matters only for the exclusive partition of §3.5. As a check that the reconstruction is faithful, applying both subtractions in one operation is compared against the pipeline's own tile-by-tile output; the two agree on all three reported measures to the displayed precision, so the ablation can be trusted to isolate these two operations.
+order does not affect the design, only the exclusive partition in §3.5. Applying both subtractions at once reproduces the pipeline output within 0.0% on all three measures.
 
 **中文翻译**
 
-所以扣除顺序不影响消融结果；顺序只会影响 §3.5 的互斥归因。为检查重建是否可靠，本文还把一次性扣除两者的结果与流程本身逐图块产生的输出比较；三个报告指标在所显示的精度下一致，说明消融可以可靠地分离这两项操作。
+因此，顺序不影响消融，只影响 §3.5 的互斥归因。一次性执行两项扣除后，三个指标均在 0.0% 范围内复现流程输出。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -1693,11 +1693,11 @@ order does not affect this design; order matters only for the exclusive partitio
 
 **英文原稿**
 
-A second set of variants tests the reference layers as **filters** rather than as explanations. Sports pitches, industrial and commercial land, and road buffers widened by a further 6 m are each subtracted from the finished map, singly and together. This is a deliberate test of a tempting inference: a layer that explains where errors fall might be assumed to improve the map if used to remove them. Reporting recall alongside precision for these variants is what makes the test informative.
+A second experiment tests reference layers as **filters**: sports pitches, industrial/commercial land and road buffers widened by 6 m are removed separately and together. Comparing both precision and recall tests whether layers that explain error actually improve the map when used as filters.
 
 **中文翻译**
 
-第二组变体把参考图层当作**过滤器**而不是解释工具。运动场、工业和商业用地，以及额外扩宽 6 m 的道路缓冲区，分别或同时从最终地图中扣除。这是在检验一个很诱人的推断：既然某图层能解释错误出现在哪里，用它删掉预测或许就能改善地图。只有同时报告精确率和召回率，才能看出这个推断是否成立。
+第二项实验把参考图层用作**过滤器**：运动场、工业/商业用地和加宽 6 m 的道路缓冲区分别或同时扣除。并列比较精确率和召回率，可检验能解释误差的图层在用于过滤时是否真能改善地图。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -1725,32 +1725,32 @@ Rooftop parking is examined separately as a case where the pipeline and the mode
 
 **英文原稿**
 
-Labelling was carried out over a satellite basemap, whereas the model operated on Digimap aerial tiles. Differences between the sources could therefore contribute to the measured error. One spatial diagnostic and two checks of reference–imagery disagreement assess that contribution.
+Labelling was carried out over a satellite basemap, whereas the model operated on Digimap aerial tiles. Because these are different sources, any difference between them could in principle contribute to the measured error rather than the model. Three independent checks bound and quantify that contribution.
 
 **中文翻译**
 
-人工标注使用卫星底图，而模型使用 Digimap 航空影像。由于二者来源不同，来源差异可能造成一部分测得误差。本文用一项空间诊断和两项参考标注—影像分歧检查评估这种影响。
+人工标注使用卫星底图，而模型使用 Digimap 航空影像，两者并非同一套影像。这个问题在标注完成后才发现，因此本文用三项独立检查来测量和限制它可能造成的影响。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
 > - **核对状态：** ✅ 已核对：已与项目协议、脚本、日志和文件路径核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/coregistration_summary.csv`；`analysis/fn_analysis_summary.csv`；`analysis/sampling_results.csv`；`analysis/osm_timestamps_summary.csv`；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
+> - **原始数据／文本依据：** `analysis/coregistration_summary.csv`；`analysis/sampling_results.csv`；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
 > - **可加强：** 补充关键参数、随机种子或失败判据，使第三方能独立复现。
 
 **英文原稿**
 
-**(i) Spatial alignment.** For the 1,478 labelled lots larger than 300 m² and covered by the model by at least 70%, let $\mathbf{d}_i$ be the vector from the centroid of the labelled polygon to the centroid of the predicted area within it. A common directional displacement makes the mean vector large relative to the average displacement magnitude, whereas varying boundary errors tend to cancel. The ratio is
+**(i) Spatial alignment.** For 1,478 labelled lots larger than 300 m² and detected above 70%, $\mathbf d_i$ joins the labelled and intersecting predicted centroids. A registration offset makes the mean vector large; random boundary imprecision makes individual displacements large but their mean small. The ratio is
 
 **中文翻译**
 
-**（i）空间配准。** 对面积大于 300 m²、且模型覆盖率至少为 70% 的 1,478 个标注停车场，令 \(\mathbf d_i\) 为标注多边形质心指向其内部预测区域质心的向量。共同方向位移会使平均向量相对于平均位移模长较大，而方向各异的边界误差往往相互抵消。该比值为：
+**（i）空间配准。** 对大于 300 m² 且检出率超过 70% 的 1,478 个停车场，\(\mathbf d_i\) 连接标注与相交预测的中心。统一配准偏移会产生较大的平均向量；随机边界误差虽使各自位移较大，均值却较小。比率为：
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
 > - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/coregistration_check.py`；`analysis/coregistration_summary.csv`；本段核对值：300, 70%, 1,478；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
+> - **原始数据／文本依据：** `analysis/coregistration_summary.csv`；`analysis/sampling_results.csv`；本段核对值：300, 70%, 1,478；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
 > - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
 
 **英文原稿**
@@ -1774,78 +1774,78 @@ $$
 > - **逻辑用途：** 推进本节论证并连接相邻段落
 > - **核对状态：** ✅ 已核对：所述内容已与当前英文稿及项目内证据链核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/coregistration_check.py`；`analysis/coregistration_summary.csv`；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
+> - **原始数据／文本依据：** `analysis/coregistration_summary.csv`；`analysis/sampling_results.csv`；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
 > - **可加强：** 把本段核心判断写得更可检验，并在需要处补来源或不确定性。
 
 **英文原稿**
 
-with $\rho \to 0$ where the common directional component is small relative to the scatter, and $\rho \to 1$ where displacement vectors share a common direction. Here $\lVert\bar{\mathbf{d}}\rVert = 0.208$ m (0.83 pixels at 0.25 m resolution), against a mean displacement magnitude of 1.247 m (4.99 px), giving $\rho = 0.167$. Non-zero mean components and a non-uniform direction distribution are statistically detectable ($p < 0.001$), but with 1,478 lots the sub-pixel magnitude is more informative than significance. This diagnostic shows no large common directional displacement among well-detected lots, so gross misregistration is unlikely to dominate the measured boundary error.
+$\rho$ approaches 0 when shared displacement is negligible and 1 under uniform shift. Here the mean vector is 0.208 m (**0.83 of a 0.25 m pixel**), versus 1.247 m mean absolute displacement (4.99 px), giving $\rho=0.167$. Although statistically detectable ($p<0.001$ on both axes; $\chi^2=169.2$, $p<0.001$), this sub-pixel bias is not practically meaningful. The sources are co-registered within one pixel, so measured boundary error is attributable mainly to the model.
 
 **中文翻译**
 
-共同方向分量相对离散较小时，\(\rho\) 接近 0；各位移向量方向一致时，\(\rho\) 接近 1。本研究中，\(\|\bar{\mathbf d}\|=0.208\) m，在 0.25 m 分辨率下相当于 0.83 个像素；平均位移模长为 1.247 m（4.99 像素），因此 \(\rho=0.167\)。非零的平均分量和非均匀的方向分布在统计上可检出（\(p<0.001\)），但在 1,478 个样本下，亚像素量级比显著性更有解释力。这项诊断未在高覆盖停车场中发现较大的共同方向位移，因此明显的整体配准偏移不太可能主导测得的边界误差。
+共同位移可忽略时 \(\rho\) 接近 0，统一平移时接近 1。这里平均向量为 0.208 m（**0.25 m 像素的 0.83 个**），平均绝对位移为 1.247 m（4.99 像素），故 \(\rho=0.167\)。虽然统计上可检出（两轴均 \(p<0.001\)；\(\chi^2=169.2,p<0.001\)），这一亚像素偏差没有实际意义。两套影像在一个像素内配准，实测边界误差主要归于模型。
 
 > **段落审读**
 > - **逻辑用途：** 限制结论适用范围，防止从城市尺度证据跳到地块判断
-> - **核对状态：** ✅ 已核对：公式、数值与结论强度已对照配准脚本及输出复核。
+> - **核对状态：** 🟨 需人工复核：限制来自研究设计与已报告验证结果。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/coregistration_check.py`；`analysis/coregistration_summary.csv`；本段核对值：0, 1, 0.208, 0.25, 0.83, 1.247, 4.99；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
-> - **可加强：** 该诊断只排查共同方向位移，不证明两套影像在每个地块上完全配准。
+> - **原始数据／文本依据：** `analysis/coregistration_summary.csv`；`analysis/sampling_results.csv`；本段核对值：0, 1, 0.208, 0.25, 0.83, 1.247, 4.99；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
+> - **可加强：** 区分可在本研究内量化的限制和只能在未来研究中检验的限制。
 
 **英文原稿**
 
-**(ii) An unresolved residual.** The whole-lot FN attribution in §3.5 leaves 0.0699 km² unresolved after separating areas associated with post-processing removal, rooftop labels and containment within building footprints. This is **2.1% of labelled area**. If the entire residual were treated as reference–imagery disagreement, recall would rise from 0.854 to 0.873. This is a sensitivity scenario for the unresolved residual, not a strict upper bound on all disagreement between the sources.
+**(ii) A logical upper bound on temporal mismatch.** A model cannot partially detect a car park absent from its input imagery. Every lot detected even in part therefore demonstrably exists in the Digimap imagery, as does every lot the pre-subtraction output detected. Of the reference area the model misses, all but 0.0699 km² — **2.1% of labelled area** — belongs to such lots. Even were that entire residual imagery mismatch, recall would rise only from 0.854 to 0.873.
 
 **中文翻译**
 
-**（ii）未解释残差。** 第 3.5 节对整块漏检 FN 进行归因后，在分离与后处理删除、屋顶标注及位于建筑轮廓内有关的面积之后，仍有 0.0699 km² 未得到解释，占标注面积的 **2.1%**。若把整块残差都视为参考标注与影像之间的分歧，召回率将从 0.854 提高到 0.873。这是针对未解释残差的敏感性情景，并非两种来源之间全部分歧的严格上限。
+**（ii）时间不一致的逻辑上限。** 一个在输入影像中不存在的停车场，不可能被模型部分检出。因此，凡是被模型检出一点的停车场，都能证明它在 Digimap 影像中存在；后处理前被检出的停车场同理。在全部漏检参考面积中，除 0.0699 km² 外都属于这类停车场。该剩余面积仅占标注总面积的 **2.1%**。即使全部都是影像时间差造成的，召回率也只会从 0.854 提高到 0.873。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
 > - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/fn_analysis.py`；`analysis/fn_analysis_summary.csv`；本段核对值：0.0699, 2.1, 0.854, 0.873；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
-> - **可加强：** 已明确 0.0699 km² 是分类后的未解释残差和敏感性情景，不是影像分歧的严格上限。
+> - **原始数据／文本依据：** `analysis/coregistration_summary.csv`；`analysis/sampling_results.csv`；本段核对值：0.0699, 2.1, 0.854, 0.873；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
 
 **英文原稿**
 
-**(iii) A sampled estimate.** The stratified sample in §3.6 covers whole labelled lots with no more than 10% coverage in both the post- and pre-subtraction outputs, excluding tagged rooftops and polygons below 100 m²; its frame contains 0.0748 km² of labelled lot area. Adjudication against the model's input imagery estimates 0.0313 km², or **1.0% of labelled area**, as not parking in that imagery. In the reference-side correction used here, removing it raises recall from 0.854 to 0.863 and leaves precision unchanged.
+**(iii) A sampled estimate.** Within that residual, adjudication against the Digimap imagery estimates 0.0313 km², or **1.0% of labelled area**, as not parking in the imagery the model was given. Removing it raises recall from 0.854 to 0.863 and leaves precision unchanged.
 
 **中文翻译**
 
-**（iii）抽样估计。** 第 3.6 节的分层样本包括在后处理前后输出中覆盖率均不超过 10% 的完整标注停车场，并排除带有屋顶标记的停车场和面积小于 100 m² 的多边形；其抽样框包含 0.0748 km² 的标注停车场面积。依据模型输入影像判读，估计其中 0.0313 km²、即标注总面积的 **1.0%** 在该影像中并非停车场。在本文采用的参考侧校正中，移除这部分面积会使召回率从 0.854 提高到 0.863，而精确率保持不变。
+**（iii）抽样估计。** 对上述剩余部分按 Digimap 影像人工判断，估计其中 0.0313 km²、即标注总面积的 **1.0%** 在模型所见影像中并非停车场。扣除它后，召回率从 0.854 提高到 0.863，精确率不变。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
 > - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/make_sampling_worksheet.py`；`analysis/sampling_strata.csv`；`analysis/sampling_results.csv`；`analysis/sampling_corrections.csv`；本段核对值：10%, 100, 0.0748, 0.0313, 1.0, 0.854, 0.863；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
-> - **可加强：** 0.0313 km² 是完整标注地块面积的估计，不是 0.0699 km² FN 残差的直接子集。
+> - **原始数据／文本依据：** `analysis/coregistration_summary.csv`；`analysis/sampling_results.csv`；本段核对值：0.0313, 1.0, 0.854, 0.863；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
 
 **英文原稿**
 
-Separately, last-edit timestamps were retrieved for all 985 OSM parking features to test whether OSM disagreement simply reflects stale records. The 11 sampled features with no parking visible in the imagery had a median last-edit year of 2025, the most recent of any sampled category. This does not support stale OSM records as a general explanation; timestamps record any edit, including tag-only changes, rather than construction.
+Last-edit timestamps for all 985 OSM parking features test whether disagreement reflects outdated mapping. Features with no visible parking are the *most* recently edited sampled category, so the data do not support that explanation. Without Digimap capture dates, disagreements are described neutrally; OSM timestamps can reflect tag edits and are not construction dates.
 
 **中文翻译**
 
-此外，本文获取了全部 985 个 OSM 停车要素的最后编辑时间，以检验 OSM 分歧是否只是记录陈旧所致。11 个在影像中看不到停车的抽样要素，其最后编辑年份中位数为 2025 年，是所有抽样类别中最近的一组。因此，数据不支持把陈旧 OSM 记录作为一般性解释；时间戳记录的是任何类型的编辑，包括仅修改标签，而不是建设时间。
+研究区 985 个 OSM 停车要素的最后编辑时间用于检验分歧是否源于地图过时。没有可见停车的要素反而是样本中最近编辑的一类，因此数据不支持这一解释。由于缺少 Digimap 拍摄日期，本文仅作中性描述；OSM 时间戳也可能只是标签修改，并非建设日期。
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
 > - **核对状态：** ✅ 已核对：所述内容已与当前英文稿及项目内证据链核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/osm_timestamps.py`；`analysis/osm_timestamps_summary.csv`；本段核对值：985, 11, 2025；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
-> - **可加强：** 时间戳只表示最后一次编辑，不能单独证明地物的建设或拆除时间。
+> - **原始数据／文本依据：** `analysis/coregistration_summary.csv`；`analysis/sampling_results.csv`；本段核对值：985；译文对应位置：`03_methodology.md`（仅作定位，不作为引文证据）
+> - **可加强：** 把本段核心判断写得更可检验，并在需要处补来源或不确定性。
 
 ## 3.9 校正估计量及其空间尺度
 
 **英文原稿**
 
-Adjusting mapped area for commission and omission error using reference data is established practice (Olofsson et al., 2014). Here, where a map has precision $p$ and recall $r$, predicted area $|M|$ relates to reference area $|R|$ by
+Reference data can correct mapped area for commission and omission error (Olofsson et al., 2014). With precision $p$, recall $r$, predicted area $|M|$ and reference area $|R|$,
 
 **中文翻译**
 
-利用参考数据校正误报和漏报对地图面积的影响，是一种成熟做法（Olofsson et al., 2014）。这里，若地图精确率为 \(p\)、召回率为 \(r\)、预测面积为 \(|M|\)，则预测面积与参考面积 \(|R|\) 的关系为：
+参考数据可校正地图面积中的误报和漏报（Olofsson et al., 2014）。设精确率为 \(p\)、召回率为 \(r\)、预测面积为 \(|M|\)、参考面积为 \(|R|\)，则：
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -1879,11 +1879,11 @@ $$
 
 **英文原稿**
 
-Applied to the same cells used to measure $p$ and $r$, this is an identity rather than an independent estimate. The factor simplifies to an area ratio:
+Applied to the cells on which $p$ and $r$ were measured this is an identity and carries no information. It is also worth stating plainly that the factor reduces to an area ratio:
 
 **中文翻译**
 
-如果把这个公式应用于计算 \(p\) 和 \(r\) 的同一批单元，它只是一个恒等式，而非独立估计。校正因子可化为面积比：
+如果把这个公式应用回计算 \(p\) 和 \(r\) 的同一批单元，它只是一个恒等式，不提供新信息。事实上，校正因子可以直接化成面积比：
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -1915,11 +1915,11 @@ $$
 
 **英文原稿**
 
-Fitting it therefore requires only labelled and predicted total area over the calibration cells, not an object-level error analysis. Its usefulness must be tested on cells not used to fit it.
+Thus calibration requires only *total labelled area* for sampled cells, not full object-level error analysis, making use in another city more affordable. Precision and recall still establish whether bias is systematic; hold-out tests establish the spatial scale at which it is stable.
 
 **中文翻译**
 
-因此，拟合该因子只需要校准单元的标注总面积和预测总面积，不需要对象级误差分析。它是否有用，必须在未参与拟合的单元上检验。
+因此，校准只需抽样单元的*标注总面积*，不必完成对象级误差分析，使其在第二座城市的成本更可控。精确率和召回率仍用于判断偏差是否系统，留出检验则确定其稳定的空间尺度。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -1930,11 +1930,11 @@ Fitting it therefore requires only labelled and predicted total area over the ca
 
 **英文原稿**
 
-Three hold-out schemes test whether a factor fitted on one part of the city predicts another, and at what grain (Table 3.3). Each fits $p/r$ on cells $\mathcal{T}$ and applies it to held-out cells $\mathcal{H}$. Whole cells, rather than polygons, are withheld because short-range spatial dependence means that randomly splitting dependent units can understate predictive error (Roberts et al., 2017). Error is reported relative to labelled area in the held-out set:
+Three hold-out schemes test whether a factor fitted in one area predicts another and at what grain (Table 3.3). Each fits $p/r$ on cells $\mathcal T$ and applies it to unseen cells $\mathcal H$. Whole cells are withheld because random splits of spatially dependent objects understate predictive error (Roberts et al., 2017). Relative error is
 
 **中文翻译**
 
-本文采用三种留出方案，检验在城市一部分拟合的因子能否预测另一部分，以及它适用的空间尺度（表 3.3）。每次在单元集合 \(\mathcal T\) 上拟合 \(p/r\)，再用于留出单元 \(\mathcal H\)。留出的是完整单元而非多边形，因为短距离空间相关意味着随机拆分相关单元可能低估预测误差（Roberts et al., 2017）。误差相对于留出集合的标注面积计算：
+三种留出方案检验一处拟合的因子能否预测另一处，以及可用到何种尺度（表 3.3）。每次在单元 \(\mathcal T\) 上拟合 \(p/r\)，再用于未见单元 \(\mathcal H\)。由于随机拆分有空间相关性的对象会低估预测误差，因此留出完整单元（Roberts et al., 2017）。相对误差为：
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -2008,11 +2008,11 @@ e=
 
 **英文原稿**
 
-Per-cell true-positive area is recovered as $|\mathrm{TP}_c| = p_c \cdot |M_c|$ before $p$ and $r$ are micro-aggregated as in §3.4. Directly averaging cell precision would instead use the macro value (0.5136 rather than 0.5708) and produce a mismatched factor. The cell with no labelled parking has undefined relative error and is excluded from leave-one-out, leaving 99. Because small labelled areas destabilise relative error and inflate its mean, median absolute error in km² is also reported.
+Per-cell TP is recovered as $|\mathrm{TP}_c|=p_c|M_c|$, then $p$ and $r$ are micro-aggregated; direct averaging would use macro precision (0.5136 rather than 0.5708) and produce a mismatched factor. The empty reference cell is excluded, leaving 99. Because relative error is unstable in cells with little parking, median absolute error in km² is also reported.
 
 **中文翻译**
 
-先用 \(|\mathrm{TP}_c|=p_c|M_c|\) 恢复逐单元真阳性面积，再按第 3.4 节的方法对 \(p\) 和 \(r\) 作微平均。若直接平均逐单元精确率，使用的将是宏平均值 0.5136，而非 0.5708，从而产生不匹配的因子。无标注停车的单元没有定义明确的相对误差，因此从逐单元留一法中排除，剩余 99 个。由于较小的标注面积会使相对误差不稳定并抬高均值，结果同时报告以 km² 表示的绝对误差中位数。
+逐单元 TP 由 \(|\mathrm{TP}_c|=p_c|M_c|\) 恢复，再按 micro 汇总 \(p\) 和 \(r\)；直接平均会使用 macro 精确率（0.5136 而非 0.5708），产生不匹配因子。无参考停车的单元被排除，剩余 99 个。由于停车很少时相对误差不稳定，结果同时报告以 km² 计的绝对误差中位数。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -2025,11 +2025,11 @@ Per-cell true-positive area is recovered as $|\mathrm{TP}_c| = p_c \cdot |M_c|$ 
 
 **英文原稿**
 
-This chapter reports the measured transfer. Section 4.1 gives the headline accuracy and how it varies across the city, answering the first half of RQ1. Sections 4.2 to 4.4 decompose the error and test the building and road subtractions, answering RQ2. Section 4.5 returns to spatial variation and shows the apparent location effect to be confounded. Section 4.6 reports the sampled corrections and what the reference data itself is worth. Section 4.7 answers RQ3 within the reliability the preceding sections establish.
+This chapter reports transfer accuracy and its spatial variation, decomposes error, tests post-processing, and evaluates sampled corrections. It then estimates the extent and distribution of surface parking within the established reliability.
 
 **中文翻译**
 
-本章报告模型迁移的实测结果。第 4.1 节给出总体准确率及其城市内部差异，回答 RQ1 的前半部分。第 4.2–4.4 节拆解误差并检验建筑和道路扣除，回答 RQ2。第 4.5 节进一步表明，表面上的位置效应其实受到其他因素混杂。第 4.6 节报告抽样校正，以及参考数据本身的价值。最后，第 4.7 节在前文确定的可靠性范围内回答 RQ3。
+本章报告迁移准确率及其空间差异，分解误差、检验后处理，并评价抽样校正；随后在已确定的可靠性范围内估计露天停车的规模与分布。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -2095,11 +2095,11 @@ Against 3.2597 km² of labelled surface parking, the model predicts 4.8785 km² 
 
 **英文原稿**
 
-The pattern is asymmetric. Recall of 0.854 means the model finds most labelled parking; precision of 0.571 means that a little under half of what it returns is not labelled parking. Decomposed by area, TP is 2.7848 km², FP 2.0937 km² and FN 0.4749 km², the last being 14.6% of labelled area.
+Performance is asymmetric: recall is 0.854, but precision is 0.571. By area, TP is 2.7848 km², FP 2.0937 km² and FN 0.4749 km², or 14.6% of labelled parking.
 
 **中文翻译**
 
-结果明显不对称。召回率 0.854 表示模型找到了绝大部分标注停车场；精确率 0.571 则表示模型返回的面积中，略少于一半没有被标注为停车。按面积分解，TP 为 2.7848 km²，FP 为 2.0937 km²，FN 为 0.4749 km²；FN 占标注面积的 14.6%。
+表现明显不对称：召回率为 0.854，精确率仅为 0.571。按面积计，TP 为 2.7848 km²，FP 为 2.0937 km²，FN 为 0.4749 km²，占标注停车的 14.6%。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -2112,11 +2112,11 @@ The pattern is asymmetric. Recall of 0.854 means the model finds most labelled p
 
 **英文原稿**
 
-**Figure 4.1** Precision, recall and IoU for each 1 km² cell, on a common colour scale. Recall is generally high and less spatially variable than precision. One cell contains no labelled parking and is hatched.
+**Figure 4.1** Precision, recall and IoU for each 1 km² cell, on a common colour scale. Recall is high and spatially even; precision is neither. One cell contains no labelled parking and is hatched.
 
 **中文翻译**
 
-**图 4.1** 每个 1 km² 单元的精确率、召回率和 IoU，使用相同色标。召回率总体较高，且空间变异小于精确率。斜线单元没有标注停车。
+**图 4.1** 每个 1 km² 单元的精确率、召回率和 IoU，使用相同色标。召回率高而且空间上较均匀，精确率则不然。斜线单元没有标注停车。
 
 > **段落审读**
 > - **逻辑用途：** 说明图件承载的证据
@@ -2127,11 +2127,11 @@ The pattern is asymmetric. Recall of 0.854 means the model finds most labelled p
 
 **英文原稿**
 
-Figure 4.1 shows that the asymmetry is not an artefact of aggregation: recall is generally high and varies less across the study area, while precision ranges from below 0.3 to above 0.8 between neighbouring cells. The macro figures fall below the micro figures on all three measures — precision 0.514 against 0.571 — indicating that cells contributing little parking area perform worse than the area-weighted total suggests.
+Figure 4.1 confirms that aggregation does not cause the asymmetry: recall is consistently high, whereas neighbouring-cell precision ranges from below 0.3 to above 0.8. Macro precision (0.514) is below micro precision (0.571), indicating poorer performance in cells with little parking.
 
 **中文翻译**
 
-图 4.1 表明，这种不对称不是汇总方法造成的：召回率总体较高，且在研究区内变化较小；相邻单元的精确率则可能从低于 0.3 变化到高于 0.8。三个 macro 指标都低于 micro，尤其精确率是 0.514 对 0.571。这说明停车面积较少的单元表现更差，而按面积加权的总体数字会显得更乐观。
+图 4.1 证实这种不对称并非汇总造成：召回率始终较高，而相邻单元的精确率从低于 0.3 到高于 0.8。Macro 精确率（0.514）低于 micro（0.571），说明停车较少的单元表现更差。
 
 > **段落审读**
 > - **逻辑用途：** 说明图件承载的证据
@@ -2269,11 +2269,11 @@ False-positive area is 2.0937 km². Figure 4.2 shows what it is made of.
 
 **英文原稿**
 
-Industrial and commercial land coincides with over half of all false-positive area. Buildings account for none, because OSM building footprints have already been subtracted at the post-processing stage; false positives on buildings the OSM data does not record fall into the unexplained residual. Moving industrial land from an early position in the peeling order to last changes its exclusive share from 30.0% to 29.6%, so the attribution is not an artefact of the ordering.
+Industrial/commercial land overlaps 52.8% of FP. Recorded buildings contribute none because post-processing already removed them; unrecorded buildings remain unexplained. Moving industrial land to the end of the exclusive order changes its share only from 30.0% to 29.6%.
 
 **中文翻译**
 
-工业和商业用地与超过一半的 FP 面积重合。建筑占 0，是因为后处理已扣除 OSM 建筑轮廓；OSM 没有记录的建筑所产生的 FP 会进入“无法解释”部分。把工业用地从较前位置移到归因顺序最后，其互斥占比只从 30.0% 变到 29.6%，说明结果不是排序造成的假象。
+工业/商业用地与 52.8% 的 FP 重合。已记录建筑因后处理扣除而不再贡献误差，未记录建筑仍在无法解释部分。把工业用地移至互斥顺序末尾，其占比仅由 30.0% 变为 29.6%。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -2284,11 +2284,11 @@ Industrial and commercial land coincides with over half of all false-positive ar
 
 **英文原稿**
 
-**The unexplained residual divides into three unlike things.** Stratified sampling of 70 chips (Figure 4.3) estimates that 44.5% of the residual is genuine misdetection — grey hardstanding, goods yards, sports courts, unpaved ground and unmapped houses — while **34.9% is real parking that the annotation rules deliberately exclude**, principally private driveways (20.2%) and on-street parking (14.7%). A further 17.2% is parking the labelling itself missed. Percentages are of the sampling frame, which excludes fragments below 100 m² and so covers 0.3883 km² of the 0.4396 km² residual.
+Stratified sampling of 70 chips (Figure 4.3) divides unexplained FP into genuine misdetection (44.5%), **real parking excluded by definition** (34.9%; private drives 20.2%, on-street parking 14.7%), and parking missed by labelling (17.2%). These shares describe the 0.3883 km² sampling frame, which excludes sub-100 m² fragments from the 0.4396 km² residual.
 
 **中文翻译**
 
-**无法解释的剩余部分其实混合了三类完全不同的情况。** 对 70 个影像切片分层抽样（图 4.3）后估计：44.5% 是真正的误检，包括灰色硬化地面、货场、运动场、未铺装空地和地图未记录的房屋；**34.9% 是标注规则刻意排除的真实停车区域**，主要是私人车道（20.2%）和路边停车（14.7%）；另有 17.2% 是标注本身漏掉的停车场。这些百分比以抽样框为分母；抽样框排除了小于 100 m² 的碎片，覆盖 0.4396 km² 剩余面积中的 0.3883 km²。
+对 70 个影像切片分层抽样（图 4.3），无法解释的 FP 可分为真正误检（44.5%）、**定义排除的真实停车**（34.9%；私人车道 20.2%，路边停车 14.7%），以及标注漏掉的停车（17.2%）。比例针对 0.3883 km² 抽样框，该框从 0.4396 km² 剩余部分中排除了小于 100 m² 的碎片。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -2369,11 +2369,11 @@ Missed area is 0.4749 km², 14.6% of labelled parking. Measured against the pred
 
 **英文原稿**
 
-Nearly half of all missed area belongs to lots the model detected to better than 70%. Only the third row is a detection failure in any useful sense, and it is not what it appears: **31.9% of it was found by the model and then deleted by post-processing**, with a further 2.9% labelled as rooftop and 3.4% falling inside OSM building footprints. After these automated attributions, 0.0699 km² remains unresolved, or **2.1% of labelled area**. The separate sampled assessment in §4.6 shows that reference–imagery disagreement also contributes to the whole-lot-miss population.
+Nearly half of FN belongs to lots detected above 70%. Of the whole-lot failures, **31.9% was detected then removed by post-processing**, 2.9% is rooftop and 3.4% lies inside OSM buildings. Genuine non-detection is at most 0.0699 km², **2.1% of labelled area**, and §4.6 shows that some is not parking in the model imagery.
 
 **中文翻译**
 
-接近一半的漏检面积属于覆盖率已经超过 70% 的停车场。只有第三行在实际意义上属于检出失败，而且它也不完全像表面看起来那样：其中 **31.9% 原本已被模型找到，却被后处理删除**；另有 2.9% 是屋顶停车，3.4% 位于 OSM 建筑轮廓内。完成这些自动归因后，仍有 0.0699 km² 未得到解释，占标注面积的 **2.1%**。第 4.6 节的独立抽样评估表明，参考标注与影像之间的分歧也存在于整块漏检总体中。
+接近一半的 FN 属于覆盖率超过 70% 的停车场。在整体漏检中，**31.9% 已被模型找到但被后处理删除**，2.9% 为屋顶停车，3.4% 位于 OSM 建筑内。真正未识别最多为 0.0699 km²，即标注面积的 **2.1%**；§4.6 表明其中部分在模型影像中并非停车。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -2481,11 +2481,11 @@ Lots below 200 m² are missed outright more than ten times as often as lots abov
 
 **英文原稿**
 
-**What the unresolved whole-lot population looks like.** Sampling of 42 chips estimates the composition of the residual as: not parking in the Digimap imagery 41.8%, **irregular layout 23.3%**, obscured by shadow or canopy 9.8%, unusual surface 9.2%, no cars present 6.3%, vans and lorries rather than cars 5.2%, and **no markings 3.7%**.
+**What the genuine misses look like.** Sampling of 42 chips estimates the composition of the residual as: not parking in the Digimap imagery 41.8%, **irregular layout 23.3%**, obscured by shadow or canopy 9.8%, unusual surface 9.2%, no cars present 6.3%, vans and lorries rather than cars 5.2%, and **no markings 3.7%**.
 
 **中文翻译**
 
-**未解释的整块漏检总体是什么样。** 对 42 个影像切片抽样后，估计剩余部分由以下情况组成：Digimap 影像中不是停车场 41.8%；**布局不规则 23.3%**；被阴影或树冠遮挡 9.8%；表面材料异常 9.2%；没有车辆 6.3%；停的是货车而非小汽车 5.2%；**没有标线 3.7%**。
+**真正漏检的停车场是什么样。** 对 42 个影像切片抽样后，估计剩余部分由以下情况组成：Digimap 影像中不是停车场 41.8%；**布局不规则 23.3%**；被阴影或树冠遮挡 9.8%；表面材料异常 9.2%；没有车辆 6.3%；停的是货车而非小汽车 5.2%；**没有标线 3.7%**。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -2513,11 +2513,11 @@ Lots below 200 m² are missed outright more than ten times as often as lots abov
 
 **英文原稿**
 
-Irregular layout was identified in 11 of 42 chips and absent markings in one. Although the resulting 3.7% estimate for absent markings is imprecise, its interval remains well below that for irregular layout — 3.7% [0.6, 9.8] against 23.3% [16.9, 31.1]. The evidence therefore supports the ordering, rather than a precise ratio: irregular arrangement was the most frequently identified mechanism and unmarked surfacing among the least, revising the expectation in §2.5 that unmarked surfaces would be the principal difficulty.
+Irregular layout appeared in 11 of 42 chips, absent markings in one. Their intervals remain distinct—23.3% [16.9, 31.1] versus 3.7% [0.6, 9.8]—so the sample supports irregular arrangement as the commoner mechanism, revising the §2.5 expectation that unmarked surfaces would dominate.
 
 **中文翻译**
 
-在 42 个影像切片中，11 个被归为不规则布局，只有 1 个被归为没有标线。尽管由此得到的 3.7% 估计并不精确，其区间仍明显低于不规则布局——分别为 3.7% [0.6, 9.8] 和 23.3% [16.9, 31.1]。因此，证据支持的是两者的排序，而不是一个精确倍数：不规则布局是最常被识别出的机制，而无标线铺装面属于最少见的机制之一。这修正了第 2.5 节关于无标线表面将构成主要困难的预期。
+42 个样本中，11 个属于不规则布局，仅 1 个没有标线；区间仍清楚分开，分别为 23.3% [16.9, 31.1] 和 3.7% [0.6, 9.8]。因此，不规则布局更常见，修正了 §2.5 关于无标线表面会主导失败的预期。
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -2532,11 +2532,11 @@ Irregular layout was identified in 11 of 42 chips and absent markings in one. Al
 
 **英文原稿**
 
-**Figure 4.4** The eight variants on the precision–recall plane, with IoU iso-lines. Circles are the building-and-road subtraction factorial; squares are reference layers applied as filters.
+**Figure 4.4** The eight variants on the precision–recall plane, with IoU iso-lines. Circles are the post-processing factorial; squares are reference layers applied as filters.
 
 **中文翻译**
 
-**图 4.4** 八种变体在精确率—召回率平面上的位置，并标出 IoU 等值线。圆形是建筑与道路扣除的因子组合，方形是把参考图层当作过滤器的结果。
+**图 4.4** 八种变体在精确率—召回率平面上的位置，并标出 IoU 等值线。圆形是后处理因子组合，方形是把参考图层当作过滤器的结果。
 
 > **段落审读**
 > - **逻辑用途：** 说明图件承载的证据
@@ -2547,11 +2547,11 @@ Irregular layout was identified in 11 of 42 chips and absent markings in one. Al
 
 **英文原稿**
 
-**Table 4.5** Ablation. Variants A–D vary the building and road subtractions; E–H apply further layers as filters to the finished map.
+**Table 4.5** Ablation. Variants A–D vary the two post-processing subtractions; E–H apply further layers as filters to the finished map.
 
 **中文翻译**
 
-**表 4.5** 消融实验。A–D 改变建筑和道路扣除；E–H 在最终地图上继续应用其他图层过滤。
+**表 4.5** 消融实验。A–D 改变两项后处理扣除；E–H 在最终地图上继续应用其他图层过滤。
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -2564,7 +2564,7 @@ Irregular layout was identified in 11 of 42 chips and absent markings in one. Al
 
 | Variant | Precision | Recall | IoU |
 |---|---:|---:|---:|
-| A pre-subtraction output | 0.5278 | 0.8939 | 0.4967 |
+| A raw model | 0.5278 | 0.8939 | 0.4967 |
 | B − buildings | 0.5467 | 0.8691 | 0.5051 |
 | C − roads | 0.5498 | 0.8789 | 0.5111 |
 | **D − buildings − roads** | **0.5708** | **0.8543** | **0.5202** |
@@ -2577,7 +2577,7 @@ Irregular layout was identified in 11 of 42 chips and absent markings in one. Al
 
 | 变体 | 精确率 | 召回率 | IoU |
 |---|---:|---:|---:|
-| A 扣除前输出 | 0.5278 | 0.8939 | 0.4967 |
+| A 原始模型 | 0.5278 | 0.8939 | 0.4967 |
 | B − 建筑 | 0.5467 | 0.8691 | 0.5051 |
 | C − 道路 | 0.5498 | 0.8789 | 0.5111 |
 | **D − 建筑 − 道路** | **0.5708** | **0.8543** | **0.5202** |
@@ -2595,11 +2595,11 @@ Irregular layout was identified in 11 of 42 chips and absent markings in one. Al
 
 **英文原稿**
 
-Reconstructing D from the pre-subtraction output in a single operation reproduces the pipeline's own tile-by-tile result to within 0.0% on all three measures, so the ablation isolates the two subtractions.
+Reconstructing D from the raw output in a single operation reproduces the pipeline's own tile-by-tile result to within 0.0% on all three measures, so the ablation isolates what it claims to.
 
 **中文翻译**
 
-把扣除前输出一次性扣除建筑和道路，三个指标与流程逐图块产生的 D 结果相差均为 0.0%，说明消融实验确实分离了这两项扣除。
+把原始输出一次性扣除建筑和道路，三个指标与流程逐图块产生的 D 结果相差均为 0.0%，说明消融实验确实分离了相应作用。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -2610,11 +2610,11 @@ Reconstructing D from the pre-subtraction output in a single operation reproduce
 
 **英文原稿**
 
-The two subtractions together raise precision by 0.043 and lower recall by 0.040, for a net IoU gain of 0.024. Each contributes roughly half. Applied as filters, the further layers behave quite differently. Subtracting industrial and commercial land — the layer that coincided with 52.8% of false-positive area — **collapses recall from 0.854 to 0.279 and IoU from 0.520 to 0.214**, because supermarket and retail-park car parks sit on exactly that land. Widening the road buffers is the only variant to raise precision (to 0.596), and it still lowers IoU.
+Together, building and road subtraction raise precision by 0.043, lower recall by 0.040 and improve IoU by 0.024. Further filters fail: removing industrial/commercial land, despite its 52.8% FP overlap, **reduces recall from 0.854 to 0.279 and IoU from 0.520 to 0.214** because it also contains retail parking. Wider road buffers raise precision to 0.596 but still lower IoU.
 
 **中文翻译**
 
-两项扣除合起来使精确率提高 0.043、召回率下降 0.040，IoU 净提高 0.024；两项贡献大致各占一半。进一步参考图层作为过滤器时，结果完全不同。工业和商业用地与 52.8% 的 FP 重合，但将其扣除会使**召回率从 0.854 暴跌到 0.279，IoU 从 0.520 降到 0.214**，因为超市和零售园区停车场恰好就在这类土地上。扩大道路缓冲区是唯一继续提高精确率的变体（提高到 0.596），但 IoU 仍然下降。
+建筑和道路扣除合计使精确率提高 0.043、召回率下降 0.040、IoU 提高 0.024。进一步过滤则失败：尽管工业/商业用地与 52.8% 的 FP 重合，扣除它会因同时删除零售停车而使**召回率从 0.854 降至 0.279，IoU 从 0.520 降至 0.214**。加宽道路缓冲虽把精确率提高到 0.596，IoU 仍下降。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -2657,9 +2657,9 @@ The two subtractions together raise precision by 0.043 and lower recall by 0.040
 
 | Measure | Value |
 |---|---:|
-| Recall on rooftop lots, before subtraction | **0.916** |
+| Recall on rooftop lots, raw model | **0.916** |
 | Recall on rooftop lots, after subtraction | **0.115** |
-| Recall on non-rooftop lots, before subtraction | 0.894 |
+| Recall on non-rooftop lots, raw model | 0.894 |
 | Rooftop area falling inside OSM buildings | 85.6% |
 | Rooftop area detected then removed | **80.1%** |
 
@@ -2667,9 +2667,9 @@ The two subtractions together raise precision by 0.043 and lower recall by 0.040
 
 | 指标 | 数值 |
 |---|---:|
-| 扣除前输出对屋顶停车的召回率 | **0.916** |
+| 原始模型对屋顶停车的召回率 | **0.916** |
 | 扣除建筑后的屋顶停车召回率 | **0.115** |
-| 扣除前输出对非屋顶停车的召回率 | 0.894 |
+| 原始模型对非屋顶停车的召回率 | 0.894 |
 | 落在 OSM 建筑内部的屋顶停车面积 | 85.6% |
 | 被模型找到后又被删除的屋顶停车面积 | **80.1%** |
 
@@ -2682,11 +2682,11 @@ The two subtractions together raise precision by 0.043 and lower recall by 0.040
 
 **英文原稿**
 
-The pre-subtraction output detects rooftop parking slightly *better* than ground-level parking. Subtracting building footprints removes four fifths of it.
+The raw model detects rooftop parking slightly *better* than ground-level parking. Subtracting building footprints removes four fifths of it.
 
 **中文翻译**
 
-扣除前输出识别屋顶停车甚至略好于地面停车；扣除建筑轮廓却删除了其中五分之四。
+原始模型识别屋顶停车甚至略好于地面停车；扣除建筑轮廓却删除了其中五分之四。
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落
@@ -2771,7 +2771,7 @@ Read across distance bands, precision falls from 0.584 within 1 km to 0.485 beyo
 
 **中文翻译**
 
-按距离环带看，精确率从 1 km 内的 0.584 降到 4 km 外的 0.485，而召回率保持在 0.70–0.86（见图 4.5 和附录 B）。这些环带均值跟随的是停车占地比例，而不是距离本身。
+按距离环带看，精确率从 1 km 内的 0.584 降到 4 km 外的 0.485，而召回率保持在 0.70–0.86（见图 4.5 和附录 C）。这些环带均值跟随的是停车占地比例，而不是距离本身。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -2856,33 +2856,63 @@ Applying the sampled estimates as corrections gives four cumulative variants:
 
 **英文原稿**
 
-Across the four variants, precision rises from 0.571 to 0.601, about half of the gain coming from the final removal of on-street parking and private driveways — real parking excluded by the target definition rather than model error. Recall changes only from 0.854 to 0.865. For variant 4, the stratified bootstrap gives 95% intervals of [0.5941, 0.6090] for precision, [0.8635, 0.8675] for recall and [0.5434, 0.5569] for IoU; its precision interval remains above the measured 0.5708. The headline pattern is therefore unchanged, and variant 1 remains the primary result.
+Bootstrap 95% intervals are: variant-3 precision 0.5845 [0.5783, 0.5917], variant-4 precision 0.6012 [0.5941, 0.6090], recall 0.8654 [0.8635, 0.8675], and IoU 0.5498 [0.5434, 0.5569]. Variant 4 remains above measured precision (0.5708). Even a 0.0366–0.1018 km² range in prediction-side correction changes precision by under 1.5 points.
 
 **中文翻译**
 
-在四个变体中，精确率从 0.571 升至 0.601，其中约一半的提升来自最后一步删除路边停车和私人车道；这些区域确实用于停车，但按目标定义被排除，并非模型错误。召回率仅从 0.854 变为 0.865。变体 4 的分层 bootstrap 95% 区间为：精确率 [0.5941, 0.6090]、召回率 [0.8635, 0.8675]、IoU [0.5434, 0.5569]；其精确率区间仍高于原始测量的 0.5708。因此，主要结论没有改变，全文仍以变体 1 为主要结果。
+Bootstrap 95% 区间为：变体 3 精确率 0.5845 [0.5783, 0.5917]，变体 4 为 0.6012 [0.5941, 0.6090]，召回率 0.8654 [0.8635, 0.8675]，IoU 0.5498 [0.5434, 0.5569]。变体 4 仍高于实测精确率 0.5708；预测侧校正即使在 0.0366–0.1018 km² 间变化，精确率也只改变不到 1.5 个百分点。
 
 > **段落审读**
-> - **逻辑用途：** 汇总累计校正的幅度、不确定性及其对主结论的影响。
-> - **核对状态：** ✅ 已核对：数值与累计校正和 bootstrap 输出一致。
+> - **逻辑用途：** 量化抽样校正的不确定性，并检验“有效精确率提高”是否稳健
+> - **核对状态：** ✅ 已核对：区间已与 `bootstrap_ci_results.csv` 和 `bootstrap_ci_corrections.csv` 核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/sampling_corrections.csv`；`analysis/bootstrap_ci_corrections.csv`；本段核对值：0.571、0.601、0.854、0.865、0.5941、0.6090、0.8635、0.8675、0.5434、0.5569、0.5708；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
-> - **可加强：** 已保留最终变体的关键区间，省去不影响结论的重复区间解释。
+> - **原始数据／文本依据：** `analysis/sampling_corrections.csv`；`analysis/bootstrap_ci_results.csv`；`analysis/bootstrap_ci_corrections.csv`；`analysis/osm_timestamps_summary.csv`；本段核对值：3.6, 95%, 3, 0.5845, 0.5783, 0.5917, 4；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
+> - **可加强：** 注明 bootstrap 次数、重采样单位和区间算法。
 
 **英文原稿**
 
-**OpenStreetMap, assessed against the same reference.** OSM records 1.7641 km² of parking across 985 polygons, against 3.2597 km² across 2,037 labelled polygons. It overlaps only 1.1882 km², or 36.5% of labelled parking, leaving **63.5% absent from OSM**. Similar median polygon areas (763 and 799 m²) suggest that this incompleteness is not explained simply by polygon size. Within the 0.2610 km² sampling frame of OSM parking polygons above 100 m² and no more than 10% covered by the labels, 63.2% is estimated to show no parking in the model-input imagery. The 11 sampled features in that category had a median last-edit year of 2025, so stale OSM records are not supported as a general explanation, subject to the timestamp limitation in §3.8.
+Precision rises from 0.571 to 0.601 across the four steps, and roughly half of that gain comes from the final step — removing on-street parking and private driveways from the prediction, which are real parking excluded by rule rather than model error. Recall moves only between 0.854 and 0.865. **The headline pattern does not change under any correction**; variant 1 is reported throughout as the primary figure.
 
 **中文翻译**
 
-**使用同一参考评估 OpenStreetMap。** OSM 以 985 个多边形记录了 1.7641 km² 的停车面积，而人工参考以 2,037 个多边形标注了 3.2597 km²。两者仅重叠 1.1882 km²，即标注停车面积的 36.5%，因此 **63.5% 的标注停车不在 OSM 中**。两者相近的多边形面积中位数（763 m² 和 799 m²）表明，这种不完整性不能简单用多边形大小解释。在由面积超过 100 m²、且标注覆盖率不超过 10% 的 OSM 停车多边形组成的 0.2610 km² 抽样框中，估计有 63.2% 在模型输入影像里看不到停车。该类别的 11 个抽样要素最后编辑年份中位数为 2025 年；结合 §3.8 所述时间戳限制，数据不支持把陈旧 OSM 记录作为一般性解释。
+四步下来，精确率从 0.571 提高到 0.601，其中约一半的提升来自最后一步：从预测中去掉路边停车和私人车道。这些地方确实在停车，只是按规则不属于目标，并非模型识别错误。召回率只在 0.854–0.865 之间变化。**任何校正都没有改变总体结论**，所以全文仍以变体 1 的原始测量作为主要结果。
 
 > **段落审读**
-> - **逻辑用途：** 检验 OSM 相对人工参考的覆盖完整性及其分歧性质。
-> - **核对状态：** ✅ 已核对：面积、数量、重叠比例、抽样框、抽样估计及时间戳均与项目输出一致。
+> - **逻辑用途：** 报告或解释支撑结论的实证量
+> - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/osm_comparison_summary.csv`；`analysis/make_sampling_worksheet.py`；`analysis/sampling_strata.csv`；`analysis/sampling_results.csv`；`analysis/osm_timestamps_summary.csv`；本段核对值：1.7641 km²、985、3.2597 km²、2,037、1.1882 km²、36.5%、63.5%、763 m²、799 m²、0.2610 km²、100 m²、10%、63.2%、11、2025；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
-> - **可加强：** 63.2% 仅适用于所述抽样框；OSM 时间戳也不等于地物建设或拆除日期。
+> - **原始数据／文本依据：** `analysis/sampling_corrections.csv`；`analysis/bootstrap_ci_results.csv`；`analysis/bootstrap_ci_corrections.csv`；`analysis/osm_timestamps_summary.csv`；本段核对值：0.571, 0.601, 0.854, 0.865, 1；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
+
+**英文原稿**
+
+Against the same reference, OSM records 1.7641 km² across 985 polygons, versus 3.2597 km² and 2,037 labels. Similar median polygon areas (763 versus 799 m²) show no simple large-lot bias. OSM overlaps 1.1882 km², only 36.5% of labelled area, leaving **63.5% absent**, while 63.2% of sampled OSM-only area shows no visible parking.
+
+**中文翻译**
+
+使用同一参考时，OSM 以 985 个多边形记录 1.7641 km²，而人工参考为 2,037 个、3.2597 km²。两者面积中位数接近（763 对 799 m²），并非简单遗漏小停车场。OSM 重合 1.1882 km²，只占标注面积的 36.5%，**63.5% 完全缺失**；而 OSM 独有区域中，抽样估计 63.2% 看不到停车。
+
+> **段落审读**
+> - **逻辑用途：** 报告或解释支撑结论的实证量
+> - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
+> - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
+> - **原始数据／文本依据：** `analysis/sampling_corrections.csv`；`analysis/bootstrap_ci_results.csv`；`analysis/bootstrap_ci_corrections.csv`；`analysis/osm_timestamps_summary.csv`；本段核对值：1.7641, 54.1, 985, 2,037, 763, 799, 1.1882；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
+> - **可加强：** 注明 OSM 获取日期、要素标签范围和完整性口径。
+
+**英文原稿**
+
+Last-edit timestamps were retrieved for all 985 OSM parking features. The median across the study area is 2024. Among the sampled polygons judged not to be parking, the median is **2025**, and 8 of 11 were edited in 2024 or later — later than any other sampled category. The disagreement is therefore not attributable to OSM being out of date.
+
+**中文翻译**
+
+研究取得全部 985 个 OSM 停车要素的最后编辑时间。全区中位年份为 2024。样本中被判断为并非停车的多边形，中位年份反而是 **2025**，11 个中有 8 个在 2024 年或之后编辑，比其他任何抽样类别都新。因此，差异不能简单归因为 OSM 太旧。
+
+> **段落审读**
+> - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
+> - **核对状态：** ✅ 已核对：已与项目协议、脚本、日志和文件路径核对。
+> - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
+> - **原始数据／文本依据：** `analysis/sampling_corrections.csv`；`analysis/bootstrap_ci_results.csv`；`analysis/bootstrap_ci_corrections.csv`；`analysis/osm_timestamps_summary.csv`；本段核对值：985, 11, 8；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充关键参数、随机种子或失败判据，使第三方能独立复现。
 
 ## 4.7 地面停车的面积与分布
 
@@ -2932,80 +2962,95 @@ Across the four variants, precision rises from 0.571 to 0.601, about half of the
 
 **英文原稿**
 
-The calibrated column applies the whole-area factor from §3.9. Its whole-area value is an identity; the band rows show residuals when that citywide factor is applied within each band (−19.6% to +10.0%), not an independent transfer test.
+The calibrated column applies the whole-area factor from §3.9. Its final row is an identity because the factor was fitted on those cells. Band rows test within-city transfer, with errors from −19.6% in the two-cell inner band to +10.0% beyond 4 km.
 
 **中文翻译**
 
-“校准面积”列采用 §3.9 的全区因子。全区数值只是恒等式；各环带数值表示同一全区因子用于各环带时的残差（−19.6% 至 +10.0%），并非独立的迁移检验。
+校准列使用 §3.9 的全区因子。最后一行是恒等式，因为因子正由这些单元拟合；各环带行则检验城市内迁移，误差从最内侧两个单元的 −19.6% 到 4 km 外的 +10.0%。
 
 > **段落审读**
-> - **逻辑用途：** 区分全区恒等式、环带残差与真正的留出迁移检验。
-> - **核对状态：** ✅ 已核对：环带残差与 `parking_extent_summary.csv` 一致，留出检验另见表 4.10。
+> - **逻辑用途：** 报告或解释支撑结论的实证量
+> - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/parking_extent_summary.csv`；`analysis/parking_extent.py`；本段核对值：−19.6%、+10.0%；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
-> - **可加强：** 当前措辞已避免把包含拟合数据的环带残差误称为独立迁移误差。
+> - **原始数据／文本依据：** `analysis/accuracy_vs_distance.csv`；`analysis/calibration_transfer_errors.csv`；`analysis/parking_extent.py`；本段核对值：3.9, 100, 19.6, 4, 10.0；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
 
 **英文原稿**
 
-The complete-coverage reference contains 3.2597 km² of surface parking, or **3.26% of the 100 km² study area**. The sampled reference corrections in §4.6 raise this to 3.2951 km² (**3.30%**), a shift of less than 0.1 percentage points.
+Surface parking covers 3.2597 km², **3.26% of the study area**, based on the complete labelled reference rather than the model. Removing labels not visible as parking and adding missed parking changes this to 3.2951 km² (**3.30%**), a shift below 0.1 percentage points.
 
 **中文翻译**
 
-完整覆盖的人工参考中，地面停车面积为 3.2597 km²，占 **100 km² 研究区的 3.26%**。应用 §4.6 的抽样参考校正后，面积增至 3.2951 km²（**3.30%**），变化不到 0.1 个百分点。
+地面停车覆盖 3.2597 km²，即研究区的 **3.26%**，来源是完整人工参考而非模型。删除影像中不可见的停车标签并加入漏标停车后，结果为 3.2951 km²（**3.30%**），变化不到 0.1 个百分点。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
 > - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
 > - **原始数据／文本依据：** `analysis/accuracy_vs_distance.csv`；`analysis/calibration_transfer_errors.csv`；`analysis/parking_extent.py`；本段核对值：3.2597, 100, 3.26, 4.6, 3.2951, 3.30, 0.1；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
-> - **可加强：** “完整覆盖”只表示全区均被标注，不声称参考中不存在漏标。
+> - **可加强：** 继续明确 3.26% 来自人工参考而非模型估计，并避免把 3.30% 当作独立观测。
 
 **英文原稿**
 
-Parking share peaks at 7.11% in the 1–2 km band and then falls monotonically to 1.39% beyond 4 km. The apparent central dip to 5.33% is uncertain because the <1 km band contains only two cells. Across cells, the distribution is strongly right-skewed: mean 3.26%, **median 1.71%**, maximum 18.81%, with six cells above 10%.
+The share is highest in the inner 2 km — 5.33% within 1 km and 7.11% between 1 and 2 km — and falls monotonically beyond that, to 4.80%, 4.50% and 1.39% in the successive bands. The decline outward is well supported, resting on bands of 14, 22 and 51 cells. Whether the profile also turns down at the very centre is not established: the innermost band holds only two cells, so the apparent dip from 7.11% to 5.33% cannot be distinguished from the variation between individual cells.
 
 **中文翻译**
 
-停车占比在 1–2 km 环带达到峰值 7.11%，随后单调下降至 4 km 外的 1.39%。最中心看似降至 5.33%，但 <1 km 环带仅含两个单元，不能确定这一回落。逐单元分布明显右偏：均值 3.26%，**中位数 1.71%**，最大值 18.81%，6 个单元超过 10%。
+停车占地比例在内侧 2 km 最高：1 km 内为 5.33%，1–2 km 为 7.11%；再向外依次单调下降到 4.80%、4.50% 和 1.39%。向外下降的趋势较可靠，因为三个外侧环带分别包含 14、22 和 51 个单元。但最中心是否也真的下降尚不能确定：最内环带只有两个单元，所以从 7.11% 到 5.33% 的表面下降，可能只是单元间差异。
 
 > **段落审读**
-> - **逻辑用途：** 概括停车占比的距离梯度、中心不确定性和逐单元集中程度。
+> - **逻辑用途：** 报告或解释支撑结论的实证量
 > - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/parking_extent_summary.csv`；`analysis/accuracy_vs_distance.csv`；本段核对值：7.11%、1.39%、5.33%、2、3.26%、1.71%、18.81%、6、10%；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
-> - **可加强：** 表中已有中间环带数值，正文只保留峰值、外围值与两单元限制。
+> - **原始数据／文本依据：** `analysis/accuracy_vs_distance.csv`；`analysis/calibration_transfer_errors.csv`；`analysis/parking_extent.py`；本段核对值：2, 1, 5.33, 7.11, 4.80, 4.50, 1.39；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
+
+**英文原稿**
+
+The distribution across cells is strongly right-skewed: mean 3.26%, **median 1.71%**, maximum 18.81%, with six cells above 10%. Parking land is concentrated rather than spread evenly.
+
+**中文翻译**
+
+逐单元分布明显右偏：均值 3.26%，**中位数 1.71%**，最大值 18.81%，有 6 个单元超过 10%。也就是说，停车用地集中在少数区域，并非均匀铺开。
+
+> **段落审读**
+> - **逻辑用途：** 报告或解释支撑结论的实证量
+> - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
+> - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
+> - **原始数据／文本依据：** `analysis/accuracy_vs_distance.csv`；`analysis/calibration_transfer_errors.csv`；`analysis/parking_extent.py`；本段核对值：3.26, 1.71, 18.81, 6, 10%；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
+> - **可加强：** 继续明确 3.26% 来自人工参考而非模型估计，并避免把 3.30% 当作独立观测。
 
 ![停车占地](figures/parking_extent.png)
 
 **英文原稿**
 
-**Figure 4.6** Labelled parking share by cell (white circle: City Square), labelled and predicted shares against distance, and the distribution of labelled shares across the 100 cells.
+**Figure 4.6** Parking share by cell, against distance, and its distribution across the 100 cells.
 
 **中文翻译**
 
-**图 4.6** 逐单元标注停车占比（白圈为 City Square）、标注与预测占比相对距离的变化，以及 100 个单元中标注占比的分布。
+**图 4.6** 各单元停车占地比例、它与距离的关系，以及 100 个单元中的分布。
 
 > **段落审读**
 > - **逻辑用途：** 说明图件承载的证据
-> - **核对状态：** ✅ 已核对：图由 `make_results_figures.py` 根据 `accuracy_vs_distance.csv` 生成，图中数值及白圈位置与正文一致。
+> - **核对状态：** 🟨 需人工复核：图由项目分析脚本及对应 CSV 生成。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
 > - **原始数据／文本依据：** `analysis/accuracy_vs_distance.csv`；`analysis/calibration_transfer_errors.csv`；`analysis/parking_extent.py`；本段核对值：4.6, 100；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
 > - **可加强：** 终稿检查图例、单位、色盲可读性和印刷尺寸。
 
 **英文原稿**
 
-**Calibration and the grain at which it holds.** For a map with precision *p* and recall *r*, reference-equivalent area is estimated as predicted area × *p*/*r* (§3.9); here, 4.8785 × *p*/*r* = 3.2595 km². This is an identity on the cells used to fit the factor. Table 4.10 tests it on held-out cells.
+**Calibration and the grain at which it holds.** For a map of precision *p* and recall *r*, true area is estimated as predicted area × *p*/*r*, here 4.8785 × 0.6681 = 3.2595 km². On the cells the factor was fitted to this is an identity. Tested by holding cells out (Table 4.10), it is not.
 
 **中文翻译**
 
-**校准及其适用的空间尺度。** 对精确率为 \(p\)、召回率为 \(r\) 的地图，参考口径面积估计为“预测面积 × \(p/r\)”（§3.9）；此处为 \(4.8785\times p/r=3.2595\) km²。在用于拟合因子的单元上，这只是恒等式；表 4.10 才在留出单元上检验它。
+**校准在什么空间尺度上有效。** 若地图精确率为 \(p\)、召回率为 \(r\)，真实面积估为“预测面积 × \(p/r\)”；这里是 \(4.8785\times0.6681=3.2595\) km²。在拟合因子的同一批单元上，这只是恒等式；真正的检验是把单元留出（表 4.10）。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
 > - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/validation_summary.csv`；`analysis/parking_extent.py`；本段核对值：4.8785、3.2595、4.10；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
-> - **可加强：** 已避免把四舍五入后的 0.6681 与更高精度计算结果直接写成不严格相等。
+> - **原始数据／文本依据：** `analysis/accuracy_vs_distance.csv`；`analysis/calibration_transfer_errors.csv`；`analysis/parking_extent.py`；本段核对值：4.8785, 6681, 3.2595, 4.10；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
 
 **英文原稿**
 
@@ -3024,7 +3069,7 @@ Parking share peaks at 7.11% in the 1–2 km band and then falls monotonically t
 
 **英文原稿**
 
-| Scheme | Held out | Tests | Mean error | 5th–95th pct. | Within ±25% |
+| Scheme | Held out | Tests | Mean error | 5–95% | Within ±25% |
 |---|---|---:|---:|---:|---:|
 | **Random half split** | 50 cells | 200 | +0.3% | **−6.6% to +7.8%** | 100% |
 | Leave one distance band out | 1 band | 5 | −2.9% | −16.9% to +10.6% | — |
@@ -3032,7 +3077,7 @@ Parking share peaks at 7.11% in the 1–2 km band and then falls monotonically t
 
 **中文翻译**
 
-| 方案 | 留出内容 | 检验次数 | 平均误差 | 第 5–95 百分位 | 落在 ±25% 内 |
+| 方案 | 留出内容 | 检验次数 | 平均误差 | 5–95% 范围 | 落在 ±25% 内 |
 |---|---|---:|---:|---:|---:|
 | **随机一半划分** | 50 个单元 | 200 | +0.3% | **−6.6% 至 +7.8%** | 100% |
 | 每次留出一个距离环带 | 1 个环带 | 5 | −2.9% | −16.9% 至 +10.6% | — |
@@ -3047,32 +3092,32 @@ Parking share peaks at 7.11% in the 1–2 km band and then falls monotonically t
 
 **英文原稿**
 
-Across the 200 random half splits, the central 90% of held-out errors runs from −6.6% to +7.8%, showing that a factor fitted on half the city transfers to a comparable sub-area within the same city. This is not an uncertainty interval for the directly labelled 3.26%. At 1 km², the estimator becomes unstable: only 63% of cells fall within ±25%, and the +16.5% mean is inflated by small denominators (median absolute error 0.0035 km² against mean labelled area 0.0329 km²).
+A factor fitted on half the city predicts the other half within about **±7%** at 90% confidence. This describes unlabelled-area performance, not uncertainty in the directly measured 3.26%. At 1 km² the estimator fails: only 63% of cells are within ±25%, with median absolute error 0.0035 km² against mean labelled area 0.0329 km².
 
 **中文翻译**
 
-在 200 次随机半分中，留出误差的中间 90% 介于 −6.6% 和 +7.8% 之间，说明在半个城市上拟合的因子可以迁移到同一城市内规模相当的子区域。这不是直接标注所得 3.26% 的不确定区间。在 1 km² 尺度，估计变得不稳定：只有 63% 的单元落在 ±25% 内；+16.5% 的均值还受到小分母放大（中位绝对误差为 0.0035 km²，而平均标注面积为 0.0329 km²）。
+以半个城市拟合的因子，在 90% 置信水平下可把另半个城市预测到约 **±7%**。这描述无标签区域的表现，不是直接测得 3.26% 的不确定区间。在 1 km² 尺度上估计失效：仅 63% 的单元位于 ±25% 内，绝对误差中位数为 0.0035 km²，而单元平均标注面积为 0.0329 km²。
 
 > **段落审读**
-> - **逻辑用途：** 界定校准因子在城市子区域和单格尺度上的适用性。
+> - **逻辑用途：** 报告或解释支撑结论的实证量
 > - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/calibration_transfer_summary.csv`；`analysis/calibration_transfer_errors.csv`；本段核对值：200、−6.6%、+7.8%、3.26%、1 km²、63%、±25%、+16.5%、0.0035 km²、0.0329 km²；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
-> - **可加强：** 已将经验百分位改写为“中间 90%”，不再误称为置信区间；“失效”也收紧为“不稳定”。
+> - **原始数据／文本依据：** `analysis/accuracy_vs_distance.csv`；`analysis/calibration_transfer_errors.csv`；`analysis/parking_extent.py`；本段核对值：90%, ±7, 3.26, 1, 63%, ±25, 0.0035；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
+> - **可加强：** 继续明确 3.26% 来自人工参考而非模型估计，并避免把 3.30% 当作独立观测。
 
 ![校准迁移](figures/calibration_transfer.png)
 
 **英文原稿**
 
-**Figure 4.7** Held-out calibration errors under the three schemes. Red lines mark medians and dashed black lines means; the distance-band panel contains only five tests.
+**Figure 4.7** Distribution of calibrated-estimate error under the three hold-out schemes. The red line marks the median of each distribution; Table 4.10 reports the mean, which for the leave-one-out scheme is the higher of the two.
 
 **中文翻译**
 
-**图 4.7** 三种方案下的留出校准误差。红线表示中位数，黑色虚线表示均值；距离环带面板只有 5 次检验。
+**图 4.7** 三种留出方案下校准估计误差的分布。
 
 > **段落审读**
 > - **逻辑用途：** 说明图件承载的证据
-> - **核对状态：** ✅ 已核对：图中三组分布、均值和中位数与 `calibration_transfer_errors.csv` 一致。
+> - **核对状态：** 🟨 需人工复核：图由项目分析脚本及对应 CSV 生成。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
 > - **原始数据／文本依据：** `analysis/accuracy_vs_distance.csv`；`analysis/calibration_transfer_errors.csv`；`analysis/parking_extent.py`；本段核对值：4.7；译文对应位置：`04_results.md`（仅作定位，不作为引文证据）
 > - **可加强：** 终稿检查图例、单位、色盲可读性和印刷尺寸。
@@ -3098,11 +3143,11 @@ Across the 200 random half splits, the central 90% of held-out errors runs from 
 
 **英文原稿**
 
-The transfer works, but unevenly. Recall of 0.854 (Table 4.1) means that most labelled parking is found; precision of 0.571 means that a little under half of the returned area is not labelled parking, and predicted area is 1.50 times labelled area. Figure 4.1 shows the asymmetry across the city: recall is generally high and less spatially variable, while precision varies by more than a factor of two between neighbouring cells.
+The transfer works, but unevenly, and the unevenness has a definite shape. Recall of 0.854 (Table 4.1) means the model finds most of what is there; precision of 0.571 means a little under half of what it returns is not labelled parking, and the predicted area is 1.50 times the labelled area. Figure 4.1 shows this is not an artefact of aggregation: recall is high and spatially even, while precision varies by more than a factor of two between neighbouring cells.
 
 **中文翻译**
 
-迁移有效，但表现并不均匀。召回率 0.854（表 4.1）说明大多数标注停车被检出；精确率 0.571 表示返回面积中略少于一半没有被标注为停车，预测面积是标注面积的 1.50 倍。图 4.1 显示这种不对称遍布全区：召回率总体较高且空间变异较小，精确率却能在相邻单元间相差一倍以上。
+迁移是有效的，但表现并不均匀，而且这种不均匀有清楚的结构。召回率 0.854（表 4.1）说明模型找到了大多数真实停车场；精确率 0.571 表示模型返回的面积中略少于一半没有被标注为停车，预测总面积是标注面积的 1.50 倍。图 4.1 说明这不是汇总方法造成的：召回率高且空间上均匀，精确率却能在相邻单元间相差一倍以上。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3113,11 +3158,11 @@ The transfer works, but unevenly. Recall of 0.854 (Table 4.1) means that most la
 
 **英文原稿**
 
-The IoU of 0.520 is better read against transfer studies than against an implicit standard of perfection. Maggiori et al. (2017) regarded roughly 65% IoU on unseen-city building footprints as satisfactory generalisation, while Hurst-Tarrab et al. (2020) report parking-block models above 50%. The present result lies in that range despite using no target-domain training in the primary analysis; the comparison studies drew training and test data from the same source. Scalar performance therefore survived the crossing better than might be expected, but it does not reveal where the cost fell.
+The result is better compared with transfer studies than with perfection. Maggiori et al. (2017) treat roughly 65% IoU on unseen-city buildings as satisfactory generalisation, while Hurst-Tarrab et al. (2020) report parking IoU above 50%; this study’s 0.520 lies in that range. Unlike those same-source training and test results, it uses no target-domain training. The scalar score suggests substantial transfer, but only decomposition shows where performance was lost.
 
 **中文翻译**
 
-与其拿一个隐含的“完美标准”比较，不如把 0.520 的 IoU 放进迁移研究中理解。Maggiori et al.（2017）把未见城市建筑轮廓约 65% 的 IoU 视为满意的泛化，Hurst-Tarrab et al.（2020）的停车区块模型则超过 50%。本研究的结果落在这一范围内，而且主分析没有使用目标域训练数据；上述比较研究的训练与测试数据来自同一来源。因此，标量表现比预期更经得起迁移，但它没有说明代价具体落在哪里。
+结果更适合与迁移研究而非“完美”比较。Maggiori et al.（2017）把未见城市建筑约 65% 的 IoU 视为良好泛化，Hurst-Tarrab et al.（2020）的停车 IoU 超过 50%；本研究的 0.520 位于其间。不同的是，那些训练与测试数据同源，而本研究没有目标域训练。总体分数说明迁移仍然有效，但只有误差分解才能显示损失发生在哪里。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3128,11 +3173,11 @@ The IoU of 0.520 is better read against transfer studies than against an implici
 
 **英文原稿**
 
-Nor does the apparent spatial pattern survive closer examination. Once parking share is controlled for, distance from the centre no longer predicts precision, whereas parking share remains strongly associated with it (Table 4.7, Figure 4.5). Accuracy tracks parking abundance rather than location, consistent with macro scores falling below micro scores and sparse cells performing poorly. Lot size shows a separate association (Table 4.4); neither relationship establishes causation. The raw distance correlation alone would therefore give a plausible but misleading account of central-city performance.
+On spatial variation the intuitive reading does not hold up. Distance from the city centre does not predict precision once parking share is controlled for, while parking share continues to predict it strongly (Table 4.7, Figure 4.5). Distance appears to matter only because it tracks parking abundance. What tracks accuracy is how much parking a cell contains, not where in the city it sits — which is consistent with the macro figures falling below the micro figures, and with the sparse cells being the weak ones. Lot size shows a separate and equally clear gradient (Table 4.4), though the two analyses are distinct and the relationships are associations rather than demonstrated causes. Reporting the raw distance correlation alone would have supported a plausible but misleading claim about central-city performance.
 
 **中文翻译**
 
-表面上的空间格局经进一步检验也不成立。控制停车占比后，距中心距离不再预测精确率；停车占比则仍与精确率显著相关（表 4.7、图 4.5）。因此，准确率跟随停车多少，而不是所在位置；这与 macro 指标低于 micro 指标、停车稀少单元表现较差相一致。停车场大小另有独立关联（表 4.4），但两者都不能证明因果。只报告原始距离相关会给出一个合理却容易误导的市中心表现解释。
+关于空间差异，直觉上的解释站不住脚。控制停车占地比例后，距市中心距离不能预测精确率；相反，控制距离后，停车占地比例仍然具有很强的预测力（表 4.7、图 4.5）。距离看起来重要，只是因为它与停车多少相关。真正随准确率变化的是一个单元内有多少停车，而不是它位于城市什么位置。这也与 macro 低于 micro、停车稀少单元表现较弱的结果一致。停车场大小还呈现另一条明确梯度（表 4.4），不过这两项分析彼此独立，而且都只是相关关系，不能直接解释为因果。若只报告距离的原始相关性，就会得到一个听起来合理、实际上容易误导的“市中心表现差异”结论。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3158,26 +3203,41 @@ Nor does the apparent spatial pattern survive closer examination. Once parking s
 
 **英文原稿**
 
-Complete-lot non-detection is not the dominant explanation. Automated attribution leaves 0.0699 km² unresolved, **2.1% of labelled area** and under 3% of all error area; sampled adjudication also finds reference–imagery disagreement within this population. Boundary placement is the largest single component: 28.8% of false-positive area and 54.1% of false-negative area lie within 5 m of a matched feature, together about a third of all error area. Consistently, 44.4% of missed area belongs to lots detected to better than 70% (Tables 4.2, 4.3). The remainder mixes look-alike surfaces, definitional disagreement and pipeline artefacts rather than one dominant cause.
+What the error is *not* is a failure to recognise parking. After every attributable component is removed, the genuine blind spot — parking present in the imagery that the model simply did not see — is at most 2.1% of labelled area, or under 3% of all error area, and sampling suggests part of even that is not parking in the imagery at all.
 
 **中文翻译**
 
-完整停车场未被检出并不是主要解释。自动归因后仍有 0.0699 km² 未得到解释，占标注面积的 **2.1%**，也不到全部误差面积的 3%；抽样判断还在这一总体中发现参考标注与影像之间的分歧。边界位置是最大的单项：28.8% 的 FP 面积和 54.1% 的 FN 面积位于匹配要素 5 m 内，加权后约占全部误差的三分之一。与此一致，44.4% 的漏检面积属于覆盖率已经超过 70% 的停车场（表 4.2、4.3）。其余部分混合了相似地表、定义分歧和流程人为误差，没有单一原因占据主导。
+首先，这些错误**并不是模型认不出停车场**。扣除所有能够归因的成分后，模型真正的盲区——影像中确实有停车，但模型完全没有看到——最多只占标注面积的 2.1%，不到全部误差面积的 3%；抽样还表明，其中一部分在模型所见影像里其实不是停车场。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
 > - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** `analysis/fn_analysis_summary.csv`；`analysis/boundary_sensitivity.csv`；本段核对值：0.0699 km²、2.1%、28.8%、54.1%、44.4%、70%；译文对应位置：`05_discussion.md`（仅作定位，不作为引文证据）
-> - **可加强：** 当前措辞已区分未解释残余与模型自身识别失败，并避免把相互重叠的三个比例直接相加。
+> - **原始数据／文本依据：** 引文逐条核对记录为 `citation_audit.md`；原始论文见上方证据索引；本段核对值：2.1, 3%；译文对应位置：`05_discussion.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
 
 **英文原稿**
 
-This qualifies the zero-shot robustness reported for SegFormer by Xie et al. (2021). Their benchmark degrades familiar scenes through noise, blur, weather and digital artefacts; geographic transfer changes the scene itself. Here, complete-lot detection appears comparatively robust, while boundary placement is the larger constraint. No comparable source-domain decomposition exists, so the study cannot say that delineation became worse after transfer. It can say that the architecture's corruption robustness and the error pattern observed here are not in tension.
+What it is instead is a mixture. Boundary placement accounts for the largest single component: 28.8% of false-positive area lies within 5 m of a real car park, 54.1% of missed area lies within 5 m of something the model did find, and 44.4% of missed area belongs to lots detected to better than 70% (Tables 4.2, 4.3) — together about a third of all error area. The remainder is made up of confusions with particular look-alike surfaces, disagreement about what counts as parking, and artefacts of the processing pipeline. No one of these dominates; what matters is that recognition is not among them.
 
 **中文翻译**
 
-这也限定了 Xie et al.（2021）关于 SegFormer 零样本稳健性的主张。其基准通过噪声、模糊、天气和数字伪影降低熟悉场景的图像质量；地理迁移则改变场景本身。本研究中，完整停车场检出相对稳健，边界位置构成更大限制。由于没有可比的来源域分解，本文不能断言迁移使边界绘制恶化；能够确认的是，架构的图像损坏稳健性与这里观察到的误差结构并不矛盾。
+真正的误差是一组混合问题。边界位置是最大的单项：28.8% 的 FP 距真实停车场不超过 5 m，54.1% 的 FN 距模型已找到的区域不超过 5 m，44.4% 的漏检面积来自模型覆盖率已经超过 70% 的停车场（表 4.2、4.3）。合起来，边界问题约占全部误差面积的三分之一。其余误差来自与特定相似地表的混淆、对“什么算停车场”的定义分歧，以及处理流程本身造成的人为错误。没有一项完全主导；关键是，停车场识别本身不是主要问题。
+
+> **段落审读**
+> - **逻辑用途：** 报告或解释支撑结论的实证量
+> - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
+> - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
+> - **原始数据／文本依据：** 引文逐条核对记录为 `citation_audit.md`；原始论文见上方证据索引；本段核对值：28.8, 5, 54.1, 44.4, 70%, 4.2, 4.3；译文对应位置：`05_discussion.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
+
+**英文原稿**
+
+The decomposition clarifies SegFormer’s reported robustness to corrupted familiar scenes (Xie et al., 2021). Recognition transferred: the residual blind spot is small. Error instead concentrates at boundaries. Without a comparable source-domain measure, this study cannot claim worse UK delineation, only that boundary placement is the binding constraint after transfer. Robustness to image corruption and this geographical pattern are therefore compatible.
+
+**中文翻译**
+
+这一分解澄清了 SegFormer 对熟悉场景影像损坏的稳健性主张（Xie et al., 2021）。识别能力成功迁移，剩余盲区很小；误差主要集中于边界。缺少来源域可比指标，本研究不能声称英国边界绘制更差，只能确定迁移后的约束在边界。因此，影像损坏稳健性与这里的地理迁移模式并不矛盾。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -3188,11 +3248,11 @@ This qualifies the zero-shot robustness reported for SegFormer by Xie et al. (20
 
 **英文原稿**
 
-The sampled typology also revises the expectation in §2.5 that absent markings would be the principal difficulty. Irregular layout was identified in 11 of 42 chips and accounted for an estimated 23.3% of the unresolved whole-lot population, against one chip and 3.7% for absent markings. The latter estimate is imprecise, so the evidence supports an ordering rather than a precise ratio: irregular arrangement was the most frequently identified mechanism and unmarked surfacing among the least. Shadow, unusual surfacing and commercial vehicles appeared at more modest magnitudes.
+The typology revises §2.5’s expectations. Shadow, unusual surfaces and commercial vehicles appear at modest levels, but irregular layout occurs in 11 of 42 chips (estimated 23.3% of genuine misses) and absent markings in only one (3.7%). The latter is imprecise, yet the sample clearly points to arrangement rather than missing markings as the more common mechanism.
 
 **中文翻译**
 
-抽样类型还修正了 §2.5 关于“无标线是主要困难”的预期。42 个图块中有 11 个被判为布局不规则，估计占未解释整块漏检总体的 23.3%；无标线只有 1 个图块，占 3.7%。后一估计并不精确，因此证据支持的是排序而非精确比例：不规则布局是最常识别出的机制，无标线地面则属于最少见者。阴影、特殊铺装和商用车辆的规模较小。
+误差类型修正了 §2.5 的预期。阴影、特殊铺装和商用车辆均以较小比例出现，但不规则布局见于 42 个样本中的 11 个（估计占真正漏检的 23.3%），无标线仅 1 个（3.7%）。后一数值不精确，但样本明确指向布局而非缺少标线是更常见机制。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3203,26 +3263,41 @@ The sampled typology also revises the expectation in §2.5 that absent markings 
 
 **英文原稿**
 
-Building and road subtraction is a genuine trade: it raises precision by 0.043 and costs 0.040 of recall (Table 4.5). It also creates a specific blind spot. The pre-subtraction output detects rooftop parking at 0.916 recall, but building subtraction removes four fifths of it; 31.9% of whole-lot misses were detected before being deleted by the pipeline (Table 4.6). That component is about half the size of the unresolved whole-lot remainder. Domain-adaptation research usually treats the model as the object transferred (Lyu et al., 2025), but deployment transfers a model and its corrections. The rooftop result therefore argues for re-evaluating both.
+Two findings concern the pipeline rather than the model. First, post-processing is a genuine trade: subtracting buildings and roads raises precision by 0.043 and costs 0.040 of recall (Table 4.5). Second, and less comfortably, it creates a blind spot of its own. The raw model detects rooftop parking at recall 0.916, slightly *better* than ground-level parking, and building subtraction deletes four fifths of it (Table 4.6); across all whole-lot misses, 31.9% were found by the model and then removed by the pipeline. A correction step justified by a sound premise — that a roof cannot be surface parking — is wrong precisely where the protocol says rooftop parking counts.
 
 **中文翻译**
 
-建筑与道路扣除是一项真实取舍：它使精确率提高 0.043，却损失 0.040 的召回率（表 4.5）。它还制造了一个特定盲区。扣除前输出识别屋顶停车的召回率为 0.916，但建筑扣除删除了其中五分之四；31.9% 的整块漏检其实曾被模型找到，随后才被流程删除（表 4.6）。这一部分约为未解释整块残余的一半。领域适应研究通常把模型视为迁移对象（Lyu et al., 2025），实际部署的却是模型及其修正规则；屋顶结果说明两者都需要重新检验。
+另有两项发现针对处理流程，而不是模型。第一，后处理确实是一项取舍：扣除建筑和道路使精确率提高 0.043，但召回率损失 0.040（表 4.5）。第二，更值得警惕的是，它自己创造了盲区。原始模型识别屋顶停车的召回率为 0.916，甚至略高于地面停车；建筑扣除却删除了其中五分之四（表 4.6）。在所有整块停车场漏检中，31.9% 其实已经被模型找到，随后被流程删掉。一个看似合理的前提——屋顶不可能是地面停车——恰好与标注规则“屋顶停车也算”的定义冲突。
+
+> **段落审读**
+> - **逻辑用途：** 报告或解释支撑结论的实证量
+> - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
+> - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
+> - **原始数据／文本依据：** 引文逐条核对记录为 `citation_audit.md`；原始论文见上方证据索引；本段核对值：0.043, 0.040, 4.5, 0.916, 4.6, 31.9；译文对应位置：`05_discussion.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
+
+**英文原稿**
+
+Transfer research often evaluates the *model*, but deployment uses a pipeline with source-calibrated corrections (Lyu et al., 2025). Rooftop failure lies entirely in those corrections and forms 31.9% of whole-lot misses, about half the model’s own blind spot. Pipeline transfer should therefore re-evaluate correction stages as well as the network.
+
+**中文翻译**
+
+迁移研究常评估*模型*，实际部署却是模型加来源域修正规则的流程（Lyu et al., 2025）。屋顶失败完全来自修正规则，占整体漏检的 31.9%，约为模型自身盲区的一半。因此，流程迁移必须同时重新评价网络与修正阶段。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
 > - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
 > - **文献原句：** 见 [L19](#l19) Lyu et al. (2025)；短引文、定位与本地 PDF 均列于上方索引。
-> - **原始数据／文本依据：** 引文逐条核对记录为 `citation_audit.md`；原始论文见上方证据索引；本段核对值：0.043, 0.040, 4.5, 0.916, 4.6, 31.9；译文对应位置：`05_discussion.md`（仅作定位，不作为引文证据）
-> - **可加强：** 当前措辞已把流程删除量与“未解释整块残余”比较，不再把残余直接称为模型盲区。
+> - **原始数据／文本依据：** 引文逐条核对记录为 `citation_audit.md`；原始论文见上方证据索引；本段核对值：31.9；译文对应位置：`05_discussion.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
 
 **英文原稿**
 
-The ablation rejects another tempting inference. Although industrial and commercial land coincides with 52.8% of false-positive area, using it as a filter reduces recall from 0.854 to 0.279 and IoU from 0.520 to 0.214 because real retail parking occupies the same land. All four additional filters lower IoU, even where the loss is small. **Reference layers can explain where error falls without being able to remove it.**
+Ablation also shows that **layers can explain error without safely removing it**. Filtering industrial/commercial land, which overlaps 52.8% of FP, cuts recall from 0.854 to 0.279 and IoU from 0.520 to 0.214 because it contains real retail parking. All four additional filters lower IoU, slightly for narrow layers and sharply (−0.306) for broad land use.
 
 **中文翻译**
 
-消融实验否定了另一个诱人的推断。虽然工业和商业用地与 52.8% 的 FP 面积重合，但用它过滤会把召回率从 0.854 降到 0.279、IoU 从 0.520 降到 0.214，因为真实的零售停车场也位于这种土地上。新增四种过滤器全部降低 IoU，即使有些降幅很小。**参考图层可以解释错误出现在哪里，却不能据此安全删除错误。**
+消融还表明，**图层可以解释误差，却不能安全删除误差**。工业/商业用地虽与 52.8% 的 FP 重合，过滤后却因删除真实零售停车，使召回率从 0.854 降至 0.279、IoU 从 0.520 降至 0.214。四种新增过滤均降低 IoU：窄图层降幅较小，宽泛土地利用降幅达 −0.306。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3248,11 +3323,11 @@ The ablation rejects another tempting inference. Although industrial and commerc
 
 **英文原稿**
 
-The complete-coverage reference records surface parking over 3.26% of the 100 km² study area, rising to 3.30% after the sampled reference corrections (Table 4.8). Parking peaks at 7.11% in the 1–2 km band and declines to 1.39% beyond 4 km; the <1 km band contains only two cells, so the apparent central dip is uncertain. Distribution is strongly right-skewed: a median cell holds 1.71%, while six exceed 10%.
+Surface parking covers 3.26% of the 100 km² study area, rising to 3.30% once the sampled corrections to the reference are applied (Table 4.8) — a figure measured by complete labelling rather than estimated from the model. The highest shares are in the inner 2 km, at 5.33% and 7.11% in the two innermost bands, with a monotonic decline beyond to 1.39% past 4 km. The two-cell innermost band is too small to establish whether the profile turns down at the very centre. The distribution across cells is strongly right-skewed: a median cell holds 1.71%, but six cells exceed 10%.
 
 **中文翻译**
 
-完整覆盖参考记录的地面停车占 100 km² 研究区的 3.26%；应用抽样参考校正后为 3.30%（表 4.8）。停车占比在 1–2 km 环带达到 7.11%，随后降至 4 km 外的 1.39%；<1 km 环带只有两个单元，因此不能确定最中心是否回落。逐单元分布明显右偏：中位单元为 1.71%，但 6 个单元超过 10%。
+地面停车覆盖 100 km² 研究区的 3.26%；按抽样结果修正参考数据后为 3.30%（表 4.8）。这个数字来自完整人工标注，而不是模型估计。停车占地比例在内侧 2 km 最高，两个最内环带分别为 5.33% 和 7.11%，此后单调下降，4 km 外仅为 1.39%。最内环带只有两个单元，不足以证明停车比例在最中心真的回落。逐单元分布明显右偏：中位单元为 1.71%，但 6 个单元超过 10%。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3263,11 +3338,11 @@ The complete-coverage reference records surface parking over 3.26% of the 100 km
 
 **英文原稿**
 
-Jiao (2015) shows urban land density generally declining with distance from the centre. Parking does not show a clear decline within the inner 2 km, only beyond it. This is not a contradiction—the quantities differ—but it raises a question the data cannot answer: whether surface parking is displaced from the highest-value centre while remaining close to it. Testing that would require land-value data and more central cells.
+Unlike the regular outward decline in urban land density described by Jiao (2015), parking is roughly level across the inner 2 km before falling. The measures do not conflict, but the pattern raises an untested possibility: parking may be displaced from the highest-value centre while remaining nearby. Testing this requires land values and more central cells.
 
 **中文翻译**
 
-Jiao（2015）发现，城市土地密度通常随距中心距离下降；停车占比在内侧 2 km 没有显示明确下降，只在其外下降。两者测量的不是同一概念，因此并不矛盾；但这提出了当前数据无法回答的问题：地面停车是否被挤出地价最高的中心，同时仍保持对中心的接近性？检验这一点需要土地价值数据和更多中心单元。
+与 Jiao（2015）描述的城市土地密度规律性外降不同，停车在内侧 2 km 大致持平，此后才下降。两者并不矛盾，却提出一个未检验的可能：停车被挤出最高价值的中心，同时仍依赖中心区位。检验它需要地价数据和更多中心单元。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -3280,11 +3355,11 @@ Jiao（2015）发现，城市土地密度通常随距中心距离下降；停车
 
 **英文原稿**
 
-The practical question is not whether 0.571 is a good precision but what a map of that precision supports—the fitness-for-use question raised in §1.1, for which quality depends on both the data and the task (Devillers et al., 2007).
+The practical question is not whether 0.571 is a good precision but what a map of that precision supports — the question of fitness for use raised in §1.1, on which quality depends jointly on the data and on the task asked of it (Devillers et al., 2007). The three answers below differ not because the map differs but because the task does.
 
 **中文翻译**
 
-实际问题不是“0.571 的精确率算不算好”，而是这种精确率的地图能支持什么用途。这就是 §1.1 提出的用途适合性问题：质量同时取决于数据和任务（Devillers et al., 2007）。
+实际问题不是“0.571 的精确率算不算好”，而是这种精确率的地图能支持什么用途。这就是第 1.1 节提出的“是否适合用途”：质量由数据本身和使用者要它完成的任务共同决定（Devillers et al., 2007）。下面三个答案不同，不是因为地图发生了变化，而是因为任务不同。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3295,11 +3370,11 @@ The practical question is not whether 0.571 is a good precision but what a map o
 
 **英文原稿**
 
-It supports **screening for candidate parking locations**. Generally high recall means that most labelled parking is detected, but low precision means that returned locations require checking before site-level use.
+It supports **locating** parking. Recall is high, spatially even, and stable across every correction applied in §4.6, so a user asking where the surface parking is will be given an answer that is right about most of it.
 
 **中文翻译**
 
-它适合**筛查候选停车位置**。总体较高的召回率说明大多数标注停车都能被检出；但较低的精确率意味着，返回位置在用于具体地块之前仍需核查。
+它适合**寻找停车场位置**。召回率较高，在空间上也较均匀，而且经过第 4.6 节所有校正后都很稳定。因此，若用户问“地面停车大致在哪里”，地图能找出其中绝大部分。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3310,11 +3385,11 @@ It supports **screening for candidate parking locations**. Generally high recall
 
 **英文原稿**
 
-It supports **area estimation after local validation**, at a stated grain. Across 200 random half splits, the central 90% of held-out errors runs from −6.6% to +7.8%; at 1 km², only 63% fall within ±25%. The evidence therefore supports totals over comparable sub-areas within the city, not individual grid-cell values. Evidence between those scales is thinner: five held-out distance bands show errors from −20% to +13%.
+It supports **area estimation after local validation**, at an explicit grain. The estimator *T=A·p/r* corrects systematic over-prediction: a factor fitted on half the city predicts the other half within about ±7%, but only 63% of 1 km² cells within ±25%. It therefore supports totals over tens of square kilometres, not grid-cell values; intermediate distance bands show −20% to +13% errors.
 
 **中文翻译**
 
-它适合在**本地验证后估算面积**，但必须说明空间尺度。200 次随机半分中，留出误差的中间 90% 为 −6.6% 至 +7.8%；在 1 km² 尺度，只有 63% 落在 ±25% 内。因此，证据支持同一城市内规模相当的子区域总量，不支持单个格网值。两个尺度之间的证据较弱：五个留出距离环带的误差为 −20% 至 +13%。
+它在**本地验证后可估算面积**，但须明确尺度。\(T=A\cdot p/r\) 可校正系统高估：半城拟合因子把另半城预测到约 ±7%，但只有 63% 的 1 km² 单元位于 ±25% 内。因此它支持数十平方公里总量，不支持格网值；中间尺度的环带误差为 −20% 至 +13%。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3325,28 +3400,11 @@ It supports **area estimation after local validation**, at a stated grain. Acros
 
 **英文原稿**
 
-For area calibration, *p/r* reduces to labelled area divided by predicted area. Testing the approach in a second city would therefore require labelled total area over sampled cells, not a full object-level error analysis—although transfer between cities remains untested. The map does **not** support uncorrected area measurement or site-level judgement: its raw area is 1.50 times the labelled total, and part of the apparent excess reflects the annotation definition rather than model error.
+There is a practical corollary worth stating plainly. Because *p/r* reduces to the ratio of labelled to predicted area, calibrating the model in a second city requires only a labelled *total area* over a sample of cells — not a full object-level error analysis of the kind undertaken here. The expensive part of this study does not have to be repeated to reuse its output.
 
 **中文翻译**
 
-对于面积校准，\(p/r\) 最终就是“标注面积／预测面积”。因此，在第二座城市检验该方法只需取得抽样单元的标注总面积，不必重复完整的对象级误差分析；不过，跨城市迁移尚未得到检验。地图**不支持**未经校正的面积测量或具体地块判断：原始面积是标注总量的 1.50 倍，而且部分表面过量来自标注定义而非模型错误。
-
-> **段落审读**
-> - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
-> - **核对状态：** ✅ 已核对：已与项目协议、脚本、日志和文件路径核对。
-> - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** 引文逐条核对记录为 `citation_audit.md`；原始论文见上方证据索引；译文对应位置：`05_discussion.md`（仅作定位，不作为引文证据）
-> - **可加强：** 已把面积校准与跨城市验证、位置筛查与地块判断分开，避免扩大适用范围。
-
-## 5.3 误差分解带来的方法启示
-
-**英文原稿**
-
-Three methodological observations follow, each from a single case.
-
-**中文翻译**
-
-下面是三点方法观察，每一点都只来自本案例。
+这里还有一个很实际的结论。因为 \(p/r\) 最终就是“标注面积／预测面积”，若要在第二个城市校准，只需在一批抽样单元中标出**停车总面积**，不必重复本研究完整的对象级误差分析。也就是说，重复使用模型时不需要再次承担本研究最昂贵的部分。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -3357,11 +3415,43 @@ Three methodological observations follow, each from a single case.
 
 **英文原稿**
 
-First, equal IoU need not imply equal fitness for use. Cross-city benchmarks conventionally report per-city IoU (Maggiori et al., 2017), but that scalar conceals whether error comes from complete omission or imperfect boundaries. Here, complete-lot detection was comparatively robust and boundary placement contributed more error; the opposite profile at the same IoU would support different tasks. The distinction can be recovered from the spatial reference already required for segmentation validation.
+It does **not** support uncorrected area measurement, per-cell values, or any site-level judgement. The 1.50× over-prediction is large enough that an uncorrected figure would be wrong by half, and a third of the unexplained over-prediction is not error at all but parking the annotation rules exclude by design.
 
 **中文翻译**
 
-第一，相同 IoU 不代表相同的用途适合性。跨城市基准通常报告逐城市 IoU（Maggiori et al., 2017），但这一标量不能区分完整漏检和边界不准。本研究中，完整停车场检出相对稳健，边界位置贡献了更多误差；相同 IoU 若具有相反结构，将支持不同任务。利用分割验证本来就需要的空间参考即可区分两者。
+它**不适合**直接使用未经校正的面积、逐单元数值或任何具体地点层面的判断。1.50 倍的过度预测意味着直接使用结果会高估一半；而无法解释的过度预测中，还有三分之一其实不算模型错误，而是标注规则有意排除的真实停车区域。
+
+> **段落审读**
+> - **逻辑用途：** 报告或解释支撑结论的实证量
+> - **核对状态：** ✅ 已核对：数字已按正文表格、结果 CSV 与面积恒等式交叉核对。
+> - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
+> - **原始数据／文本依据：** 引文逐条核对记录为 `citation_audit.md`；原始论文见上方证据索引；本段核对值：1.50；译文对应位置：`05_discussion.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充置信区间或说明该数字是直接测量、估计还是逻辑上限。
+
+## 5.3 误差分解带来的方法启示
+
+**英文原稿**
+
+Three observations follow that concern method rather than parking. Each comes from a single case and is offered as such.
+
+**中文翻译**
+
+下面三点讨论的是评估方法，而不是停车本身。它们都来自一个案例，因此应按案例证据理解。
+
+> **段落审读**
+> - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
+> - **核对状态：** ✅ 已核对：已与项目协议、脚本、日志和文件路径核对。
+> - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
+> - **原始数据／文本依据：** 引文逐条核对记录为 `citation_audit.md`；原始论文见上方证据索引；译文对应位置：`05_discussion.md`（仅作定位，不作为引文证据）
+> - **可加强：** 补充关键参数、随机种子或失败判据，使第三方能独立复现。
+
+**英文原稿**
+
+First, equal IoU can hide different usefulness. Cross-city benchmarks report per-city IoU (Maggiori et al., 2017), but here recognition transferred better than delineation. A map with the reverse profile and identical IoU would be worse for locating parking but better for measuring detected lots. An ordinary validation reference can separate these capacities.
+
+**中文翻译**
+
+第一，相同 IoU 可掩盖不同用途。跨城市基准报告逐城 IoU（Maggiori et al., 2017），但本研究的识别迁移优于边界绘制。若另一张地图模式相反而 IoU 相同，它会更不适合定位、却更适合测量已检出停车场。普通验证参考即可分开两种能力。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3372,11 +3462,11 @@ First, equal IoU need not imply equal fitness for use. Cross-city benchmarks con
 
 **英文原稿**
 
-Second, one accuracy figure can combine problems needing different remedies. Domain differences are candidates for adaptation (Lyu et al., 2025; Hong et al., 2023), whereas the 34.9% of unexplained over-prediction assigned to on-street parking and private driveways reflects the annotation scope. Reporting measured and effective precision separately prevents that definitional disagreement from being mistaken for model incapacity.
+The second is that a measured accuracy figure can combine differences of quite different kinds. Part of the shortfall here is a domain difference of the sort adaptation methods are designed to address (Lyu et al., 2025; Hong et al., 2023). Another part — 34.9% of the unexplained over-prediction — is on-street parking and private driveways, real parking that the annotation rules exclude by design. That component reflects where the scope line was drawn rather than what the model can see, and it would respond to a different remedy. Distinguishing them is what allows the effective precision of §4.6 to be reported alongside the measured one.
 
 **中文翻译**
 
-第二，一个准确率数字可能混合需要不同补救方式的问题。领域差异可以通过适应方法处理（Lyu et al., 2025; Hong et al., 2023），而无法解释过度预测中归为路边停车和私人车道的 34.9% 反映的是标注范围。分别报告测得精确率和有效精确率，可以避免把定义分歧误认为模型能力不足。
+第二，一个准确率数字可能混合性质完全不同的差异。本研究一部分误差确实来自领域差异，是领域适应方法试图解决的问题（Lyu et al., 2025; Hong et al., 2023）。但无法解释的过度预测中还有 34.9% 是路边停车和私人车道：它们确实是停车区域，只是标注规则有意排除。这部分误差反映的是研究范围边界画在哪里，而不是模型能不能看见目标，因此需要完全不同的解决办法。正因为把两者分开，第 4.6 节才能同时报告“测得精确率”和“有效精确率”。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3387,11 +3477,11 @@ Second, one accuracy figure can combine problems needing different remedies. Dom
 
 **英文原稿**
 
-Third, area correction also has a spatial grain. Olofsson et al. (2014) show how reference data can adjust mapped area and quantify sampling uncertainty; the hold-out design here asks how far a locally fitted factor carries. It transferred across comparable sub-areas within Leeds but became unstable at 1 km². The result is case-specific, but the test is reusable.
+The third concerns the correction factor. Olofsson et al. (2014) set out how to adjust a mapped area using reference data, together with the uncertainty of the resulting estimate. What that framework does not speak to is a spatial question a user of a transferred map will meet: a factor estimated over one area, how far does it carry to another? The hold-out design of §3.9 is a small step towards it, and the answer here was at least specific — within about ±7% across half a city, and not at the scale of a single square kilometre.
 
 **中文翻译**
 
-第三，面积校正也有空间尺度。Olofsson et al.（2014）说明了如何用参考数据调整地图面积并量化抽样不确定性；本文的留出设计进一步询问，本地拟合的因子能够迁移多远。它可以迁移到利兹内部规模相当的子区域，但在 1 km² 尺度变得不稳定。结果只适用于本案例，检验方法则可以复用。
+第三点涉及校正因子。Olofsson et al.（2014）说明了如何用参考数据修正地图面积，以及如何计算估计的不确定性。但这个框架没有直接回答迁移地图使用者会遇到的空间问题：在一个区域估出的因子，能够带到多远的另一个区域？第 3.9 节的留出设计对此作了一个小规模尝试，并至少得到明确答案：在半个城市尺度上误差约为 ±7%，在单个 1 km² 单元尺度上则不成立。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3404,11 +3494,11 @@ Third, area correction also has a spatial grain. Olofsson et al. (2014) show how
 
 **英文原稿**
 
-Bates and Leibling (2012) identify the absence of basic parking information as an obstacle to coherent British policy. Existing inventory routes do not transfer easily: American studies depend on cadastral records and codified parking requirements unavailable nationally in comparable UK form (Scharnhorst, 2018; Hoehne et al., 2019), while the British ground-survey approach has not been repeated at scale since the 1999 London exercise. Imagery offers a third route. It also measures area directly, unlike space counts that require assumptions about layout and aisle provision before they can answer a land-use question.
+Bates and Leibling (2012) identify missing data as a central obstacle to British parking policy. US inventories rely on cadastral records and codified requirements unavailable in comparable UK form (Scharnhorst, 2018; Hoehne et al., 2019), while Britain has not repeated the 1999 London field survey at scale. This study demonstrates a third route requiring neither and measures area directly rather than spaces that need layout assumptions.
 
 **中文翻译**
 
-Bates 和 Leibling（2012）认为，基础停车信息的缺失阻碍了英国形成连贯政策。现有清查路径难以直接移植：美国研究依赖英国全国范围内没有同类形式的地籍记录和法定停车要求（Scharnhorst, 2018; Hoehne et al., 2019）；英国的实地调查方法自 1999 年伦敦研究后没有再次大规模实施。影像提供了第三条路径，而且直接测量面积；相比之下，车位数量必须先假设布局和通道占地，才能回答土地利用问题。
+Bates 和 Leibling（2012）把数据缺失视为英国停车政策的核心障碍。美国清单依赖英国缺少可比形式的地籍和法定停车要求（Scharnhorst, 2018; Hoehne et al., 2019），英国也没有大规模重复 1999 年伦敦实地调查。本研究展示了不依赖二者的第三条路径，并直接测量面积，而非需要布局假设才能换算的车位数。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -3419,11 +3509,11 @@ Bates 和 Leibling（2012）认为，基础停车信息的缺失阻碍了英国�
 
 **英文原稿**
 
-Where that area lies matters. The highest parking shares occur within 2 km of the centre, overlapping the inner band that Centre for Cities identifies as important to Britain's density gap (Lange, Kovacevic and Johnson, 2026). This is a spatial coincidence, not evidence that parking causes the deficit. The narrower conclusion is that the band where the density deficit is concentrated is not short of surface parking.
+Two features of that result matter more than the headline share. The first is where it sits. The highest parking shares fall in the inner 2 km, which includes the band Centre for Cities research identifies as driving Britain's density gap, where post-war neighbourhoods just beyond the city centre are markedly less dense than comparable pre-war ones (Lange, Kovacevic and Johnson, 2026). That the two coincide in location is worth noting; this study does not establish that they are related, and the coincidence should not be read as a mechanism. What can be said is narrower and still useful: the band where the density deficit is largest is not a band where surface parking is scarce.
 
 **中文翻译**
 
-这些面积位于哪里同样重要。最高停车占比出现在中心 2 km 内，与 Centre for Cities 认为对英国密度差距重要的内侧环带重合（Lange, Kovacevic and Johnson, 2026）。这只是空间重合，不能证明停车导致密度不足。更窄的结论是：密度差距集中的环带并不缺少地面停车。
+比总体占比更重要的是结果的两个特征。第一是它位于哪里。停车比例最高的区域在内侧 2 km，而 Centre for Cities 的研究认为，英国密度差距主要也来自这个地带：市中心外侧的战后社区，密度明显低于可比的战前社区（Lange, Kovacevic and Johnson, 2026）。二者位置重合值得注意，但本研究没有证明两者存在因果关系，不能把重合直接当成机制。能够谨慎说的是：密度不足最严重的地带，并不是一个地面停车稀少的地带。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -3434,11 +3524,11 @@ Where that area lies matters. The highest parking shares occur within 2 km of th
 
 **英文原稿**
 
-Concentration also qualifies Shoup's (2005) aggregate opportunity-cost argument. A citywide share of 3.26% does not reveal whether parking is diffuse or concentrated; here the median cell holds 1.71%, while six exceed 10%. For policy seeking under-utilised land (MHCLG, 2024, para. 125(d)), identifying concentrations at supported aggregate scales is more useful than the headline share alone.
+Concentration also qualifies Shoup’s (2005) aggregate opportunity-cost argument. The median cell allocates 1.71% to parking, but six exceed 10%; the 3.26% citywide share therefore understates local concentration. For policy seeking under-used land (MHCLG, 2024, para. 125(d)), locating that concentration is a defensible use of the map.
 
 **中文翻译**
 
-高度集中也限定了 Shoup（2005）的总体机会成本论点。全区 3.26% 无法说明停车是分散还是集中；本研究中，中位单元为 1.71%，但 6 个单元超过 10%。对于寻找低效土地的政策（MHCLG, 2024, para. 125(d)），在证据支持的汇总尺度上识别集中区域，比只看总体占比更有用。
+高度集中也修正了 Shoup（2005）的总体机会成本论点。中位单元仅有 1.71% 用于停车，但 6 个超过 10%，因此全市 3.26% 会低估局部集中。对于寻找低效用地的政策（MHCLG, 2024, para. 125(d)），定位这种集中是地图可合理支持的用途。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3449,11 +3539,11 @@ Concentration also qualifies Shoup's (2005) aggregate opportunity-cost argument.
 
 **英文原稿**
 
-The OpenStreetMap comparison adds a smaller result to the VGI quality literature. OSM completeness is known to vary by place and feature type (Haklay, 2010; Sehra, Singh and Rai, 2013; Zhou, Wang and Liu, 2022); here, 63.5% of labelled parking is absent. Similar median polygon areas suggest that incompleteness is not explained simply by object size, but cannot establish the shape of the full size distribution. Separately, the sampled OSM polygons showing no parking in the model-input imagery were recently edited. Subject to the fact that timestamps record any edit rather than construction, this disagreement sample is not dominated by untouched legacy records.
+The OSM comparison also extends VGI quality evidence (Haklay, 2010; Sehra, Singh and Rai, 2013; Zhou, Wang and Liu, 2022). Although 63.5% of labelled parking is absent, near-identical median polygon areas suggest no simple small-lot omission, albeit weakly. Incorrect records are also the most recently edited sampled category, so age does not explain disagreement.
 
 **中文翻译**
 
-OpenStreetMap 比较还为志愿地理信息质量研究增加了一个较小结果。已有研究表明 OSM 完整性随地点和要素类型变化（Haklay, 2010; Sehra, Singh and Rai, 2013; Zhou, Wang and Liu, 2022）；本研究中，63.5% 的标注停车在 OSM 中缺失。相近的多边形面积中位数表明，不完整性不能简单由对象大小解释，但不足以确定完整面积分布。另行抽样中，在模型输入影像里看不到停车的 OSM 多边形近期仍被编辑；考虑到时间戳记录任何编辑而非建设时间，这一分歧样本至少不是由从未更新的遗留记录主导。
+OSM 比较也补充了志愿地理信息质量证据（Haklay, 2010; Sehra, Singh and Rai, 2013; Zhou, Wang and Liu, 2022）。尽管 63.5% 的标注停车缺失，两套数据几乎相同的面积中位数弱地表明并非单纯遗漏小停车场。错误记录也是抽样类别中最近编辑的，因此时效不能解释分歧。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3466,11 +3556,11 @@ OpenStreetMap 比较还为志愿地理信息质量研究增加了一个较小结
 
 **英文原稿**
 
-**One city.** Hold-outs test transfer within Leeds, not between cities. Because the calibration factor is an area ratio, a multi-city test needs labelled totals over sampled cells rather than a repeat of the full object-level analysis, but that test has not yet been made.
+**One city.** The calibration factor was tested by holding out cells within Leeds, not across cities, so its transferability between cities remains unestablished. The corollary in §5.2 makes this tractable: because the factor is an area ratio, testing it elsewhere needs only labelled total area on a sample of cells.
 
 **中文翻译**
 
-**仅研究一个城市。** 留出检验只测试利兹内部迁移，而非城市之间迁移。由于校准因子是面积比，多城市检验只需取得抽样单元的标注总量，不必重复完整的对象级分析；但这项检验尚未进行。
+**仅研究一个城市。** 校正因子是在利兹内部留出单元测试，而不是跨城市测试，所以它能否在不同城市之间迁移仍未确定。第 5.2 节的结论使下一步测试可行：因子只是面积比，因此在其他城市只需对一批抽样单元标注总面积。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -3481,11 +3571,11 @@ OpenStreetMap 比较还为志愿地理信息质量研究增加了一个较小结
 
 **英文原稿**
 
-**A single annotator.** Detection is lower for low-confidence than high-confidence labels (0.713 against 0.856, Table 4.4), indicating where visual or definitional ambiguity is concentrated. It cannot quantify annotation error or an accuracy ceiling without independent labels. Multiple annotators and an agreement measure are required (Foody, 2002).
+**A single annotator.** Detection is markedly lower for lots the annotator marked uncertain (0.713 against 0.856, Table 4.4), which means the reference itself sets a ceiling on measurable accuracy. That reference data quality bounds what an accuracy assessment can report is long recognised (Foody, 2002); what this study can add is a measured indication of where the bound lies for this target. Multiple annotators and a reported agreement coefficient would establish it properly.
 
 **中文翻译**
 
-**只有一名标注者。** 低置信标签的检出率低于高置信标签（0.713 对 0.856，表 4.4），说明视觉或定义歧义集中在哪里；但没有独立标签，就不能量化标注误差或准确率上限。未来需要多名标注者和一致性指标（Foody, 2002）。
+**只有一名标注者。** 标注者认为不确定的停车场，模型检出率明显较低（0.713 对 0.856，表 4.4）。这意味着参考数据本身给可测准确率设了上限。参考数据质量会限制准确率评估早已得到认识（Foody, 2002）；本研究能增加的，是针对这个目标测出上限大致出现在哪里。未来应使用多名标注者，并报告一致性系数。
 
 > **段落审读**
 > - **逻辑用途：** 用既有研究或政策为本段推论建立依据
@@ -3496,11 +3586,11 @@ OpenStreetMap 比较还为志愿地理信息质量研究增加了一个较小结
 
 **英文原稿**
 
-**Two imagery sources.** Labels were drawn over a satellite basemap, while predictions used Digimap tiles. The unresolved whole-lot residual is 2.1% of labelled area and sampled adjudication gives a 1.0% reference-side correction (§3.8). The spatial diagnostic finds no large common displacement, but none of these checks eliminates source disagreement; labelling on the model-input imagery would.
+**Two imagery sources.** The reference was labelled over a satellite basemap and the predictions were produced from Digimap tiles. The effect of the difference is bounded by construction at 2.1% of labelled area and measured by sampling at 1.0%, with precision unaffected (§3.8), and the two sources are co-registered to well within a pixel. Labelling on the model's own input imagery would remove the question rather than bound it.
 
 **中文翻译**
 
-**使用两套影像。** 标签绘制在卫星底图上，预测则使用 Digimap 图块。未解释整块残余占标注面积的 2.1%，抽样判断给出 1.0% 的参考侧校正（§3.8）。空间诊断没有发现明显的共同位移，但这些检查都不能消除来源分歧；只有在模型输入影像上标注才能做到这一点。
+**使用两套影像。** 人工标注绘制在卫星底图上，而模型使用 Digimap 图块。通过分析，这一影响的逻辑上限为标注面积的 2.1%，抽样估计为 1.0%（第 3.8 节），配准偏移也小于一个像素。但问题只是被限制和测量，并没有被消除。直接在模型输入影像上标注，才能彻底去掉这项问题。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3511,11 +3601,11 @@ OpenStreetMap 比较还为志愿地理信息质量研究增加了一个较小结
 
 **英文原稿**
 
-**Conventions shape the figures.** The 5 m boundary band is not a natural break, so 2 m and 10 m are also reported. The sampling frame excludes fragments below 100 m² and covers 0.3883 km² of a 0.4396 km² residual. Reference-layer attribution is positional: a false positive on industrial land has not necessarily been verified as a storage yard.
+**Conventions that shape the numbers.** The 5 m boundary band is a convention, not a natural break, which is why 2 m and 10 m are reported alongside; the choice moves the dilation component by nearly twenty points. The sampling frame excludes fragments below 100 m², covering 0.3883 km² of a 0.4396 km² residual. And attribution against reference layers is positional: a false positive *located on* industrial land has not been individually confirmed to be a storage yard.
 
 **中文翻译**
 
-**分析约定会影响数字。** 5 m 边界带不是自然断点，因此同时报告 2 m 和 10 m。抽样框排除了小于 100 m² 的碎片，覆盖 0.4396 km² 残余中的 0.3883 km²。参考图层归因只是位置判断：位于工业用地的 FP 不一定已经被核实为堆场。
+**会影响数字的分析约定。** 5 m 边界带是人为约定，不是自然断点，因此本文同时报告 2 m 和 10 m；阈值选择会使边界外扩占比变化接近 20 个百分点。抽样框排除了小于 100 m² 的碎片，只覆盖 0.4396 km² 剩余面积中的 0.3883 km²。此外，参考图层归因只是位置判断：“FP 位于工业用地”并不代表每一个都经人工确认是堆场。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3526,11 +3616,11 @@ OpenStreetMap 比较还为志愿地理信息质量研究增加了一个较小结
 
 **英文原稿**
 
-**The target definition matters.** On-street parking and private driveways form 34.9% of unexplained over-prediction. They are real parking excluded by rule, so another defensible protocol would produce a different precision from the same map. Appendix A therefore reports the scope in full.
+**A definitional boundary doing real work.** On-street parking and private driveways account for 34.9% of the unexplained over-prediction. These are real parking that the rules exclude, so the measured precision partly reflects where the scope line was drawn rather than what the model can see. A different but equally defensible protocol would produce a different headline figure from the same map — which is an argument for reporting the protocol in full, as Appendix A does, rather than only the number it produces.
 
 **中文翻译**
 
-**目标定义很重要。** 路边停车和私人车道占无法解释过度预测的 34.9%。它们是真实停车，只是被规则排除，因此另一套同样合理的协议会从同一地图得到不同精确率。附录 A 因而完整报告研究范围。
+**定义边界确实影响了结果。** 路边停车和私人车道占无法解释过度预测的 34.9%。这些地方确实有停车，只是规则将其排除，所以测得精确率一部分反映研究范围怎样划定，而不是模型能看见什么。同一张地图若使用另一套同样合理的协议，就会得到不同的主要数字。这正说明完整公开标注协议很重要，不能只报告最后一个准确率；附录 A 因此给出了完整规则。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3541,11 +3631,11 @@ OpenStreetMap 比较还为志愿地理信息质量研究增加了一个较小结
 
 **英文原稿**
 
-The typology suggests one training-data hypothesis: include more irregularly arranged car parks rather than simply more unmarked ones. With only eleven supporting chips, this is a direction to test, not a settled prescription.
+Beyond these, the most specific opportunity comes from the typology itself. If irregular arrangement is the mechanism most often identified among the genuine misses, then training data would be better extended with irregularly arranged car parks than simply with unmarked ones — though on eleven sampled chips that is a direction to test rather than a settled quantity.
 
 **中文翻译**
 
-误差类型学提出一个训练数据假设：与其只增加无标线停车场，不如增加更多布局不规则的停车场。但支撑它的只有 11 个图块，因此这只是待检验方向，不是稳定建议。
+除上述局限外，误差类型学给出的最具体机会来自布局机制。如果在真正漏检中最常被识别的是不规则布局，那么训练数据应优先增加布局不规则的停车场，而不只是增加无标线停车场；不过，这一判断只来自 11 个被如此分类的抽样图块，因此应被视为待检验方向，而不是已经稳定的数量结论。
 
 > **段落审读**
 > - **逻辑用途：** 从误差机制推出一个具体、可检验的训练数据改进方向
@@ -3556,11 +3646,11 @@ The typology suggests one training-data hypothesis: include more irregularly arr
 
 **英文原稿**
 
-Appendix C tests whether positional error categories can also guide training. Generic Leeds fine-tuning raises raw-pixel IoU from 0.485 to 0.614, trading recall for precision; targeted loss weighting adds no advantage that validation-selected thresholding of the generic model cannot match or exceed. The categories are therefore useful explanations but not, in this experiment, useful supervision. This single-split, one-seed result does not test visually targeted irregular layouts or transfer to another city. Its raw-pixel figures on 50 held-out cells are also not comparable with the post-processed results of Chapter 4.
+A supplementary experiment asked whether the typology could guide training. Generic Leeds fine-tuning raised raw-pixel IoU from 0.485 to 0.614, exchanging 0.127 recall for 0.247 precision. Positional loss weighting performed worse (IoU 0.572 and 0.564), with selectivity gaps of 8.4 and 7.8 points versus 9.7 for generic tuning. Validation-selected thresholding of the generic model matched or exceeded both targeted operating points, including under macro aggregation. Positional categories therefore explain error without adding training value beyond threshold choice. Visually defined targeting remains untested and would require inspected hard negatives, multiple seeds, spatial splits and another city. Appendix C reports these raw-pixel results on 50 held-out cells.
 
 **中文翻译**
 
-附录 C 检验位置型错误类别能否指导训练。普通利兹微调把原始像素 IoU 从 0.485 提高到 0.614，以召回率换取精确率；定向损失加权没有带来普通模型经验证集选择阈值后无法达到或超过的优势。因此，这些类别适合解释错误，但在本实验中不构成有效监督。单一划分、单一随机种子的结果没有检验视觉定向的不规则布局，也没有检验跨城市迁移；50 个留出单元上的原始像素结果也不能与第 4 章的后处理结果比较。
+补充实验检验误差类型能否指导训练。普通利兹微调把原始像素 IoU 从 0.485 提至 0.614，以 0.127 召回率换取 0.247 精确率。位置损失加权表现更差（IoU 0.572、0.564），选择性差距为 8.4、7.8 个百分点，低于普通微调的 9.7。对普通模型作验证集阈值选择，即可达到或超过两个定向运行点，macro 排序也不变。因此，位置类别能解释误差，却未提供超出阈值调整的训练价值。视觉定向仍需经人工确认的困难负样本、多个随机种子、空间划分和第二座城市检验。附录 C 完整报告 50 个留出单元的原始像素结果。
 
 > **段落审读**
 > - **逻辑用途：** 检验误差归因能否直接转化为定向训练收益，并限定阴性结果的含义
@@ -3573,11 +3663,11 @@ Appendix C tests whether positional error categories can also guide training. Ge
 
 **英文原稿**
 
-This dissertation tested whether a US-trained surface-parking segmentation model can be used to measure off-street surface parking in a British city. The model was applied to 100 km² of Leeds exactly as released, with no UK training data in the primary analysis, and evaluated against 2,037 manually labelled car parks drawn to the source model's own target definition. The error was then decomposed rather than merely reported: attributed exhaustively against independent reference layers, characterised by stratified sampling of 142 image chips adjudicated on the imagery the model actually consumed, and tested by ablation of the building- and road-subtraction stage.
+This dissertation tested a released US-trained surface-parking model on 100 km² of Leeds without UK training data. It evaluated output against 2,037 car parks labelled to the source definition, then decomposed error using independent layers, stratified visual sampling of 142 chips and post-processing ablation.
 
 **中文翻译**
 
-本论文检验了一个在美国数据上训练的地面停车分割模型，能否用于测量英国城市的路外地面停车。模型完全按公开版本应用于利兹 100 km² 的研究区，主分析中没有使用任何英国训练数据；评估参考是按照原模型目标定义人工绘制的 2,037 个停车场。研究没有停留在报告一个准确率数字，而是进一步分解误差：用独立参考图层对全部误差作自动归因，对 142 个影像切片进行分层抽样并依据模型实际使用的影像人工判断，还通过消融实验检验建筑和道路扣除阶段。
+本论文把已发布的美国训练露天停车模型用于利兹 100 km²，且不使用英国训练数据。输出以按源定义标注的 2,037 个停车场评价，并通过独立图层、142 个影像切片的分层视觉抽样和后处理消融分解误差。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3588,11 +3678,11 @@ This dissertation tested whether a US-trained surface-parking segmentation model
 
 **英文原稿**
 
-The transfer works asymmetrically. Recall of 0.854 is generally high and less spatially variable than precision, which is 0.571; the model predicts 1.50 times the labelled parking area. Accuracy within the city tracks not distance from the centre but how much parking a cell contains — an apparent location effect that dissolves once parking abundance is controlled for.
+The transfer works asymmetrically. Recall of 0.854 is high and spatially even; precision of 0.571 is neither, and the model predicts 1.50 times the labelled parking area. Accuracy within the city tracks not distance from the centre but how much parking a cell contains — an apparent location effect that dissolves once parking abundance is controlled for.
 
 **中文翻译**
 
-迁移结果是不对称的。召回率为 0.854，总体较高且空间变异小于精确率；精确率为 0.571，模型预测面积是标注面积的 1.50 倍。城市内部的准确率并不由距市中心距离决定，而主要与单元中有多少停车有关。控制停车占比后，表面上的位置效应就消失了。
+迁移结果是不对称的。召回率 0.854，较高而且空间上均匀；精确率 0.571，较低且空间差异明显，模型预测面积是标注面积的 1.50 倍。城市内部的准确率并不由距市中心距离决定，而主要与目标有多少、面积有多大有关。控制停车数量后，表面上的位置效应就消失了。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3603,11 +3693,11 @@ The transfer works asymmetrically. Recall of 0.854 is generally high and less sp
 
 **英文原稿**
 
-Recognition failure is not the dominant explanation: automated attribution leaves 0.0699 km² of whole-lot FN unresolved, **2.1% of labelled area** and under 3% of all error area, while sampled adjudication separately identifies reference–imagery disagreement. Boundary placement is the largest single component, at 28.8% of false-positive and 54.1% of false-negative area, with the remainder split between confusions with particular look-alike surfaces, disagreement over what counts as parking, and pipeline artefacts. Among the sampled unresolved whole-lot population, irregular arrangement was the most frequently identified mechanism and absent markings among the least. Building and road subtraction is a real trade, buying 0.043 of precision for 0.040 of recall, but it also creates a blind spot of its own: the pre-subtraction output detects rooftop parking better than ground-level parking, and building subtraction deletes four fifths of it.
+Error is mainly delineation, definition and processing, not recognition. Genuine non-detection is at most 2.1% of labelled area; boundary effects form 28.8% of FP and 54.1% of FN. Irregular layout is the most common sampled whole-lot mechanism, absent markings among the least. Post-processing gains 0.043 precision for 0.040 recall but removes four fifths of rooftop parking, which the raw model detects better than ground-level parking.
 
 **中文翻译**
 
-识别失败并不是主要解释：自动归因后，仍有 0.0699 km² 的整块漏检 FN 未得到解释，占标注面积的 **2.1%**，也不到全部误差面积的 3%；另行抽样还识别出参考标注与影像之间的分歧。边界位置是最大的单项，分别占 FP 面积的 28.8% 和 FN 面积的 54.1%；其余误差分散在相似地表混淆、定义分歧和流程人为误差中。在抽样的未解释整块漏检总体中，不规则布局是最常识别出的机制，没有标线则是最少见者之一。建筑与道路扣除是一项真实取舍：它用 0.040 的召回率换来 0.043 的精确率；但它也制造了自己的盲区——扣除前输出识别屋顶停车比地面停车还好，建筑扣除却删掉了其中五分之四。
+误差主要来自边界、定义和处理，而非识别。真正未识别最多占标注面积的 2.1%；边界效应占 FP 的 28.8% 和 FN 的 54.1%。不规则布局是抽样整体漏检中最常见机制，无标线则较少。后处理以 0.040 召回率换取 0.043 精确率，却删除了五分之四的屋顶停车，而原始模型对屋顶的识别优于地面停车。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3633,11 +3723,11 @@ Under that measured reliability, surface parking covers 3.26% of the study area 
 
 **英文原稿**
 
-**Contributions.** Four, in ascending order of transferability beyond this case. First, an empirical measurement of how a published US-trained parking segmentation model behaves in a British city, previously unavailable. Second, a reusable method for decomposing area-based segmentation error into boundary effects, attributable confusions, definitional disagreement and pipeline artefacts — a decomposition that turns a single accuracy figure into a statement about which uses survive. Third, evidence that a correction step justified by a sound premise can create a systematic blind spot, which is an argument for evaluating correction stages rather than assuming them. Fourth, a hold-out test of the spatial grain at which a standard area-calibration factor remains reliable: it holds to about ±7% at half-city scale within Leeds and fails at the scale of a single square kilometre.
+**Contributions.** The study provides the first UK test of this published US parking model; a reusable decomposition of boundary effects, confusions, definition disagreements and pipeline artefacts; evidence that plausible post-processing can create systematic blind spots; and a hold-out-tested bias correction that works to about ±7% at half-city scale but not at 1 km².
 
 **中文翻译**
 
-**研究贡献。** 按超出本案例的可迁移程度递增，共有四项。第一，首次实证测量一个公开的美国训练停车分割模型在英国城市中的表现。第二，提出一套可复用的方法，把面积分割误差分成边界效应、可归因混淆、定义分歧和处理流程人为错误，从而把单一准确率转化成“哪些用途仍然可靠”的判断。第三，证明即使修正步骤的出发点合理，也可能制造系统性盲区，因此修正阶段也必须接受评估，不能默认其正确。第四，用留出检验确定标准面积校准因子保持可靠的空间尺度：在利兹半城尺度上约为 ±7%，在单个 1 km² 尺度上失效。
+**研究贡献。** 本研究首次在英国检验该美国停车模型；提出可复用的边界、混淆、定义和流程误差分解；证明合理后处理也会造成系统盲区；并以留出检验确定偏差校正在半城尺度约达 ±7%，但不适用于 1 km²。
 
 > **段落审读**
 > - **逻辑用途：** 报告或解释支撑结论的实证量
@@ -3648,11 +3738,11 @@ Under that measured reliability, surface parking covers 3.26% of the study area 
 
 **英文原稿**
 
-**Future work.** The calibration factor reduces to a ratio of labelled to predicted area, so testing whether it transfers between cities requires labelled totals over a sample of cells rather than a repeat of the full error analysis undertaken here. This makes a multi-city test more tractable, although its cost and between-city validity remain untested. The typology points to a direction for training data: irregularly arranged car parks rather than simply unmarked ones, on the strength of eleven sampled chips. Imagery carrying a near-infrared band would test the one expected failure this study could not examine. A supplementary experiment (Appendix C) narrows what that validation should compare. Generic fine-tuning improved raw-pixel IoU while trading recall for precision; weighting the loss by positional error categories added neither overall nor selective gain, and its operating points were matched or bettered by adjusting the generic model's threshold alone. The next question is whether, and which kind of, local supervision earns its labelling cost — a comparison of zero-shot use, area calibration, generic fine-tuning and visually targeted fine-tuning, judged on locating parking, estimating area, and the precision–recall trade-off each implies.
+**Future work.** Cross-city calibration needs only labelled area totals for sampled cells. Training data should test irregular layouts, while NIR imagery should test the unexamined spectral expectation. Appendix C shows that generic fine-tuning improves raw-pixel IoU but positional weighting adds no gain beyond threshold selection. Future comparison should therefore assess zero-shot use, area calibration, generic fine-tuning and visually targeted fine-tuning against their labelling costs and intended uses.
 
 **中文翻译**
 
-**未来工作。** 校准因子最终只是“标注面积／预测面积”的比率，因此，检验它能否跨城市迁移需要抽样单元的标注总面积，而不必重复本研究完整的误差分析。这使多城市检验更易实施，但其成本和跨城市有效性仍未得到检验。误差类型指出一个训练数据方向：依据 11 个抽样图块，应检验增加布局不规则停车场是否比单纯增加无标线停车场更有效。带近红外波段的影像可以检验本研究未能考察的一项预期失败。附录 C 的补充实验进一步限定了比较对象：通用微调提高原始像素 IoU，但以召回率换取精确率；按位置误差类别加权损失没有产生总体或选择性优势，其工作点也可由调整通用模型阈值达到或超过。下一步问题是本地监督是否值得其标注成本，以及哪一种监督最值得；应比较零样本使用、面积校准、通用微调和视觉定向微调在定位、面积估计及精确率—召回率取舍上的表现。
+**未来工作。** 跨城市校准只需抽样单元的标注面积总量；训练数据应检验不规则布局，NIR 影像则可检验尚未考察的光谱预期。附录 C 表明普通微调能提高原始像素 IoU，但位置加权没有带来超出阈值选择的收益。后续应按标注成本和预期用途，比较零样本应用、面积校准、普通微调和视觉定向微调。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
@@ -3663,11 +3753,11 @@ Under that measured reliability, surface parking covers 3.26% of the study area 
 
 **英文原稿**
 
-The Leeds results show that a transferred model cannot be trusted to measure parking area without local validation. Within the same city, local calibration supports area estimation at half-city scale; whether that finding transfers between cities remains open.
+A transferred model cannot yet be trusted to measure how much land a British city gives to parking. Paired with one local validation, it can — and that is a materially different claim from either accepting or dismissing the map.
 
 **中文翻译**
 
-利兹结果表明，没有本地验证时，不能信任迁移模型直接测量停车面积。在同一城市内部，本地校准支持半城尺度的面积估计；这一结论能否跨城市迁移，仍是开放问题。
+一个未经验证的迁移模型，目前还不能直接被信任来测量英国城市把多少土地用于停车；但只要配合一次本地验证，它就可以做到。这与“直接接受地图”或“彻底否定地图”都是本质不同的结论。
 
 > **段落审读**
 > - **逻辑用途：** 限制结论适用范围，防止从城市尺度证据跳到地块判断
@@ -5103,7 +5193,7 @@ All code written for this study is archived at **https://github.com/hou1020/Park
 |---|---|
 | `calculate/` | Agreement against the manual and OSM references, polygon filtering and result merging |
 | `analysis/` | Validation, error attribution, sampling, ablation and calibration (§3.4–§3.9) |
-| `fine-tuning/*.gpkg` | The manual reference labels and the 1 km² grid |
+| `manual/`, `fine-tuning/*.gpkg` | The manual reference labels and the 1 km² grid |
 | `fine-tuning/` | Generic fine-tuning of the released checkpoint (Appendix C) |
 | `targeted-finetuning/` | Targeted loss weighting and the threshold sweep (Appendix C) |
 | `parking-lot-mapping-tool/` | The released pipeline, with the UK-specific tiling, inference and post-processing written for this study (§3.3) |
@@ -5114,7 +5204,7 @@ All code written for this study is archived at **https://github.com/hou1020/Park
 |---|---|
 | `calculate/` | 与人工参考及 OSM 的一致性计算、多边形过滤与结果合并 |
 | `analysis/` | 验证、误差归因、抽样、消融和校准（§3.4–§3.9） |
-| `fine-tuning/*.gpkg` | 人工参考标签与 1 km² 网格 |
+| `manual/`、`fine-tuning/*.gpkg` | 人工参考标签与 1 km² 网格 |
 | `fine-tuning/` | 对已发布检查点的普通微调（附录 C） |
 | `targeted-finetuning/` | 定向损失加权与阈值扫描（附录 C） |
 | `parking-lot-mapping-tool/` | 已发布流程，含为本研究编写的英国专用切片、推理与后处理（§3.3） |
@@ -5130,17 +5220,17 @@ All code written for this study is archived at **https://github.com/hou1020/Park
 
 **英文原稿**
 
-Getmapping aerial photography supplied through Digimap: 100 tiles at 0.25 m ground sample distance, three visible bands, EPSG:27700. The tile identifiers and version suffixes needed to reorder the same coverage are recorded in `parking-lot-mapping-tool/output_files/tif_processing_progress.csv`, and every processing step from the raw tiles onward is reproducible from the code once the imagery is obtained under an equivalent licence.
+Getmapping aerial photography supplied through Digimap: 109 tiles at 0.25 m ground sample distance, three visible bands, EPSG:27700. The tile identifiers and version suffixes needed to reorder the same coverage are recorded in `parking-lot-mapping-tool/output_files/tif_processing_progress.csv` and in the download folder names under `parking-lot-mapping-tool/files/`, and every processing step from the raw tiles onward is reproducible from the code once the imagery is obtained under an equivalent licence.
 
 **中文翻译**
 
-通过 Digimap 提供的 Getmapping 航空摄影：100 个图块，地面采样距离 0.25 m，三个可见光波段，EPSG:27700。重新订购相同覆盖范围所需的图块标识符和版本后缀记录在 `parking-lot-mapping-tool/output_files/tif_processing_progress.csv` 中；只要在同等许可下取得影像，从原始图块开始的每一步均可由代码复现。
+通过 Digimap 提供的 Getmapping 航空摄影：109 个图块，地面采样距离 0.25 m，三个可见光波段，EPSG:27700。重新订购相同覆盖范围所需的图块标识符和版本后缀记录在 `parking-lot-mapping-tool/output_files/tif_processing_progress.csv` 及 `parking-lot-mapping-tool/files/` 下的下载目录名中；只要在同等许可下取得影像，从原始图块开始的每一步均可由代码复现。
 
 > **段落审读**
 > - **逻辑用途：** 交代研究设计或处理步骤，使结果可解释和可复现
 > - **核对状态：** ✅ 已核对：已与项目协议、脚本、日志和文件路径核对。
 > - **文献原句：** 本段无外部引文；若为作者推论或实证结果，则以下列原始数据／文本依据核对。
-> - **原始数据／文本依据：** 附录 D 所列仓库目录、许可说明与结果文件路径；本段核对值：100, 0.25, 27700；译文对应位置：`11_appendix_d_code_and_data.md`（仅作定位，不作为引文证据）
+> - **原始数据／文本依据：** 附录 D 所列仓库目录、许可说明与结果文件路径；本段核对值：109, 0.25, 27700；译文对应位置：`11_appendix_d_code_and_data.md`（仅作定位，不作为引文证据）
 > - **可加强：** 补充关键参数、随机种子或失败判据，使第三方能独立复现。
 
 ## D.3 参考数据
@@ -5498,11 +5588,11 @@ Work therefore turned to manual ground truth. A validation boundary was defined 
 
 **英文原稿**
 
-Two pieces of infrastructure were settled on 25 June: OpenStreetMap retrieval was switched to the Overpass API in `post_processing_uk.py`, and Colab outputs were redirected to Drive so that results survived session resets.
+Three pieces of infrastructure were settled on 25 June: aerial data was moved onto Git LFS, OpenStreetMap retrieval was switched to the Overpass API in `post_processing_uk.py`, and Colab outputs were redirected to Drive so that results survived session resets.
 
 **中文翻译**
 
-6 月 25 日确定两项基础设施：`post_processing_uk.py` 中的 OpenStreetMap 获取方式改为 Overpass API；Colab 输出改存 Drive，使结果在会话重置后仍能保留。
+6 月 25 日确定三项基础设施：航空数据转移到 Git LFS；`post_processing_uk.py` 中的 OpenStreetMap 获取方式改为 Overpass API；Colab 输出改存 Drive，使结果在会话重置后仍能保留。
 
 > **段落审读**
 > - **逻辑用途：** 推进本节论证并连接相邻段落

@@ -8,14 +8,14 @@ All code written for this study is archived at **https://github.com/hou1020/Park
 |---|---|
 | `calculate/` | Agreement against the manual and OSM references, polygon filtering and result merging |
 | `analysis/` | Validation, error attribution, sampling, ablation and calibration (§3.4–§3.9) |
-| `manual/`, `fine-tuning/*.gpkg` | The manual reference labels and the 1 km² grid |
+| `fine-tuning/*.gpkg` | The manual reference labels and the 1 km² grid |
 | `fine-tuning/` | Generic fine-tuning of the released checkpoint (Appendix C) |
 | `targeted-finetuning/` | Targeted loss weighting and the threshold sweep (Appendix C) |
 | `parking-lot-mapping-tool/` | The released pipeline, with the UK-specific tiling, inference and post-processing written for this study (§3.3) |
 
 ## D.2 Imagery
 
-Getmapping aerial photography supplied through Digimap: 109 tiles at 0.25 m ground sample distance, three visible bands, EPSG:27700. The tile identifiers and version suffixes needed to reorder the same coverage are recorded in `parking-lot-mapping-tool/output_files/tif_processing_progress.csv` and in the download folder names under `parking-lot-mapping-tool/files/`, and every processing step from the raw tiles onward is reproducible from the code once the imagery is obtained under an equivalent licence.
+Getmapping aerial photography supplied through Digimap: 100 tiles at 0.25 m ground sample distance, three visible bands, EPSG:27700. The tile identifiers and version suffixes needed to reorder the same coverage are recorded in `parking-lot-mapping-tool/output_files/tif_processing_progress.csv`, and every processing step from the raw tiles onward is reproducible from the code once the imagery is obtained under an equivalent licence.
 
 ## D.3 Reference data
 

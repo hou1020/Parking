@@ -1,0 +1,10 @@
+# latexmk / xelatex build artefacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.xdv

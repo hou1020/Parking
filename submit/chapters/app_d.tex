@@ -1,0 +1,132 @@
+\hypertarget{repository}{%
+\section{Repository}\label{repository}}
+
+All code written for this study is archived at https://github.com/hou1020/Parking. The directories referenced elsewhere in this dissertation are:
+
+\par\addvspace{\medskipamount}\noindent
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.3154}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.6646}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Directory
+\end{minipage} &
+\begin{minipage}[b]{\linewidth}\raggedright
+Contents
+\end{minipage} \\
+\midrule
+\endhead
+\texttt{calculate/\allowbreak{}}
+& Agreement against
+the manual and OSM
+references, polygon
+filtering and result
+merging \\
+\texttt{analysis/\allowbreak{}} &
+Validation, error
+attribution,
+sampling, ablation
+and calibration
+(§3.4--§3.9) \\
+\texttt{fine-\allowbreak{}tuning/\allowbreak{}*.\allowbreak{}gpkg}
+& The manual
+reference labels and
+the 1 km² grid \\
+\texttt{fine-\allowbreak{}tuning/\allowbreak{}}
+& Generic
+fine-tuning of the
+released checkpoint
+(Appendix C) \\
+\texttt{targeted-\allowbreak{}finetuning/\allowbreak{}}
+& Targeted loss
+weighting and the
+threshold sweep
+(Appendix C) \\
+\texttt{parking-\allowbreak{}lot-\allowbreak{}mapping-\allowbreak{}tool/\allowbreak{}}
+& The released
+pipeline, with the
+UK-specific tiling,
+inference and
+post-processing
+written for this
+study (§3.3) \\
+\bottomrule
+\end{longtable}
+\par\addvspace{\medskipamount}\restoreparskip
+
+\hypertarget{imagery}{%
+\section{Imagery}\label{imagery}}
+
+Getmapping aerial photography supplied through Digimap: 100 tiles at 0.25 m ground sample distance, three visible bands, EPSG:27700. The tile identifiers and version suffixes needed to reorder the same coverage are recorded in \texttt{parking-\allowbreak{}lot-\allowbreak{}mapping-\allowbreak{}tool/\allowbreak{}output\_\allowbreak{}files/\allowbreak{}tif\_\allowbreak{}processing\_\allowbreak{}progress.\allowbreak{}csv}, and every processing step from the raw tiles onward is reproducible from the code once the imagery is obtained under an equivalent licence.
+
+\hypertarget{reference-data}{%
+\section{Reference data}\label{reference-data}}
+
+\begin{table}[htbp]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Source & Use & Retrieved \\
+\midrule
+OpenStreetMap building footprints, road centrelines & Post-processing inputs (§3.3) & 25 June 2026 \\
+OpenStreetMap land use, brownfield, pitch, \texttt{amenity=parking} & Error attribution only (§4.2) & 25 June 2026 \\
+Ordnance Survey Open Greenspace & Sports facilities in error attribution & --- \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+\restoreparskip
+
+OpenStreetMap data are © OpenStreetMap contributors, available under the Open Database Licence. Ordnance Survey Open Greenspace is published under the Open Government Licence. Neither is used as ground truth; the distinction is set out in §3.1.
+
+\hypertarget{reference-labels}{%
+\section{Reference labels}\label{reference-labels}}
+
+The 2,037 manually labelled car parks are held in the repository as GeoPackage, together with the 1 km² validation grid and the confidence attribute described in Appendix A. These are the labels against which every accuracy figure in Chapter 4 is measured, and they are original to this study.
+
+\hypertarget{model}{%
+\section{Model}\label{model}}
+
+The segmentation network is the published checkpoint of Qiam, Devunuri and Lehe (2025), obtained from the authors' release and used without modification in the primary analysis. The fine-tuned checkpoints produced for Appendix C are derived works of that release and are not redistributed; the training code and logs that generate them are in \texttt{fine-\allowbreak{}tuning/\allowbreak{}} for the generic arm and \texttt{targeted-\allowbreak{}finetuning/\allowbreak{}} for the targeted loss weighting and threshold sweep.
+
+\hypertarget{result-files}{%
+\section{Result files}\label{result-files}}
+
+Each appendix table is generated from a file in the repository rather than transcribed:
+
+\par\addvspace{\medskipamount}\noindent
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.2930}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.6870}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Table
+\end{minipage} &
+\begin{minipage}[b]{\linewidth}\raggedright
+Source
+\end{minipage} \\
+\midrule
+\endhead
+Appendix B.1 &
+\texttt{analysis/validation\_\allowbreak{}summary.csv} \\
+Appendix B.2--B.4 &
+\texttt{analysis/accuracy\_\allowbreak{}vs\_\allowbreak{}distance.csv},
+\texttt{analysis/accuracy\_\allowbreak{}vs\_\allowbreak{}distance\_\allowbreak{}summary.csv} \\
+Appendix C.1--C.2 &
+\texttt{targeted-finetuning/Parking\_\allowbreak{}targeted\_\allowbreak{}run2/evaluation\_\allowbreak{}arms.csv} \\
+Appendix C.3 &
+\texttt{targeted-finetuning/Parking\_\allowbreak{}targeted\_\allowbreak{}run2/boundary\_\allowbreak{}bands\_\allowbreak{}arms.csv} \\
+Appendix C.4 &
+\texttt{targeted-finetuning/Parking\_\allowbreak{}targeted\_\allowbreak{}run2/selectivity.csv},
+\texttt{standalone\_\allowbreak{}fp\_\allowbreak{}by\_\allowbreak{}category.csv} \\
+Appendix C.5 &
+\texttt{targeted-finetuning/Parking\_\allowbreak{}targeted\_\allowbreak{}run2/threshold\_\allowbreak{}sweep/generic\_\allowbreak{}threshold\_\allowbreak{}selected.csv} \\
+\bottomrule
+\end{longtable}
+\par\addvspace{\medskipamount}\restoreparskip
+
+\hypertarget{reproduction}{%
+\section{Reproduction}\label{reproduction}}
+
+The city-wide inference and the fine-tuning experiments require a GPU and were run in Google Colab; the notebooks (\texttt{run\_\allowbreak{}finetuning\_\allowbreak{}colab.\allowbreak{}ipynb}, \texttt{run\_\allowbreak{}targeted\_\allowbreak{}colab.\allowbreak{}ipynb}, \texttt{threshold\_\allowbreak{}sweep\_\allowbreak{}colab.\allowbreak{}ipynb}) pin \texttt{transformers==4.57.1}, otherwise running against the Colab environment's own package versions, and cache intermediate outputs, so a run interrupted partway resumes rather than restarting. All other analysis runs on CPU from the committed CSVs.

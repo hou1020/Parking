@@ -1,0 +1,270 @@
+% =====================================================================
+%  CASA0010 MSc Dissertation
+%  Compile with:  latexmk -xelatex main.tex     (or ./build.sh)
+%  Body chapters are generated from ../write/*.md by md2tex.py
+% =====================================================================
+\documentclass[12pt,a4paper,oneside]{report}
+
+% ---------- page geometry -------------------------------------------
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=3cm,right=2.5cm]{geometry}
+
+% ---------- fonts and encoding (XeLaTeX) -----------------------------
+\usepackage{fontspec}
+\usepackage{unicode-math}
+% Referenced by filename: the TeX Live copies of these fonts are not
+% registered with fontconfig on macOS, so the human-readable names fail.
+\setmainfont{texgyrepagella}[
+  Extension    = .otf,
+  UprightFont  = *-regular,
+  ItalicFont   = *-italic,
+  BoldFont     = *-bold,
+  BoldItalicFont = *-bolditalic,
+]
+\setmathfont{texgyrepagella-math.otf}
+\usepackage{microtype}
+
+% Glyphs the text uses that are safer routed through maths.
+\usepackage{newunicodechar}
+\newunicodechar{−}{\ensuremath{-}}
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≠}{\ensuremath{\neq}}
+\newunicodechar{×}{\ensuremath{\times}}
+\newunicodechar{±}{\ensuremath{\pm}}
+\newunicodechar{÷}{\ensuremath{\div}}
+\newunicodechar{ρ}{\ensuremath{\rho}}
+\newunicodechar{γ}{\ensuremath{\gamma}}
+\newunicodechar{Σ}{\ensuremath{\Sigma}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+
+% ---------- spacing (handbook 4.3: generous spacing) -----------------
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+
+% ---------- tables, figures, floats ----------------------------------
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{graphicx}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,labelsep=period,skip=6pt}
+\captionsetup[longtable]{skip=4pt}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{adjustbox}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% longtable zeroes \parskip and does not put it back, so every table would
+% otherwise flatten the paragraph spacing for the rest of the document.
+\newlength{\bodyparskip}
+\newcommand{\restoreparskip}{\setlength{\parskip}{\bodyparskip}}
+\apptocmd{\endlongtable}{\restoreparskip}{}{}
+\usepackage{footnotehyper}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% ---------- references list (hanging indent) -------------------------
+\usepackage{hanging}
+
+% ---------- headings in bold (handbook 4.3) --------------------------
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\Large\bfseries}{\chaptertitlename\ \thechapter}{12pt}{\LARGE}
+\titlespacing*{\chapter}{0pt}{0pt}{24pt}
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+
+% ---------- continuous arabic pagination (handbook 4.8) --------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+% ---------- links ----------------------------------------------------
+\usepackage[hidelinks,breaklinks]{hyperref}
+\usepackage{xurl}
+\hypersetup{
+  pdftitle={Evaluating the Geographic Transfer of a US-Trained Surface-Parking Segmentation Model: Evidence from Leeds},
+  pdfauthor={Jiayi Hou}
+}
+
+% =====================================================================
+%  Details required on the title page by handbook 4.2
+% =====================================================================
+% \\ sets the break; left to itself the line turns badly
+\newcommand{\thesistitle}{Evaluating the Geographic Transfer of\\a US-Trained Surface-Parking\\Segmentation Model: Evidence from Leeds}
+\newcommand{\studentname}{Jiayi Hou}
+\newcommand{\studentnumber}{25054106}
+\newcommand{\modulecode}{CASA0010}
+\newcommand{\modulename}{MSc Urban Spatial Science Dissertation}
+% ~ binds the second name so the line breaks after "and", not mid-name.
+\newcommand{\supervisors}{Associate Professor Esra Suel and Dr~Clara~Peiret-Garc\'ia}
+\newcommand{\submissiondate}{August 2026}
+\newcommand{\repourl}{https://github.com/hou1020/Parking}
+\newcommand{\wordcount}{11{,}953}
+
+\begin{document}
+% \baselineskip is not yet set in the preamble, so the paragraph gap has to
+% be fixed here, once \onehalfspacing is in force.
+\setlength{\bodyparskip}{0.5\baselineskip}
+\setlength{\parskip}{\bodyparskip}
+\pagenumbering{arabic}
+
+% =====================================================================
+%  Title page
+% =====================================================================
+{\centering
+\vspace*{1cm}
+
+{\LARGE\bfseries\begin{tabular}{c}\thesistitle\end{tabular}\par}
+
+\vspace{2.4cm}
+{\large \studentname\par}
+\vspace{0.4cm}
+{\large \submissiondate\par}
+
+\vspace{2.2cm}
+\begin{minipage}{0.85\textwidth}
+\centering
+\small
+\begin{tabular}{@{}r@{\hspace{1.2em}}>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\textbf{Student number} & \studentnumber \\
+\textbf{Module} & \modulename \\
+\textbf{Module code} & \modulecode \\
+\textbf{Supervisors} & \supervisors \\
+\textbf{Code repository} & \url{\repourl} \\
+\textbf{Word count} & \wordcount \\
+\end{tabular}
+\end{minipage}
+
+\vfill
+\begin{minipage}{0.85\textwidth}
+\centering\small
+This dissertation is submitted in part requirement for the MSc in the Centre
+for Advanced Spatial Analysis, Bartlett Faculty of the Built Environment, UCL.
+\end{minipage}
+\vspace{1cm}
+\par}
+\clearpage
+
+% =====================================================================
+%  Abstract  (handbook 4.2: max 300 words, not counted)
+% =====================================================================
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\input{chapters/00_abstract}
+
+% =====================================================================
+%  Declaration  (handbook 4.2, wording fixed)
+% =====================================================================
+\chapter*{Declaration}
+\addcontentsline{toc}{chapter}{Declaration}
+
+I hereby declare that this dissertation is all my own original work and that
+all sources have been acknowledged. It is \wordcount{} words in length.
+
+\vspace{1.5\baselineskip}
+
+\noindent
+\begin{tabular}{@{}l@{\hspace{1em}}l@{}}
+Signed: & \hspace*{5cm} \\[1.2em]
+Date:   & 20 August 2026 \\
+\end{tabular}
+
+% =====================================================================
+%  Acknowledgements
+% =====================================================================
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+
+I thank my supervisors, Associate Professor Esra Suel and Dr Clara
+Peiret-Garc\'ia, for their guidance and for their patience with a project that
+changed shape more than once.
+
+At the Centre for Cities, I thank Maurice Lange, who set the question in its
+policy context, arranged for me to work from the office, and gave advice
+throughout.
+
+I am also grateful to Shirin Qiam, Saipraneeth Devunuri and Lewis Lehe, whose
+released model and pipeline this study is built on.
+
+% =====================================================================
+%  Contents and lists
+% =====================================================================
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Contents}
+\tableofcontents
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+% =====================================================================
+%  Acronyms and abbreviations  (handbook 4.2)
+% =====================================================================
+\chapter*{Acronyms and Abbreviations}
+\addcontentsline{toc}{chapter}{Acronyms and Abbreviations}
+
+\begin{tabular}{@{}p{3.2cm}p{\dimexpr\textwidth-3.6cm\relax}@{}}
+\toprule
+CASA & Centre for Advanced Spatial Analysis, UCL \\
+FN & False negative --- labelled parking the model did not predict \\
+FP & False positive --- predicted parking that is not labelled parking \\
+GSD & Ground sample distance \\
+IoU & Intersection over union \\
+MHCLG & Ministry of Housing, Communities and Local Government \\
+NIR & Near infrared \\
+NPPF & National Planning Policy Framework \\
+OS & Ordnance Survey \\
+OSM & OpenStreetMap \\
+RQ & Research question \\
+TP & True positive --- predicted parking that is labelled parking \\
+VOA & Valuation Office Agency \\
+\bottomrule
+\end{tabular}
+
+% =====================================================================
+%  Body
+% =====================================================================
+\chapter{Introduction}\input{chapters/01_introduction}
+\chapter{Literature Review}\input{chapters/02_background}
+\chapter{Methodology}\input{chapters/03_methodology}
+\chapter{Results}\input{chapters/04_results}
+\chapter{Discussion}\input{chapters/05_discussion}
+\chapter{Conclusion}\input{chapters/06_conclusion}
+
+% =====================================================================
+%  References
+% =====================================================================
+\chapter*{References}
+\addcontentsline{toc}{chapter}{References}
+\markboth{References}{References}
+\input{chapters/07_references}
+
+% =====================================================================
+%  Appendices
+% =====================================================================
+\appendix
+\addtocontents{toc}{\protect\vspace{0.6em}}
+
+\chapter{Manual annotation protocol}\input{chapters/app_a}
+\chapter{Per-cell validation and accuracy by distance}\input{chapters/app_b}
+\chapter{Supplementary adaptation experiment}\input{chapters/app_c}
+\chapter{Code and data availability}\input{chapters/app_d}
+\chapter{Research log}\input{chapters/app_e}
+
+\end{document}

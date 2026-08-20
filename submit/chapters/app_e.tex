@@ -1,0 +1,271 @@
+\hypertarget{note-on-this-log}{%
+\section{Note on this log}\label{note-on-this-log}}
+
+This log records the supervision meetings, tasks, problems and outputs of the dissertation project between April and August 2026. It draws on the notes of supervision meetings held with CASA and Centre for Cities (Section E.2) and on the commit history of the project repository, archived at https://github.com/hou1020/Parking (Section E.3).
+
+Two points on the dates. Commit dates record when work was committed to the repository, which may lag when it was carried out; and the manual annotation described in Phase 4 was carried out in QGIS and stored outside the repository, so the dates for that phase come from the annotation files themselves.
+
+\hypertarget{supervision-meetings}{%
+\section{Supervision meetings}\label{supervision-meetings}}
+
+Ten meetings were held between April and August 2026.
+
+\par\addvspace{\medskipamount}\noindent
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0280}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1540}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2441}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.5539}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+\#
+\end{minipage} &
+\begin{minipage}[b]{\linewidth}\raggedright
+Date
+\end{minipage} &
+\begin{minipage}[b]{\linewidth}\raggedright
+Attendees
+\end{minipage} &
+\begin{minipage}[b]{\linewidth}\raggedright
+Discussed
+\end{minipage} \\
+\midrule
+\endhead
+1 & 27 Apr 2026 &
+Esra, Clara (CASA);
+Rob, Maurice (Centre
+for Cities); Khalis,
+Jiayi & Kick-off.
+The project was
+defined as
+deep-learning
+detection of
+off-street surface
+parking in UK
+cities, motivated by
+identifying
+unallocated land
+with housing
+potential.
+Transferring a
+US-trained model to
+UK urban form was
+flagged as the main
+challenge. A
+bi-weekly online
+sync and a shared
+GitHub repository
+were agreed. \\
+2 & 5 May 2026 &
+Esra, Clara &
+Progress update
+during the
+coursework period:
+aerial data had been
+downloaded from
+Digimap, but no
+model runs carried
+out. The 20 August
+deadline was
+confirmed and the
+CASA writing
+workshops
+announced. \\
+3 & 19 May 2026 &
+Esra, Clara & Model
+accuracy. Manual
+annotation and
+retraining were
+judged too
+compute-intensive at
+that stage, so
+spatial intersection
+with OpenStreetMap
+building polygons
+was recommended as
+post-processing. The
+urban-policy framing
+was restated over a
+computer-vision
+framing. \\
+4 & 2 Jun 2026 &
+Esra, Clara & First
+Leeds results on
+nine tiles: high
+recall but low
+precision, with
+supermarket roofs a
+characteristic false
+positive. Asked how
+many tiles should be
+validated manually,
+given about seven
+minutes of compute
+per image. \\
+5 & 16 Jun 2026 &
+Esra, Clara & Edge
+cases, in particular
+industrial and
+logistics yards
+being flagged as
+parking. Agreed to
+define explicit
+filtering criteria
+and a low-confidence
+class in the
+methodology, so that
+the output reflects
+sites with genuine
+redevelopment
+potential. \\
+6 & 22 Jun 2026 &
+Esra, Clara &
+Comparison with
+Ordnance Survey
+mapping, which also
+omits informal and
+unallocated parking.
+Asked to choose
+between a
+methodological error
+analysis and a
+land-potential and
+policy analysis for
+a single city, and
+to archive cleaned
+code on GitHub. \\
+7 & 9 Jul 2026 &
+Esra, Clara; Maurice
+(Centre for Cities)
+& Logistics
+check-in: the
+project would run
+mainly online, with
+a sync the following
+Friday. \\
+8 & 14 Jul 2026 &
+Clara & The
+published,
+un-finetuned model
+transferred poorly
+to UK imagery,
+especially in
+distinguishing
+storage yards and
+lorry parks from
+ordinary car parks.
+Weighed retraining
+on my own
+annotations against
+further
+post-processing;
+compute and time
+would restrict any
+retraining to a very
+small area. \\
+9 & 28 Jul 2026 &
+Clara & Advised
+against pursuing
+further
+computer-vision
+accuracy. The
+dissertation was
+refocused on why a
+US-trained model
+transfers poorly to
+UK urban form, what
+the gaps in
+OpenStreetMap are,
+and what the
+detected areas imply
+for planning and
+housing policy. \\
+10 & 11 Aug 2026 &
+Esra & With the
+deadline approaching
+and writing not yet
+started, it was
+agreed that I would
+stop running models
+and first draft the
+research questions,
+motivation and
+literature review,
+and that the model's
+limitations across
+different national
+and urban contexts
+would be written up
+as a substantive
+analysis chapter
+rather than treated
+as a failure. \\
+\bottomrule
+\end{longtable}
+\par\addvspace{\medskipamount}\restoreparskip
+
+\hypertarget{project-timeline}{%
+\section{Project timeline}\label{project-timeline}}
+
+\hypertarget{phase-1-scoping-and-data-acquisition-27-april-14-may}{%
+\subsection*{Phase 1 --- Scoping and data acquisition (27 April -- 14 May)}\label{phase-1-scoping-and-data-acquisition-27-april-14-may}}
+
+The topic was agreed at the kick-off meeting: applying a published deep-learning segmentation model to detect off-street surface parking in a UK city, with the policy aim of identifying land that is not allocated in local development plans but has housing potential. Aerial imagery was ordered and downloaded from Digimap. No code was written; taught-module coursework and an examination on 14 May took priority.
+
+\hypertarget{phase-2-replicating-the-published-pipeline-and-first-uk-transfer-15-29-may}{%
+\subsection*{Phase 2 --- Replicating the published pipeline and first UK transfer (15 -- 29 May)}\label{phase-2-replicating-the-published-pipeline-and-first-uk-transfer-15-29-may}}
+
+\emph{Nine commits.}
+
+The repository was initialised on 15 May with the published parking-lot mapping tool of Qiam et al.~(2025), its trained checkpoint, and the core literature. The first obstacle was format rather than method: the tool expects georeferenced GeoTIFF input, whereas Digimap delivers JPEG images with separate world and metadata files, so \texttt{make\_\allowbreak{}uk\_\allowbreak{}geotiff.\allowbreak{}py} was written to convert them. The first inference was run on a single Edinburgh tile (\texttt{nt2774}).
+
+On 29 May the study area moved to Leeds and nine tiles (\texttt{se2526}--\texttt{se2728}, a 3×3 block) were put through batch inference. Three defects surfaced and were fixed the same day: malformed output polygons, an incorrect coordinate reference, and a thread-pool worker limit that stalled batch runs.
+
+Post-processing was added at the end of the same day: minimum-area filters at 500, 1,000 and 2,500 m², merging of per-tile outputs into a single layer, and removal of predictions falling on OpenStreetMap buildings and roads. Agreement against OSM parking polygons at each threshold gave the first quantitative sense of how the model performed on UK imagery.
+
+\hypertarget{phase-3-validation-infrastructure-2-25-june}{%
+\subsection*{Phase 3 --- Validation infrastructure (2 -- 25 June)}\label{phase-3-validation-infrastructure-2-25-june}}
+
+\emph{Six commits.}
+
+The 2 June meeting established the central problem: recall was high but precision was low, with the flat roofs of large supermarkets the characteristic false positive. The review of 16 June added a second systematic confusion --- industrial and logistics yards, where vehicles cluster but redevelopment for housing is not realistic --- and made clear that agreement with OSM was not a sufficient basis for evaluation, since OSM parking is itself incomplete.
+
+Work therefore turned to manual ground truth. A validation boundary was defined on 16 June, and on 23 June \texttt{calculate\_\allowbreak{}manual\_\allowbreak{}agreement.\allowbreak{}py} and a first manually annotated validation layer were committed, producing metrics against manual labels rather than against OSM.
+
+Two pieces of infrastructure were settled on 25 June: OpenStreetMap retrieval was switched to the Overpass API in \texttt{post\_\allowbreak{}processing\_\allowbreak{}uk.\allowbreak{}py}, and Colab outputs were redirected to Drive so that results survived session resets.
+
+\hypertarget{phase-4-manual-annotation-and-redirection-26-june-2-august}{%
+\subsection*{Phase 4 --- Manual annotation and\\redirection (26 June -- 2 August)}\label{phase-4-manual-annotation-and-redirection-26-june-2-august}}
+
+\emph{No commits. Dates from annotation files.}
+
+This is the longest stretch of the project without a commit, and the work in it was annotation rather than code. The annotation frame and sampling grid were built on 26 June (\texttt{leeds\_\allowbreak{}boundry.\allowbreak{}gpkg}, \texttt{leeds\_\allowbreak{}grid.\allowbreak{}gpkg}); the proposal was revised on 30 June; the validation annotation set was completed on 19 July (\texttt{leeds\_\allowbreak{}manual\_\allowbreak{}validation.\allowbreak{}gpkg}); the annotation rules were written down on 21 July (\texttt{Rules.md}); and the main annotation set was completed on 28 July (\texttt{leeds\_\allowbreak{}manual.\allowbreak{}gpkg}), together with \texttt{validate\_\allowbreak{}removal\_\allowbreak{}vs\_\allowbreak{}manual.\allowbreak{}py}, which tests the OSM-removal step against the manual labels.
+
+Writing the rules down was the more consequential of these steps. Because the model is validated against these labels, the labels have to match the definition the model was trained on, so the rules were aligned to Qiam et al.~(2025) --- the same off-street surface target, pavement-edge boundaries, rooftop parking included only where the surface is visible, and no minimum-size threshold --- with any deviation recorded so that errors caused by definition differences could be separated from true model errors.
+
+Two meetings in this window shaped what followed: the report of poor transfer on 14 July, where retraining on my own annotations was weighed against further post-processing, and the redirection of 28 July away from accuracy and towards why the model fails in the UK context.
+
+\hypertarget{phase-5-city-wide-run-and-error-analysis-3-10-august}{%
+\subsection*{Phase 5 --- City-wide run and error analysis (3 -- 10 August)}\label{phase-5-city-wide-run-and-error-analysis-3-10-august}}
+
+\emph{Four commits.}
+
+With the redirection settled, inference was extended from the nine-tile test block to the full Leeds study area on 3 August --- 100 tiles, 413 output files --- and the emphasis shifted from improving predictions to characterising their errors. False-positive analysis was added the same day, using OS Open Greenspace among the reference layers, alongside the results of validating the removal step against manual labels.
+
+On 5 August three analyses were added: false negatives broken down by class, an ablation of the post-processing steps, and accuracy as a function of distance from the city centre, the last addressing whether the model fails differently in the centre and the suburbs. A stratified sampling design for error inspection followed on 7 August, and on 10 August 142 image chips were cut for visual inspection, together with a full mosaic and a parking-extent map.
+
+\hypertarget{phase-6-calibration-fine-tuning-and-the-start-of-writing-11-12-august}{%
+\subsection*{Phase 6 --- Calibration, fine-tuning and the start of writing (11 -- 12 August)}\label{phase-6-calibration-fine-tuning-and-the-start-of-writing-11-12-august}}
+
+\emph{Seven commits.}
+
+The morning of 11 August was spent on a calibration-transfer analysis, a co-registration check, and the first methods figures. A Colab fine-tuning notebook was then built and iterated through six commits in a single afternoon, using the manual annotations and grid produced in Phase 4.
+
+The meeting later that day found that no writing had begun, and it was agreed to stop modelling and draft the research questions, motivation and literature review first. \texttt{02\_\allowbreak{}background.\allowbreak{}md}, the first dissertation chapter in the repository, was committed the following day, 12 August, along with the results figures.
+
+\hypertarget{phase-7-write-up-and-targeted-fine-tuning-13-20-august}{%
+\subsection*{Phase 7 --- Write-up and targeted fine-tuning (13 -- 20 August)}\label{phase-7-write-up-and-targeted-fine-tuning-13-20-august}}
+
+\emph{Ten commits to date.}
+
+The remaining chapters --- abstract, introduction, results, discussion and conclusion --- and the reference list were committed on 16 August. A targeted fine-tuning experiment was set up and iterated the same day, with the calibration-transfer error table added and the methods and results figures regenerated. The remaining time before submission is given to the front matter, reducing the manuscript to the word limit, and proofreading.

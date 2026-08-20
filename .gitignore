@@ -5,8 +5,23 @@ __pycache__/
 .idea/
 *.tif.aux.xml
 
-# Licensed Digimap / Getmapping aerial imagery — must never be committed.
-# Already-tracked files are NOT affected by these rules; they must be removed
-# from the index and from history separately.
+# ── Licensed Digimap / Getmapping aerial imagery — must never be committed ──
+# Redistribution is prohibited by the data licence.
+# NOTE: .gitignore has no effect on files already staged or already present in
+# history. Those must be unstaged (git rm --cached) or purged from history.
+
+# Imagery directories — covers .jpg / .jgw / .xml sidecars together
+parking-lot-mapping-tool/files/aerial/
+parking-lot-mapping-tool/files/leeds/
+parking-lot-mapping-tool/files/leeds_tif/
+parking-lot-mapping-tool/files/tif/
+
+# Imagery formats and world/sidecar files, wherever they appear
 *.tif
 *.tiff
+*.tfw
+*.jpg
+*.jpeg
+*.jgw
+*.tif.aux.xml
+*.jpg.aux.xml

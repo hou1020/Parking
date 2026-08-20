@@ -121,7 +121,7 @@ def arrow(x1, y1, x2, y2, style="-|>", lw=1.2, color=INK, ls="-", rad=None):
 
 L, M, R = 24, 63, 100
 ys = [93, 80.5, 68, 55.5, 43]
-box(L, ys[0], "Digimap aerial tiles\n109 tiles · 0.25 m · RGB")
+box(L, ys[0], "Digimap aerial tiles\n100 tiles · 0.25 m · RGB")
 box(L, ys[1], "Georeferenced GeoTIFF\nEPSG:27700")
 box(L, ys[2], "512 × 512 patches\nzero-padded at edges")
 box(L, ys[3], "SegFormer-B5\nQiam et al. (2025), unmodified",

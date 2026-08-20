@@ -29,16 +29,16 @@ Partial correlations control for the other predictor. `n = 99` for recall becaus
 |---|---:|---:|---:|---:|---:|
 | distance vs prec_all | 100 | -0.172 | 0.0873 | -0.186 | 0.0637 |
 | parking_share vs prec_all | 100 | 0.536 | 0.0 | 0.653 | 0.0 |
-| distance vs prec_all | controlling parking_share | 100 | 0.186 | 0.0646 | — | — |
-| parking_share vs prec_all | controlling distance | 100 | 0.54 | 0.0 | — | — |
+| distance vs prec_all \| controlling parking_share | 100 | 0.186 | 0.0646 | — | — |
+| parking_share vs prec_all \| controlling distance | 100 | 0.54 | 0.0 | — | — |
 | distance vs rec_all | 99 | 0.181 | 0.073 | 0.161 | 0.1124 |
 | parking_share vs rec_all | 99 | 0.103 | 0.3125 | 0.084 | 0.4097 |
-| distance vs rec_all | controlling parking_share | 99 | 0.289 | 0.0037 | — | — |
-| parking_share vs rec_all | controlling distance | 99 | 0.25 | 0.0127 | — | — |
+| distance vs rec_all \| controlling parking_share | 99 | 0.289 | 0.0037 | — | — |
+| parking_share vs rec_all \| controlling distance | 99 | 0.25 | 0.0127 | — | — |
 | distance vs iou_all | 100 | -0.127 | 0.2081 | -0.16 | 0.1114 |
 | parking_share vs iou_all | 100 | 0.515 | 0.0 | 0.639 | 0.0 |
-| distance vs iou_all | controlling parking_share | 100 | 0.229 | 0.0222 | — | — |
-| parking_share vs iou_all | controlling distance | 100 | 0.54 | 0.0 | — | — |
+| distance vs iou_all \| controlling parking_share | 100 | 0.229 | 0.0222 | — | — |
+| parking_share vs iou_all \| controlling distance | 100 | 0.54 | 0.0 | — | — |
 | distance vs parking_share | 100 | -0.562 | 0.0 | -0.66 | 0.0 |
 
 ## B.4 Per-cell results
